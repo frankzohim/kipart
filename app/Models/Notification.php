@@ -2,24 +2,23 @@
 
 namespace App\Models;
 
-use App\Models\Codeqr;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Travel extends Model
+class Notification extends Model
 {
     use HasFactory;
 
     protected $fillable=[
-        'uuid',
-        'date',
-        'departure',
-        'arrival'
+        'message',
+        'user_id',
+        'etat'
     ];
 
-    public function codeqr():BelongsTo
+    public function user():BelongsTo
     {
-        return $this->belongsTo(Codeqr::class);
+        return $this->belongsTo(User::class);
     }
 }

@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('travel', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->uuid('uuid')->index();
             $table->date('date');
             $table->string('departure');
             $table->string('arrival');

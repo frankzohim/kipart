@@ -13,8 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
+            $table->text('message');
+
+            $table->foreignIdFor(User::class)
+            ->constrained()
+            ->restrictOnUpdate()
+            ->restrictOnDelete();
+
+            $table->boolean('etat');
             $table->timestamps();
         });
     }

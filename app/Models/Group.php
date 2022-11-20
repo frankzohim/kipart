@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Droit;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Group extends Model
 {
@@ -14,4 +16,11 @@ class Group extends Model
         'libelle',
         'etat'
     ];
+
+    public function droits():BelongsToMany
+    {
+        return $this->belongsToMany(Droit::class);
+    }
+
+
 }

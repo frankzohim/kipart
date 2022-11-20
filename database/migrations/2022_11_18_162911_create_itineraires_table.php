@@ -14,8 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('itineraires', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('uuid')->index();
+            $table->bigIncrements('id');
             $table->string('departure');
             $table->string('arrival');
             $table->boolean('etat');

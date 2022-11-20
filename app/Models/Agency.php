@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Bus;
+use App\Models\Horaire;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Agency extends Model
 {
@@ -16,4 +20,14 @@ class Agency extends Model
         'nombre_bus',
         'etat'
     ];
+
+    public function buses():HasMany
+    {
+        return $this->hasMany(Bus::class);
+    }
+
+    public function horaires():BelongsToMany
+    {
+        return $this->belongsToMany(Horaire::class);
+    }
 }
