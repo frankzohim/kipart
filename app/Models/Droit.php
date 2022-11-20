@@ -12,7 +12,7 @@ class Droit extends Model
     use HasFactory;
 
     protected $fillable=[
-        'libelle'
+        'wording'
     ];
 
     public function groups():BelongsToMany

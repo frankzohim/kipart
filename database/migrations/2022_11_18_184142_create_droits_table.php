@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('droits', function (Blueprint $table) {
             $table->id();
-            $table->string('libelle');
+            $table->string('wording');
             $table->timestamps();
         });
     }

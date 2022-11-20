@@ -12,10 +12,10 @@ class Bus extends Model
     use HasFactory;
 
     protected $fillable=[
-        'immatriculation',
+        'registration',
         'agence_id',
         'number_of_places',
-        'classe'
+        'class'
     ];
 
     public function agency():BelongsTo

@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('agencies', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('siege');
+            $table->string('headquarters');
             $table->string('logo');
-            $table->string('nombre_bus');
-            $table->boolean('etat');
+            $table->string('numberOfBus');
+            $table->boolean('state');
             $table->timestamps();
         });
     }

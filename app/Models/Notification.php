@@ -14,7 +14,7 @@ class Notification extends Model
     protected $fillable=[
         'message',
         'user_id',
-        'etat'
+        'state'
     ];
 
     public function user():BelongsTo

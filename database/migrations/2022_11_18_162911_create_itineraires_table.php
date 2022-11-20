@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('departure');
             $table->string('arrival');
-            $table->boolean('etat');
+            $table->boolean('state');
             $table->timestamps();
         });
     }

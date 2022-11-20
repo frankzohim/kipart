@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('buses', function (Blueprint $table) {
             $table->id();
-            $table->string('immatriculation')->unique();
+            $table->string('registration')->unique();
 
             $table->foreignIdFor(Agency::class)
                 ->constrained()
@@ -24,7 +24,7 @@ return new class extends Migration
                 ->restrictOnDelete();
 
             $table->integer('number_of_places');
-            $table->string('classe');
+            $table->string('class');
             $table->timestamps();
         });
     }

@@ -12,7 +12,7 @@ class Horaire extends Model
     use HasFactory;
 
     protected $fillable=[
-        'heure'
+        'hours'
     ];
 
     public function agencies():BelongsToMany

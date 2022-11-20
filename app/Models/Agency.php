@@ -15,10 +15,10 @@ class Agency extends Model
 
     protected $fillable=[
         'name',
-        'siege',
+        'headquarters',
         'logo',
-        'nombre_bus',
-        'etat'
+        'numberOfBus',
+        'state'
     ];
 
     public function buses():HasMany

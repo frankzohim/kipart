@@ -23,7 +23,7 @@ return new class extends Migration
             ->restrictOnUpdate()
             ->restrictOnDelete();
 
-            $table->boolean('etat');
+            $table->boolean('state');
             $table->timestamps();
         });
     }
