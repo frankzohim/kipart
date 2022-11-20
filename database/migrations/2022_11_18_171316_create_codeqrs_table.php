@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Token;
 use App\Models\Travel;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -19,7 +20,11 @@ return new class extends Migration
         Schema::create('codeqrs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('uuid')->index();
-            $table->string('token');
+
+            $table->foreignIdFor(Token::class)
+                ->constrained()
+                ->restrictOnUpdate()
+                ->restrictOnUpdate();
 
             $table->foreignIdFor(User::class)
                 ->constrained()

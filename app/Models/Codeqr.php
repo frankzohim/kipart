@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Token;
 use App\Models\Travel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -28,5 +29,10 @@ class Codeqr extends Model
     public function travels():HasMany
     {
         return $this->hasMany(Travel::class);
+    }
+
+    public function tokens():HasMany
+    {
+        return $this->hasMany(Token::class);
     }
 }
