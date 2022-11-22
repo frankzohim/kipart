@@ -14,6 +14,12 @@ class BusResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+        'registration'=>$this->registration,
+        'agence'=>$this->agency,
+        'number_of_places'=>$this->number_of_places,
+        'class'=>$this->class
+
+        ];
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AgencyController;
+use App\Http\Controllers\Api\BusController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +25,7 @@ Route::middleware('auth:api')->prefix('v1')->group(function(){
 });
 
 Route::apiResource('agency',AgencyController::class);
-
+Route::apiResource('bus',BusController::class);
 
 
 Route::get('/test', function(Request $request){
