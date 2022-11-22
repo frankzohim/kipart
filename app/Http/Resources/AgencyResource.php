@@ -19,7 +19,9 @@ class AgencyResource extends JsonResource
             'name'=>$this->name,
             'logo'=>$this->logo,
             'numberOfBus'=>$this->numberOfBus,
+            'headquarters'=>$this->headquarters,
             'state'=>$this->state,
+            'travel'=>$this->travel,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];
