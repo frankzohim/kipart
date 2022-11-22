@@ -12,14 +12,19 @@ class Travel extends Model
     use HasFactory;
 
     protected $fillable=[
-        'uuid',
         'date',
         'departure',
+        'agency_id',
         'arrival'
     ];
 
     public function codeqr():BelongsTo
     {
         return $this->belongsTo(Codeqr::class);
+    }
+
+    public function agency():BelongsTo
+    {
+        return $this->belongsTo(Agency::class);
     }
 }
