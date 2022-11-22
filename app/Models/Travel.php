@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Codeqr;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -26,5 +27,11 @@ class Travel extends Model
     public function agency():BelongsTo
     {
         return $this->belongsTo(Agency::class);
+    }
+
+    public function paiements():HasMany
+
+    {
+        return $this->hasMany(Paiement::class);
     }
 }

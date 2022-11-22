@@ -24,6 +24,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role_id',
         'password',
     ];
 
@@ -54,5 +55,15 @@ class User extends Authenticatable
     public function codeqr():BelongsTo
     {
         return $this->belongsTo(Codeqr::class);
+    }
+
+    public function role():BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function paiements():HasMany
+    {
+        return $this->hasMany(Paiement::class);
     }
 }

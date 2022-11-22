@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('itineraries', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('departure');
-            $table->string('arrival');
-            $table->boolean('state');
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('itineraries');
+        Schema::dropIfExists('roles');
     }
 };

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Bus;
+use App\Models\Path;
 use App\Models\Travel;
 use App\Models\Horaire;
 use App\Models\Schedule;
@@ -39,8 +40,8 @@ class Agency extends Model
         return $this->hasMany(Travel::class);
     }
 
-    public function itineraries():BelongsToMany
+    public function paths():BelongsToMany
     {
-        return $this->belongsToMany(Itinerary::class);
+        return $this->belongsToMany(Path::class);
     }
 }

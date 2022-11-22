@@ -25,6 +25,7 @@ return new class extends Migration
                 ->restrictOnDelete();
 
             $table->integer('number_of_places');
+            $table->string("plan");
             $table->string('class');
             $table->timestamps();
         });
