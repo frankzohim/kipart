@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('droits', function (Blueprint $table) {
-            $table->id();
-            $table->string('wording');
+        Schema::create('itineraries', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('departure');
+            $table->string('arrival');
+            $table->boolean('state');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('droits');
+        Schema::dropIfExists('itineraries');
     }
 };

@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\Bus;
 use App\Models\Travel;
 use App\Models\Horaire;
+use App\Models\Schedule;
+use App\Models\Itinerary;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,13 +29,18 @@ class Agency extends Model
         return $this->hasMany(Bus::class);
     }
 
-    public function horaires():BelongsToMany
+    public function schedules():BelongsToMany
     {
-        return $this->belongsToMany(Horaire::class);
+        return $this->belongsToMany(Schedule::class);
     }
 
     public function travels():HasMany
     {
         return $this->hasMany(Travel::class);
+    }
+
+    public function itineraries():BelongsToMany
+    {
+        return $this->belongsToMany(Itinerary::class);
     }
 }

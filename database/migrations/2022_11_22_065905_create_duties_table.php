@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('horaires', function (Blueprint $table) {
+        Schema::create('duties', function (Blueprint $table) {
             $table->id();
-            $table->string("hours");
+            $table->string('wording');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('horaires');
+        Schema::dropIfExists('duties');
     }
 };

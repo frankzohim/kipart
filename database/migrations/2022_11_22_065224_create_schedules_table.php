@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Droit;
-use App\Models\Group;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,19 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('group_droits', function (Blueprint $table) {
+        Schema::create('schedules', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignIdFor(Group::class)
-                ->constrained()
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
-
-            $table->foreignIdFor(Droit::class)
-                ->constrained()
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
-
+            $table->string("hours");
             $table->timestamps();
         });
     }
@@ -39,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('group_droits');
+        Schema::dropIfExists('schedules');
     }
 };

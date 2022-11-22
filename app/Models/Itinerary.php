@@ -2,26 +2,23 @@
 
 namespace App\Models;
 
-use App\Models\Duty;
-use App\Models\Droit;
+use App\Models\Agency;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Group extends Model
+class Itinerary extends Model
 {
     use HasFactory;
 
     protected $fillable=[
-        'name',
-        'wording',
-        'etat'
+        'departure',
+        'arrival',
+        'state',
     ];
 
-    public function duties():BelongsToMany
+    public function agency():BelongsToMany
     {
-        return $this->belongsToMany(Duty::class);
+        return $this->belongsToMany(Agency::class);
     }
-
-
 }
