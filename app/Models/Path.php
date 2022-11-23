@@ -18,7 +18,7 @@ class Path extends Model
         'state',
     ];
 
-    public function agency():BelongsToMany
+    public function agencies():BelongsToMany
     {
         return $this->belongsToMany(Agency::class);
     }

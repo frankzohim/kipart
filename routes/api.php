@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Api\AgencyController;
-use App\Http\Controllers\Api\BusController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\BusController;
+use App\Http\Controllers\Api\PathController;
+use App\Http\Controllers\Api\AgencyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,7 @@ Route::middleware('auth:api')->prefix('v1')->group(function(){
 
 Route::apiResource('agency',AgencyController::class);
 Route::apiResource('bus',BusController::class);
+Route::apiResource('path',PathController::class);
 
 
 Route::get('/test', function(Request $request){
