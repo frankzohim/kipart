@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\BusController;
 use App\Http\Controllers\Api\PathController;
 use App\Http\Controllers\Api\AgencyController;
+use App\Http\Controllers\Api\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Route::middleware('auth:api')->prefix('v1')->group(function(){
 Route::apiResource('agency',AgencyController::class);
 Route::apiResource('bus',BusController::class);
 Route::apiResource('path',PathController::class);
-
+Route::apiResource('schedule',ScheduleController::class);
 
 Route::get('/test', function(Request $request){
     return "Authenticated";

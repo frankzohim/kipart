@@ -14,6 +14,9 @@ class ScheduleResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return  [
+            'hours'=>$this->hours,
+            'agence'=>$this->agency,
+        ];
     }
 }
