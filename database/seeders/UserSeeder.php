@@ -18,12 +18,13 @@ class UserSeeder extends Seeder
     public function run()
     {
 
-            DB::table('users')->insert([
+            /*DB::table('users')->insert([
                'name'=>'Admin',
                'email'=>'admin@gmail.com',
                'password'=>Hash::make('password'),
                'role_id'=>'1',
                'phone_number'=>'+237694297339',
-            ]);
+            ]);*/
+            \App\Models\User::factory(5)->create();
     }
 }
