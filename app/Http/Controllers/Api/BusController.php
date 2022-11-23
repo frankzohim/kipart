@@ -64,9 +64,17 @@ class BusController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BusRequest $request, $id)
     {
-        //
+        $bus=Bus::find($id);
+        $input=$request->all();
+        $update=$bus->update($input);
+        if($update){
+        return response()->json(['status'=>'success','message'=>'Bus update']);
+        }
+        else{
+            return response()->json(['status'=>'fail!','message'=>'Bus not found']);
+        }
     }
 
     /**

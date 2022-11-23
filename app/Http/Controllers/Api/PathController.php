@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\PathResource;
 use App\Models\Path;
 use Illuminate\Http\Request;
+use App\Http\Requests\PathRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\PathResource;
 
 class PathController extends Controller
 {
@@ -25,7 +26,7 @@ class PathController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PathRequest $request)
     {
         $path=Path::create([
             'departure'=>$request->departure,
@@ -62,9 +63,17 @@ class PathController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PathRequest $request, $id)
     {
-        //
+        $path=Path::find($id);
+        $input=$request->all();
+        $update=$path->update($input);
+        if($update){
+        return response()->json(['status'=>'success','message'=>'Path update']);
+        }
+        else{
+            return response()->json(['status'=>'fail!','message'=>'Path not found']);
+        }
     }
 
     /**

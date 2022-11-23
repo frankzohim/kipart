@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ScheduleRequest;
 use App\Http\Resources\ScheduleResource;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class ScheduleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ScheduleRequest $request)
     {
         $schedule=Schedule::create([
             'hours'=>$request->hours
@@ -60,9 +61,17 @@ class ScheduleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ScheduleRequest $request, $id)
     {
-        //
+        $schedule=Schedule::find($id);
+        $input=$request->all();
+        $update=$schedule->update($input);
+        if($update){
+        return response()->json(['status'=>'success','message'=>'schedule update']);
+        }
+        else{
+            return response()->json(['status'=>'fail!','message'=>'schedule not found']);
+        }
     }
 
     /**

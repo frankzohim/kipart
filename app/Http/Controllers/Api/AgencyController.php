@@ -67,21 +67,14 @@ class AgencyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id,AgencyRequest $request)
     {
 
         $agency=Agency::find($id);
-
-        if($agency){
-            $agency->update([
-                'name'=>$request->name,
-                'headquarters'=>$request->headquarters,
-                'logo'=>$request->logo,
-                'numberOfBus'=>$request->numberOfBus,
-                'state'=>1
-            ]);
-
-            return response()->json(['status'=>'success','message'=>'Agency update','data'=>$agency]);
+        $input=$request->all();
+        $update=$agency->update($input);
+        if($update){
+        return response()->json(['status'=>'success','message'=>'Agency update']);
         }
         else{
             return response()->json(['status'=>'fail!','message'=>'agency not found']);
