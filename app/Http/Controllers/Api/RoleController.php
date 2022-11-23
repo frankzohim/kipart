@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Role;
+use App\Http\Resources\RoleResource;
 
 class RoleController extends Controller
 {
@@ -14,7 +15,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return Role::all();
+        return RoleResource::collection(Role::all());
     }
 
     /**
@@ -35,7 +36,11 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $role = Role::create([
+            'type' => $request->input('type'),
+        ]);
+
+        return new RoleResource($role);
     }
 
     /**
@@ -44,9 +49,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $role)
     {
-        //
+        return new RoleResource($role);
     }
 
     /**
@@ -67,9 +72,13 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $role->update([
+            'type' => $request->input('type')
+            ]);
+
+        return new RoleResource($role);
     }
 
     /**
@@ -78,8 +87,9 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        return response(null,204);
     }
 }
