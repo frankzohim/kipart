@@ -4,6 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\BusController;
+use App\Http\Controllers\Api\PathController;
+use App\Http\Controllers\Api\AgencyController;
+use App\Http\Controllers\Api\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +21,7 @@ use App\Http\Controllers\Api\RoleController;
 */
 
 Route::middleware('auth:api')->prefix('v1')->group(function(){
-    
+
     Route::get('/user', function(Request $request){
         return $request->user();
     });
@@ -27,11 +31,14 @@ Route::middleware('auth:api')->prefix('v1')->group(function(){
 
     //All endpoints for roles
     Route::apiResource('/roles', RoleController::class);
+
+    Route::apiResource('agency',AgencyController::class);
+    Route::apiResource('bus',BusController::class);
+    Route::apiResource('path',PathController::class);
+    Route::apiResource('schedule',ScheduleController::class);
+
+
 });
-
-
-//user/{userid}
-//Route for a specific User
 
 Route::get('/test', function(Request $request){
     return "Authenticated";

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\PathResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AgencyResource extends JsonResource
@@ -18,8 +19,11 @@ class AgencyResource extends JsonResource
             'id'=> $this->id,
             'name'=>$this->name,
             'logo'=>$this->logo,
-            'numberOfBus'=>$this->numberOfBus,
+            'headquarters'=>$this->headquarters,
             'state'=>$this->state,
+            'nbreDeBus'=>$this->buses->count(),
+            'bus'=>$this->buses,
+            'Itineraire' => PathResource::collection($this->whenLoaded('paths')),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

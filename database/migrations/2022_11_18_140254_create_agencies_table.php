@@ -13,11 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::create('agencies', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('headquarters');
             $table->string('logo');
+
+            $table->foreignIdFor(User::class)
+                ->constrained()
+                ->restrictOnUpdate()
+                ->restrictOnDelete();
+
             $table->string('numberOfBus');
             $table->boolean('state');
             $table->timestamps();

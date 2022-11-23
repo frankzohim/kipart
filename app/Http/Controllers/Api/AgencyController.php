@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Agency;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AgencyRequest;
-use Illuminate\Http\Request;
+use App\Http\Resources\AgencyResource;
+use Illuminate\Support\Facades\Validator;
 
 class AgencyController extends Controller
 {
@@ -15,7 +18,7 @@ class AgencyController extends Controller
      */
     public function index()
     {
-        //
+        return AgencyResource::collection(Agency::all());
     }
 
     /**
@@ -27,6 +30,15 @@ class AgencyController extends Controller
     public function store(AgencyRequest $request)
     {
 
+        $agency=Agency::create([
+            'name'=>$request->name,
+            'headquarters'=>$request->headquarters,
+            'logo'=>$request->logo,
+            'numberOfBus'=>$request->numberOfBus,
+            'state'=>1
+        ]);
+
+        return new AgencyResource($agency);
     }
 
     /**
@@ -37,7 +49,15 @@ class AgencyController extends Controller
      */
     public function show($id)
     {
-        //
+        $agency=Agency::find($id);
+
+        if($agency){
+            return new AgencyResource($agency);
+        }
+        else{
+            return response()->json(['status'=>'fail!','message'=>'agency not found']);
+        }
+
     }
 
     /**
@@ -47,9 +67,22 @@ class AgencyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id,AgencyRequest $request)
     {
-        //
+
+        $agency=Agency::find($id);
+        $input=$request->all();
+        $update=$agency->update($input);
+        if($update){
+        return response()->json(['status'=>'success','message'=>'Agency update']);
+        }
+        else{
+            return response()->json(['status'=>'fail!','message'=>'agency not found']);
+        }
+
+
+
+
     }
 
     /**
@@ -58,8 +91,16 @@ class AgencyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Agency $agency)
     {
-        //
+        if($agency){
+            $agency->delete();
+        return response()->json(["message"=>"Agency deleted"],204);
+        }else{
+            return response()->json(["message"=>"Agency not found"],404);
+        }
+
+
+
     }
 }

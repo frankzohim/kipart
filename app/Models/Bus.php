@@ -13,9 +13,10 @@ class Bus extends Model
 
     protected $fillable=[
         'registration',
-        'agence_id',
+        'agency_id',
         'number_of_places',
-        'class'
+        'class',
+        'plan'
     ];
 
     public function agency():BelongsTo
