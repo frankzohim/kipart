@@ -28,6 +28,7 @@ class PathRequest extends FormRequest
         return [
             "departure"=>"required",
             "arrival"=>"required",
+            "agency_id"=>"required",
             "state"=>"required"
         ];
     }

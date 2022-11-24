@@ -19,13 +19,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('headquarters');
             $table->string('logo');
-
-            $table->foreignIdFor(User::class)
-                ->constrained()
-                ->restrictOnUpdate()
-                ->restrictOnDelete();
-
-            $table->string('numberOfBus');
             $table->boolean('state');
             $table->timestamps();
         });

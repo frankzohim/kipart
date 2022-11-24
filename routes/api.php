@@ -32,14 +32,16 @@ Route::middleware('auth:api')->prefix('v1')->group(function(){
     //All endpoints for roles
     Route::apiResource('/roles', RoleController::class);
 
-    Route::apiResource('agency',AgencyController::class);
-    Route::apiResource('bus',BusController::class);
-    Route::apiResource('path',PathController::class);
+
+
+
     Route::apiResource('schedule',ScheduleController::class);
 
 
 });
-
+Route::apiResource('bus',BusController::class);
+Route::apiResource('path',PathController::class);
 Route::get('/test', function(Request $request){
     return "Authenticated";
 });
+Route::apiResource('agency',AgencyController::class);

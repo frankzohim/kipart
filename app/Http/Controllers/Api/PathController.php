@@ -31,8 +31,11 @@ class PathController extends Controller
         $path=Path::create([
             'departure'=>$request->departure,
         'arrival'=>$request->arrival,
+        'agency_id'=>$request->agency_id,
         'state'=>$request->state,
         ]);
+
+        $path->agencies()->attach($request->agency_id);
 
 
         return new PathResource($path);

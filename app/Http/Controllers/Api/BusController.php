@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\BusRequest;
-use App\Http\Resources\BusResource;
 use App\Models\Bus;
+use App\Models\Agency;
 use Illuminate\Http\Request;
+use App\Http\Requests\BusRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\Bus\BusResource;
+use App\Http\Resources\Bus\BusDetailResource;
 
 class BusController extends Controller
 {
@@ -28,15 +30,17 @@ class BusController extends Controller
      */
     public function store(BusRequest $request)
     {
-        $bus=Bus::create([
-        'registration'=>$request->registration,
-        'agency_id'=>$request->agency_id,
-        'number_of_places'=>$request->number_of_places,
-        'plan'=>$request->plan,
-        'class'=>$request->class
-        ]);
 
-        return new BusResource($bus);
+        $bus=Bus::create([
+            'registration'=>$request->registration,
+            'agency_id'=>$request->agency_id,
+            'number_of_places'=>$request->number_of_places,
+            'plan'=>$request->plan,
+            'class'=>$request->class
+            ]);
+
+            return new BusResource($bus);
+
     }
 
     /**
@@ -50,7 +54,7 @@ class BusController extends Controller
         $bus=Bus::find($id);
 
         if($bus){
-            return new BusResource($bus);
+            return new BusDetailResource($bus);
         }
         else{
             return response()->json(['status'=>'fail!','message'=>'Bus not found']);

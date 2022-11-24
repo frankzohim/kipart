@@ -15,7 +15,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('agency_paths', function (Blueprint $table) {
+        Schema::create('agency_path', function (Blueprint $table) {
             $table->id();
 
             $table->foreignIdFor(Agency::class)
@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('agency_paths');
+        Schema::dropIfExists('agency_path');
     }
 };

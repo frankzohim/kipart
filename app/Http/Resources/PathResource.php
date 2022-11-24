@@ -15,9 +15,10 @@ class PathResource extends JsonResource
     public function toArray($request)
     {
         return  [
+            'id'=>$this->id,
             'departure'=>$this->departure,
             'arrival'=>$this->arrival,
-            'agence'=>$this->agency,
+            'agence'=>$this->agencies,
             'state'=>$this->state,
         ];
     }

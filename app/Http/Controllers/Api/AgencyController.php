@@ -6,8 +6,10 @@ use App\Models\Agency;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AgencyRequest;
-use App\Http\Resources\AgencyResource;
+
 use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\Agency\AgencyResource;
+use App\Http\Resources\Agency\AgencyDetailResource;
 
 class AgencyController extends Controller
 {
@@ -34,8 +36,7 @@ class AgencyController extends Controller
             'name'=>$request->name,
             'headquarters'=>$request->headquarters,
             'logo'=>$request->logo,
-            'numberOfBus'=>$request->numberOfBus,
-            'state'=>1
+            'state'=>$request->state,
         ]);
 
         return new AgencyResource($agency);
@@ -52,7 +53,7 @@ class AgencyController extends Controller
         $agency=Agency::find($id);
 
         if($agency){
-            return new AgencyResource($agency);
+            return new AgencyDetailResource($agency);
         }
         else{
             return response()->json(['status'=>'fail!','message'=>'agency not found']);
@@ -102,5 +103,8 @@ class AgencyController extends Controller
 
 
 
+    }
+
+    public function details(){
     }
 }
