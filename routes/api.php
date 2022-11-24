@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\PathController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\AgencyController;
+use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\TravelController;
 use App\Http\Controllers\Api\ScheduleController;
 
@@ -34,17 +35,18 @@ Route::middleware('auth:api')->prefix('v1')->group(function(){
     Route::apiResource('/roles', RoleController::class);
 
 
-
-
+    Route::apiResource('schedule',ScheduleController::class);
+    Route::apiResource('bus',BusController::class);
+    Route::apiResource('path',PathController::class);
+    Route::apiResource('travel',TravelController::class);
+    Route::apiResource('agency',AgencyController::class);
+    Route::apiResource('notification',NotificationController::class);
 
 
 
 });
-Route::apiResource('schedule',ScheduleController::class);
-Route::apiResource('bus',BusController::class);
-Route::apiResource('path',PathController::class);
-Route::apiResource('travel',TravelController::class);
+
 Route::get('/test', function(Request $request){
     return "Authenticated";
 });
-Route::apiResource('agency',AgencyController::class);
+
