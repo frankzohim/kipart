@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\Travel\TravelResource;
 use App\Models\Travel;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\TravelRequest;
+use App\Http\Resources\Travel\TravelResource;
+use App\Http\Resources\Travel\TravelDetailResource;
 
 class TravelController extends Controller
 {
@@ -25,16 +27,15 @@ class TravelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TravelRequest $request)
     {
         $path=Travel::create([
-            'departure'=>$request->departure,
-        'arrival'=>$request->arrival,
-        'agency_id'=>$request->agency_id,
+            'date'=>$request->departure,
+        'agency_id'=>$request->arrival,
+        'path_id'=>$request->agency_id,
         'state'=>$request->state,
         ]);
 
-        $path->agencies()->attach($request->agency_id);
 
 
         return new TravelResource($path);
@@ -48,7 +49,14 @@ class TravelController extends Controller
      */
     public function show($id)
     {
-        //
+        $travel=Travel::find($id);
+
+        if($travel){
+            return new TravelDetailResource($travel);
+        }
+        else{
+            return response()->json(['status'=>'fail!','message'=>'Bus not found']);
+        }
     }
 
     /**

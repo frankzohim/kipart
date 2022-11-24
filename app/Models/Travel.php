@@ -17,7 +17,9 @@ class Travel extends Model
         'date',
         'path_id',
         'agency_id',
-        'arrival'
+        'price',
+        'state',
+        'class'
     ];
 
     public function codeqr():BelongsTo

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Schedule;
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ScheduleRequest;
 use App\Http\Resources\ScheduleResource;
-use App\Models\Schedule;
-use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
@@ -32,8 +33,10 @@ class ScheduleController extends Controller
             'hours'=>$request->hours
         ]);
 
+        $schedule->agencies()->attach($request->agency_id);
 
-        return new ScheduleResource($schedule);
+
+        return  new ScheduleResource($schedule);
     }
 
     /**

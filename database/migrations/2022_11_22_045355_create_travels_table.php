@@ -19,8 +19,6 @@ return new class extends Migration
         Schema::create('travels', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('date');
-            $table->string('departure');
-            $table->string('arrival');
 
             $table->foreignIdFor(Agency::class)
             ->constrained()
@@ -32,7 +30,9 @@ return new class extends Migration
                 ->restrictOnUpdate()
                 ->restrictOnDelete();
 
+            $table->double('price');
             $table->string('class');
+            $table->boolean('state');
             $table->timestamps();
         });
     }
