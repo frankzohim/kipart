@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Path;
 use App\Models\Codeqr;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,7 +15,7 @@ class Travel extends Model
 
     protected $fillable=[
         'date',
-        'departure',
+        'path_id',
         'agency_id',
         'arrival'
     ];
@@ -33,5 +34,10 @@ class Travel extends Model
 
     {
         return $this->hasMany(Paiement::class);
+    }
+
+    public function path():BelongsTo
+    {
+        return $this->belongsTo(Path::class);
     }
 }

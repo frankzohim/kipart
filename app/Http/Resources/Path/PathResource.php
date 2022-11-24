@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Bus;
+namespace App\Http\Resources\Path;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BusDetailResource extends JsonResource
+class PathResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,9 @@ class BusDetailResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'registration'=>$this->registration,
-            'agencyName'=>$this->agency->name,
-            'numberOfPlaces'=>$this->number_of_places,
-            'class'=>$this->class,
-            'plan'=>$this->plan
-            ];
+            'departure'=>$this->departure,
+            'arrival'=>$this->arrival,
+            'state'=>$this->state
+        ];
     }
 }

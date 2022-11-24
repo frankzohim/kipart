@@ -3,6 +3,7 @@
 namespace App\Models;
 
 
+use App\Models\Travel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,6 +22,11 @@ class Path extends Model
     public function agencies():BelongsToMany
     {
         return $this->belongsToMany(Agency::class);
+    }
+
+    public function travels():HasMany
+    {
+        return $this->hasMany(Travel::class);
     }
 
 

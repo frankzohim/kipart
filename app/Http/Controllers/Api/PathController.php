@@ -6,7 +6,9 @@ use App\Models\Path;
 use Illuminate\Http\Request;
 use App\Http\Requests\PathRequest;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\PathResource;
+use App\Http\Resources\Path\PathResource;
+use App\Http\Resources\Path\PathDetailResource;
+
 
 class PathController extends Controller
 {
@@ -52,7 +54,7 @@ class PathController extends Controller
         $path=Path::find($id);
 
         if($path){
-            return new PathResource($path);
+            return new PathDetailResource($path);
         }
         else{
             return response()->json(['status'=>'fail!','message'=>'path not found']);
