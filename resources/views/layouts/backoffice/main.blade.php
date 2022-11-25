@@ -20,7 +20,7 @@
 <body class="theme-blush">
 
 @include('layouts.backoffice.header')
-@yield('contennt')
+@yield('content')
 
 <!-- Jquery Core Js -->
 <script src="admin/assets/bundles/libscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js ( jquery.v3.2.1, Bootstrap4 js) -->
