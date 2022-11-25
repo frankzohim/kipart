@@ -10,7 +10,7 @@
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:R4gGukRD9Ziu0Obuk4QLNZ5L/Gt0AoPX+nkFsj079eU=',
+    'key' => 'base64:ZkqPzxcscH9DRqEgVZ/YIMZgfZ0TMNs8IHwPdNQG7Xs=',
     'cipher' => 'AES-256-CBC',
     'maintenance' => 
     array (
@@ -200,7 +200,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\projet web\\kipart\\storage\\framework/cache/data',
+        'path' => '/home/level/dev/web/laravel/kipart/storage/framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -294,8 +294,8 @@
         'host' => '127.0.0.1',
         'port' => '3306',
         'database' => 'kipart',
-        'username' => 'root',
-        'password' => 'imagic1234@',
+        'username' => 'martin',
+        'password' => 'Level123@',
         'unix_socket' => '',
         'charset' => 'utf8mb4',
         'collation' => 'utf8mb4_unicode_ci',
@@ -314,8 +314,8 @@
         'host' => '127.0.0.1',
         'port' => '3306',
         'database' => 'kipart',
-        'username' => 'root',
-        'password' => 'imagic1234@',
+        'username' => 'martin',
+        'password' => 'Level123@',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -329,8 +329,8 @@
         'host' => '127.0.0.1',
         'port' => '3306',
         'database' => 'kipart',
-        'username' => 'root',
-        'password' => 'imagic1234@',
+        'username' => 'martin',
+        'password' => 'Level123@',
         'charset' => 'utf8',
         'prefix' => '',
         'prefix_indexes' => true,
@@ -373,13 +373,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\projet web\\kipart\\storage\\app',
+        'root' => '/home/level/dev/web/laravel/kipart/storage/app',
         'throw' => false,
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\projet web\\kipart\\storage\\app/public',
+        'root' => '/home/level/dev/web/laravel/kipart/storage/app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
         'throw' => false,
@@ -399,7 +399,7 @@
     ),
     'links' => 
     array (
-      'C:\\projet web\\kipart\\public\\storage' => 'C:\\projet web\\kipart\\storage\\app/public',
+      '/home/level/dev/web/laravel/kipart/public/storage' => '/home/level/dev/web/laravel/kipart/storage/app/public',
     ),
   ),
   'hashing' => 
@@ -438,13 +438,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\projet web\\kipart\\storage\\logs/laravel.log',
+        'path' => '/home/level/dev/web/laravel/kipart/storage/logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\projet web\\kipart\\storage\\logs/laravel.log',
+        'path' => '/home/level/dev/web/laravel/kipart/storage/logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -496,7 +496,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\projet web\\kipart\\storage\\logs/laravel.log',
+        'path' => '/home/level/dev/web/laravel/kipart/storage/logs/laravel.log',
       ),
     ),
   ),
@@ -562,7 +562,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\projet web\\kipart\\resources\\views/vendor/mail',
+        0 => '/home/level/dev/web/laravel/kipart/resources/views/vendor/mail',
       ),
     ),
   ),
@@ -679,7 +679,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\projet web\\kipart\\storage\\framework/sessions',
+    'files' => '/home/level/dev/web/laravel/kipart/storage/framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -699,9 +699,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\projet web\\kipart\\resources\\views',
+      0 => '/home/level/dev/web/laravel/kipart/resources/views',
     ),
-    'compiled' => 'C:\\projet web\\kipart\\storage\\framework\\views',
+    'compiled' => '/home/level/dev/web/laravel/kipart/storage/framework/views',
   ),
   'flare' => 
   array (
@@ -776,7 +776,7 @@
     array (
     ),
     'enable_runnable_solutions' => NULL,
-    'remote_sites_path' => 'C:\\projet web\\kipart',
+    'remote_sites_path' => '/home/level/dev/web/laravel/kipart',
     'local_sites_path' => '',
     'housekeeping_endpoint_prefix' => '_ignition',
     'settings_file_path' => '',
