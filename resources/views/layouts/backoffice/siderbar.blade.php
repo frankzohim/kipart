@@ -2,13 +2,13 @@
 <aside id="leftsidebar" class="sidebar">
     <div class="navbar-brand">
         <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
-        <a href="index.html"><img src="assets/images/logo.svg" width="25" alt="Aero"><span class="m-l-10">Aero</span></a>
+        <a href="index.html"><img src="admin/assets/images/logo.svg" width="25" alt="Aero"><span class="m-l-10">Aero</span></a>
     </div>
     <div class="menu">
         <ul class="list">
             <li>
                 <div class="user-info">
-                    <a class="image" href="profile.html"><img src="assets/images/profile_av.jpg" alt="User"></a>
+                    <a class="image" href="profile.html"><img src="admin/assets/images/profile_av.jpg" alt="User"></a>
                     <div class="detail">
                         <h4>Michael</h4>
                         <small>Super Admin</small>
@@ -256,7 +256,7 @@
                         <li class="online">
                             <a href="javascript:void(0);">
                                 <div class="media">
-                                    <img class="media-object " src="assets/images/xs/avatar4.jpg" alt="">
+                                    <img class="media-object " src="admin/assets/images/xs/avatar4.jpg" alt="">
                                     <div class="media-body">
                                         <span class="name">Sophia <small class="float-right">11:00AM</small></span>
                                         <span class="message">There are many variations of passages of Lorem Ipsum available</span>
@@ -268,7 +268,7 @@
                         <li class="online">
                             <a href="javascript:void(0);">
                                 <div class="media">
-                                    <img class="media-object " src="assets/images/xs/avatar5.jpg" alt="">
+                                    <img class="media-object " src="admin/assets/images/xs/avatar5.jpg" alt="">
                                     <div class="media-body">
                                         <span class="name">Grayson <small class="float-right">11:30AM</small></span>
                                         <span class="message">All the Lorem Ipsum generators on the</span>
@@ -280,7 +280,7 @@
                         <li class="offline">
                             <a href="javascript:void(0);">
                                 <div class="media">
-                                    <img class="media-object " src="assets/images/xs/avatar2.jpg" alt="">
+                                    <img class="media-object " src="admin/assets/images/xs/avatar2.jpg" alt="">
                                     <div class="media-body">
                                         <span class="name">Isabella <small class="float-right">11:31AM</small></span>
                                         <span class="message">Contrary to popular belief, Lorem Ipsum</span>
@@ -292,7 +292,7 @@
                         <li class="me">
                             <a href="javascript:void(0);">
                                 <div class="media">
-                                    <img class="media-object " src="assets/images/xs/avatar1.jpg" alt="">
+                                    <img class="media-object " src="admin/assets/images/xs/avatar1.jpg" alt="">
                                     <div class="media-body">
                                         <span class="name">John <small class="float-right">05:00PM</small></span>
                                         <span class="message">It is a long established fact that a reader</span>
@@ -304,7 +304,7 @@
                         <li class="online">
                             <a href="javascript:void(0);">
                                 <div class="media">
-                                    <img class="media-object " src="assets/images/xs/avatar3.jpg" alt="">
+                                    <img class="media-object " src="admin/assets/images/xs/avatar3.jpg" alt="">
                                     <div class="media-body">
                                         <span class="name">Alexander <small class="float-right">06:08PM</small></span>
                                         <span class="message">Richard McClintock, a Latin professor</span>

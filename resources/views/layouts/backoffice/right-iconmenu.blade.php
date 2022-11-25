@@ -152,13 +152,13 @@
                                 <ul class="list-unstyled team-info">
                                     <li class="m-r-15"><small>Team</small></li>
                                     <li>
-                                        <img src="assets/images/xs/avatar2.jpg" alt="Avatar">
+                                        <img src="admin/assets/images/xs/avatar2.jpg" alt="Avatar">
                                     </li>
                                     <li>
-                                        <img src="assets/images/xs/avatar3.jpg" alt="Avatar">
+                                        <img src="admin/assets/images/xs/avatar3.jpg" alt="Avatar">
                                     </li>
                                     <li>
-                                        <img src="assets/images/xs/avatar4.jpg" alt="Avatar">
+                                        <img src="admin/assets/images/xs/avatar4.jpg" alt="Avatar">
                                     </li>
                                 </ul>
                             </div>
@@ -174,19 +174,19 @@
                                 <ul class="list-unstyled team-info">
                                     <li class="m-r-15"><small>Team</small></li>
                                     <li>
-                                        <img src="assets/images/xs/avatar10.jpg" alt="Avatar">
+                                        <img src="admin/assets/images/xs/avatar10.jpg" alt="Avatar">
                                     </li>
                                     <li>
-                                        <img src="assets/images/xs/avatar9.jpg" alt="Avatar">
+                                        <img src="admin/assets/images/xs/avatar9.jpg" alt="Avatar">
                                     </li>
                                     <li>
-                                        <img src="assets/images/xs/avatar8.jpg" alt="Avatar">
+                                        <img src="admin/assets/images/xs/avatar8.jpg" alt="Avatar">
                                     </li>
                                     <li>
-                                        <img src="assets/images/xs/avatar7.jpg" alt="Avatar">
+                                        <img src="admin/assets/images/xs/avatar7.jpg" alt="Avatar">
                                     </li>
                                     <li>
-                                        <img src="assets/images/xs/avatar6.jpg" alt="Avatar">
+                                        <img src="admin/assets/images/xs/avatar6.jpg" alt="Avatar">
                                     </li>
                                 </ul>
                             </div>
@@ -202,13 +202,13 @@
                                 <ul class="list-unstyled team-info">
                                     <li class="m-r-15"><small>Team</small></li>
                                     <li>
-                                        <img src="assets/images/xs/avatar5.jpg" alt="Avatar">
+                                        <img src="admin/assets/images/xs/avatar5.jpg" alt="Avatar">
                                     </li>
                                     <li>
-                                        <img src="assets/images/xs/avatar2.jpg" alt="Avatar">
+                                        <img src="admin/assets/images/xs/avatar2.jpg" alt="Avatar">
                                     </li>
                                     <li>
-                                        <img src="assets/images/xs/avatar7.jpg" alt="Avatar">
+                                        <img src="admin/assets/images/xs/avatar7.jpg" alt="Avatar">
                                     </li>
                                 </ul>
                             </div>
