@@ -22,7 +22,6 @@ class Agency extends Model
         'name',
         'headquarters',
         'logo',
-        'numberOfBus',
         'state'
     ];
 

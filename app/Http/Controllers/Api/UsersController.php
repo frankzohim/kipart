@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Api;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\UsersResource;
+use Illuminate\Contracts\Validation\Validator;
 
 class UsersController extends Controller
 {
@@ -96,5 +99,26 @@ class UsersController extends Controller
     {
         $user->delete();
         return response(null,204);
+    }
+
+    public function login(Request $request){
+        $user=$request->validate([
+            'email'=>["email","required"],
+            'password'=>["required","string",]
+        ]);
+
+        $userc=User::where("email",$user["email"])->first();
+
+        if(!$userc) return response(["message"=>"Aucun utilisateur"],401);
+        if(!Hash::check($user["password"],$userc->password)){
+            return response(['aucun utilisateur trouver avec ce mot de passe'],401);
+        }
+        $token=$userc->createToken("CLE_SECRETE_KIPART")->accessToken;
+
+        return response([
+            'utilisateur'=>$userc,
+            "token"=>$token
+        ],200);
+
     }
 }

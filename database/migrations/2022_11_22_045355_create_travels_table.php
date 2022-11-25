@@ -16,7 +16,7 @@ return new class extends Migration
     public function up()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::create('travels', function (Blueprint $table) {
+        Schema::create('travel', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('date');
 
@@ -44,6 +44,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('travels');
+        Schema::dropIfExists('travel');
     }
 };

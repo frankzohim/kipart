@@ -17,11 +17,13 @@ class UsersResource extends JsonResource
         return [
             'id'=> (string)$this->id,
             'type'=> 'Users',
+            'role' => $this->role->type,
             'attributes' => [
                 'name' => $this->name,
                 'email' => $this->email,
                 'email_verified_at' => $this->email_verified_at,
-                'role_id' => $this->role_id,
+
+                'role_id'=>$this->role_id,
                 'phone_number' => $this->phone_number,
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at
