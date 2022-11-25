@@ -26,7 +26,7 @@ use App\Http\Controllers\Api\NotificationController;
     //All endpoints for users
     Route::apiResource('/users', UsersController::class);
     Route::post('login',[UsersController::class,'login']);
-
+    Route::post('register',[UsersController::class,'register']);
 
 
 

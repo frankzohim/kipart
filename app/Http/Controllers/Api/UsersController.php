@@ -122,5 +122,25 @@ class UsersController extends Controller
 
     }
 
+    public function register(Request $request){
+
+        $user=$request->validate([
+            'name'=>'required',
+            'email'=>["email","required"],
+            'password'=>["required","string",],
+            'phone_number'=>["required","max:20"]
+        ]);
+
+        $user=User::create([
+            "name"=>$user["name"],
+            "email"=>$user["email"],
+            "password"=>bcrypt($user["password"]),
+            "phone_number"=>$user["phone_number"],
+            "role_id"=>3,
+        ]);
+
+        return response($user,201);
+    }
+
 
 }
