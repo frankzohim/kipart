@@ -18,4 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+<<<<<<< HEAD
 
+=======
+Route::get('dashbord', function () {
+    return view('admin.dashbord');
+})->name('dashbord');
+>>>>>>> refs/remotes/origin/main
