@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Hero 1</title>
+    <title>Kipart</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-md-6 mb-4 mb-md-0 d-flex align-items-center order-1 order-md-2">
                         <div class="d2c_hero_img">
-                            <img class="w-100 cssanimation hu__hu__" src="./assets/images/hero-img.png" alt="Hero Image">
+                            <img class="w-2 cssanimation hu__hu__" src="{{ asset('assets/images/kipart.png') }}" alt="Hero Image">
                         </div>
                     </div>
                 </div>
