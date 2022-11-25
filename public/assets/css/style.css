@@ -1,0 +1,124 @@
+
+:root{
+    /* Global Color */
+    --primary_color: #0E2A47;
+    --secondary_color: #fcaf21;
+
+    /* Global Font */
+    --primary_font: 'Poppins', sans-serif;
+}
+
+::selection{
+    background: var(--primary_color);
+    color: #FFFFFF;
+}
+.btn{
+	border-radius: 2px;
+	padding: 10px 30px;
+	font-family: var(--primary_font);
+	font-weight: 500;
+	font-size: 16px;
+	text-transform: uppercase;
+	position: relative;
+	transition: 0.4s all;
+	overflow: hidden;
+}
+.btn.d2c_primary_btn{
+	background-color: transparent;
+	border: 2px solid transparent;
+}
+.btn.d2c_primary_btn span{
+	color: #FFFFFF;
+	position: relative;
+	z-index: 15;
+}
+.btn.d2c_primary_btn::after{
+	content: '';
+	background: linear-gradient(90deg, #fcaf21 0%, #fcaf21 88.67%);
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+ 	left: 0;
+	border-radius: 2px;
+	z-index: 10;
+	transition: 0.4s all;
+}
+.btn.d2c_primary_btn:hover{
+	border: 2px solid #FFFFFF;
+	transition: 0.4s all;
+}
+.btn.d2c_primary_btn:hover::after{
+	left: -200px;
+	transition: 0.4s all;
+}
+.btn.d2c_secondary_btn{
+	background-color: transparent;
+	border: 2px solid #FFFFFF;
+}
+.btn.d2c_secondary_btn span{
+	color: #FFFFFF;
+	position: relative;
+	z-index: 15;
+}
+.btn.d2c_secondary_btn::after{
+	content: '';
+	background: linear-gradient(90deg, #fcaf21 0%, #fcaf21 88.67%);
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: -200px;
+	border-radius: 2px;
+	z-index: 10;
+	transition: 0.4s all;
+}
+.btn.d2c_secondary_btn:hover{
+	border: 2px solid transparent;
+	transition: 0.4s all;
+}
+.btn.d2c_secondary_btn:hover::after{
+	left: 0;
+	transition: 0.4s all;
+}
+
+.d2c_hero{
+	background-color: var(--primary_color);
+	background-image: url('../images/hero_bg.png');
+	background-repeat: no-repeat;
+	background-position: right center;
+	background-size: cover;
+	height: 100vh;
+}
+.d2c_hero .d2c_hero_title{
+	font-family: var(--primary_font);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 54px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin-bottom: 15px;
+}
+.d2c_hero .d2c_hero_text{
+	font-family: var(--primary_font);
+	font-weight: 400;
+	font-size: 18px;
+	color: #FFFFFF;
+}
+.d2c_hero .d2c_hero_img {
+    position: absolute;
+    width: 110%;
+}
+.d2c_hero .d2c_hero_btn a{
+	margin-right: 15px;
+}
+
+/*
+	<!--
+      KIT Name: 10+ Hero Section – Bootstrap Bundle
+      Product URL: https://www.designtocodes.com/product/10-hero-section-bootstrap-bundle/
+      Product Description: The Hero section kit is made of all the basic elements you need to create a stunning website, from the start.
+      Author: designtocodes.com
+      Author URI: https://www.designtocodes.com/
+    -->
+*/
