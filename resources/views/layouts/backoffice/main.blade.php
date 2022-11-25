@@ -18,20 +18,8 @@
 </head>
 
 <body class="theme-blush">
-<!-- Page Loader -->
-<div class="page-loader-wrapper">
-    <div class="loader">
-        <div class="m-t-30"><img class="zmdi-hc-spin" src="assets/images/loader.svg" width="48" height="48" alt="Aero"></div>
-        <p>Please wait...</p>
-    </div>
-</div>
-<!-- Right Icon menu Sidebar -->
 
-<!--end icon-->
-
-<!-- Right and left Sidebar -->
-
-<!--end sider-->
+@include('layouts.backoffice.header')
 @yield('contennt')
 
 <!-- Jquery Core Js -->

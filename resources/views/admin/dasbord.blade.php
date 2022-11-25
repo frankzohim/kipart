@@ -1,4 +1,6 @@
-
+@extends('layouts.backoffice.main')
+@section('title', 'Dashboard-Admin')
+@section('content')
 
 <!-- Main Content -->
 <section class="content">
@@ -354,3 +356,4 @@
         </div>
     </div>
 </section>
+@endsection
