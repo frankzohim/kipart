@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('dashbord', function () {
-    return view('admin.dashbord');
-})->name('dashbord');
+Route::get('dashboard', function () {
+    return view('admin.dashboard');
+})->name('dashboard');
 
