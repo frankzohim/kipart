@@ -2,7 +2,7 @@
 <aside id="leftsidebar" class="sidebar">
     <div class="navbar-brand">
         <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
-        <a href="index.html"><img src="admin/assets/images/logo.svg" width="25" alt="Aero"><span class="m-l-10">Aero</span></a>
+        <a href="index.html"><img src="admin/assets/images/kipart.png" width="25" alt="Aero"><span class="m-l-10" style="color: #fff">KiPART</span></a>
     </div>
     <div class="menu">
         <ul class="list">
@@ -16,49 +16,44 @@
                 </div>
             </li>
             <li class="active open"><a href="index.html"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
-            <li><a href="my-profile.html"><i class="zmdi zmdi-account"></i><span>Our Profile</span></a></li>
+            <li><a href="my-profile.html"><i class="zmdi zmdi-account"></i><span>Mon Profil</span></a></li>
             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>App</span></a>
                 <ul class="ml-menu">
                     <li><a href="mail-inbox.html">Email</a></li>
-                    <li><a href="chat.html">Chat Apps</a></li>
+                    <li><a href="chat.html">kiPART Apps</a></li>
                     <li><a href="events.html">Calendar</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </li>
-            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-assignment"></i><span>Projects</span></a>
+            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-traffic"></i><span>Agences</span></a>
                 <ul class="ml-menu">
-                    <li><a href="project-list.html">Projects List</a></li>
-                    <li><a href="taskboard.html">Taskboard</a></li>
-                    <li><a href="ticket-list.html">Ticket List</a></li>
-                    <li><a href="ticket-detail.html">Ticket Detail</a></li>
+                    <li><a href="project-list.html">Lister</a></li>
+                    <li><a href="taskboard.html">Ajouter</a></li>
+
                 </ul>
             </li>
-            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-folder"></i><span>File Manager</span></a>
+            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-bus"></i><span>Voyage</span></a>
                 <ul class="ml-menu">
-                    <li><a href="file-dashboard.html">All File</a></li>
-                    <li><a href="file-documents.html">Documents</a></li>
-                    <li><a href="file-images.html">Images</a></li>
-                    <li><a href="file-media.html">Media</a></li>
+                    <li><a href="file-dashboard.html">Lister</a></li>
+                    <li><a href="file-documents.html">Ajouter</a></li>
+                    <li><a href="file-documents.html">Categorie</a></li>
                 </ul>
             </li>
-            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-blogger"></i><span>Blog</span></a>
+
+            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-ticket-star"></i><span>Tickets</span></a>
                 <ul class="ml-menu">
-                    <li><a href="blog-dashboard.html">Dashboard</a></li>
-                    <li><a href="blog-post.html">Blog Post</a></li>
-                    <li><a href="blog-list.html">List View</a></li>
-                    <li><a href="blog-grid.html">Grid View</a></li>
-                    <li><a href="blog-details.html">Blog Details</a></li>
+                    <li><a href="ec-dashboard.html">Historique</a></li>
+                    <li><a href="ec-dashboard.html">Lister</a></li>
                 </ul>
             </li>
-            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Ecommerce</span></a>
+            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-box-o"></i><span>Utilisateurs</span></a>
                 <ul class="ml-menu">
-                    <li><a href="ec-dashboard.html">Dashboard</a></li>
-                    <li><a href="ec-product.html">Product</a></li>
-                    <li><a href="ec-product-List.html">Product List</a></li>
-                    <li><a href="ec-product-detail.html">Product detail</a></li>
+                    <li><a href="sign-in.html">Lister</a></li>
+                    <li><a href="sign-up.html">Creer un compte Admin</a></li>
+
                 </ul>
             </li>
-            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-swap-alt"></i><span>Components</span></a>
+            {{-- <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-swap-alt"></i><span>Components</span></a>
                 <ul class="ml-menu">
                     <li><a href="ui_kit.html">Aero UI KIT</a></li>
                     <li><a href="alerts.html">Alerts</a></li>
@@ -103,16 +98,16 @@
                     <li><a href="footable.html">Foo Tables</a></li>
                     <li><a href="table-color.html">Tables Color</a></li>
                 </ul>
+            </li>--}}
+            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-group"></i><span>Chats</span></a>
             </li>
-            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-chart"></i><span>Charts</span></a>
+            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-blogger"></i><span>Blog</span></a>
                 <ul class="ml-menu">
-                    <li><a href="echarts.html">E Chart</a></li>
-                    <li><a href="c3.html">C3 Chart</a></li>
-                    <li><a href="morris.html">Morris</a></li>
-                    <li><a href="flot.html">Flot</a></li>
-                    <li><a href="chartjs.html">ChartJS</a></li>
-                    <li><a href="sparkline.html">Sparkline</a></li>
-                    <li><a href="jquery-knob.html">Jquery Knob</a></li>
+                    <li><a href="blog-dashboard.html">Creer</a></li>
+                    <li><a href="blog-post.html">Blog Post</a></li>
+                    <li><a href="blog-list.html">List View</a></li>
+                    <li><a href="blog-grid.html">Grid View</a></li>
+                    <li><a href="blog-details.html">Blog Details</a></li>
                 </ul>
             </li>
             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-delicious"></i><span>Widgets</span></a>
@@ -121,27 +116,12 @@
                     <li><a href="widgets-data.html">Data Widgets</a></li>
                 </ul>
             </li>
-            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-lock"></i><span>Authentication</span></a>
+
+            <li class="open_top"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-copy"></i><span>F A Q</span></a>
                 <ul class="ml-menu">
-                    <li><a href="sign-in.html">Sign In</a></li>
-                    <li><a href="sign-up.html">Sign Up</a></li>
-                    <li><a href="forgot-password.html">Forgot Password</a></li>
-                    <li><a href="404.html">Page 404</a></li>
-                    <li><a href="500.html">Page 500</a></li>
-                    <li><a href="page-offline.html">Page Offline</a></li>
-                    <li><a href="locked.html">Locked Screen</a></li>
-                </ul>
-            </li>
-            <li class="open_top"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-copy"></i><span>Sample Pages</span></a>
-                <ul class="ml-menu">
-                    <li><a href="blank.html">Blank Page</a></li>
-                    <li><a href="image-gallery.html">Image Gallery</a></li>
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="timeline.html">Timeline</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="invoices.html">Invoices</a></li>
-                    <li><a href="invoices-list.html">Invoices List</a></li>
-                    <li><a href="search-results.html">Search Results</a></li>
+                    <li><a href="blank.html">Creer</a></li>
+                    <li><a href="image-gallery.html">Lister</a></li>
+
                 </ul>
             </li>
             <li class="open_top"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-map"></i><span>Maps</span></a>
@@ -174,7 +154,7 @@
 </aside>
 
 <!-- Right Sidebar -->
-<aside id="rightsidebar" class="right-sidebar">
+<aside id="rightsidebar" class="right-sidebar" >
     <ul class="nav nav-tabs sm">
         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#setting"><i class="zmdi zmdi-settings zmdi-hc-spin"></i></a></li>
         <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#chat"><i class="zmdi zmdi-comments"></i></a></li>

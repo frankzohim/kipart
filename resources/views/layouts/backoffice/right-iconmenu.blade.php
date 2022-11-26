@@ -69,7 +69,7 @@
                             <a href="javascript:void(0);">
                                 <div class="icon-circle bg-blue"><i class="zmdi zmdi-account"></i></div>
                                 <div class="menu-info">
-                                    <h4>8 New Members joined</h4>
+                                    <h4>8 Nouveaux Utilisateurs</h4>
                                     <p><i class="zmdi zmdi-time"></i> 14 mins ago </p>
                                 </div>
                             </a>
@@ -78,7 +78,16 @@
                             <a href="javascript:void(0);">
                                 <div class="icon-circle bg-amber"><i class="zmdi zmdi-shopping-cart"></i></div>
                                 <div class="menu-info">
-                                    <h4>4 Sales made</h4>
+                                    <h4>4 Tickets vendus</h4>
+                                    <p><i class="zmdi zmdi-time"></i> 16 mins ago </p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div class="icon-circle bg-amber"><i class="zmdi zmdi-shopping-cart"></i></div>
+                                <div class="menu-info">
+                                    <h4>5 nouveaux Reservation</h4>
                                     <p><i class="zmdi zmdi-time"></i> 22 mins ago </p>
                                 </div>
                             </a>
@@ -87,7 +96,7 @@
                             <a href="javascript:void(0);">
                                 <div class="icon-circle bg-red"><i class="zmdi zmdi-delete"></i></div>
                                 <div class="menu-info">
-                                    <h4><b>Nancy Doe</b> Deleted account</h4>
+                                    <h4><b>Nancy Doe</b> Compte suprimmer</h4>
                                     <p><i class="zmdi zmdi-time"></i> 3 hours ago </p>
                                 </div>
                             </a>
@@ -96,7 +105,7 @@
                             <a href="javascript:void(0);">
                                 <div class="icon-circle bg-green"><i class="zmdi zmdi-edit"></i></div>
                                 <div class="menu-info">
-                                    <h4><b>Nancy</b> Changed name</h4>
+                                    <h4><b>Nancy</b> Changer de nom</h4>
                                     <p><i class="zmdi zmdi-time"></i> 2 hours ago </p>
                                 </div>
                             </a>
@@ -105,7 +114,7 @@
                             <a href="javascript:void(0);">
                                 <div class="icon-circle bg-grey"><i class="zmdi zmdi-comment-text"></i></div>
                                 <div class="menu-info">
-                                    <h4><b>John</b> Commented your post</h4>
+                                    <h4><b>Touristique</b> A ajouter un nouveau bus</h4>
                                     <p><i class="zmdi zmdi-time"></i> 4 hours ago </p>
                                 </div>
                             </a>
@@ -114,7 +123,7 @@
                             <a href="javascript:void(0);">
                                 <div class="icon-circle bg-purple"><i class="zmdi zmdi-refresh"></i></div>
                                 <div class="menu-info">
-                                    <h4><b>John</b> Updated status</h4>
+                                    <h4><b>Finex</b> A ajouter un nouveau trajet</h4>
                                     <p><i class="zmdi zmdi-time"></i> 3 hours ago </p>
                                 </div>
                             </a>
