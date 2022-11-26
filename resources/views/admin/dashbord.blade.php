@@ -9,8 +9,8 @@
             <div class="col-lg-7 col-md-6 col-sm-12">
                 <h2>Dashboard</h2>
                 <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Aero</a></li>
-                    <li class="breadcrumb-item active">Dashboard 1</li>
+                    <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> KiPART</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
                 </ul>
                 <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
             </div>
@@ -24,11 +24,11 @@
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card widget_2 big_icon traffic">
                     <div class="body">
-                        <h6>Traffic</h6>
-                        <h2>20 <small class="info">of 1Tb</small></h2>
-                        <small>2% higher than last month</small>
+                        <h6>Agences</h6>
+                        <h2>20 <small class="info">Agences</small></h2>
+                        <small>2% de plus que hier</small>
                         <div class="progress">
-                            <div class="progress-bar l-amber" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%;"></div>
+                            <div class="progress-bar l-amber" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 2%;"></div>
                         </div>
                     </div>
                 </div>
@@ -36,11 +36,11 @@
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card widget_2 big_icon sales">
                     <div class="body">
-                        <h6>Sales</h6>
-                        <h2>12% <small class="info">of 100</small></h2>
-                        <small>6% higher than last month</small>
+                        <h6>Tickets</h6>
+                        <h2>10 <small class="info">Vendus</small></h2>
+                        <small>6% superieur a hier</small>
                         <div class="progress">
-                            <div class="progress-bar l-blue" role="progressbar" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100" style="width: 38%;"></div>
+                            <div class="progress-bar l-blue" role="progressbar" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100" style="width: 6%;"></div>
                         </div>
                     </div>
                 </div>
@@ -48,9 +48,9 @@
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card widget_2 big_icon email">
                     <div class="body">
-                        <h6>Email</h6>
-                        <h2>39 <small class="info">of 100</small></h2>
-                        <small>Total Registered email</small>
+                        <h6>Reservation</h6>
+                        <h2>39 <small class="info">Reservation</small></h2>
+                        <small>50% de plus que hier</small>
                         <div class="progress">
                             <div class="progress-bar l-purple" role="progressbar" aria-valuenow="39" aria-valuemin="0" aria-valuemax="100" style="width: 39%;"></div>
                         </div>
@@ -60,11 +60,11 @@
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card widget_2 big_icon domains">
                     <div class="body">
-                        <h6>Domains</h6>
-                        <h2>8 <small class="info">of 10</small></h2>
-                        <small>Total Registered Domain</small>
-                        <div class="progress">
-                            <div class="progress-bar l-green" role="progressbar" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100" style="width: 89%;"></div>
+                        <h6>Utilisateur </h6>
+                        <h2>100 <small class="info">Nouveaux</small></h2>
+                        <small>20% de plus que hier</small>
+                        <div class="progress big_icon domains">
+                            <div class="progress-bar l-green" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"></div>
                         </div>
                     </div>
                 </div>
