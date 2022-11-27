@@ -55,6 +55,10 @@ return [
             'provider' => 'agencies',
         ],
 
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
         'api-admin' => [
             'driver' => 'passport',
             'provider' => 'admins',
@@ -63,6 +67,11 @@ return [
         'api-agent' => [
             'driver' => 'passport',
             'provider' => 'agencies',
+        ],
+
+        'api-customer' => [
+            'driver' => 'passport',
+            'provider' => 'customers',
         ],
 
     ],
@@ -96,6 +105,10 @@ return [
         'agencies' => [
             'driver' => 'eloquent',
             'model' => App\Models\Agency::class,
+        ],
+        'customers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Customer::class,
         ],
         // 'users' => [
         //     'driver' => 'database',

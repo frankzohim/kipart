@@ -29,3 +29,5 @@ use App\Http\Controllers\Api\NotificationController;
     Route::post('login',[AuthController::class,'login']);
     Route::post('register',[UsersController::class,'register']);
 
+    Route::post('customer/login',[AuthController::class,'login']);
+

@@ -15,11 +15,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Laravel\Passport\Client as PassportClient;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Agency extends PassportClient
+class Agency extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, Notifiable;
 
     protected $fillable=[
         'name',
