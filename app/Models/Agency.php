@@ -8,15 +8,18 @@ use App\Models\Travel;
 use App\Models\Horaire;
 use App\Models\Schedule;
 use App\Models\Itinerary;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Laravel\Passport\Client as PassportClient;
 
-class Agency extends Model
+class Agency extends PassportClient
 {
-    use HasFactory;
+    use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable=[
         'name',
@@ -24,6 +27,8 @@ class Agency extends Model
         'logo',
         'state'
     ];
+
+    protected $guard='agency';
 
     public function buses():HasMany
     {
