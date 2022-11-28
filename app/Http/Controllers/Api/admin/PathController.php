@@ -74,10 +74,10 @@ class PathController extends Controller
         $input=$request->all();
         $update=$path->update($input);
         if($update){
-        return response()->json(['status'=>'success','message'=>'Path update']);
+        return response()->json(['status'=>'success','message'=>'chemin update']);
         }
         else{
-            return response()->json(['status'=>'fail!','message'=>'Path not found']);
+            return response()->json(['status'=>'fail!','message'=>'chemin not found']);
         }
     }
 
@@ -95,5 +95,10 @@ class PathController extends Controller
         }else{
             return response()->json(["message"=>"Path not found"],404);
         }
+    }
+
+    public function detail(){
+
+        return new PathDetailResource(Path::all());
     }
 }

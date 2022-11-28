@@ -106,5 +106,7 @@ class AgencyController extends Controller
     }
 
     public function details(){
+
+        return AgencyDetailResource::collection(Agency::all());
     }
 }

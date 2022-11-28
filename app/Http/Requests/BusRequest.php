@@ -27,7 +27,6 @@ class BusRequest extends FormRequest
     {
         return [
         'registration'=>"required",
-        'agency_id'=>"required",
         'number_of_places'=>"required",
         'plan'=>"required",
         'class'=>"required"

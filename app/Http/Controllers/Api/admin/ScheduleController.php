@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ScheduleRequest;
-use App\Http\Resources\ScheduleResource;
+use App\Http\Resources\schedule\ScheduleResource;
 
 class ScheduleController extends Controller
 {
