@@ -10,9 +10,10 @@ use App\Http\Controllers\Api\PathController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\Api\AgencyController;
+use App\Http\Controllers\Api\Auth\AdminController;
 use App\Http\Controllers\Api\TravelController;
 use App\Http\Controllers\Api\ScheduleController;
-use App\Http\Controllers\Api\Auth\AdminController;
+
 use App\Http\Controllers\Api\Auth\AgentController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\Auth\CustomerController;
@@ -28,24 +29,29 @@ use App\Http\Controllers\Api\Auth\CustomerController;
 |
 */
     //All endpoints for users
-    Route::post('customer/login',[CustomerController::class,'login']);
-    Route::post('admin/login',[AdminController::class,'login']);
+    Route::post('login',[CustomerController::class,'login']);
+    Route::post('login/admin',[AdminController::class,'login']);
     Route::post('agent/login',[AgentController::class,'login']);
 
 
     Route::middleware('auth:api-admin')->prefix('v1')->group(function(){
+        Route::get('travel',[TravelController::class,'index']);
 
+        Route::post('logout',[AdminController::class,'logout']);
 
     });
 
     Route::middleware('auth:api-agent')->prefix('v1')->group(function(){
-
-
+        Route::get('agency',[AgencyController::class,'index']);
+        Route::get('bus',[BusController::class,'index']);
+        Route::post('logoutout',[AgentController::class,'logout']);
+        Route::get('traveler',[TravelController::class,'index']);
     });
 
-    Route::middleware('auth:api-customer')->prefix('v1')->group(function(){
+    Route::middleware('auth:api')->prefix('v1')->group(function(){
 
-
+        Route::get('travel',[TravelController::class,'index']);
+        Route::post('logout',[CustomerController::class,'logout']);
     });
 
 
@@ -54,13 +60,13 @@ use App\Http\Controllers\Api\Auth\CustomerController;
 
 Route::middleware('auth:api')->prefix('v1')->group(function(){
 
-    Route::get('agency',[AgencyController::class,'index']);
+
 });
 
 
-Route::get('bus',[BusController::class,'index']);
-Route::get('path',[PathController::class,'index']);
-Route::get('travel',[TravelController::class,'index']);
+// Route::get('bus',[BusController::class,'index']);
+// Route::get('path',[PathController::class,'index']);
+// Route::get('travel',[TravelController::class,'index']);
 
 Route::get('/test', function(Request $request){
     return "Authenticated";

@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Hash;
 
 class LoginService{
 
-    public function login($auth,$token,$type){
+    public function login($auth,$resquest,$token,$type){
 
         if(!$auth) return response(["message"=>"Aucun $type trouvé"],401);
-        if(!Hash::check($auth["password"],$auth->password)){
+        if(!Hash::check($resquest["password"],$auth->password)){
             return response(['aucun utilisateur trouver avec ce mot de passe'],401);
         }
         $token=$auth->createToken($token)->accessToken;
