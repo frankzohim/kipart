@@ -24,10 +24,6 @@ class BusController extends Controller
             return new BusResource($bus);
     }
 
-    public function list(){
-
-        return BusResource::collection(Bus::all());
-    }
 
     public function update(BusRequest $request,$id){
 

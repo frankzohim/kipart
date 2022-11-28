@@ -19,6 +19,8 @@ use App\Http\Controllers\Api\agent\BusController as AgentBusController;
 use App\Http\Controllers\Api\agent\PathController as AgentPathController;
 use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
 use App\Http\Controllers\Api\Auth\AdminController;
+use App\Http\Controllers\Api\ListController;
+use App\Http\Controllers\Api\ShowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +37,18 @@ use App\Http\Controllers\Api\Auth\AdminController;
     Route::post('login/admin',[AdminController::class,'login']);
     Route::post('agent/login',[AgentController::class,'login']);
 
+    Route::get('show/agency/{id}',[ShowController::class,'detailAgency']);
+    Route::get('show/bus/{id}',[ShowController::class,'detailBus']);
+    Route::get('show/path/{id}',[ShowController::class,'detailPath']);
+    Route::get('show/schedules/{id}',[ShowController::class,'detailSchedule']);
+    Route::get('show/travel/{id}',[ShowController::class,'detailTravel']);
+
+
+    Route::get('list/agencies',[ListController::class,'listAgency']);
+    Route::get('list/buses',[ListController::class,'listBus']);
+    Route::get('list/pathes',[ListController::class,'listPath']);
+    Route::get('list/schedules',[ListController::class,'listSchedule']);
+    Route::get('list/travels',[ListController::class,'listTravel']);
 
 
     // All endpoints for admin
@@ -54,24 +68,23 @@ use App\Http\Controllers\Api\Auth\AdminController;
     Route::middleware('auth:api-agent')->prefix('v1')->group(function(){
 
         //endPoint agent-agencies
-        Route::get('list/agencies',[AgentAgencyController::class,'list']);
         Route::patch('update/MyOwnAgency/{id}',[AgentAgencyController::class,'update']);
 
         //endPoint agent-buses
-        Route::get('list/buses',[AgentBusController::class,'list']);
+
         Route::patch('update/MyOwnBuses/{id}',[AgentBusController::class,'update']);
         Route::post('store/bus',[AgentBusController::class,'store']);
         Route::delete('destroy/MyOwnbus/{id}',[AgentBusController::class,'destroy']);
 
         //endPoint agent-paths
-        Route::get('list/paths',[AgentPathController::class,'list']);
+
         Route::patch('update/MyOwnPaths/{id}',[AgentPathController::class,'update']);
         Route::post('store/path',[AgentPathController::class,'store']);
         Route::delete('destroy/MyOwnPath/{id}',[AgentPathController::class,'destroy']);
 
         //endPoint agent-schedules
 
-        Route::get('list/schedules',[AgentScheduleController::class,'index']);
+
         Route::patch('update/MyOwnSchedule/{id}',[AgentScheduleController::class,'update']);
         Route::post('store/MyOwnSchedule',[AgentScheduleController::class,'store']);
         Route::delete('destroy/MyOwnSchedule/{id}',[AgentScheduleController::class,'destroy']);
@@ -79,7 +92,6 @@ use App\Http\Controllers\Api\Auth\AdminController;
 
         //endPoint agent-travel
 
-        Route::get('list/travels',[AgentController::class,'index']);
         Route::patch('update/MyOwnTravel/{id}',[AgentController::class,'update']);
         Route::post('store/MyOwnTravel',[AgentController::class,'store']);
         Route::delete('destroy/MyOwnTravel/{id}',[AgentController::class,'destroy']);

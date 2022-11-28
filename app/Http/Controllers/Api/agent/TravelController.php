@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class TravelController extends Controller
 {
-    public function list(){
-        return TravelResource::collection(Travel::all());
-    }
 
 
     public function store(TravelRequest $request){

@@ -12,9 +12,6 @@ use App\Http\Resources\Path\PathDetailResource;
 
 class PathController extends Controller
 {
-    public function list(){
-        return PathResource::collection(Path::all());
-    }
 
     public function store(PathRequest $request){
         $path=Path::create([

@@ -12,10 +12,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ScheduleController extends Controller
 {
-    public function list(){
-
-        return ScheduleResource::collection(Schedule::all());
-    }
 
     public function store(ScheduleRequest $request){
 

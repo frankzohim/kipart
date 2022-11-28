@@ -13,10 +13,7 @@ use App\Http\Resources\Agency\AgencyDetailResource;
 
 class AgencyController extends Controller
 {
-    public function list(){
 
-        return AgencyResource::collection(Agency::all());
-    }
 
     public function details(){
         return AgencyDetailResource::collection(Agency::all());
