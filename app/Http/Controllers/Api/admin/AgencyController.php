@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\admin;
 
 use App\Models\Agency;
 use Illuminate\Http\Request;
@@ -74,10 +74,14 @@ class AgencyController extends Controller
     public function update($id,AgencyRequest $request)
     {
 
-        if(Auth::guard('api-agent')->user()->id==$id){
-           return (new UpdateAgencyService($id,$request));
-        }else{
-            return response()->json(['status'=>'fail!','message'=>'Unauthorized']);
+        $agency=Agency::find($id);
+        $input=$request->all();
+        $update=$agency->update($input);
+        if($update){
+        return response()->json(['status'=>'success','message'=>'Agency update']);
+        }
+        else{
+            return response()->json(['status'=>'fail!','message'=>'agency not found']);
         }
 
     }

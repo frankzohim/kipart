@@ -4,19 +4,17 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\BusController;
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\PathController;
-use App\Http\Controllers\Api\RoleController;
-use App\Http\Controllers\Api\UsersController;
-use App\Http\Controllers\Api\AgencyController;
-use App\Http\Controllers\Api\Auth\AdminController;
-use App\Http\Controllers\Api\TravelController;
-use App\Http\Controllers\Api\ScheduleController;
+use App\Http\Controllers\Api\admin\BusController;
 
+use App\Http\Controllers\Api\admin\PathController;
 use App\Http\Controllers\Api\Auth\AgentController;
+use App\Http\Controllers\Api\admin\UsersController;
+use App\Http\Controllers\Api\admin\AgencyController;
+use App\Http\Controllers\Api\admin\TravelController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\Auth\CustomerController;
+use App\Http\Controllers\Api\admin\ScheduleController;
+use App\Http\Controllers\Api\Auth\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,26 +26,37 @@ use App\Http\Controllers\Api\Auth\CustomerController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-    //All endpoints for users
+    //All endpoints for unauth user
     Route::post('login',[CustomerController::class,'login']);
     Route::post('login/admin',[AdminController::class,'login']);
     Route::post('agent/login',[AgentController::class,'login']);
 
 
+
+    // All endpoints for admin
     Route::middleware('auth:api-admin')->prefix('v1')->group(function(){
-        Route::get('travel',[TravelController::class,'index']);
 
-        Route::post('logout',[AdminController::class,'logout']);
-
+        Route::apiResource('travels',TravelController::class);
+        Route::apiResource('agencies',AgencyController::class);
+        Route::apiResource('buses',BusController::class);
+        Route::apiResource('Schedules',ScheduleController::class);
+        Route::apiResource('paths',PathController::class);
+        Route::apiResource('users',UsersController::class);
+        Route::post('logout/adn/private',[AdminController::class,'logout']);
     });
 
+
+    // All endpoints for agents
     Route::middleware('auth:api-agent')->prefix('v1')->group(function(){
-        Route::get('agency',[AgencyController::class,'index']);
-        Route::get('bus',[BusController::class,'index']);
-        Route::post('logoutout',[AgentController::class,'logout']);
-        Route::get('traveler',[TravelController::class,'index']);
+        Route::apiResource('agencer',AgencyController::class,['except' => ['create', 'edit']]);
+
+        Route::fallback(function () {
+            abort(404);
+        });
     });
 
+
+    // All endpoints for users
     Route::middleware('auth:api')->prefix('v1')->group(function(){
 
         Route::get('travel',[TravelController::class,'index']);
