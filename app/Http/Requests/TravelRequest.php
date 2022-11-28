@@ -27,7 +27,6 @@ class TravelRequest extends FormRequest
     {
         return [
             'date'=>"required",
-            'agency_id'=>"required",
             'path_id'=>"required",
             'class'=>"required",
             'price'=>"required",

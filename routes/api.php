@@ -46,7 +46,6 @@ use App\Http\Controllers\Api\Auth\AdminController;
         Route::apiResource('Schedules',ScheduleController::class);
         Route::apiResource('paths',PathController::class);
         Route::apiResource('users',UsersController::class);
-        Route::get('details/paths/',[PathController::class,'details']);
         Route::post('logout/adn/private',[AdminController::class,'logout']);
     });
 
@@ -56,7 +55,6 @@ use App\Http\Controllers\Api\Auth\AdminController;
 
         //endPoint agent-agencies
         Route::get('list/agencies',[AgentAgencyController::class,'list']);
-        Route::get('details/agency',[AgentAgencyController::class,'details']);
         Route::patch('update/MyOwnAgency/{id}',[AgentAgencyController::class,'update']);
 
         //endPoint agent-buses
@@ -69,14 +67,22 @@ use App\Http\Controllers\Api\Auth\AdminController;
         Route::get('list/paths',[AgentPathController::class,'list']);
         Route::patch('update/MyOwnPaths/{id}',[AgentPathController::class,'update']);
         Route::post('store/path',[AgentPathController::class,'store']);
-        Route::get('details/path',[AgentPathController::class,'detail']);
         Route::delete('destroy/MyOwnPath/{id}',[AgentPathController::class,'destroy']);
 
         //endPoint agent-schedules
 
-        Route::get('list/schedules',[AgentScheduleController::class,'list']);
-        Route::patch('update/MyOwnSchedules/{id}',[AgentScheduleController::class,'update']);
-        Route::post('store/schedule',[AgentScheduleController::class,'store']);
+        Route::get('list/schedules',[AgentScheduleController::class,'index']);
+        Route::patch('update/MyOwnSchedule/{id}',[AgentScheduleController::class,'update']);
+        Route::post('store/MyOwnSchedule',[AgentScheduleController::class,'store']);
+        Route::delete('destroy/MyOwnSchedule/{id}',[AgentScheduleController::class,'destroy']);
+
+
+        //endPoint agent-travel
+
+        Route::get('list/travels',[AgentController::class,'index']);
+        Route::patch('update/MyOwnTravel/{id}',[AgentController::class,'update']);
+        Route::post('store/MyOwnTravel',[AgentController::class,'store']);
+        Route::delete('destroy/MyOwnTravel/{id}',[AgentController::class,'destroy']);
 
     });
 

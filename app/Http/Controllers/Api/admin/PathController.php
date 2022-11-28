@@ -97,8 +97,5 @@ class PathController extends Controller
         }
     }
 
-    public function detail(){
 
-        return new PathDetailResource(Path::all());
-    }
 }

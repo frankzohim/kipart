@@ -21,7 +21,7 @@ class TravelDetailResource extends JsonResource
             'prix'=>$this->price,
             'arrival'=>$this->path->arrival,
             'agence'=>$this->agency->name,
-
+            'class'=>$this->class
         ];
     }
 }

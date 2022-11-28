@@ -68,7 +68,13 @@ class TravelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $travel=Travel::find($id);
+        $travel->date=$request->departure;
+            $travel->path_id=$request->path_id;
+            $travel->agency_id=$request->agency_id;
+            $travel->state=$request->state;
+            $travel->save();
+            return response()->json(['status'=>'success','message'=>'Voyage mis a jour']);
     }
 
     /**
@@ -79,6 +85,12 @@ class TravelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $travel=Travel::find($id);
+        if($travel){
+            $travel->delete();
+            return response()->json(['status'=>'success','message'=>'Voyage suprimé avec succes']);
+        }
     }
+
+
 }
