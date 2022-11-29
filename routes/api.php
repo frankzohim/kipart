@@ -51,7 +51,7 @@ use App\Http\Controllers\Api\ShowController;
     Route::get('list/schedules',[ListController::class,'listSchedule']);
     Route::get('list/travels',[ListController::class,'listTravel']);
 
-    Route::get('route',[CustomerController::class,'routeList']);
+
 
 
     // All endpoints for admin
@@ -64,6 +64,8 @@ use App\Http\Controllers\Api\ShowController;
         Route::apiResource('paths',PathController::class);
         Route::apiResource('users',UsersController::class);
         Route::post('logout/adm/private',[AdminController::class,'logout']);
+
+        Route::get('routes',[CustomerController::class,'routeList']);
     });
 
 

@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\Auth\LoginRequest;
-use Illuminate\Support\Facades\Route;
+
 
 class CustomerController extends Controller
 {
@@ -33,16 +33,5 @@ class CustomerController extends Controller
         return response()->json(['message'=>"Deconnexion Reussit"]);
     }
 
-    public function routeList(){
 
-        $routeCollection=Route::getRoutes();
-        $val=[];
-        $valmethod=[];
-
-        foreach($routeCollection as $value){
-            array_push($val,$value->uri,$value->methods);
-        }
-
-        return response()->json(['uri'=>$val]);
-    }
 }
