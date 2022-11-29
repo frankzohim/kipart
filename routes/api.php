@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\agent\AgencyController as AgentAgencyController;
 use App\Http\Controllers\Api\agent\BusController as AgentBusController;
 use App\Http\Controllers\Api\agent\PathController as AgentPathController;
 use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
+use App\Http\Controllers\Api\agent\TravelController as AgentTravelController;
 use App\Http\Controllers\Api\Auth\AdminController;
 use App\Http\Controllers\Api\ListController;
 use App\Http\Controllers\Api\ShowController;
@@ -50,6 +51,8 @@ use App\Http\Controllers\Api\ShowController;
     Route::get('list/schedules',[ListController::class,'listSchedule']);
     Route::get('list/travels',[ListController::class,'listTravel']);
 
+    Route::get('route',[CustomerController::class,'routeList']);
+
 
     // All endpoints for admin
     Route::middleware('auth:api-admin')->prefix('v1')->group(function(){
@@ -60,7 +63,7 @@ use App\Http\Controllers\Api\ShowController;
         Route::apiResource('Schedules',ScheduleController::class);
         Route::apiResource('paths',PathController::class);
         Route::apiResource('users',UsersController::class);
-        Route::post('logout/adn/private',[AdminController::class,'logout']);
+        Route::post('logout/adm/private',[AdminController::class,'logout']);
     });
 
 
@@ -92,9 +95,11 @@ use App\Http\Controllers\Api\ShowController;
 
         //endPoint agent-travel
 
-        Route::patch('update/MyOwnTravel/{id}',[AgentController::class,'update']);
-        Route::post('store/MyOwnTravel',[AgentController::class,'store']);
-        Route::delete('destroy/MyOwnTravel/{id}',[AgentController::class,'destroy']);
+        Route::patch('update/MyOwnTravel/{id}',[AgentTravelController::class,'update']);
+        Route::post('store/MyOwnTravel',[AgentTravelController::class,'store']);
+        Route::delete('destroy/MyOwnTravel/{id}',[AgentTravelController::class,'destroy']);
+
+        Route::post('logout/agt/private',[AgentController::class,'logout']);
 
     });
 
@@ -102,18 +107,10 @@ use App\Http\Controllers\Api\ShowController;
     // All endpoints for users
     Route::middleware('auth:api')->prefix('v1')->group(function(){
 
-        Route::get('travel',[TravelController::class,'index']);
         Route::post('logout',[CustomerController::class,'logout']);
     });
 
 
-
-
-
-Route::middleware('auth:api')->prefix('v1')->group(function(){
-
-
-});
 
 
 // Route::get('bus',[BusController::class,'index']);

@@ -52,6 +52,8 @@ class TravelController extends Controller
             if($travel){
                 $travel->delete();
                 return response()->json(['status'=>'success','message'=>'Voyage suprimé avec succes']);
+            }else{
+                return response()->json(['status'=>'fail','message'=>'Une erreur s\'/est produite']);
             }
         }
     }
