@@ -25,6 +25,7 @@ class Agency extends Authenticatable
         'name',
         'headquarters',
         'logo',
+        'phone_number',
         'state'
     ];
 

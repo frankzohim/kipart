@@ -38,6 +38,7 @@ class AgencyController extends Controller
             'name'=>$request->name,
             'headquarters'=>$request->headquarters,
             'logo'=>$request->logo,
+            'phone_number'=>$request->phone_number,
             'state'=>$request->state,
         ]);
 

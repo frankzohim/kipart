@@ -47,7 +47,7 @@ use App\Http\Controllers\Api\ShowController;
 
     Route::get('list/agencies',[ListController::class,'listAgency']);
     Route::get('list/buses',[ListController::class,'listBus']);
-    Route::get('list/pathes',[ListController::class,'listPath']);
+    Route::get('list/paths',[ListController::class,'listPath']);
     Route::get('list/schedules',[ListController::class,'listSchedule']);
     Route::get('list/travels',[ListController::class,'listTravel']);
 
@@ -58,7 +58,7 @@ use App\Http\Controllers\Api\ShowController;
     Route::middleware('auth:api-admin')->prefix('v1')->group(function(){
 
         Route::apiResource('travels',TravelController::class);
-        Route::apiResource('agencies',AgencyController::class);
+        Route::apiResource('agencies',AgencyController::class)->except(['update']);
         Route::apiResource('buses',BusController::class);
         Route::apiResource('Schedules',ScheduleController::class);
         Route::apiResource('paths',PathController::class);
@@ -79,7 +79,7 @@ use App\Http\Controllers\Api\ShowController;
 
         Route::patch('update/MyOwnBuses/{id}',[AgentBusController::class,'update']);
         Route::post('store/bus',[AgentBusController::class,'store']);
-        Route::delete('destroy/MyOwnbus/{id}',[AgentBusController::class,'destroy']);
+        Route::delete('destroy/MyOwnBus/{id}',[AgentBusController::class,'destroy']);
 
         //endPoint agent-paths
 
