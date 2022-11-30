@@ -9,6 +9,7 @@ use Database\Seeders\PathSeeder;
 use Database\Seeders\AdminSeeder;
 use Database\Seeders\AgencySeeder;
 use Database\Seeders\TravelSeeder;
+use Database\Seeders\CustomerSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,8 +21,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(PathSeeder::class);
-        $this->call(RoleSeeder::class);
         $this->call(AdminSeeder::class);
+        $this->call(CustomerSeeder::class);
         $this->call(AgencySeeder::class);
         $this->call(BusSeeder::class);
         $this->call(TravelSeeder::class);

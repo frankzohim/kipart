@@ -30,7 +30,8 @@ class AgencyRequest extends FormRequest
             "name"=>"required|min:3|max:15",
             "headquarters"=>"required|min:5|max:12",
             'logo'=>"required|mimes:png,jpg,jpeg",
-            'state'=>"required",
+            'phone_number'=>"required|max:20",
+            'email'=>"required|email|unique:agencies,email",
         ];
     }
 

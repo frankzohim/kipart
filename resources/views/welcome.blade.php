@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 mb-4 mb-md-0 d-flex align-items-center order-1 order-md-2">
-                        <div class="d2c_hero_img">
+                        <div class="d2c_hero_img d-none d-md-block">
                             <img class="w-2 cssanimation hu__hu__" src="{{ asset('assets/images/kipart.png') }}" alt="Hero Image">
                         </div>
                     </div>

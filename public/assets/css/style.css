@@ -84,7 +84,7 @@
 
 .d2c_hero{
 	background-color: var(--primary_color);
-	background-image: url('../images/hero_bg.png');
+	background-image: url('../images/hero_bg.png') cover;
 	background-repeat: no-repeat;
 	background-position: right center;
 	background-size: cover;
