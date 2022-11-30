@@ -37,6 +37,7 @@ use App\Http\Controllers\Api\ShowController;
     Route::post('login',[CustomerController::class,'login']);
     Route::post('login/admin',[AdminController::class,'login']);
     Route::post('agent/login',[AgentController::class,'login']);
+    Route::post('register',[CustomerController::class,'register']);
 
     Route::get('show/agency/{id}',[ShowController::class,'detailAgency']);
     Route::get('show/bus/{id}',[ShowController::class,'detailBus']);

@@ -12,13 +12,8 @@ use App\Http\Requests\Auth\LoginRequest;
 class AdminController extends Controller
 {
     public function login(LoginRequest $request){
-        $AdminRequest=$request->validate([
-            'email'=>["email","required"],
-            'password'=>["required","string",]
-        ]);
-        $admin=Admin::where("email",$AdminRequest["email"])->first();
 
-        return (new LoginService())->login($admin,$AdminRequest,'CLE_SECRETE_KIPART_ADMIN','Administrateur');
+        (new LoginService())->login($request,'admin');
     }
 
     public function register(){
