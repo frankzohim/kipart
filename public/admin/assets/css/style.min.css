@@ -10982,7 +10982,7 @@ body {
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
     font-family: "Comfortaa", sans-serif;
-    background-color: #C98010;
+    background-color: #fff;
     font-weight: 400;
     font-size: 15px
 }
@@ -12798,7 +12798,7 @@ section.content {
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     border-radius: 5px;
-    color: #fff;
+    color: #C98010;
     line-height: 50px;
     text-align: center;
     width: 50px
@@ -13075,7 +13075,7 @@ section.content {
 }
 
 .sidebar .menu .list a {
-    color: #fff;
+    color: #C98010;
     position: relative;
     padding: 15px 10px
 }
@@ -21974,16 +21974,16 @@ section.content {
 
 .theme-blush .sidebar .menu .list li.active>:first-child i,
 .theme-blush .sidebar .menu .list li.active>:first-child span {
-    color: #fff
+    color: #C98010
 }
 
 .theme-blush .sidebar .menu .list a:hover {
-    color: #fff
+    color: #000
 }
 
 .theme-blush .table.theme-color thead td,
 .theme-blush .table.theme-color thead th {
-    background: #e47297
+    background: #F8C200
 }
 
 .theme-blush .navbar-right .navbar-nav>li>a:hover {
