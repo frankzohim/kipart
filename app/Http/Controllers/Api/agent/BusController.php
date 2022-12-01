@@ -17,6 +17,7 @@ class BusController extends Controller
             'registration'=>$request->registration,
             'agency_id'=>Auth::guard('api-agent')->user()->id,
             'number_of_places'=>$request->number_of_places,
+            //'type'=>$request->type,
             'plan'=>$request->plan,
             'class'=>$request->class
             ]);

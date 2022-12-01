@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/api-kipart', function () {
+    return view('api.api-kipart');
+})->name('api');
+
+Route::get('/',function(){
+    return view('homepage');
+})->name('homepage');
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
@@ -27,5 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::get('test',[TestController::class,'testResponse']);
 
 require __DIR__.'/auth.php';
