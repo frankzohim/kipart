@@ -93,13 +93,4 @@ class LoginRequest extends FormRequest
     {
         return Str::transliterate(Str::lower($this->input('email')).'|'.$this->ip());
     }
-
-    public function failedValidation(Validator $validator)
-{
-   throw new HttpResponseException(response()->json([
-     'success'   => false,
-     'message'   => 'Validation errors',
-     'data'      => $validator->errors()
-   ]));
-}
 }

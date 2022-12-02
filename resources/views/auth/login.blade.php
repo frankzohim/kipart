@@ -33,12 +33,19 @@
                                 <span class="input-group-text"><i class="zmdi zmdi-account-circle"></i></span>
                             </div>
                         </div>
+                        @error('email')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Password" name="password">
                             <div class="input-group-append">
                                 <span class="input-group-text"><a href="forgot-password.html" class="forgot" title="Forgot Password"><i class="zmdi zmdi-lock"></i></a></span>
                             </div>
+
                         </div>
+                        @error('password')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                         <div class="checkbox">
                             <input id="remember_me" type="checkbox">
                             <label for="remember_me">Remember Me</label>
