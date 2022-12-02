@@ -25,4 +25,15 @@ class AdminController extends Controller
             return redirect()->route('admin.login')->with('fail','incorrect incredentials');
         }
     }
+
+    public function logout(Request $request){
+
+        Auth::guard('admin')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
 }
