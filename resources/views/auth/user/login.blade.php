@@ -20,10 +20,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 col-sm-12">
-                <form class="card auth_form" method="POST" action="{{ route('login') }}">
+                <form class="card auth_form" method="POST" action="{{ route('user.login') }}">
                     @csrf
                     <div class="header">
-                        <img class="logo" src="assets/images/logo.svg" alt="">
+                        <img class="logo" src="{{ asset('admin/assets/images/logo.svg') }}" alt="">
                         <h5>Log in</h5>
                     </div>
                     <div class="body">
@@ -62,12 +62,12 @@
                 <div class="copyright text-center">
                     &copy;
                     <script>document.write(new Date().getFullYear())</script>,
-                    <span>Designed by <a href="https://thememakker.com/" target="_blank">ThemeMakker</a></span>
+                    <span>Copyright<a href="https://thememakker.com/" target="_blank">Kipart</a></span>
                 </div>
             </div>
             <div class="col-lg-8 col-sm-12">
                 <div class="card">
-                    <img src="assets/images/signin.svg" alt="Sign In"/>
+                    <img src="{{ asset('assets/images/customer.png') }}" alt="Sign In"/>
                 </div>
             </div>
         </div>

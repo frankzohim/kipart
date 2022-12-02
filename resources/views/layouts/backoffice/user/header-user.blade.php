@@ -6,9 +6,9 @@
     </div>
 </div>
 <!-- Right Icon menu Sidebar -->
-@include('layouts.backoffice.right-iconmenu')
+@include('layouts.backoffice.user.right-menu-user')
 <!--end icon-->
 
 <!-- Right and left Sidebar -->
-@include('layouts.backoffice.siderbar')
+@include('layouts.backoffice.user.sidebar-user')
 <!--end sider-->

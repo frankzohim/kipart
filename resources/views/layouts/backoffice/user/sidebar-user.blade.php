@@ -11,7 +11,7 @@
                     <a class="image" href="profile.html"><img src="{{ asset('admin/assets/images/profile_av.jpg') }}" alt="User"></a>
                     <div class="detail">
                         <h4>{{ Auth::guard('web')->user()->name }}</h4>
-                        <small>Super Admin</small>
+                        <small>Utilisateur Kipart</small>
                     </div>
                 </div>
             </li>

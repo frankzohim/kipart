@@ -20,7 +20,7 @@
 
 <body class="theme-blush">
 
-@include('layouts.backoffice.header')
+@include('layouts.backoffice.user.header-user')
 @yield('content')
 
 <!-- Jquery Core Js -->
