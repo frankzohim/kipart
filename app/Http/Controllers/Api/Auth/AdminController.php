@@ -11,10 +11,10 @@ use App\Http\Requests\Auth\LoginRequest;
 
 class AdminController extends Controller
 {
-    public function login(LoginRequest $request){
+    // public function login(LoginRequest $request){
 
-        (new LoginService())->login($request,'admin');
-    }
+    //     (new LoginService())->login($request,'admin');
+    // }
 
     public function register(){
 

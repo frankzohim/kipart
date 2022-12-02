@@ -10,7 +10,7 @@
                 <div class="user-info">
                     <a class="image" href="profile.html"><img src="{{ asset('admin/assets/images/profile_av.jpg') }}" alt="User"></a>
                     <div class="detail">
-                        <h4>{{ Auth::guard('web')->user()->name }}</h4>
+                        <h4>{{ Auth::guard('admin')->user()->name }}</h4>
                         <small>Super Admin</small>
                     </div>
                 </div>

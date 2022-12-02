@@ -13,13 +13,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-sm-12">
-                    <form class="card auth_form" method="POST" action="{{ route('user.login') }}">
+                    <form class="card auth_form" method="POST" action="{{ route('admin.login') }}">
                         @csrf
                         <div class="header">
                             <img class="logo" src="{{ asset('admin/assets/images/logo.svg') }}" alt="">
                             <h5>Log in</h5>
                         </div>
                         <div class="body">
+
+                            @if(Session::get("fail"))
+                                <div class="alert alert-danger">
+                                    {{ Session::get('fail') }}
+                                </div>
+                            @endif
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Email" name="email">
                                 <div class="input-group-append">

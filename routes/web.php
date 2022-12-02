@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TestController;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\admin\AdminController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -46,10 +48,13 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     Route::middleware(['guest:admin'])->group(function(){
         Route::view('login','auth.admin.login')->name('login');
+        Route::post('login',[AdminController::class,'login'])->name('login');
     });
 
     Route::middleware(['auth:admin'])->group(function(){
-        Route::view('dashboard','admin.dashboard');
+        Route::view('dashboard','admin.dashboard')->name('dashboard');
+
+
     });
 });
 

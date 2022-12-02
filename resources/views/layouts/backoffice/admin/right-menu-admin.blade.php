@@ -231,7 +231,7 @@
         <li><a href="javascript:void(0);" class="app_group_work" title="Group Work"><i class="zmdi zmdi-group-work"></i></a></li>
         <li><a href="javascript:void(0);" class="js-right-sidebar" title="Setting"><i class="zmdi zmdi-settings zmdi-hc-spin"></i></a></li>
 
-        <form method="POST" action="{{ route('logout') }}" id="logout-form">
+        <form method="POST" action="" id="logout-form">
             @csrf
 
             <button class="mega-menu" onclick="event.preventDefault(); document.getElementById('logout-form').submit(); title="Sign Out"><i class="zmdi zmdi-power"></i>
@@ -240,7 +240,7 @@
 
         </form>
 
-        <li><a href="{{ route('logout') }}" class="mega-menu" onclick="event.preventDefault(); document.getElementById('logout-form').submit(); title="Sign Out"><i class="zmdi zmdi-power"></i>
+        <li><a href="" class="mega-menu" onclick="event.preventDefault(); document.getElementById('logout-form').submit(); title="Sign Out"><i class="zmdi zmdi-power"></i>
 
         </a></li>
     </ul>
