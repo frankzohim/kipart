@@ -24,4 +24,15 @@ class AgentController extends Controller
             return redirect()->route('admin.login')->with('fail','incorrect incredentials');
         }
     }
+
+    public function logout(Request $request){
+
+        Auth::guard('agent')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
 }

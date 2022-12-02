@@ -67,7 +67,8 @@ Route::prefix('agent')->name('agent.')->group(function(){
     });
 
     Route::middleware(['auth:agent'])->group(function(){
-
+        Route::view('dashboard','agent.dashboard')->name('dashboard');
+        Route::post('logout',[AgentController::class,'logout'])->name('logout');
     });
 });
 
