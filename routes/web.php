@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,17 @@ Route::prefix('user')->name('user.')->group(function(){
         return view('user.dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');
 
+});
+
+Route::prefix('admin')->name('admin.')->group(function(){
+
+    Route::middleware(['guest:admin'])->group(function(){
+        Route::view('login','auth.admin.login')->name('login');
+    });
+
+    Route::middleware(['auth:admin'])->group(function(){
+        Route::view('dashboard','admin.dashboard');
+    });
 });
 
 
