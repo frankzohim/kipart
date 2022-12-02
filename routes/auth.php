@@ -38,6 +38,8 @@ Route::prefix('user')->name('user.')->group(function(){
         Route::post('reset-password', [NewPasswordController::class, 'store'])
                     ->name('password.store');
     });
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->name('logout');
 });
 
 
@@ -60,6 +62,5 @@ Route::middleware('auth')->group(function () {
 
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
-    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-                ->name('logout');
+
 });
