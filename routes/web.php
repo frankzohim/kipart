@@ -60,13 +60,13 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
 Route::prefix('agent')->name('agent.')->group(function(){
 
-    Route::middleware(['guest:agent'])->group(function(){
+    Route::middleware(['guest:agent','PreventBackHistory'])->group(function(){
 
         Route::view('login','auth.agent.login')->name('login');
         Route::post('login',[AgentController::class,'login'])->name('login');
     });
 
-    Route::middleware(['auth:agent'])->group(function(){
+    Route::middleware(['auth:agent','PreventBackHistory'])->group(function(){
         Route::view('dashboard','agent.dashboard')->name('dashboard');
         Route::post('logout',[AgentController::class,'logout'])->name('logout');
     });
