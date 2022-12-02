@@ -1,10 +1,10 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\admin\AdminController;
+use App\Http\Controllers\Auth\agent\AgentController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -54,6 +54,19 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
         Route::view('dashboard','admin.dashboard')->name('dashboard');
         Route::post('logout',[AdminController::class,'logout'])->name('logout');
+
+    });
+});
+
+Route::prefix('agent')->name('agent.')->group(function(){
+
+    Route::middleware(['guest:agent'])->group(function(){
+
+        Route::view('login','auth.agent.login')->name('login');
+        Route::post('login',[AgentController::class,'login'])->name('login');
+    });
+
+    Route::middleware(['auth:agent'])->group(function(){
 
     });
 });
