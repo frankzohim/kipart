@@ -19,9 +19,9 @@ class AgentController extends Controller
         $creds=$request->only('email','password');
 
         if(Auth::guard('agent')->attempt($creds)){
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('agent.dashboard');
         }else{
-            return redirect()->route('admin.login')->with('fail','incorrect incredentials');
+            return redirect()->route('agent.login')->with('fail','incorrect incredentials');
         }
     }
 

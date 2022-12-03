@@ -19,7 +19,7 @@
 </head>
 
 <body class="theme-blush">
-
+@yield('title')
 @include('layouts.backoffice.header')
 @yield('content')
 
