@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Auth\admin\AdminController;
+
 use App\Http\Controllers\Auth\agent\AgentController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -44,33 +44,9 @@ Route::prefix('user')->name('user.')->group(function(){
 
 });
 
-Route::prefix('admin')->name('admin.')->group(function(){
 
-    Route::middleware(['guest:admin','PreventBackHistory'])->group(function(){
-        Route::view('login','auth.admin.login')->name('login');
-        Route::post('login',[AdminController::class,'login'])->name('login');
-    });
 
-    Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
-        Route::view('dashboard','admin.dashboard')->name('dashboard');
-        Route::post('logout',[AdminController::class,'logout'])->name('logout');
 
-    });
-});
-
-Route::prefix('agent')->name('agent.')->group(function(){
-
-    Route::middleware(['guest:agent','PreventBackHistory'])->group(function(){
-
-        Route::view('login','auth.agent.login')->name('login');
-        Route::post('login',[AgentController::class,'login'])->name('login');
-    });
-
-    Route::middleware(['auth:agent','PreventBackHistory'])->group(function(){
-        Route::view('dashboard','agent.dashboard')->name('dashboard');
-        Route::post('logout',[AgentController::class,'logout'])->name('logout');
-    });
-});
 
 
 Route::get('test',[TestController::class,'testResponse']);
