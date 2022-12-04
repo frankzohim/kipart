@@ -60,7 +60,7 @@
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card widget_2 big_icon domains">
                     <div class="body">
-                        <h6>Utilisateur </h6>
+                        <h6>Utilisateur</h6>
                         <h2>100 <small class="info">Nouveaux</small></h2>
                         <small>20% de plus que hier</small>
                         <div class="progress big_icon domains">

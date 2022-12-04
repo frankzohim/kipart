@@ -27,6 +27,11 @@
                         <h5>Log in</h5>
                     </div>
                     <div class="body">
+                        @if(Session::get("fail"))
+                                <div class="alert alert-danger">
+                                    {{ Session::get('fail') }}
+                                </div>
+                            @endif
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Email" name="email">
                             <div class="input-group-append">
