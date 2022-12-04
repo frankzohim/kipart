@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Throwable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -51,13 +52,18 @@ class Handler extends ExceptionHandler
 
     protected function unauthenticated($request, AuthenticationException $exception)
 {
-    return response()->json(
-        [
-            'errors'=>[
-                'status'=>401,
-                'message'=>'Unauthenticated.Please Try Again'
-            ]
-            ],401
-        );
+
+
+
+        return response()->json(
+            [
+                'errors'=>[
+                    'status'=>401,
+                    'message'=>'Unauthenticated.Please Try Again'
+                ]
+                ],401
+            );
+
+
 }
 }
