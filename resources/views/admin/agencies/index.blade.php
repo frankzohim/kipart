@@ -10,8 +10,7 @@
                 <div class="col-lg-7 col-md-6 col-sm-12">
                     <h2>Listes des Agences</h2>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Aero</a></li>
-                        <li class="breadcrumb-item">Dashboard</li>
+                        <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i>Dashboard</a></li>
                         <li class="breadcrumb-item active">Listes des agences</li>
                     </ul>
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
@@ -39,11 +38,8 @@
                                     @foreach ($datas as $agencies)
                                         @forelse ($agencies as $agency)
                                             <tr>
-                                                <td><img src="assets/images/ecommerce/1.png" width="48" alt="Product img"></td>
+                                                <td><img src="{{ Storage::url($agency->logo) }}" width="48" alt="Product img"></td>
                                                 <td><h5>{{ $agency->name }}</h5></td>
-                                                <td><span class="text-muted">randomised words even slightly believable</span></td>
-                                                <td>$16.00</td>
-                                                <td><span class="col-green">In Stock</span></td>
                                                 <td>
                                                     <a href="javascript:void(0);" class="btn btn-default waves-effect waves-float btn-sm waves-green"><i class="zmdi zmdi-edit"></i></a>
                                                     <a href="javascript:void(0);" class="btn btn-default waves-effect waves-float btn-sm waves-red"><i class="zmdi zmdi-delete"></i></a>

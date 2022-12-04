@@ -12,9 +12,10 @@ Route::prefix('admin')->name('admin.')->group(function(){
     });
 
     Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
-        Route::view('dashboard','admin.dashboard')->name('dashboard');
+
         Route::resource('agencies',AgencyController::class);
         Route::post('logout',[AdminController::class,'logout'])->name('logout');
 
     });
+    Route::view('dashboard','admin.dashboard')->name('dashboard');
 });

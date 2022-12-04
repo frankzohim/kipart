@@ -45,20 +45,24 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+            'hash' =>false,
         ],
         'api' => [
             'driver' => 'passport',
             'provider' => 'users',
+            'hash' =>false,
         ],
 
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
+            'hash' =>false,
         ],
 
         'agent' => [
             'driver' => 'session',
             'provider' => 'agencies',
+            'hash' =>false,
         ],
 
         // 'customer' => [

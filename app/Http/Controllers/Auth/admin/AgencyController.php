@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers\Auth\admin;
 
+
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Session;
+
+use GuzzleHttp\Exception\GuzzleException;
+use App\Services\token\admin\AccessTokenAdminService;
 
 class AgencyController extends Controller
 {
@@ -17,17 +25,29 @@ class AgencyController extends Controller
     public function index()
     {
         $client = new Client();
-
         try{
-            $response = $client->request('GET','http://kipart.stillforce.tech/api/list/agencies');
 
-            $datas=json_decode($response->getBody());
+    // $accessToken=(new AccessTokenAdminService())->accessToken();
 
-            //return $data;
+
+            $accessToken=Session::get('token');
+
+            $result = $client->get('http://kipart.stillforce.tech/api/admin/v1/agencies', [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                    'Authorization' => "Bearer $accessToken",
+                ]
+            ]);
+
+
+            $datas=json_decode($result->getBody());
             return view('admin.agencies.index',compact('datas'));
-        }catch(\Exception $e){
-            return $e->getMessage();
+            //return $datas;
+        } catch (GuzzleException $e) {
+            return "Exception!: " . $e->getMessage();
         }
+
     }
 
     /**

@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
 
             return to_route('user.dashboard');
         }else{
-            return redirect()->route('agent.login')->with('fail','incorrect incredentials');
+            return redirect()->route('user.login')->with('fail','incorrect incredentials');
         }
 
     }

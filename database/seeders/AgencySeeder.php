@@ -21,7 +21,7 @@ class AgencySeeder extends Seeder
             'headquarters'=>'douala',
             'logo'=>"public/logo/logo_general_voyages.b1d0c0f.png",
             'email'=>'GeneralVoyages@gmail.com',
-            'password'=>Hash::make('General@147voyages'),
+            'password'=>bcrypt('General@147voyages'),
             'phone_number'=>"+237 653453458",
             'state'=>1
          ]);
@@ -31,7 +31,7 @@ class AgencySeeder extends Seeder
             'headquarters'=>'douala',
             'logo'=>"public/logo/buca.jpeg",
             'email'=>'BucaVoyage45@gmail.com',
-            'password'=>Hash::make('Buca34voyages'),
+            'password'=>bcrypt('Buca34voyages'),
             'phone_number'=>"+237 689476334",
             'state'=>1
          ]);
@@ -41,7 +41,7 @@ class AgencySeeder extends Seeder
             'headquarters'=>'douala',
             'logo'=>"public/logo/touristiques.jpeg",
             'email'=>'TourExpress@gmail.com',
-            'password'=>Hash::make('AdminTour1233ZO'),
+            'password'=>bcrypt('AdminTour1233ZO'),
             'phone_number'=>"+237 674542333",
             'state'=>1
          ]);
@@ -51,7 +51,7 @@ class AgencySeeder extends Seeder
             'headquarters'=>'yaounde',
             'logo'=>"public/logo/united.png",
             'email'=>'UnitedExpress@gmail.com',
-            'password'=>Hash::make('ExpressUnit34ZETY'),
+            'password'=>bcrypt('ExpressUnit34ZETY'),
             'phone_number'=>"+237 663449924",
             'state'=>1
          ]);
@@ -61,7 +61,7 @@ class AgencySeeder extends Seeder
             'headquarters'=>'yaounde',
             'logo'=>"public/logo/global.jpeg",
             'email'=>'GlobalVoyages@gmail.com',
-            'password'=>Hash::make('GlobalDomainVoyages@147'),
+            'password'=>bcrypt('GlobalDomainVoyages@147'),
             'phone_number'=>"+237 635424752",
             'state'=>1
          ]);
@@ -71,7 +71,7 @@ class AgencySeeder extends Seeder
             'headquarters'=>'douala',
             'logo'=>"public/logo/fitness.jpeg",
             'email'=>'FitnessVOyage86@gmail.com',
-            'password'=>Hash::make('FitVoyage466DGG'),
+            'password'=>bcrypt('FitVoyage466DGG'),
             'phone_number'=>"+237 693263552",
             'state'=>1
          ]);
