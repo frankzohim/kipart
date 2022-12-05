@@ -79,6 +79,14 @@
                                 @error('password')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
+                            <label for="state">Etat</label>
+                            <select class="form-control show-tick ms select2" data-placeholder="Select" name="state">
+                                <option value="1">Publié</option>
+                                <option value="0">Non publié</option>
+                            </select>
+                                @error('state')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 <div class="card">
                                     <div class="header">
                                         <h2>Custom <strong>messages</strong> for default</h2>

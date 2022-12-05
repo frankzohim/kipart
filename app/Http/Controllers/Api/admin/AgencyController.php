@@ -33,13 +33,13 @@ class AgencyController extends Controller
      */
     public function store(AgencyRequest $request)
     {
-
+        $path = $request->file('logo')->store('public/logo');
         $agency=Agency::create([
             'name'=>$request->name,
             'headquarters'=>$request->headquarters,
-            'logo'=>$request->logo,
+            'logo'=>$path,
             'phone_number'=>$request->phone_number,
-            'state'=>0,
+            'state'=>$request->state,
             'password'=>$request->password,
         ]);
 

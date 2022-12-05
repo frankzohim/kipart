@@ -26,7 +26,8 @@ class Agency extends Authenticatable
         'headquarters',
         'logo',
         'phone_number',
-        'state'
+        'state',
+        'password'
     ];
 
     protected $guard='agency';

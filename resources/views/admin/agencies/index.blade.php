@@ -18,7 +18,13 @@
                 <div class="col-lg-2 col-md-6 col-sm-12">
                     <button class="btn btn-primary" type="button">Ajouter une Agence</button>
                 </div>
+
             </div>
+            @if(Session::get("success"))
+            <div class="alert alert-primary">
+                {{ Session::get('success') }}
+            </div>
+        @endif
         </div>
         <div class="container-fluid">
             <div class="row clearfix">
