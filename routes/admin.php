@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\admin\AgencyController as AdminAgencyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\admin\AdminController;
-use App\Http\Controllers\Auth\admin\AgencyController;
+
 
 Route::prefix('admin')->name('admin.')->group(function(){
 
@@ -13,7 +14,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
 
-        Route::resource('agencies',AgencyController::class);
+        Route::resource('agencies',AdminAgencyController::class);
         Route::post('logout',[AdminController::class,'logout'])->name('logout');
 
     });

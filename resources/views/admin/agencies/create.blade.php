@@ -45,194 +45,59 @@
                             </ul>
                         </div>
                         <div class="body">
-                            <form>
-                                <label for="email_address">Nom Agence</label>
+                            <form method="POST" action="{{ route('admin.agencies.store') }}" enctype="multipart/form-data">
+                                @csrf
+                                <label for="name">Nom Agence</label>
                                 <div class="form-group">
-                                    <input type="text" id="email_address" class="form-control" placeholder="Entrez le nom de l' agence ici">
+                                    <input type="text" id="email_address" class="form-control" name="name" placeholder="Entrez le nom de l' agence ici">
                                 </div>
-                                <label for="password">Email</label>
+                                @error('name')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                                <label for="email">Email</label>
                                 <div class="form-group">
-                                    <input type="email" id="password" class="form-control" placeholder="Email de l'Agence">
+                                    <input type="email" id="password" class="form-control" name="email" placeholder="Email de l'Agence">
                                 </div>
+                                @error('email')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                                <label for="phone">Phone number</label>
+                                <div class="form-group">
+                                    <input type="text" id="number" class="form-control" name="phone_number" placeholder="Phone number Agence">
+                                </div>
+                                @error('phone_number')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                                <label for="phone">Quartier General</label>
+                                <div class="form-group">
+                                    <input type="text" id="headquarters" class="form-control" name="headquarters" placeholder="Quartier General Agence">
+                                </div>
+                                <label for="phone">Password</label>
+                                <div class="form-group">
+                                    <input type="password" id="password" class="form-control" name="password" placeholder="">
+                                </div>
+                                @error('password')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 <div class="card">
                                     <div class="header">
-                                        <h2>With <strong>event</strong> and default file</h2>
+                                        <h2>Custom <strong>messages</strong> for default</h2>
                                     </div>
                                     <div class="body">
-                                        <p>try to remove the image</p>
-                                        <input type="file" id="dropify-event" data-default-file="assets/images/image-gallery/1.jpg">
+                                        <p>replace, remove and error</p>
+                                        <input type="file" class="dropify-fr" name="logo">
                                     </div>
+                                    @error('logo')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
-                                <button type="button" class="btn btn-raised btn-primary btn-round waves-effect">LOGIN</button>
+                                <button type="submit" class="btn btn-raised btn-primary btn-round waves-effect">Enregistrer</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
 
-
-            <!-- Inline Layout -->
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2><strong>Inline</strong> Layout</h2>
-                            <ul class="header-dropdown">
-                                <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else</a></li>
-                                    </ul>
-                                </li>
-                                <li class="remove">
-                                    <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="body">
-                            <form>
-                                <div class="row clearfix">
-                                    <div class="col-lg-3 col-md-3 col-sm-3">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Email Address">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 col-sm-3">
-                                        <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Password">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
-                                        <div class="checkbox inlineblock">
-                                            <input id="remember_me_3" type="checkbox">
-                                            <label for="remember_me_3">
-                                                    Remember Me
-                                            </label>
-                                        </div>
-                                        <button type="button" class="btn btn-raised btn-primary btn-round waves-effect m-l-20">LOGIN</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Multi Column -->
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2><strong>Multi</strong> Column</h2>
-                            <ul class="header-dropdown">
-                                <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else</a></li>
-                                    </ul>
-                                </li>
-                                <li class="remove">
-                                    <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="body">
-                            <div class="row clearfix">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="col-md-12">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row clearfix">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="col-md-6">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="col-md-6">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row clearfix">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="col-md-4">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="col-md-4">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="col-md-4">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row clearfix">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="col-md-3">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="col-md-3">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="col-md-3">
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="col-md-3">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row clearfix">
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="col-md-2">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="col-md-2">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="col-md-2">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="col-md-2">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="col-md-2">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="col-md-2">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>

@@ -1,19 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Auth\admin;
+namespace App\Http\Controllers\admin;
 
-
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Crypt;
+use GuzzleHttp\Client;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
-
 use GuzzleHttp\Exception\GuzzleException;
-use App\Services\token\admin\AccessTokenAdminService;
 
 class AgencyController extends Controller
 {
@@ -32,7 +25,7 @@ class AgencyController extends Controller
 
             $accessToken=Session::get('token');
 
-            $result = $client->get('http://kipart.stillforce.tech/api/admin/v1/agencies', [
+            $result = $client->request('GET','http://kipart.stillforce.tech/api/admin/v1/agencies',[
                 'headers' => [
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
@@ -42,8 +35,8 @@ class AgencyController extends Controller
 
 
             $datas=json_decode($result->getBody());
-            return view('admin.agencies.index',compact('datas'));
-            //return $datas;
+            // return view('admin.agencies.index',compact('datas'));
+            return $datas;
         } catch (GuzzleException $e) {
             return "Exception!: " . $e->getMessage();
         }
@@ -68,7 +61,47 @@ class AgencyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'email'=>'required|email|',
+            'name'=>'required|unique:agencies,name',
+            'logo'=>'required|mimes:png,jpg,jpeg',
+            'phone_number' =>'required|max:10',
+            'password' =>'required',
+            'headquarters' =>'required'
+        ]);
+
+        try{
+
+            // $accessToken=(new AccessTokenAdminService())->accessToken();
+
+
+
+                    $client = new Client();
+                    $accessToken=Session::get('token');
+
+                    $result = $client->request('POST','http://kipart.stillforce.tech/api/admin/v1/agencies', [
+                        'form_params' =>[
+                            'email'=>$request->email,
+                            'name' =>$request->name,
+                            'logo'=>$request->logo,
+                            'headquarters'=>$request->headquarters,
+                            'password'=>$request->password,
+                            'phone_number'=>$request->phone_number
+                        ],'headers' => [
+                            'Content-Type' => 'application/json',
+                            'Accept' => 'application/json',
+                            'Authorization' => "Bearer $accessToken",
+                        ],
+
+                    ]);
+
+
+                    //$datas=json_decode($result->getBody());
+                    //return view('admin.agencies.index',compact('datas'));
+                    //return $datas;
+                } catch (GuzzleException $e) {
+                    return "Exception!: " . $e->getMessage();
+                }
     }
 
     /**

@@ -33,5 +33,7 @@
 admin/assets/bundles/mainscripts.bundle.js
 <script src="{{ asset('admin/assets/bundles/mainscripts.bundle.js') }}"></script>
 <script src="{{ asset('admin/assets/js/pages/index.js') }}"></script>
+<script src="{{ asset('admin/assets/plugins/dropify/js/dropify.min.js') }}"></script>
+<script src="{{ asset('admin/assets/plugins/dropify/js/dropify.js') }}"></script>
 </body>
 </html>

@@ -22,7 +22,7 @@ class AgencyController extends Controller
      */
     public function index()
     {
-        return AgencyResource::collection(Agency::all());
+        return AgencyResource::collection(Agency::where('state',1));
     }
 
     /**
@@ -39,7 +39,8 @@ class AgencyController extends Controller
             'headquarters'=>$request->headquarters,
             'logo'=>$request->logo,
             'phone_number'=>$request->phone_number,
-            'state'=>$request->state,
+            'state'=>0,
+            'password'=>$request->password,
         ]);
 
         return new AgencyResource($agency);
