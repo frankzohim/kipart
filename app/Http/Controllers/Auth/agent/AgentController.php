@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth\agent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 
 class AgentController extends Controller
 {
@@ -15,6 +17,18 @@ class AgentController extends Controller
         ],[
             'email.exists'=>'this email is not exist in agencies table',
         ]);
+
+        $response = Http::post('http://kipart.stillforce.tech/oauth/token', [
+            'grant_type'    => 'password',
+            'username' => $request->email,
+            'password' =>$request->password,
+            'client_secret' => 'KAB357Z3cvAtKF0rOgF4GARR3qBb8SNU3WrhtPR6',
+            'client_id'=>5
+        ]);
+        $access_token = json_decode((string) $response->getBody(), true)['access_token'];
+
+        Session::put('token', $access_token);
+        Session::save();
 
         $creds=$request->only('email','password');
 
