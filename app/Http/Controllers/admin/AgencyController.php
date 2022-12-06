@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Agency;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Exception\GuzzleException;
@@ -143,9 +144,9 @@ class AgencyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Agency $agency)
     {
-        //
+        return view('admin.agencies.edit',compact('agency'));
     }
 
     /**
@@ -157,7 +158,25 @@ class AgencyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+        $accessToken=Session::get('token');
+        $photo = fopen($request->file('logo'), 'r');
+                $response = Http::withToken($accessToken)
+                        ->attach('logo',$photo,'logo')
+                        ->put('http://kipart.stillforce.tech/api/admin/v1/agencies/$id',[
+                            'email'=>$request->email,
+                            'name' =>$request->name,
+                            'headquarters'=>$request->headquarters,
+                            'password'=>$request->password,
+                            'phone_number'=>$request->phone_number,
+                            'state'=>$request->state,
+
+                ]);
+
+                return to_route('admin.agencies.index')->with('success','Agence mis a jour avec success');
+            } catch (GuzzleException $e) {
+                return "Exception!: " . $e->getMessage();
+            }
     }
 
     /**
