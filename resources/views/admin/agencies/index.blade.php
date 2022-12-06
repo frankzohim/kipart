@@ -18,7 +18,13 @@
                 <div class="col-lg-2 col-md-6 col-sm-12">
                     <button class="btn btn-primary" type="button">Ajouter une Agence</button>
                 </div>
+
             </div>
+            @if(Session::get("success"))
+            <div class="alert alert-primary">
+                {{ Session::get('success') }}
+            </div>
+        @endif
         </div>
         <div class="container-fluid">
             <div class="row clearfix">
@@ -41,7 +47,7 @@
                                                 <td><img src="{{ Storage::url($agency->logo) }}" width="48" alt="Product img"></td>
                                                 <td><h5>{{ $agency->name }}</h5></td>
                                                 <td>
-                                                    <a href="javascript:void(0);" class="btn btn-default waves-effect waves-float btn-sm waves-green"><i class="zmdi zmdi-edit"></i></a>
+                                                    <a href="{{ route('admin.agencies.edit',$agency->id) }}" class="btn btn-default waves-effect waves-float btn-sm waves-green"><i class="zmdi zmdi-edit"></i></a>
                                                     <a href="javascript:void(0);" class="btn btn-default waves-effect waves-float btn-sm waves-red"><i class="zmdi zmdi-delete"></i></a>
                                                 </td>
                                             </tr>

@@ -11,9 +11,11 @@
 <link rel="stylesheet" href="{{ asset('admin/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.css') }}"/>
 <link rel="stylesheet" href="{{ asset("admin/assets/plugins/dropify/css/dropify.min.css") }}">
 <link rel="stylesheet" href="{{ asset('admin/assets/plugins/charts-c3/plugin.css') }}"/>
-
+<link rel="stylesheet" href="{{ asset('admin/assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.css') }}" />
 <link rel="stylesheet" href="{{ asset('admin/assets/plugins/morrisjs/morris.min.css') }}" />
-
+<link rel="stylesheet" href="{{ asset('admin/assets/plugins/multi-select/css/multi-select.css') }}">
+<!-- Select2 -->
+<link rel="stylesheet" href="{{ asset('admin/assets/plugins/select2/select2.css') }}" />
 <!-- Custom Css -->
 <link rel="stylesheet" href="{{ asset('admin/assets/css/style.min.css') }}">
 </head>
@@ -30,7 +32,7 @@
 <script src="{{ asset('admin/assets/bundles/sparkline.bundle.js') }}"></script> <!-- Sparkline Plugin Js -->
 
 <script src="{{ asset('admin/assets/bundles/c3.bundle.js') }}"></script>
-admin/assets/bundles/mainscripts.bundle.js
+
 <script src="{{ asset('admin/assets/bundles/mainscripts.bundle.js') }}"></script>
 <script src="{{ asset('admin/assets/js/pages/index.js') }}"></script>
 <script src="{{ asset('admin/assets/plugins/dropify/js/dropify.min.js') }}"></script>

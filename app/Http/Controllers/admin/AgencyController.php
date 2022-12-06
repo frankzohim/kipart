@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\admin;
 
-use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Agency;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -35,8 +37,8 @@ class AgencyController extends Controller
 
 
             $datas=json_decode($result->getBody());
-            // return view('admin.agencies.index',compact('datas'));
-            return $datas;
+            return view('admin.agencies.index',compact('datas'));
+            //return $datas;
         } catch (GuzzleException $e) {
             return "Exception!: " . $e->getMessage();
         }
@@ -75,30 +77,51 @@ class AgencyController extends Controller
             // $accessToken=(new AccessTokenAdminService())->accessToken();
 
 
-
-                    $client = new Client();
                     $accessToken=Session::get('token');
+                    // $client = new Client();
+                    // $accessToken=Session::get('token');
+                    // $p = $request->logo;
+                    // $result= $client->request('POST','http://kipart.stillforce.tech/api/admin/v1/agencies', [
+                    //     'query' =>[
+                    //         'email'=>$request->email,
+                    //         'name' =>$request->name,
+                    //         'logo'=>$p,
+                    //         'headquarters'=>$request->headquarters,
+                    //         'password'=>$request->password,
+                    //         'phone_number'=>$request->phone_number,
+                    //         'state'=>$request->state,
+                    //     ],'headers' => [
+                    //         'Content-Type' => 'application/json',
+                    //         'Accept' => 'application/json',
+                    //         'Authorization' => "Bearer $accessToken",
+                    //     ],'multipart' => [
+                    //         [
+                    //             'name'     => 'logo',
+                    //             'contents' => $request->file('logo'),
+                    //             'bucketName' => 'test',
+                    //         ],]
 
-                    $result = $client->request('POST','http://kipart.stillforce.tech/api/admin/v1/agencies', [
-                        'form_params' =>[
-                            'email'=>$request->email,
-                            'name' =>$request->name,
-                            'logo'=>$request->logo,
-                            'headquarters'=>$request->headquarters,
-                            'password'=>$request->password,
-                            'phone_number'=>$request->phone_number
-                        ],'headers' => [
-                            'Content-Type' => 'application/json',
-                            'Accept' => 'application/json',
-                            'Authorization' => "Bearer $accessToken",
-                        ],
-
-                    ]);
+                    // ]);
 
 
                     //$datas=json_decode($result->getBody());
-                    //return view('admin.agencies.index',compact('datas'));
+                    // return to_route('admin.agencies.index');
                     //return $datas;
+                    $photo = fopen($request->file('logo'), 'r');
+                $response = Http::withToken($accessToken)
+                        ->attach('logo',$photo,'logo')
+                        ->post('http://kipart.stillforce.tech/api/admin/v1/agencies',[
+                            'email'=>$request->email,
+                            'name' =>$request->name,
+                            'headquarters'=>$request->headquarters,
+                            'password'=>$request->password,
+                            'phone_number'=>$request->phone_number,
+                            'state'=>$request->state,
+
+                ]);
+
+
+                return to_route('admin.agencies.index')->with('success','Agence Ajoutée avec success');
                 } catch (GuzzleException $e) {
                     return "Exception!: " . $e->getMessage();
                 }
@@ -123,7 +146,16 @@ class AgencyController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $accessToken=Session::get('token');
+                    $response = Http::withToken($accessToken)
+                            ->get('http://kipart.stillforce.tech/api/admin/v1/agencies/'.$id);
+                    $datas=json_decode($response->getBody());
+                    return $response;
+                } catch (GuzzleException $e) {
+                    return "Exception!: " . $e->getMessage();
+                }
+        return view('admin.agencies.edit',compact('agency'));
     }
 
     /**
@@ -135,7 +167,25 @@ class AgencyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+        $accessToken=Session::get('token');
+        $photo = fopen($request->file('logo'), 'r');
+                $response = Http::withToken($accessToken)
+                        ->attach('logo',$photo,'logo')
+                        ->put('http://kipart.stillforce.tech/api/admin/v1/agencies/$id',[
+                            'email'=>$request->email,
+                            'name' =>$request->name,
+                            'headquarters'=>$request->headquarters,
+                            'password'=>$request->password,
+                            'phone_number'=>$request->phone_number,
+                            'state'=>$request->state,
+
+                ]);
+
+                return to_route('admin.agencies.index')->with('success','Agence mis a jour avec success');
+            } catch (GuzzleException $e) {
+                return "Exception!: " . $e->getMessage();
+            }
     }
 
     /**

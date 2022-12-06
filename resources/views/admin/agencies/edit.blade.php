@@ -49,32 +49,32 @@
                                 @csrf
                                 <label for="name">Nom Agence</label>
                                 <div class="form-group">
-                                    <input type="text" id="email_address" class="form-control" name="name" placeholder="Entrez le nom de l' agence ici">
+                                    <input value="{{ $agency->name }}" type="text" id="email_address" class="form-control" name="name" placeholder="Entrez le nom de l' agence ici">
                                 </div>
                                 @error('name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 <label for="email">Email</label>
                                 <div class="form-group">
-                                    <input type="email" id="password" class="form-control" name="email" placeholder="Email de l'Agence">
+                                    <input value="{{ $agency->email }}" type="email" id="password" class="form-control" name="email" placeholder="Email de l'Agence">
                                 </div>
                                 @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 <label for="phone">Phone number</label>
                                 <div class="form-group">
-                                    <input type="text" id="number" class="form-control" name="phone_number" placeholder="Phone number Agence">
+                                    <input value="{{ $agency->phone_number }}" type="text" id="number" class="form-control" name="phone_number" placeholder="Phone number Agence">
                                 </div>
                                 @error('phone_number')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                                 <label for="phone">Quartier General</label>
                                 <div class="form-group">
-                                    <input type="text" id="headquarters" class="form-control" name="headquarters" placeholder="Quartier General Agence">
+                                    <input value="{{ $agency->headquarters }}" type="text" id="headquarters" class="form-control" name="headquarters" placeholder="Quartier General Agence">
                                 </div>
                                 <label for="phone">Password</label>
                                 <div class="form-group">
-                                    <input type="password" id="password" class="form-control" name="password" placeholder="">
+                                    <input value="{{ $agency->password }}" type="password" id="password" class="form-control" name="password" placeholder="">
                                 </div>
                                 @error('password')
                                 <div class="text-danger">{{ $message }}</div>

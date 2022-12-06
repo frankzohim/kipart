@@ -54,15 +54,21 @@ class Handler extends ExceptionHandler
 {
 
 
+        if(Auth::guard('admin')){
 
-        return response()->json(
-            [
-                'errors'=>[
-                    'status'=>401,
-                    'message'=>'Unauthenticated.Please Try Again'
-                ]
-                ],401
-            );
+            return redirect()->route('admin.login');
+        }else{
+            return response()->json(
+                [
+                    'errors'=>[
+                        'status'=>401,
+                        'message'=>'Unauthenticated.Please Try Again'
+                    ]
+                    ],401
+                );
+        }
+
+
 
 
 }
