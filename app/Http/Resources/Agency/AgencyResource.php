@@ -18,6 +18,10 @@ class AgencyResource extends JsonResource
             'id'=> $this->id,
             'name'=>$this->name,
             'logo'=>$this->logo,
+            'headquarters'=>$this->headquarters,
+            'email'=>$this->email,
+            'phone_number' =>$this->phone_number,
+            'state'=>$this->state,
         ];
     }
 }

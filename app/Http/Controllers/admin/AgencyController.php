@@ -144,8 +144,17 @@ class AgencyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Agency $agency)
+    public function edit($id)
     {
+        try {
+            $accessToken=Session::get('token');
+                    $response = Http::withToken($accessToken)
+                            ->get('http://kipart.stillforce.tech/api/admin/v1/agencies/'.$id);
+                    $datas=json_decode($response->getBody());
+                    return $response;
+                } catch (GuzzleException $e) {
+                    return "Exception!: " . $e->getMessage();
+                }
         return view('admin.agencies.edit',compact('agency'));
     }
 

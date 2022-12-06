@@ -58,7 +58,7 @@ class AgencyController extends Controller
 
 
         if($agency){
-            return new AgencyDetailResource($agency);
+            return new AgencyResource($agency);
         }
         else{
             return response()->json(['status'=>'fail!','message'=>'agency not found']);
