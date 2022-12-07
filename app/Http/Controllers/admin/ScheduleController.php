@@ -16,6 +16,11 @@ class ScheduleController extends Controller
     public function index()
     {
         $schedules=Http::get('http://kipart.stillforce.tech/api/list/schedules');
+
+        $datas=json_decode($schedules->getBody());
+
+        return $datas;
+        //return view('admin.schedules.index',compact('datas'));
     }
 
     /**
@@ -25,7 +30,7 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.schedules.create');
     }
 
     /**

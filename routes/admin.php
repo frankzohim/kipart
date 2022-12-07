@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AgencyController as AdminAgencyController;
+use App\Http\Controllers\admin\ScheduleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\admin\AdminController;
 
@@ -19,4 +20,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     });
     Route::view('dashboard','admin.dashboard')->name('dashboard');
+
+    Route::resource('schedules',ScheduleController::class);
 });
