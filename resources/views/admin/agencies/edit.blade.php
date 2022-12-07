@@ -45,8 +45,13 @@
                             </ul>
                         </div>
                         <div class="body">
-                            <form method="POST" action="{{ route('admin.agencies.store') }}" enctype="multipart/form-data">
+                            @foreach ($datas as $agency)
+                            <form method="POST" action="{{ route('admin.agencies.update',$agency->id) }}" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
+
+
+
                                 <label for="name">Nom Agence</label>
                                 <div class="form-group">
                                     <input value="{{ $agency->name }}" type="text" id="email_address" class="form-control" name="name" placeholder="Entrez le nom de l' agence ici">
@@ -72,11 +77,8 @@
                                 <div class="form-group">
                                     <input value="{{ $agency->headquarters }}" type="text" id="headquarters" class="form-control" name="headquarters" placeholder="Quartier General Agence">
                                 </div>
-                                <label for="phone">Password</label>
-                                <div class="form-group">
-                                    <input value="{{ $agency->password }}" type="password" id="password" class="form-control" name="password" placeholder="">
-                                </div>
-                                @error('password')
+
+                                @error('headquarters')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                             <label for="state">Etat</label>
@@ -100,6 +102,7 @@
                             @enderror
                                 </div>
                                 <button type="submit" class="btn btn-raised btn-primary btn-round waves-effect">Enregistrer</button>
+                                @endforeach
                             </form>
                         </div>
                     </div>

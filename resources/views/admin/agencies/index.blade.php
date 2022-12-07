@@ -24,6 +24,11 @@
             <div class="alert alert-primary">
                 {{ Session::get('success') }}
             </div>
+            @endif
+            @if(Session::get("fail"))
+            <div class="alert alert-danger">
+                {{ Session::get('fail') }}
+            </div>
         @endif
         </div>
         <div class="container-fluid">
@@ -48,7 +53,13 @@
                                                 <td><h5>{{ $agency->name }}</h5></td>
                                                 <td>
                                                     <a href="{{ route('admin.agencies.edit',$agency->id) }}" class="btn btn-default waves-effect waves-float btn-sm waves-green"><i class="zmdi zmdi-edit"></i></a>
-                                                    <a href="javascript:void(0);" class="btn btn-default waves-effect waves-float btn-sm waves-red"><i class="zmdi zmdi-delete"></i></a>
+
+                                                    <form method="POST" action="{{ route('admin.agencies.destroy', $agency->id) }}" onsubmit="return confirm('Are you sure?')">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-default waves-effect waves-float btn-sm waves-red"  ><i class="zmdi zmdi-delete" aria-hidden="true" title="Suprimer"></i></button>
+
+                                                       </form>
                                                 </td>
                                             </tr>
                                         @empty
