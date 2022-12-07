@@ -16,7 +16,7 @@
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                 </div>
                 <div class="col-lg-2 col-md-6 col-sm-12">
-                    <button class="btn btn-primary" type="button">Ajouter une Agence</button>
+                        <a href="{{ route('admin.agencies.create') }}"><button class="btn btn-primary" type="button">Ajouter une Agence</button></a>
                 </div>
 
             </div>
