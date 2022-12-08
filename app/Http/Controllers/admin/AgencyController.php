@@ -68,7 +68,6 @@ class AgencyController extends Controller
             'name'=>'required|unique:agencies,name',
             'logo'=>'required|mimes:png,jpg,jpeg',
             'phone_number' =>'required|max:10',
-            'password' =>'required',
             'headquarters' =>'required'
         ]);
 
@@ -151,11 +150,12 @@ class AgencyController extends Controller
                     $response = Http::withToken($accessToken)
                             ->get('http://kipart.stillforce.tech/api/admin/v1/agencies/'.$id);
                     $datas=json_decode($response->getBody());
-                    return $response;
+
+                    //return $response;
                 } catch (GuzzleException $e) {
                     return "Exception!: " . $e->getMessage();
                 }
-        return view('admin.agencies.edit',compact('agency'));
+        return view('admin.agencies.edit',compact('datas'));
     }
 
     /**
@@ -168,17 +168,17 @@ class AgencyController extends Controller
     public function update(Request $request, $id)
     {
         try {
+
+
         $accessToken=Session::get('token');
-        $photo = fopen($request->file('logo'), 'r');
-                $response = Http::withToken($accessToken)
-                        ->attach('logo',$photo,'logo')
-                        ->put('http://kipart.stillforce.tech/api/admin/v1/agencies/$id',[
-                            'email'=>$request->email,
+                Http::withToken($accessToken)
+                        ->put('http://kipart.stillforce.tech/api/admin/v1/agencies/'. $id,[
+                            'email'=>'Bramslevel129@gmail.com',
                             'name' =>$request->name,
                             'headquarters'=>$request->headquarters,
-                            'password'=>$request->password,
                             'phone_number'=>$request->phone_number,
                             'state'=>$request->state,
+                            'logo'=>$request->logo,
 
                 ]);
 
@@ -196,6 +196,10 @@ class AgencyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $accessToken=Session::get('token');
+                Http::withToken($accessToken)
+                        ->delete('http://kipart.stillforce.tech/api/admin/v1/agencies/'. $id);
+
+                return to_route('admin.agencies.index')->with('fail','Agence suprimé avec success');
     }
 }

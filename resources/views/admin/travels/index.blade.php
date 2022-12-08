@@ -1,6 +1,6 @@
 
 @extends('layouts.backoffice.admin.main-admin')
-@section('title', 'Listes des Agences')
+@section('title', 'Listes des Voyages')
 @section('content')
 
 <section class="content">
@@ -8,15 +8,15 @@
         <div class="block-header">
             <div class="row">
                 <div class="col-lg-10 col-md-6 col-sm-12">
-                    <h2>Listes des Agences</h2>
+                    <h2>Listes des Voyages</h2>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i>Dashboard</a></li>
-                        <li class="breadcrumb-item active">Listes des agences</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i class="zmdi zmdi-home"></i>Dashboard</a></li>
+                        <li class="breadcrumb-item active">Listes des Voyages</li>
                     </ul>
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                 </div>
                 <div class="col-lg-2 col-md-6 col-sm-12">
-                        <a href="{{ route('admin.agencies.create') }}"><button class="btn btn-primary" type="button">Ajouter une Agence</button></a>
+                        <a href="{{ route('admin.travels.create') }}"><button class="btn btn-primary" type="button">Ajouter un voyage</button></a>
                 </div>
 
             </div>
@@ -39,22 +39,44 @@
                             <table class="table table-hover product_item_list c_table theme-color mb-0">
                                 <thead>
                                     <tr>
-                                        <th>Image</th>
-                                        <th>Nom</th>
+                                        <th>Agence</th>
+                                        <th>Depart</th>
+                                        <th>Arrivée</th>
+                                        <th>date</th>
+                                        <th>Prix</th>
+                                        <th>Etat</th>
                                         <th data-breakpoints="sm xs md">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($datas as $agencies)
-                                        @forelse ($agencies as $agency)
+                                    @foreach ($datas as $travels)
+                                        @forelse ($travels as $travel)
                                             <tr>
-                                                <td><img src="{{ Storage::url($agency->logo) }}" width="48" alt="Product img"></td>
-                                                <td><h5>{{ $agency->name }}</h5></td>
+                                                <td>{{ $travel->agence }}</td>
+                                                <td>{{ $travel->departure }}</td>
+                                                <td><h5>{{ $travel->arrival }}</h5></td>
+                                                <td><h5>{{ $travel->date }}</h5></td>
+                                                <td><h5>{{ $travel->prix }} XAF</h5></td>
                                                 <td>
-                                                    <a href="{{ route('admin.agencies.edit',$agency->id) }}" class="btn btn-default waves-effect waves-float btn-sm waves-green"><i class="zmdi zmdi-edit"></i></a>
 
-                                                    <form method="POST" action="{{ route('admin.agencies.destroy', $agency->id) }}" onsubmit="return confirm('Are you sure?')">
+                                                        @if($travel->state==1)
+                                                            <h5 class="alert alert-primary">
+                                                                Publié
+                                                            </h5>
+                                                        @endif
+
+                                                        @if($travel->state==0)
+                                                        <h5 alert alert-danger>
+                                                            Non Publié
+                                                        </h5>
+                                                    @endif
+
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('admin.travels.edit',$travel->id) }}" class="btn btn-default waves-effect waves-float btn-sm waves-green"><i class="zmdi zmdi-edit"></i></a>
+
+                                                    <form method="POST" action="{{ route('admin.travels.destroy', $travel->id) }}" onsubmit="return confirm('Are you sure?')">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit" class="btn btn-default waves-effect waves-float btn-sm waves-red"  ><i class="zmdi zmdi-delete" aria-hidden="true" title="Suprimer"></i></button>

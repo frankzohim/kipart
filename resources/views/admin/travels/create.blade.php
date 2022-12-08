@@ -2,7 +2,7 @@
 
 @extends('layouts.backoffice.admin.main-admin')
 
-@section('title', 'Ajouter une agence')
+@section('title', 'Ajouter un voyage')
 
 @section('content')
 <section class="content">
@@ -10,10 +10,10 @@
         <div class="block-header">
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12">
-                    <h2>Ajouter une agence</h2>
+                    <h2>Ajouter un voyage</h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i class="zmdi zmdi-home"></i>Dashboard</a></li>
-                        <li class="breadcrumb-item active">Ajout agence</li>
+                        <li class="breadcrumb-item active">Ajout voyage</li>
                     </ul>
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                 </div>
@@ -45,42 +45,79 @@
                             </ul>
                         </div>
                         <div class="body">
-                            @foreach ($datas as $agency)
-                            <form method="POST" action="{{ route('admin.agencies.update',$agency->id) }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('admin.travels.store') }}">
                                 @csrf
-                                @method('PUT')
-
-
-
-                                <label for="name">Nom Agence</label>
+                                <label for="name">Selectionnez une Agence</label>
                                 <div class="form-group">
-                                    <input value="{{ $agency->name }}" type="text" id="email_address" class="form-control" name="name" placeholder="Entrez le nom de l' agence ici">
+                                    <select class="form-control show-tick ms select2" data-placeholder="Select" name="agency_id">
+                                        @foreach ($dataAgency as $data)
+
+                                            @foreach ($data as $agency)
+                                                <option value="{{ $agency->id }}">{{ $agency->name }}</option>
+                                            @endforeach
+                                        @endforeach
+
+                                    </select>
                                 </div>
-                                @error('name')
+                                @error('agency_id')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                                <label for="email">Email</label>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label for="email">Depart</label>
                                 <div class="form-group">
-                                    <input value="{{ $agency->email }}" type="email" id="password" class="form-control" name="email" placeholder="Email de l'Agence">
+                                    <select class="form-control show-tick ms select2" data-placeholder="Select" name="path_id">
+                                        @foreach ($dataPath as $data)
+
+                                            @foreach ($data as $path)
+                                                <option value="{{ $path->id }}">{{ $path->departure }} - {{ $path->arrival }}</option>
+                                            @endforeach
+                                        @endforeach
+
+                                    </select>
+
+                                    @error('path_id')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                                 </div>
                                 @error('email')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                                <label for="phone">Phone number</label>
-                                <div class="form-group">
-                                    <input value="{{ $agency->phone_number }}" type="text" id="number" class="form-control" name="phone_number" placeholder="Phone number Agence">
-                                </div>
-                                @error('phone_number')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                                <label for="phone">Quartier General</label>
-                                <div class="form-group">
-                                    <input value="{{ $agency->headquarters }}" type="text" id="headquarters" class="form-control" name="headquarters" placeholder="Quartier General Agence">
                                 </div>
 
-                                @error('headquarters')
+                                <div class="col-lg-6">
+                                    <label for="email">Classe</label>
+                                    <div class="form-group">
+                                        <select class="form-control show-tick ms select2" data-placeholder="Select" name="class">
+
+                                                <option value="vip">Vip</option>
+                                                <option value="Premium">Premium</option>
+                                                <option value="Moyenne">Moyenne</option>
+                                                <option value="Luxueux">Luxueux</option>
+                                                <option value="Normal">Normal</option>
+                                        </select>
+                                    </div>
+                                    @error('class')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
+                                </div>
+                            </div>
+                                <label for="prix">Prix</label>
+                                <div class="form-group">
+                                    <input type="number" id="number" class="form-control" name="price">
+                                </div>
+                                @error('price')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+
+                            <label for="date">date</label>
+                            <div class="form-group">
+                                <input type="date" id="number" class="form-control" name="date">
+                            </div>
+                            @error('date')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                             <label for="state">Etat</label>
                             <select class="form-control show-tick ms select2" data-placeholder="Select" name="state">
                                 <option value="1">Publié</option>
@@ -89,20 +126,8 @@
                                 @error('state')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                                <div class="card">
-                                    <div class="header">
-                                        <h2>Custom <strong>messages</strong> for default</h2>
-                                    </div>
-                                    <div class="body">
-                                        <p>replace, remove and error</p>
-                                        <input type="file" class="dropify-fr" name="logo">
-                                    </div>
-                                    @error('logo')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                                </div>
-                                <button type="submit" class="btn btn-raised btn-primary btn-round waves-effect">Enregistrer</button>
-                                @endforeach
+
+                                <button type="submit" class="mt-3 btn btn-raised btn-primary btn-round waves-effect">Enregistrer</button>
                             </form>
                         </div>
                     </div>

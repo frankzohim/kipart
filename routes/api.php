@@ -59,7 +59,7 @@ use App\Http\Controllers\Api\ShowController;
     Route::middleware('auth:api-admin')->prefix('v1')->group(function(){
 
         Route::apiResource('travels',TravelController::class);
-        Route::apiResource('agencies',AgencyController::class)->except(['update']);
+        Route::apiResource('agencies',AgencyController::class);
         Route::apiResource('buses',BusController::class);
         Route::apiResource('Schedules',ScheduleController::class);
         Route::apiResource('paths',PathController::class);

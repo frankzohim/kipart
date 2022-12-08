@@ -32,6 +32,8 @@ return new class extends Migration
 
             $table->double('price');
             $table->string('class');
+            $table->string('departure_time');
+            $table->string('arrival_time');
             $table->boolean('state');
             $table->timestamps();
         });
