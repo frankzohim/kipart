@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('travel', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('date');
+            $table->string('date');
 
             $table->foreignIdFor(Agency::class)
             ->constrained()

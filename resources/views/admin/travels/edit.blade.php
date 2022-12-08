@@ -45,7 +45,13 @@
                             </ul>
                         </div>
                         <div class="body">
-                            <form method="POST" action="{{ route('admin.travels.store') }}">
+                            @foreach ($datas as $travel)
+                            <form method="POST" action="{{ route('admin.travels.update',$travel->id) }}">
+                                @csrf
+                                @method('PUT')
+
+
+
                                 @csrf
                                 <label for="name">Selectionnez une Agence</label>
                                 <div class="form-group">
@@ -53,7 +59,7 @@
                                         @foreach ($dataAgency as $data)
 
                                             @foreach ($data as $agency)
-                                                <option value="{{ $agency->id }}">{{ $agency->name }}</option>
+                                                <option value="{{ $agency->id }}" @selected($travel->agency_id==$agency->id)>{{ $agency->name }}</option>
                                             @endforeach
                                         @endforeach
 
@@ -71,7 +77,7 @@
                                         @foreach ($dataPath as $data)
 
                                             @foreach ($data as $path)
-                                                <option value="{{ $path->id }}">{{ $path->departure }} - {{ $path->arrival }}</option>
+                                                <option value="{{ $path->id }}"  @selected($travel->path_id==$path->id)>{{ $path->departure }} - {{ $path->arrival }}</option>
                                             @endforeach
                                         @endforeach
 
@@ -91,11 +97,12 @@
                                     <div class="form-group">
                                         <select class="form-control show-tick ms select2" data-placeholder="Select" name="class">
 
-                                                <option value="vip">Vip</option>
-                                                <option value="Premium">Premium</option>
-                                                <option value="Moyenne">Moyenne</option>
-                                                <option value="Luxueux">Luxueux</option>
-                                                <option value="Normal">Normal</option>
+
+                                                <option value="vip"  @selected($travel->class=='vip')>Vip</option>
+                                                <option value="Premium"  @selected($travel->class=='Premium')>Premium</option>
+                                                <option value="Moyenne" @selected($travel->class=='Moyenne')>Moyenne</option>
+                                                <option value="Luxueux"  @selected($travel->class=='Luxueux')>Luxueux</option>
+                                                <option value="Normal"  @selected($travel->class=='Normal')>Normal</option>
                                         </select>
                                     </div>
                                     @error('class')
@@ -105,7 +112,7 @@
                             </div>
                                 <label for="prix">Prix</label>
                                 <div class="form-group">
-                                    <input type="number" id="number" class="form-control" name="price">
+                                    <input type="number" id="number" class="form-control" name="price" value="{{ $travel->prix }}">
                                 </div>
                                 @error('price')
                                 <div class="text-danger">{{ $message }}</div>
@@ -113,21 +120,23 @@
 
                             <label for="date">date</label>
                             <div class="form-group">
-                                <input type="date" id="number" class="form-control" name="date">
+                                <input type="date" id="number" class="form-control" name="date" value="{{ $travel->date }}">
                             </div>
                             @error('date')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                             <label for="state">Etat</label>
                             <select class="form-control show-tick ms select2" data-placeholder="Select" name="state">
-                                <option value="1">Publié</option>
-                                <option value="0">Non publié</option>
+                                <option value="1"   @selected($travel->state==1)>Publié</option>
+                                <option value="0"   @selected($travel->state==0)>Non publié</option>
                             </select>
                                 @error('state')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
 
                                 <button type="submit" class="mt-3 btn btn-raised btn-primary btn-round waves-effect">Enregistrer</button>
+
+                                @endforeach
                             </form>
                         </div>
                     </div>
