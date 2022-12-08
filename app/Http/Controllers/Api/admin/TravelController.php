@@ -57,7 +57,7 @@ class TravelController extends Controller
             return new TravelResource($travel);
         }
         else{
-            return response()->json(['status'=>'fail!','message'=>'Bus not found']);
+            return response()->json(['status'=>'fail!','message'=>'Travel not found']);
         }
     }
 

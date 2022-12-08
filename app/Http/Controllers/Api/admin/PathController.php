@@ -74,10 +74,10 @@ class PathController extends Controller
         $input=$request->all();
         $update=$path->update($input);
         if($update){
-        return response()->json(['status'=>'success','message'=>'chemin update']);
+        return response()->json(['status'=>'success','message'=>'Trajet update']);
         }
         else{
-            return response()->json(['status'=>'fail!','message'=>'chemin not found']);
+            return response()->json(['status'=>'fail!','message'=>'Trajet not found']);
         }
     }
 
