@@ -30,9 +30,11 @@ class TravelController extends Controller
     public function store(TravelRequest $request)
     {
         $path=Travel::create([
-            'date'=>$request->departure,
-        'agency_id'=>$request->arrival,
-        'path_id'=>$request->agency_id,
+            'date'=>$request->date,
+        'agency_id'=>$request->agency_id,
+        'path_id'=>$request->path_id,
+        'price'=>$request->price,
+        'class'=>$request->class,
         'state'=>$request->state,
         ]);
 
@@ -52,7 +54,7 @@ class TravelController extends Controller
         $travel=Travel::find($id);
 
         if($travel){
-            return new TravelDetailResource($travel);
+            return new TravelResource($travel);
         }
         else{
             return response()->json(['status'=>'fail!','message'=>'Bus not found']);

@@ -45,7 +45,7 @@
                             </ul>
                         </div>
                         <div class="body">
-                            <form method="POST" action="{{ route('admin.agencies.store') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('admin.travels.store') }}">
                                 @csrf
                                 <label for="name">Selectionnez une Agence</label>
                                 <div class="form-group">
@@ -105,11 +105,19 @@
                             </div>
                                 <label for="prix">Prix</label>
                                 <div class="form-group">
-                                    <input type="numero" id="number" class="form-control" name="price">
+                                    <input type="number" id="number" class="form-control" name="price">
                                 </div>
                                 @error('price')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
+
+                            <label for="date">date</label>
+                            <div class="form-group">
+                                <input type="date" id="number" class="form-control" name="date">
+                            </div>
+                            @error('date')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                             <label for="state">Etat</label>
                             <select class="form-control show-tick ms select2" data-placeholder="Select" name="state">
                                 <option value="1">Publié</option>
@@ -118,19 +126,8 @@
                                 @error('state')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                                <div class="card">
-                                    <div class="header">
-                                        <h2>Custom <strong>messages</strong> for default</h2>
-                                    </div>
-                                    <div class="body">
-                                        <p>replace, remove and error</p>
-                                        <input type="file" class="dropify-fr" name="logo">
-                                    </div>
-                                    @error('logo')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                                </div>
-                                <button type="submit" class="btn btn-raised btn-primary btn-round waves-effect">Enregistrer</button>
+
+                                <button type="submit" class="mt-3 btn btn-raised btn-primary btn-round waves-effect">Enregistrer</button>
                             </form>
                         </div>
                     </div>
