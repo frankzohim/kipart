@@ -16,8 +16,8 @@
                                             data-toggle="dropdown" role="button" aria-haspopup="true"
                                             aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="javascript:void(0);">Action</a></li>
-                                            <li><a href="javascript:void(0);">Another action</a></li>
+                                            <li><a href="javascript:void(0);">Ajouter</a></li>
+                                            <li><a href="javascript:void(0);">Lister</a></li>
                                             <li><a href="javascript:void(0);">Something else</a></li>
                                         </ul>
                                     </li>
