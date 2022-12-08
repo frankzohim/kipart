@@ -114,5 +114,6 @@ class AgencyController extends Controller
 
     public function countAllAgency(){
 
+        return Agency::count();
     }
 }

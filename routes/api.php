@@ -67,6 +67,7 @@ use App\Http\Controllers\Api\ShowController;
         Route::post('logout/adm/private',[AdminController::class,'logout']);
 
         Route::get('routes',[CustomerController::class,'routeList']);
+        Route::get('agencyCount',[AgencyController::class,'countAllAgency']);
     });
 
 
