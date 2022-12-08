@@ -32,10 +32,10 @@
 
                 </ul>
             </li>
-            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-bus"></i><span>Voyage</span></a>
+            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-bus"></i><span>Voyages</span></a>
                 <ul class="ml-menu">
-                    <li><a href="file-dashboard.html">Lister</a></li>
-                    <li><a href="file-documents.html">Ajouter</a></li>
+                    <li><a href="{{ route('admin.travels.index') }}">Tout les voyages</a></li>
+                    <li><a href="{{ route('admin.travels.create') }}">Ajouter une voyage</a></li>
                     <li><a href="file-documents.html">Categorie</a></li>
                 </ul>
             </li>
