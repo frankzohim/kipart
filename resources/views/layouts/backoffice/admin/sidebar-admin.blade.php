@@ -42,8 +42,8 @@
 
             <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-bus"></i><span>Trajet</span></a>
                 <ul class="ml-menu">
-                    <li><a href="{{ route('admin.path.index') }}">Tout les Trajets</a></li>
-                    <li><a href="{{ route('admin.path.create') }}">Ajouter un trajet</a></li>
+                    <li><a href="{{ route('admin.paths.index') }}">Tout les Trajets</a></li>
+                    <li><a href="{{ route('admin.paths.create') }}">Ajouter un trajet</a></li>
 
                 </ul>
             </li>

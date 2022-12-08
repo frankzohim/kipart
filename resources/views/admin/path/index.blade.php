@@ -16,7 +16,7 @@
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                 </div>
                 <div class="col-lg-2 col-md-6 col-sm-12">
-                        <a href="{{ route('admin.path.create') }}"><button class="btn btn-primary" type="button">Ajouter un trajet</button></a>
+                        <a href="{{ route('admin.paths.create') }}"><button class="btn btn-primary" type="button">Ajouter un trajet</button></a>
                 </div>
 
             </div>
@@ -48,8 +48,8 @@
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($datas as $Path)
-                                        @forelse ($Path as $Path)
+                                    @foreach ($datas as $Paths)
+                                        @forelse ($Paths as $Path)
                                             <tr>
                                                 <td>{{ $Path->agence }}</td>
                                                 <td>{{ $Path->departure }}</td>
@@ -71,9 +71,9 @@
 
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('admin.path.edit',$Path->id) }}" class="btn btn-default waves-effect waves-float btn-sm waves-green"><i class="zmdi zmdi-edit"></i></a>
+                                                    <a href="{{ route('admin.paths.edit',$Path->id) }}" class="btn btn-default waves-effect waves-float btn-sm waves-green"><i class="zmdi zmdi-edit"></i></a>
 
-                                                    <form method="POST" action="{{ route('admin.path.destroy', $Path->id) }}" onsubmit="return confirm('Are you sure?')">
+                                                    <form method="POST" action="{{ route('admin.paths.destroy', $Path->id) }}" onsubmit="return confirm('Are you sure?')">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit" class="btn btn-default waves-effect waves-float btn-sm waves-red"  ><i class="zmdi zmdi-delete" aria-hidden="true" title="Suprimer"></i></button>
