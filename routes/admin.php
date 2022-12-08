@@ -25,5 +25,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::resource('schedules',ScheduleController::class);
 
     Route::resource('travels', TravelController::class);
+    Route::resource('path', PathController::class);
 
 });
