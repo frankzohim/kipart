@@ -27,13 +27,17 @@ class AdminController extends Controller
             'client_id'=>4
         ]);
         $access_token = json_decode((string) $response->getBody(), true)['access_token'];
-
+        $numberAgency=$this->countAgency();
         Session::put('token', $access_token);
+        Session::put('numberAgency',$numberAgency);
         Session::save();
         $creds=$request->only('email','password');
 
+
+
         if(Auth::guard('admin')->attempt($creds)){
-            return redirect()->route('admin.dashboard');
+
+            return view('admin.dashboard');
         }else{
             return redirect()->route('admin.login')->with('fail','incorrect incredentials');
         }
@@ -52,5 +56,16 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+     public function countAgency(){
+
+        $accessToken=Session::get('token');
+
+        $countAgency=Http::withToken($accessToken)
+        ->get('http://kipart.stillforce.tech/api/admin/v1/countAllAgency');
+
+        return $countAgency;
+
     }
 }
