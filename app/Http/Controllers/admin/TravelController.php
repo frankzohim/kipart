@@ -168,6 +168,10 @@ class TravelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $accessToken=Session::get('token');
+                Http::withToken($accessToken)
+                        ->delete('http://kipart.stillforce.tech/api/admin/v1/travels/'. $id);
+
+                return to_route('admin.travels.index')->with('fail','voyage suprimé avec success');
     }
 }

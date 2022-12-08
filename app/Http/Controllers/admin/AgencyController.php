@@ -202,4 +202,6 @@ class AgencyController extends Controller
 
                 return to_route('admin.agencies.index')->with('fail','Agence suprimé avec success');
     }
+
+
 }
