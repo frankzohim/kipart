@@ -130,7 +130,34 @@ class TravelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'date'=>"required",
+            'path_id'=>"required",
+            'agency_id'=>"required",
+            'class'=>"required",
+            'price'=>"required",
+            'state'=>"required"
+        ]);
+
+        $accessToken=Session::get('token');
+
+        try {
+                Http::withToken($accessToken)
+                        ->put('http://kipart.stillforce.tech/api/admin/v1/travels/'. $id,[
+                            'date'=>$request->date,
+                            'path_id' =>$request->path_id,
+                            'agency_id'=>$request->agency_id,
+                            'price'=>$request->price,
+                            'class'=>$request->class,
+                            'state'=>$request->state,
+
+                ]);
+
+                return to_route('admin.travels.index')->with('success','Voyage mis a jour avec success');
+            } catch (GuzzleException $e) {
+                return "Exception!: " . $e->getMessage();
+            }
     }
 
     /**

@@ -67,7 +67,7 @@
                                                         @endif
 
                                                         @if($travel->state==0)
-                                                        <h5 alert alert-danger>
+                                                        <h5 class="alert alert-danger">
                                                             Non Publié
                                                         </h5>
                                                     @endif
