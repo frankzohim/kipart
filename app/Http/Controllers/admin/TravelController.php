@@ -23,7 +23,7 @@ class TravelController extends Controller
 
         $datas=json_decode($travels->getBody());
 
-        return $datas;
+        return view('admin.travels.index',compact('datas'));
     }
 
     /**
