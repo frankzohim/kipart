@@ -111,4 +111,8 @@ class AgencyController extends Controller
 
         return AgencyDetailResource::collection(Agency::all());
     }
+
+    public function countAllAgency(){
+
+    }
 }
