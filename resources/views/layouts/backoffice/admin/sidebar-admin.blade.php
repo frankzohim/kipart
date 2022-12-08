@@ -36,7 +36,7 @@
                 <ul class="ml-menu">
                     <li><a href="{{ route('admin.travels.index') }}">Tout les voyages</a></li>
                     <li><a href="{{ route('admin.travels.create') }}">Ajouter une voyage</a></li>
-                    <li><a href="file-documents.html">Categorie</a></li>
+
                 </ul>
             </li>
 
