@@ -44,6 +44,7 @@
                                         <th>Arrivée</th>
                                         <th>date</th>
                                         <th>Prix</th>
+                                        <th>Etat</th>
                                         <th data-breakpoints="sm xs md">Action</th>
                                     </tr>
                                 </thead>
@@ -57,6 +58,21 @@
                                                 <td><h5>{{ $travel->arrival }}</h5></td>
                                                 <td><h5>{{ $travel->date }}</h5></td>
                                                 <td><h5>{{ $travel->prix }} XAF</h5></td>
+                                                <td>
+
+                                                        @if($travel->state==1)
+                                                            <h5 class="alert alert-primary">
+                                                                Publié
+                                                            </h5>
+                                                        @endif
+
+                                                        @if($travel->state==0)
+                                                        <h5 alert alert-danger>
+                                                            Non Publié
+                                                        </h5>
+                                                    @endif
+
+                                                </td>
                                                 <td>
                                                     <a href="{{ route('admin.travels.edit',$travel->id) }}" class="btn btn-default waves-effect waves-float btn-sm waves-green"><i class="zmdi zmdi-edit"></i></a>
 

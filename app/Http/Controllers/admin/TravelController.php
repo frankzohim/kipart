@@ -33,7 +33,18 @@ class TravelController extends Controller
      */
     public function create()
     {
-        //
+
+        $accessToken=Session::get('token');
+                $responseAgency= Http::withToken($accessToken)
+                        ->get('http://kipart.stillforce.tech/api/admin/v1/agencies');
+
+                $responsePath=Http::withToken($accessToken)
+                ->get('http://kipart.stillforce.tech/api/admin/v1/paths');
+
+                $dataAgency=json_decode($responseAgency->getBody());
+                $dataPath=json_decode($responsePath->getBody());
+
+                return view('admin.travels.create',compact('dataAgency', 'dataPath'));
     }
 
     /**
