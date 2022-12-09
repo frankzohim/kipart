@@ -6,12 +6,12 @@ use App\Models\Agency;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AgencyRequest;
-
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\Agency\AgencyResource;
-use App\Http\Resources\Agency\AgencyDetailResource;
 use App\Services\agencies\UpdateAgencyService;
+use App\Http\Resources\Agency\AgencyDetailResource;
 
 class AgencyController extends Controller
 {
@@ -33,14 +33,20 @@ class AgencyController extends Controller
      */
     public function store(AgencyRequest $request)
     {
-        $path = $request->file('logo')->store('public/logo');
+
+
+        if ($request->hasFile('logo')) {
+
+            $path = Storage::putFile('logo', $request->image);
+           }
         $agency=Agency::create([
             'name'=>$request->name,
             'headquarters'=>$request->headquarters,
-            'logo'=>$path,
+            'email'=>$request->email,
+            'logo'=>Storage::disk('public')->url($path),
             'phone_number'=>$request->phone_number,
             'state'=>$request->state,
-            'password'=>$request->password,
+            'password'=>bcrypt($request->password),
         ]);
 
         return new AgencyResource($agency);

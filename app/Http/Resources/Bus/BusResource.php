@@ -16,6 +16,7 @@ class BusResource extends JsonResource
     {
         return [
             'id'=>$this->id,
+            'Immatriculation'=>$this->registration,
             'number_of_places'=>$this->number_of_places,
             'class'=>$this->class,
             'plan'=>$this->plan

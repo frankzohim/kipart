@@ -24,7 +24,7 @@
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card widget_2 big_icon traffic">
                     <div class="body">
-                        <h6>Agences</h6>
+                        <h6>Bus</h6>
                         <h2>20 <small class="info">Agences</small></h2>
                         <small>2% de plus que hier</small>
                         <div class="progress">
@@ -36,7 +36,7 @@
             <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card widget_2 big_icon sales">
                     <div class="body">
-                        <h6>Tickets</h6>
+                        <h6>Trajets</h6>
                         <h2>10 <small class="info">Vendus</small></h2>
                         <small>6% superieur a hier</small>
                         <div class="progress">
