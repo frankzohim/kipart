@@ -49,7 +49,7 @@
                                     @foreach ($datas as $agencies)
                                         @forelse ($agencies as $agency)
                                             <tr>
-                                                <td><img src="{{ Storage::url($agency->logo) }}" width="48" alt="Product img"></td>
+                                                <td><img src="{{ Storage::getMimeType($agency->logo) }}" width="48" alt="Product img"></td>
                                                 <td><h5>{{ $agency->name }}</h5></td>
                                                 <td>
                                                     <a href="{{ route('admin.agencies.edit',$agency->id) }}" class="btn btn-default waves-effect waves-float btn-sm waves-green"><i class="zmdi zmdi-edit"></i></a>
