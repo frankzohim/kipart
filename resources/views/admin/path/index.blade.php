@@ -51,7 +51,7 @@
                                     @foreach ($datas as $Paths)
                                         @forelse ($Paths as $Path)
                                             <tr>
-                                                <td>{{ $Path->agence }}</td>
+                                                <td>{{ $path->agence }} </td>
                                                 <td>{{ $Path->departure }}</td>
                                                 <td><h5>{{ $Path->arrival }}</h5></td>
 

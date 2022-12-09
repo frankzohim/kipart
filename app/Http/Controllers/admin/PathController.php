@@ -104,7 +104,7 @@ class PathController extends Controller
                 } catch (GuzzleException $e) {
                     return "Exception!: " . $e->getMessage();
                 }
-        return view('admin.paths.edit',compact('datas','dataAgency'));
+        return view('admin.path.edit',compact('datas','dataAgency'));
     }
 
     /**
