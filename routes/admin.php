@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AgencyController as AdminAgencyController;
 use App\Http\Controllers\admin\ScheduleController;
 use App\Http\Controllers\admin\TravelController;
+use App\Http\Controllers\admin\PathController ;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\admin\AdminController;
 
@@ -25,5 +26,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::resource('schedules',ScheduleController::class);
 
     Route::resource('travels', TravelController::class);
+    Route::resource('paths', PathController::class);
 
 });
