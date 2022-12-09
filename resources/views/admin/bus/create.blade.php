@@ -66,7 +66,7 @@
 
                                  <label for="registration">Immatriculation</label>
                                 <div class="form-group">
-                                    <input type="text" id="email_address" class="form-control" name="registratione" placeholder="Entrez le Num d'immatriculation">
+                                    <input type="text" id="email_address" class="form-control" name="registration" placeholder="Entrez le Num d'immatriculation">
                                 </div>
                                 @error('registration')
                                 <div class="text-danger">{{ $message }}</div>

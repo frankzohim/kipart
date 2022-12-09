@@ -50,22 +50,23 @@
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($datas as $Paths)
-                                        @forelse ($Paths as $Path)
+                                    @foreach ($datas as $bus)
+                                        @forelse ($bus as $bus)
                                             <tr>
-                                                <td>{{ $path->agence }} </td>
-                                                <td>{{ $Path->departure }}</td>
-                                                <td><h5>{{ $Path->arrival }}</h5></td>
-
+                                                <td>{{ $bus->agence }} </td>
+                                                <td>{{ $bus->registration }}</td>
+                                                <td><h5>{{ $bus->number_of_places }}</h5></td>
+                                                <td><img src="{{ Storage::url($bus->plan) }}" width="48" alt="Product img"></td>
+                                                <td><h5>{{ $bus->class }}</h5></td>
                                                 <td>
 
-                                                        @if($Path->state==1)
+                                                        @if($bus->state==1)
                                                             <h5 class="alert alert-primary">
                                                                 Publié
                                                             </h5>
                                                         @endif
 
-                                                        @if($Path->state==0)
+                                                        @if($bus->state==0)
                                                         <h5 class="alert alert-danger">
                                                             Non Publié
                                                         </h5>
@@ -73,9 +74,9 @@
 
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('admin.paths.edit',$Path->id) }}" class="btn btn-default waves-effect waves-float btn-sm waves-green"><i class="zmdi zmdi-edit"></i></a>
+                                                    <a href="{{ route('admin.bus.edit',$bus->id) }}" class="btn btn-default waves-effect waves-float btn-sm waves-green"><i class="zmdi zmdi-edit"></i></a>
 
-                                                    <form method="POST" action="{{ route('admin.paths.destroy', $Path->id) }}" onsubmit="return confirm('Are you sure?')">
+                                                    <form method="POST" action="{{ route('admin.bus.destroy', $bus->id) }}" onsubmit="return confirm('Are you sure?')">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit" class="btn btn-default waves-effect waves-float btn-sm waves-red"  ><i class="zmdi zmdi-delete" aria-hidden="true" title="Suprimer"></i></button>
