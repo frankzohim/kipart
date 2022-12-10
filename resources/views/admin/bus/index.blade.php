@@ -1,6 +1,6 @@
 
 @extends('layouts.backoffice.admin.main-admin')
-@section('title', 'Listes des Trajets')
+@section('title', 'Listes des Bus')
 @section('content')
 
 <section class="content">
@@ -8,15 +8,15 @@
         <div class="block-header">
             <div class="row">
                 <div class="col-lg-10 col-md-6 col-sm-12">
-                    <h2>Listes des Trajets</h2>
+                    <h2>Listes des Bus</h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i class="zmdi zmdi-home"></i>Dashboard</a></li>
-                        <li class="breadcrumb-item active">Listes des Trajets</li>
+                        <li class="breadcrumb-item active">Listes des Bus</li>
                     </ul>
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                 </div>
                 <div class="col-lg-2 col-md-6 col-sm-12">
-                        <a href="{{ route('admin.paths.create') }}"><button class="btn btn-primary" type="button">Ajouter un trajet</button></a>
+                        <a href="{{ route('admin.bus.create') }}"><button class="btn btn-primary" type="button">Ajouter un Bus</button></a>
                 </div>
 
             </div>
@@ -40,30 +40,33 @@
                                 <thead>
                                     <tr>
                                         <th>Agence</th>
-                                        <th>Depart</th>
-                                        <th>Arrivée</th>
+                                        <th>Immatriculation</th>
+                                        <th>Nombre de place</th>
+                                        <th>Plan</th>
+                                        <th>Classe</th>
                                         <th>Etat</th>
                                         <th data-breakpoints="sm xs md">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($datas as $Paths)
-                                        @forelse ($Paths as $Path)
+                                    @foreach ($datas as $bus)
+                                        @forelse ($bus as $bus)
                                             <tr>
-                                                <td>{{ $path->agence }} </td>
-                                                <td>{{ $Path->departure }}</td>
-                                                <td><h5>{{ $Path->arrival }}</h5></td>
-
+                                                <td>{{ $bus->agence }} </td>
+                                                <td>{{ $bus->registration }}</td>
+                                                <td><h5>{{ $bus->number_of_places }}</h5></td>
+                                                <td><img src="{{ Storage::url($bus->plan) }}" width="48" alt="Product img"></td>
+                                                <td><h5>{{ $bus->class }}</h5></td>
                                                 <td>
 
-                                                        @if($Path->state==1)
+                                                        @if($bus->state==1)
                                                             <h5 class="alert alert-primary">
                                                                 Publié
                                                             </h5>
                                                         @endif
 
-                                                        @if($Path->state==0)
+                                                        @if($bus->state==0)
                                                         <h5 class="alert alert-danger">
                                                             Non Publié
                                                         </h5>
@@ -71,9 +74,9 @@
 
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('admin.paths.edit',$Path->id) }}" class="btn btn-default waves-effect waves-float btn-sm waves-green"><i class="zmdi zmdi-edit"></i></a>
+                                                    <a href="{{ route('admin.bus.edit',$bus->id) }}" class="btn btn-default waves-effect waves-float btn-sm waves-green"><i class="zmdi zmdi-edit"></i></a>
 
-                                                    <form method="POST" action="{{ route('admin.paths.destroy', $Path->id) }}" onsubmit="return confirm('Are you sure?')">
+                                                    <form method="POST" action="{{ route('admin.bus.destroy', $bus->id) }}" onsubmit="return confirm('Are you sure?')">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit" class="btn btn-default waves-effect waves-float btn-sm waves-red"  ><i class="zmdi zmdi-delete" aria-hidden="true" title="Suprimer"></i></button>

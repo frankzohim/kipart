@@ -1,7 +1,7 @@
 
 @extends('layouts.backoffice.admin.main-admin')
 
-@section('title', 'Ajouter un trajet')
+@section('title', 'Ajouter un Bus')
 
 @section('content')
 <section class="content">
@@ -9,10 +9,10 @@
         <div class="block-header">
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12">
-                    <h2>Ajouter un Trajet</h2>
+                    <h2>Ajouter un Bus</h2>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}"><i class="zmdi zmdi-home"></i>Dashboard</a></li>
-                        <li class="breadcrumb-item active">Ajout Un trajet</li>
+                        <li class="breadcrumb-item active">Ajouter un Bus</li>
                     </ul>
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                 </div>
@@ -44,7 +44,9 @@
                             </ul>
                         </div>
                         <div class="body">
-                            <form method="POST" action="{{ route('admin.paths.store') }}">
+                            @foreach ($datas as $bus)
+                            <form method="POST" action="{{ route('admin.bus.update',$bus->id) }}" enctype="multipart/form-data">
+                                @method('PUT')
                                 @csrf
 
                                 <label for="name">Selectionnez une Agence</label>
@@ -53,7 +55,7 @@
                                         @foreach ($dataAgency as $data)
 
                                             @foreach ($data as $agency)
-                                                <option value="{{ $agency->id }}">{{ $agency->name }}</option>
+                                                <option value="{{ $agency->id }}" @selected($bus->agency_id==$agency->id)>{{ $agency->name }}</option>
                                             @endforeach
                                         @endforeach
 
@@ -64,31 +66,60 @@
                             @enderror
 
 
-                                 <label for="departure">Depart</label>
+                                 <label for="registration">Immatriculation</label>
                                 <div class="form-group">
-                                    <input type="text" id="email_address" class="form-control" name="departure" placeholder="Entrez le lieu de depart">
+                                    <input type="text" id="email_address" class="form-control" name="registration" placeholder="Entrez le Num d'immatriculation" value="{{$bus->registration}}">
                                 </div>
-                                @error('departure')
+                                @error('registration')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
 
-                            <label for="arrival">Arrivé</label>
+                            <label for="number_of_places">Nombre de place</label>
                             <div class="form-group">
-                                <input type="text" id="email_address" class="form-control" name="arrival" placeholder="Entrez le lieu de depart">
+                                <input type="text" id="email_address" class="form-control" name="number_of_places" placeholder="Entrez le nombre de place" value="{{$bus->number_of_places}}">
                             </div>
-                            @error('arrival')
+                            @error('number_of_places')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
 
+                        <div class="card">
+                            <div class="header">
+                                <h2>Image <strong>plan</strong> de Bus</h2>
+                            </div>
+                            <div class="body">
+                                <p>Selectionnez l'image</p>
+                                <input type="file" class="dropify-fr" name="plan">
+                            </div>
+                            @error('plan')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
 
-                            <label for="state">Etat</label>
-                            <select class="form-control show-tick ms select2" data-placeholder="Select" name="state">
-                                <option value="1">Publié</option>
-                                <option value="0">Non publié</option>
+                    <div class="col-lg-6">
+                        <label for="email">Classe</label>
+                        <div class="form-group">
+                            <select class="form-control show-tick ms select2" data-placeholder="Select" name="class">
+
+
+                                    <option value="vip"  @selected($bus->class=='vip')>Vip</option>
+                                    <option value="Premium"  @selected($bus->class=='Premium')>Premium</option>
+                                    <option value="Moyenne" @selected($bus->class=='Moyenne')>Moyenne</option>
+                                    <option value="Luxueux"  @selected($bus->class=='Luxueux')>Luxueux</option>
+                                    <option value="Normal"  @selected($bus->class=='Normal')>Normal</option>
                             </select>
-                                @error('state')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                        </div>
+                        @error('class')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+
+
+                <label for="state">Etat</label>
+                <select class="form-control show-tick ms select2" data-placeholder="Select" name="state">
+                    <option value="1"   @selected($bus->state==1)>Publié</option>
+                    <option value="0"   @selected($bus->state==0)>Non publié</option>
+                </select>
+                    @error('state')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
 
                                 <button type="submit" class="mt-3 btn btn-raised btn-primary btn-round waves-effect">Enregistrer</button>
                             </form>

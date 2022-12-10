@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\admin;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Agency;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 use GuzzleHttp\Exception\GuzzleException;
-
-class PathController extends Controller
+class BusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,12 +18,12 @@ class PathController extends Controller
     {
         $accessToken=Session::get('token');
 
-        $paths=Http::withToken($accessToken)
-            ->get('http://kipart.stillforce.tech/api/admin/v1/paths');
+        $bus=Http::withToken($accessToken)
+            ->get('http://kipart.stillforce.tech/api/admin/v1/bus');
 
-        $datas=json_decode($paths->getBody());
+        $datas=json_decode($bus->getBody());
 
-        return view('admin.path.index',compact('datas'));
+        return view('admin.bus.index',compact('datas'));
     }
 
     /**
@@ -38,9 +36,14 @@ class PathController extends Controller
         $accessToken=Session::get('token');
         $responseAgency= Http::withToken($accessToken)
                 ->get('http://kipart.stillforce.tech/api/admin/v1/agencies');
-                $dataAgency=json_decode($responseAgency->getBody());
-                return view('admin.path.create',compact('dataAgency'));
 
+        $responsePath=Http::withToken($accessToken)
+        ->get('http://kipart.stillforce.tech/api/admin/v1/paths');
+
+        $dataAgency=json_decode($responseAgency->getBody());
+        $dataPath=json_decode($responsePath->getBody());
+
+        return view('admin.bus.create',compact('dataAgency', 'dataPath'));
     }
 
     /**
@@ -52,21 +55,29 @@ class PathController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'departure'=>"required",
-            'arrival'=>"required",
+            'registration'=>"required",
+            'number_of_places'=>"required",
+            'class'=>"required",
             'agency_id'=>"required",
+            'path_id' =>"required",
+            'plan'=>"required",
             'state'=>"required"
         ]);
         $accessToken=Session::get('token');
+
         Http::withToken($accessToken)
-                        ->post('http://kipart.stillforce.tech/api/admin/v1/paths',[
-                            'departure'=>$request->departure,
-                            'arrival' =>$request->arrival,
+                        ->post('http://kipart.stillforce.tech/api/admin/v1/bus',[
+                            'registration'=>$request->registration,
+                            'number_of_places'=>$request->number_of_places,
+                            'class' =>$request->class,
+                            'path_id' =>$request->path_id,
                             'agency_id'=>$request->agency_id,
+                            'plan'=>$request->plan,
                             'state'=>$request->state,
 
                 ]);
-                return to_route('admin.paths.index')->with('success','Trajet Ajouté avec success');
+
+                return to_route('admin.bus.index')->with('success','Bus Ajoutée avec success');
     }
 
     /**
@@ -93,18 +104,22 @@ class PathController extends Controller
 
             $responseAgency= Http::withToken($accessToken)
                         ->get('http://kipart.stillforce.tech/api/admin/v1/agencies');
-                $dataAgency=json_decode($responseAgency->getBody());
 
+                $responsePath=Http::withToken($accessToken)
+                ->get('http://kipart.stillforce.tech/api/admin/v1/paths');
+
+                $dataAgency=json_decode($responseAgency->getBody());
+                $dataPath=json_decode($responsePath->getBody());
 
                     $response = Http::withToken($accessToken)
-                            ->get('http://kipart.stillforce.tech/api/admin/v1/paths/'.$id);
+                            ->get('http://kipart.stillforce.tech/api/admin/v1/bus/'.$id);
                     $datas=json_decode($response->getBody());
 
                     //return $response;
                 } catch (GuzzleException $e) {
                     return "Exception!: " . $e->getMessage();
                 }
-        return view('admin.path.edit',compact('datas','dataAgency'));
+        return view('admin.bus.edit',compact('datas','dataPath','dataAgency'));
     }
 
     /**
@@ -117,9 +132,12 @@ class PathController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'departure'=>"required",
-            'arrival'=>"required",
+            'registration'=>"required",
+            'number_of_places'=>"required",
+            'class'=>"required",
             'agency_id'=>"required",
+            'path_id' =>"required",
+            'plan'=>"required",
             'state'=>"required"
         ]);
 
@@ -127,15 +145,18 @@ class PathController extends Controller
 
         try {
                 Http::withToken($accessToken)
-                        ->put('http://kipart.stillforce.tech/api/admin/v1/paths/'. $id,[
-                            'departure'=>$request->departure,
-                            'arrival' =>$request->arrival,
+                        ->put('http://kipart.stillforce.tech/api/admin/v1/bus/'. $id,[
+                            'registration'=>$request->registration,
+                            'number_of_places'=>$request->number_of_places,
+                            'class' =>$request->class,
+                            'path_id' =>$request->path_id,
                             'agency_id'=>$request->agency_id,
+                            'plan'=>$request->plan,
                             'state'=>$request->state,
 
                 ]);
 
-                return to_route('admin.paths.index')->with('success','trajet mis a jour avec success');
+                return to_route('admin.bus.index')->with('success','bus mis a jour avec success');
             } catch (GuzzleException $e) {
                 return "Exception!: " . $e->getMessage();
             }
