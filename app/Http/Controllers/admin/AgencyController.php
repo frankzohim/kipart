@@ -38,6 +38,7 @@ class AgencyController extends Controller
 
             $datas=json_decode($result->getBody());
             return view('admin.agencies.index',compact('datas'));
+            //return $accessToken;
             //return $datas;
         } catch (GuzzleException $e) {
             return "Exception!: " . $e->getMessage();

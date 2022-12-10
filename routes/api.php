@@ -66,6 +66,7 @@ use App\Http\Controllers\Api\ShowController;
         Route::apiResource('users',UsersController::class);
         Route::post('logout/adm/private',[AdminController::class,'logout']);
 
+        Route::get('image/{path}', [ImageController::class, 'getImage'])->where('path', '.*');
         Route::get('routes',[CustomerController::class,'routeList']);
         Route::get('agencyCount',[AgencyController::class,'countAllAgency']);
     });

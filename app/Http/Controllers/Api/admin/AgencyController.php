@@ -35,9 +35,9 @@ class AgencyController extends Controller
     {
 
 
-        if ($request->hasFile('logo')) {
+        ifif ($request->hasFile('logo')) {
 
-            $path = Storage::putFile('logo', $request->image);
+            $path = $request->file('logo')->store('logo','public');
            }
         $agency=Agency::create([
             'name'=>$request->name,

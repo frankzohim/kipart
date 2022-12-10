@@ -29,7 +29,7 @@ class BusRequest extends FormRequest
         'registration'=>"required",
         'number_of_places'=>"required",
         'plan'=>"required",
-        'class'=>"required"
+        'classe'=>"required"
         ];
     }
 

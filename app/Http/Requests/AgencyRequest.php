@@ -27,9 +27,9 @@ class AgencyRequest extends FormRequest
     public function rules()
     {
         return [
-            "name"=>"required|min:3|max:15",
+            "name"=>"required|min:3|max:15|string",
             "headquarters"=>"required|min:5|max:12",
-            'logo'=>"required",
+            'logo'=>"required|mimes:png,jpg,jpeg",
             'phone_number'=>"required|max:20",
             'email'=>"required|email|unique:agencies,email",
             'password'=>"required|min:8"
