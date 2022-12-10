@@ -35,7 +35,7 @@ class AgencyController extends Controller
     {
 
 
-        ifif ($request->hasFile('logo')) {
+        if ($request->hasFile('logo')) {
 
             $path = $request->file('logo')->store('logo','public');
            }
@@ -43,7 +43,7 @@ class AgencyController extends Controller
             'name'=>$request->name,
             'headquarters'=>$request->headquarters,
             'email'=>$request->email,
-            'logo'=>Storage::disk('public')->url($path),
+            'logo'=>$path,
             'phone_number'=>$request->phone_number,
             'state'=>$request->state,
             'password'=>bcrypt($request->password),

@@ -17,7 +17,7 @@ class AgencyResource extends JsonResource
         return [
             'id'=> $this->id,
             'name'=>$this->name,
-            'logo'=>$this->logo,
+            'logo'=> asset('storage/' . $this->logo),
             'headquarters'=>$this->headquarters,
             'email'=>$this->email,
             'phone_number' =>$this->phone_number,

@@ -4,24 +4,25 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\admin\BusController;
+use App\Http\Controllers\Api\ListController;
 
+use App\Http\Controllers\Api\ShowController;
+use App\Http\Controllers\Api\admin\BusController;
 use App\Http\Controllers\Api\admin\PathController;
+use App\Http\Controllers\Api\Auth\AdminController;
 use App\Http\Controllers\Api\Auth\AgentController;
+use App\Http\Controllers\Api\admin\ImageController;
 use App\Http\Controllers\Api\admin\UsersController;
 use App\Http\Controllers\Api\admin\AgencyController;
 use App\Http\Controllers\Api\admin\TravelController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\Auth\CustomerController;
 use App\Http\Controllers\Api\admin\ScheduleController;
-use App\Http\Controllers\Api\agent\AgencyController as AgentAgencyController;
 use App\Http\Controllers\Api\agent\BusController as AgentBusController;
 use App\Http\Controllers\Api\agent\PathController as AgentPathController;
-use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
+use App\Http\Controllers\Api\agent\AgencyController as AgentAgencyController;
 use App\Http\Controllers\Api\agent\TravelController as AgentTravelController;
-use App\Http\Controllers\Api\Auth\AdminController;
-use App\Http\Controllers\Api\ListController;
-use App\Http\Controllers\Api\ShowController;
+use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +52,7 @@ use App\Http\Controllers\Api\ShowController;
     Route::get('list/paths',[ListController::class,'listPath']);
     Route::get('list/schedules',[ListController::class,'listSchedule']);
     Route::get('list/travels',[ListController::class,'listTravel']);
-
+    Route::get('image/{path}', [ImageController::class, 'getImage'])->where('path', '.*');
 
 
 
@@ -66,7 +67,7 @@ use App\Http\Controllers\Api\ShowController;
         Route::apiResource('users',UsersController::class);
         Route::post('logout/adm/private',[AdminController::class,'logout']);
 
-        Route::get('image/{path}', [ImageController::class, 'getImage'])->where('path', '.*');
+
         Route::get('routes',[CustomerController::class,'routeList']);
         Route::get('agencyCount',[AgencyController::class,'countAllAgency']);
     });
