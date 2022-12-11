@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\admin\UsersController;
 use App\Http\Controllers\Api\admin\AgencyController;
 use App\Http\Controllers\Api\admin\TravelController;
 use App\Http\Controllers\Api\NotificationController;
+use App\Http\Controllers\Api\test\TestOtpController;
 use App\Http\Controllers\Api\Auth\CustomerController;
 use App\Http\Controllers\Api\admin\ScheduleController;
 use App\Http\Controllers\Api\agent\BusController as AgentBusController;
@@ -39,7 +40,7 @@ use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController
     Route::post('login/admin',[AdminController::class,'login']);
     Route::post('agent/login',[AgentController::class,'login']);
     Route::post('register',[CustomerController::class,'register']);
-
+    Route::post('testOtp',[TestOtpController::class,'testOtp']);
     Route::get('show/agency/{id}',[ShowController::class,'detailAgency']);
     Route::get('show/bus/{id}',[ShowController::class,'detailBus']);
     Route::get('show/path/{id}',[ShowController::class,'detailPath']);
