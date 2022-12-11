@@ -19,14 +19,12 @@ class SearchController extends Controller
                 ->orWhere('agencies.name','like',"%$term%")
                 ->orWhere('paths.arrival','like',"%$term%")
                 ->orWhere('travel.price','like',"%$term%")
+                ->orWhere('travel.class','like',"%$term%")
                 ->orWhere('paths.arrival','like',"%$term%")
                 ->get();
 
-        if(isEmpty($travel)){
 
-            return response()->json(['status'=>0,'message'=>"Aucun voyage trouvé"],404);
-        }else{
-            return response()->json(['status'=>1,'data'=> $travel]);
-        }
+            return response()->json(['status'=>1,'data'=> $travel],200);
+
     }
 }
