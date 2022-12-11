@@ -13,9 +13,5 @@ class ImageController extends Controller
     public function getImage($path){
         $path = storage::get($path);
 
-
-
-        return $path;
-
     }
 }

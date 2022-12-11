@@ -26,15 +26,17 @@ class SendMessageController extends Controller
      */
     public function store(Request $request)
     {
-        Http::post("https://smsvas.com/bulk/public/index.php/api/v1/sendsms",[
+        $send=Http::post("https://smsvas.com/bulk/public/index.php/api/v1/sendsms",[
 
             "user"=>"delanofofe@gmail.com",
             "password"=>"test1234",
             "senderid"=>"Kipart",
-            "sms"=> "test kipart",
-            "mobiles"=>"690394365",
+            "sms"=> "test OTP",
+            "mobiles"=>$request->phone_number,
             "scheduletime"=>"2022-12-09 17:20:02",
         ]);
+
+        return $send;
     }
 
     /**
