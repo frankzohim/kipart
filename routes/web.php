@@ -5,6 +5,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\Auth\agent\AgentController;
+use App\Http\Controllers\test\TestPaymentController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -27,7 +28,9 @@ Route::get('/',function(){
 })->name('homepage');
 
 
+Route::get('stripe-payment',[TestPaymentController::class,'index']);
 
+Route::post('test-payment',[TestPaymentController::class,'paymentTest'])->name('stripe.payment');
 
 
 Route::prefix('user')->name('user.')->group(function(){
