@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Path;
 use App\Models\Codeqr;
+use App\Models\Passenger;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -44,5 +45,10 @@ class Travel extends Model
     public function path():BelongsTo
     {
         return $this->belongsTo(Path::class);
+    }
+
+    public function passengers():HasMany
+    {
+        return $this->hasMany(Passenger::class);
     }
 }
