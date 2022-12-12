@@ -17,10 +17,10 @@ class TravelFactory extends Factory
     public function definition()
     {
         return [
-            'date'=>$this->faker->date($format = 'Y-m-d', $max = 'now') ,
+        'date'=>$this->faker->dateTimeThisYear('+10 months'),
         'path_id'=>rand(1,19),
         'agency_id'=>rand(1,6),
-        'price'=>$this->faker->numberBetween($min = 1000, $max = 9000),
+        'price'=>$this->faker->randomElement($array=[2000,4000,2500,5000,3500]),
         'state'=>1,
         'type'=>$this->faker->randomElement($array=['Aller Simple','Aller Retour']),
         'class'=>$this->faker->randomElement($array=['vip','classique']),
