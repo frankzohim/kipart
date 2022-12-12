@@ -29,7 +29,7 @@ class TravelController extends Controller
      */
     public function store(TravelRequest $request)
     {
-        $path=Travel::create([
+        $travel=Travel::create([
             'date'=>$request->date,
         'agency_id'=>$request->agency_id,
         'path_id'=>$request->path_id,
@@ -41,7 +41,7 @@ class TravelController extends Controller
 
 
 
-        return new TravelResource($path);
+        return new TravelResource($travel);
     }
 
     /**

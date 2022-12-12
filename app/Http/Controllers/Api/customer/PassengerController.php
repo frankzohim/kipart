@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api\customer;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Passenger\PassengersResource;
+use App\Models\Passenger;
+use App\Models\Travel;
 use Illuminate\Http\Request;
 
 class PassengerController extends Controller
@@ -14,7 +17,7 @@ class PassengerController extends Controller
      */
     public function index()
     {
-
+        return new PassengersResource(Passenger::all());
     }
 
     /**
@@ -23,9 +26,29 @@ class PassengerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,Travel $travel)
     {
-        //
+        if($travel){
+
+            $travel_id=$travel;
+            $names=$request->input('name',[]);
+            $types=$request->input('type',[]);
+            $seatNumbers=$request->input('seatNumber',[]);
+            $cnis=$request->input('cni',[]);
+
+            foreach ($names as $index => $unit) {
+                $units[] = [
+                    "travel_id" => $travel_id, // change this
+                    "name" => $names[$index],
+                    "type" => $types[$index],
+                    "seatNumber" => $seatNumbers[$index],
+                    "cni" => $cnis[$index],
+                ];
+            }
+
+            $created=Passenger::insert($units);
+        }
+
     }
 
     /**
