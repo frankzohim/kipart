@@ -15,11 +15,11 @@ class SearchController extends Controller
         $travel=\Illuminate\Support\Facades\DB::table('travel')
                 ->join('paths','paths.id','=','travel.path_id')
                 ->join('agencies','agencies.id','=','travel.agency_id')
-                ->select('travel.date','travel.price','travel.class','paths.departure','paths.arrival','agencies.name')
+                ->select('travel.date','travel.price','travel.classe','paths.departure','paths.arrival','agencies.name')
                 ->orWhere('agencies.name','like',"%$term%")
                 ->orWhere('paths.arrival','like',"%$term%")
                 ->orWhere('travel.price','like',"%$term%")
-                ->orWhere('travel.class','like',"%$term%")
+                ->orWhere('travel.classe','like',"%$term%")
                 ->orWhere('paths.arrival','like',"%$term%")
                 ->get();
 

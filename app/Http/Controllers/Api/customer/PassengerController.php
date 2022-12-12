@@ -26,27 +26,41 @@ class PassengerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Travel $travel)
+    public function store(Request $request,$travel)
     {
         if($travel){
 
-            $travel_id=$travel;
-            $names=$request->input('name',[]);
-            $types=$request->input('type',[]);
-            $seatNumbers=$request->input('seatNumber',[]);
-            $cnis=$request->input('cni',[]);
+            $passenger=new Passenger;
+            $passenger->name=$request->name;
+            $passenger->type=$request->type;
+            $passenger->cni=$request->cni;
+            $passenger->seatNumber=$request->seatNumber;
+            $passenger->travel_id=$travel;
 
-            foreach ($names as $index => $unit) {
-                $units[] = [
-                    "travel_id" => $travel_id, // change this
-                    "name" => $names[$index],
-                    "type" => $types[$index],
-                    "seatNumber" => $seatNumbers[$index],
-                    "cni" => $cnis[$index],
-                ];
-            }
 
-            $created=Passenger::insert($units);
+            foreach($request->name as $key=>$value){
+
+                $passager['name']=$request->name[$key];
+                $passager['type']=$request->type[$key];
+                $passager['cni']=$request->cni[$key];
+                $passager['seatNumber']=$request->seatNumber[$key];
+                $passager['travel_id']=$travel;
+
+                Passenger::create($passager);
+
+
+
+             };
+
+
+
+
+
+
+
+            return response()->json(['message'=>"Passager ajouté avec success"]);
+        }else{
+            return response()->json(['message'=>"voyage non trouvé"]);
         }
 
     }
