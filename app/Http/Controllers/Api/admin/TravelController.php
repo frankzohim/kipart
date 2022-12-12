@@ -36,6 +36,7 @@ class TravelController extends Controller
         'price'=>$request->price,
         'class'=>$request->class,
         'state'=>$request->state,
+        'type'=>$request->type,
         ]);
 
 
@@ -77,6 +78,7 @@ class TravelController extends Controller
             $travel->state=$request->state;
             $travel->price=$request->price;
             $travel->classe=$request->classe;
+            $travel->type=$request->type;
             $travel->save();
             return response()->json(['status'=>'success','message'=>'Voyage mis a jour']);
     }

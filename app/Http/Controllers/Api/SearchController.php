@@ -27,4 +27,8 @@ class SearchController extends Controller
             return response()->json(['status'=>1,'data'=> $travel],200);
 
     }
+
+    public function searchFull(){
+
+    }
 }

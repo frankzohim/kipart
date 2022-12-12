@@ -38,6 +38,7 @@ class TravelController extends Controller
             $travel->classe=$request->class;
             $travel->agency_id=Auth::guard('api-agent')->user()->id;
             $travel->state=$request->state;
+            $travel->type=$request->type;
             $travel->save();
             return response()->json(['status'=>'success','message'=>'Voyage mis a jour']);
         }else{
