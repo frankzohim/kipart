@@ -25,7 +25,7 @@ class TravelResource extends JsonResource
             'state'=>$this->state,
             'classe'=>$this->classe,
             'prix'=>$this->price,
-            ''
+            'type'=>$this->type
         ];
     }
 }
