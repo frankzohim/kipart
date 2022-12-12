@@ -98,11 +98,11 @@
                                         <select class="form-control show-tick ms select2" data-placeholder="Select" name="class">
 
 
-                                                <option value="vip"  @selected($travel->class=='vip')>Vip</option>
-                                                <option value="Premium"  @selected($travel->class=='Premium')>Premium</option>
-                                                <option value="Moyenne" @selected($travel->class=='Moyenne')>Moyenne</option>
-                                                <option value="Luxueux"  @selected($travel->class=='Luxueux')>Luxueux</option>
-                                                <option value="Normal"  @selected($travel->class=='Normal')>Normal</option>
+                                                <option value="vip"  @selected($travel->classe=='vip')>Vip</option>
+                                                <option value="Premium"  @selected($travel->classe=='Premium')>Premium</option>
+                                                <option value="Moyenne" @selected($travel->classe=='Moyenne')>Moyenne</option>
+                                                <option value="Luxueux"  @selected($travel->classe=='Luxueux')>Luxueux</option>
+                                                <option value="Normal"  @selected($travel->classe=='Normal')>Normal</option>
                                         </select>
                                     </div>
                                     @error('class')
