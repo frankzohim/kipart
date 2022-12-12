@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Agency;
+use App\Models\Travel;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,6 +25,10 @@ return new class extends Migration
                 ->restrictOnUpdate()
                 ->restrictOnDelete();
 
+            $table->foreignIdFor(Travel::class)
+                    ->constrained()
+                    ->restrictOnUpdate()
+                    ->restrictOnDelete();
             $table->integer('number_of_places');
             //$table->string('type');
             $table->string("plan");

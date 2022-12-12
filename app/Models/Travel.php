@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Bus;
 use App\Models\Path;
 use App\Models\Codeqr;
 use App\Models\Passenger;
@@ -50,5 +51,10 @@ class Travel extends Model
     public function passengers():HasMany
     {
         return $this->hasMany(Passenger::class);
+    }
+
+    public function buses():HasMany
+    {
+        return $this->hasMany(Bus::class);
     }
 }
