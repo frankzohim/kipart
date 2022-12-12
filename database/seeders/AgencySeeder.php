@@ -75,5 +75,27 @@ class AgencySeeder extends Seeder
             'phone_number'=>"+237 693263552",
             'state'=>1
          ]);
+
+         DB::table('agencies')->insert([
+            'name'=>'BUTSIS',
+            'headquarters'=>'douala',
+            'logo'=>"public/logo/fitness.jpeg",
+            'email'=>'ButsisVoyage456@gmail.com',
+            'password'=>bcrypt('BUTSIS4635'),
+            'phone_number'=>"+237 65264552",
+            'state'=>1
+         ]);
+
+         DB::table('agencies')->insert([
+            'name'=>'MENTRAVEL',
+            'headquarters'=>'douala',
+            'logo'=>"public/logo/fitness.jpeg",
+            'email'=>'MENTRAVEL647@gmail.com',
+            'password'=>bcrypt('MENTRAVEL74654'),
+            'phone_number'=>"+237 69475434",
+            'state'=>1
+         ]);
+
+
     }
 }

@@ -31,9 +31,8 @@ return new class extends Migration
                 ->restrictOnDelete();
 
             $table->double('price');
-            $table->string('class');
+            $table->string('classe');
             $table->string('departure_time');
-            $table->string('arrival_time');
             $table->string('type');
             $table->boolean('state');
             $table->timestamps();

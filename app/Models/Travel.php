@@ -22,10 +22,10 @@ class Travel extends Model
         'price',
         'state',
         'type',
-        'classe'
+        'classe',
+        'departure_time'
     ];
 
-    protected $table='travels';
 
     public function codeqr():BelongsTo
     {

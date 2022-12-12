@@ -21,7 +21,8 @@ class TravelDetailResource extends JsonResource
             'prix'=>$this->price,
             'arrival'=>$this->path->arrival,
             'agence'=>$this->agency->name,
-            'class'=>$this->class
+            'classe'=>$this->classe,
+            'Nombre_de_place_du_bus'=>$this->buses->number_of_places
         ];
     }
 }

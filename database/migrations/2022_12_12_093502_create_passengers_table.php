@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
-            $table->string('seatNumber');
+            $table->string('seatNumber')->unique();
 
             $table->foreignIdFor(Travel::class)
             ->constrained()

@@ -19,11 +19,12 @@ class TravelFactory extends Factory
         return [
         'date'=>$this->faker->dateTimeThisYear('+10 months'),
         'path_id'=>rand(1,19),
-        'agency_id'=>rand(1,6),
+        'agency_id'=>rand(1,8),
         'price'=>$this->faker->randomElement($array=[2000,4000,2500,5000,3500]),
         'state'=>1,
         'type'=>$this->faker->randomElement($array=['Aller Simple','Aller Retour']),
-        'class'=>$this->faker->randomElement($array=['vip','classique']),
+       'departure_time'=>$this->faker->time(),
+        'classe'=>$this->faker->randomElement($array=['vip','classique']),
         ];
     }
 }
