@@ -18,7 +18,7 @@ class BusResource extends JsonResource
             'id'=>$this->id,
             'Immatriculation'=>$this->registration,
             'number_of_places'=>$this->number_of_places,
-            'class'=>$this->class,
+            'classe'=>$this->class,
             'plan'=>$this->plan
             ];
     }

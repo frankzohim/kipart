@@ -75,6 +75,8 @@ class TravelController extends Controller
             $travel->path_id=$request->path_id;
             $travel->agency_id=$request->agency_id;
             $travel->state=$request->state;
+            $travel->price=$request->price;
+            $travel->classe=$request->classe;
             $travel->save();
             return response()->json(['status'=>'success','message'=>'Voyage mis a jour']);
     }

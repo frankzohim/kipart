@@ -19,7 +19,7 @@ class Travel extends Model
         'agency_id',
         'price',
         'state',
-        'class'
+        'classe'
     ];
 
     public function codeqr():BelongsTo

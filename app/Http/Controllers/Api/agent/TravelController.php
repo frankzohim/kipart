@@ -18,7 +18,7 @@ class TravelController extends Controller
         $path=Travel::create([
             'date'=>$request->departure,
             'price'=>$request->price,
-            'class'=>$request->class,
+            'classe'=>$request->classe,
         'agency_id'=>Auth::guard('api-agent')->user()->id,
         'path_id'=>$request->path_id,
         'state'=>$request->state,
@@ -35,7 +35,7 @@ class TravelController extends Controller
             $travel->date=$request->departure;
             $travel->path_id=$request->path_id;
             $travel->price=$request->price;
-            $travel->class=$request->class;
+            $travel->classe=$request->class;
             $travel->agency_id=Auth::guard('api-agent')->user()->id;
             $travel->state=$request->state;
             $travel->save();

@@ -15,7 +15,7 @@ class Bus extends Model
         'registration',
         'agency_id',
         'number_of_places',
-        'class',
+        'classe',
         'plan'
     ];
 
