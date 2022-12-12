@@ -29,6 +29,7 @@ return new class extends Migration
                     ->constrained()
                     ->restrictOnUpdate()
                     ->restrictOnDelete();
+
             $table->integer('number_of_places');
             //$table->string('type');
             $table->string("plan");
