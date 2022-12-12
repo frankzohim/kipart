@@ -2,32 +2,21 @@
 
 namespace App\Http\Controllers\Api\customer;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\Passenger\PassengersResource;
 use App\Models\Passenger;
-use App\Models\Travel;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\Passenger\PassengerResource;
 
 class PassengerController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return new PassengersResource(Passenger::all());
+
+    public function listPassenger($travel){
+
+        return PassengerResource::collection(Passenger::where('travel_id', $travel)->get());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request,$travel)
-    {
+    public function addPassenger(Request $request,$travel){
+
         if($travel){
 
             $passenger=new Passenger;
@@ -62,40 +51,6 @@ class PassengerController extends Controller
         }else{
             return response()->json(['message'=>"voyage non trouvé"]);
         }
-
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

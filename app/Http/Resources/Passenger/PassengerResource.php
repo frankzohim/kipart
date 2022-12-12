@@ -4,7 +4,7 @@ namespace App\Http\Resources\Passenger;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PassengersResource extends JsonResource
+class PassengerResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

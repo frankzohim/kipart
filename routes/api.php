@@ -60,8 +60,10 @@ use App\Http\Controllers\Api\SearchController;
 
     Route::get("search/{term}",[SearchController::class,'search']);
 
-    Route::apiResource('create/passengers/{travel}',PassengerController::class);
-    // All endpoints for admin
+   Route::get('list/passengers/{travel}',[PassengerController::class,'listPassenger']);
+   Route::post('add/passengers/{travel}',[PassengerController::class,'addPassenger']);
+
+   // All endpoints for admin
     Route::middleware('auth:api-admin')->prefix('v1')->group(function(){
 
         Route::apiResource('travels',TravelController::class);
