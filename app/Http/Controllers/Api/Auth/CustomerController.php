@@ -18,9 +18,8 @@ use Illuminate\Support\Facades\Session;
 use Laravel\Passport\Client as OClient;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Validator;
-use App\Controller\Api\services\sms\SendSmsService;
-
-
+use App\Http\Controllers\Api\services\sms\SendSmsService;
+use ErrorException;
 
 class CustomerController extends Controller
 {
@@ -71,7 +70,7 @@ class CustomerController extends Controller
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string|min:6',
-        'phone_number' => 'required',
+        'phone_number' => 'required|max:9|unique:users',
     ]);
 
     if ($valid->fails()) {
@@ -108,6 +107,8 @@ class CustomerController extends Controller
         'oauth/token',
         'POST'
     );
+
+    $sendOtp=$this->sendOtp($data['phone_number']);
     return Route::dispatch($token);
 }
 
@@ -121,15 +122,19 @@ class CustomerController extends Controller
     public function sendOtp($mobile){
 
         $otp = rand(100000, 999999);
-        $message="Votre code de connexion est".$otp;
-
+        $message="Votre code de connexion est ".$otp;
+        $user = User::where('phone_number', $mobile)->first();
         $sms=(new SendSmsService())->sendSms("delanofofe@gmail.com","test1234",$mobile,$message,"Kipart","2022-12-09 17:20:02");
 
-        $smsResponse=json_decode($sms->getBody());
+        $smsResponse=json_decode($sms->getBody(),true);
 
         if($smsResponse["responsecode"]==1){
 
-            Session::put('OTP', $otp);
+            VerificationCode::create([
+                'user_id' => $user->id,
+                'otp'=>$otp,
+                'expire_at' => Carbon::now()->addMinutes(10)
+            ]);
             return response()->json(["status"=>"success","message"=>"message envoyé avec success au $mobile"],200);
         }else{
             return response()->json(["status"=>"fail!","message"=>"une erreur s'est produite"],401);
@@ -139,16 +144,26 @@ class CustomerController extends Controller
     public function verifyOtp(Request $request){
 
         $enteredOtp = $request->input('otp');
-        $OTP = $request->session()->get('OTP');
-        if($OTP === $enteredOtp){
+        $verificationCode   = VerificationCode::where('otp', $request->otp)->first();
 
-            //Removing Session variable
-            Session::forget('OTP');
+        try{
+            if($verificationCode->otp === $enteredOtp){
 
-           return response()->json(['responseCode'=>0,"responseVerified"=>1,"responseLoggedIn"=>1,"responseMessage"=>"Votre numéro viens d'etre verifier"]);
-        }else{
-            return response()->json(['responseCode'=>1,"responseVerified"=>0,"responseLoggedIn"=>0,"responseMessage"=>"Votre code est incorrecte"]);
+                //Removing Session variable
+                // Expire The OTP
+                $verificationCode->update([
+                    'expire_at' => Carbon::now()
+                ]);
+                $verificationCode->delete();
+
+               return response()->json(['responseCode'=>0,"responseVerified"=>1,"responseLoggedIn"=>1,"responseMessage"=>"Votre numéro viens d'etre verifier"]);
+            }else if($verificationCode !== $enteredOtp){
+                return response()->json(['responseCode'=>1,"responseVerified"=>0,"responseLoggedIn"=>0,"responseMessage"=>"Votre code est incorrecte"]);
+            }
+        }catch(ErrorException $e){
+            return response()->json(['errorCode'=>0,"messageError"=>$e->getMessage()]);
         }
+
     }
 
 }

@@ -43,6 +43,7 @@ use App\Http\Controllers\Api\SearchController;
     Route::post('agent/login',[AgentController::class,'login']);
     Route::post('register',[CustomerController::class,'register']);
     Route::post('testOtp',[TestOtpController::class,'testOtp']);
+    Route::post('verify/Otp',[CustomerController::class,'verifyOtp']);
 
     Route::get('show/agency/{id}',[ShowController::class,'detailAgency']);
     Route::get('show/bus/{id}',[ShowController::class,'detailBus']);
