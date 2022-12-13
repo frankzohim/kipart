@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 class ResetPasswordController extends Controller
 {
-    public function __invoke(Request $request)
+    public function reset(Request $request,$id)
     {
         $request->validate([
             'code' => 'required|string|exists:reset_code_passwords',
@@ -26,7 +26,7 @@ class ResetPasswordController extends Controller
         }
 
         // find user's email
-        $user = User::firstWhere('email', $passwordReset->email);
+        $user = User::firstWhere('id', $id);
 
         if($request->code==$passwordReset->code){
            // update user password

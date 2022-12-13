@@ -47,9 +47,9 @@ use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController
     Route::post('register',[CustomerController::class,'register']);
     Route::post('testOtp',[TestOtpController::class,'testOtp']);
     Route::post('verify/Otp',[CustomerController::class,'verifyOtp']);
-    Route::post('password/email',  ForgotPasswordController::class);
-    Route::post('password/code/check', CodeCheckController::class);
-    Route::post('password/reset', ResetPasswordController::class);
+    Route::post('sendCode',ForgotPasswordController::class);
+    Route::post('password/code/check', [CodeCheckController::class,'check']);
+    Route::post('password/reset/{id}', [ResetPasswordController::class,'reset']);
 
     Route::get('show/agency/{id}',[ShowController::class,'detailAgency']);
     Route::get('show/bus/{id}',[ShowController::class,'detailBus']);
