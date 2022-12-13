@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ListController;
 
 use App\Http\Controllers\Api\ShowController;
+use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\admin\BusController;
 use App\Http\Controllers\Api\admin\PathController;
 use App\Http\Controllers\Api\Auth\AdminController;
@@ -19,13 +20,15 @@ use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\test\TestOtpController;
 use App\Http\Controllers\Api\Auth\CustomerController;
 use App\Http\Controllers\Api\admin\ScheduleController;
+use App\Http\Controllers\Api\customer\CodeCheckController;
+use App\Http\Controllers\Api\customer\PassengerController;
+use App\Http\Controllers\Api\customer\ResetPasswordController;
+use App\Http\Controllers\Api\customer\ForgotPasswordController;
 use App\Http\Controllers\Api\agent\BusController as AgentBusController;
 use App\Http\Controllers\Api\agent\PathController as AgentPathController;
 use App\Http\Controllers\Api\agent\AgencyController as AgentAgencyController;
 use App\Http\Controllers\Api\agent\TravelController as AgentTravelController;
 use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
-use App\Http\Controllers\Api\customer\PassengerController;
-use App\Http\Controllers\Api\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +47,9 @@ use App\Http\Controllers\Api\SearchController;
     Route::post('register',[CustomerController::class,'register']);
     Route::post('testOtp',[TestOtpController::class,'testOtp']);
     Route::post('verify/Otp',[CustomerController::class,'verifyOtp']);
+    Route::post('password/email',  ForgotPasswordController::class);
+    Route::post('password/code/check', CodeCheckController::class);
+    Route::post('password/reset', ResetPasswordController::class);
 
     Route::get('show/agency/{id}',[ShowController::class,'detailAgency']);
     Route::get('show/bus/{id}',[ShowController::class,'detailBus']);
