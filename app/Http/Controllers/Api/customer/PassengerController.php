@@ -41,12 +41,6 @@ class PassengerController extends Controller
 
              };
 
-
-
-
-
-
-
             return response()->json(['message'=>"Passager ajouté avec success"]);
         }else{
             return response()->json(['message'=>"voyage non trouvé"]);

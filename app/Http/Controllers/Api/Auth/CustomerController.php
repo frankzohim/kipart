@@ -114,4 +114,15 @@ class CustomerController extends Controller
     }
 
 
+    public function generate(Request $request){
+        # Validate Data
+        $request->validate([
+            'number' => 'required|exists:users,number'
+        ]);
+
+        # Generate An OTP
+        $verificationCode = $this->generateOtp($request->mobile_no);
+    }
+
+
 }
