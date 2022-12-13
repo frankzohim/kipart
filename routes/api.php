@@ -58,11 +58,11 @@ use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController
     Route::get('show/travel/{id}',[ShowController::class,'detailTravel']);
 
 
-    Route::get('list/agencies',[ListController::class,'listAgency']);
-    Route::get('list/buses',[ListController::class,'listBus']);
-    Route::get('list/paths',[ListController::class,'listPath']);
-    Route::get('list/schedules',[ListController::class,'listSchedule']);
-    Route::get('list/travels',[ListController::class,'listTravel']);
+    Route::get('list/agencies/{paginate}',[ListController::class,'listAgency']);
+    Route::get('list/buses/{paginate}',[ListController::class,'listBus']);
+    Route::get('list/paths/{paginate}',[ListController::class,'listPath']);
+    Route::get('list/schedules/{paginate}',[ListController::class,'listSchedule']);
+    Route::get('list/travels/{paginate}',[ListController::class,'listTravel']);
     Route::get('image/{path}', [ImageController::class, 'getImage'])->where('path', '.*');
 
     Route::get("search/{term}",[SearchController::class,'search']);

@@ -17,27 +17,27 @@ use App\Models\Travel;
 
 class ListController extends Controller
 {
-    public function listAgency(){
+    public function listAgency($paginate){
 
-        return AgencyResource::collection(Agency::all());
+        return AgencyResource::collection(Agency::paginate($paginate));
     }
 
-    public function listPath(){
-        return PathResource::collection(Path::all());
+    public function listPath($paginate){
+        return PathResource::collection(Path::paginate($paginate));
     }
 
-    public function listBus(){
+    public function listBus($paginate){
 
-        return BusResource::collection(Bus::all());
+        return BusResource::collection(Bus::paginate($paginate));
     }
 
-    public function listSchedule(){
+    public function listSchedule($paginate){
 
-        return ScheduleResource::collection(Schedule::all());
+        return ScheduleResource::collection(Schedule::paginate($paginate));
     }
 
-    public function listTravel(){
+    public function listTravel($paginate){
 
-        return TravelResource::collection(Travel::all());
+        return TravelResource::collection(Travel::paginate($paginate));
     }
 }
