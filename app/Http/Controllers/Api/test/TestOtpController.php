@@ -17,6 +17,7 @@ class TestOtpController extends Controller
 
         if($smsResponse["responsecode"]==1){
 
+
             return response()->json(["status"=>"success","message"=>"message envoyé avec success au $request->mobiles"],200);
         }else{
             return response()->json(["status"=>"fail!","message"=>"une erreur s'est produite"],401);

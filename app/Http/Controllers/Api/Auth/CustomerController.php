@@ -3,18 +3,22 @@
 namespace App\Http\Controllers\Api\Auth;
 
 use Exception;
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Passport\Client;
-use App\Services\Auth\LoginService;
 
+use App\Models\VerificationCode;
+use App\Services\Auth\LoginService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 use Laravel\Passport\Client as OClient;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Validator;
+use App\Controller\Api\services\sms\SendSmsService;
 
 
 
@@ -114,15 +118,37 @@ class CustomerController extends Controller
     }
 
 
-    public function generate(Request $request){
-        # Validate Data
-        $request->validate([
-            'number' => 'required|exists:users,number'
-        ]);
+    public function sendOtp($mobile){
 
-        # Generate An OTP
-        $verificationCode = $this->generateOtp($request->mobile_no);
+        $otp = rand(100000, 999999);
+        $message="Votre code de connexion est".$otp;
+
+        $sms=(new SendSmsService())->sendSms("delanofofe@gmail.com","test1234",$mobile,$message,"Kipart","2022-12-09 17:20:02");
+
+        $smsResponse=json_decode($sms->getBody());
+
+        if($smsResponse["responsecode"]==1){
+
+            Session::put('OTP', $otp);
+            return response()->json(["status"=>"success","message"=>"message envoyé avec success au $mobile"],200);
+        }else{
+            return response()->json(["status"=>"fail!","message"=>"une erreur s'est produite"],401);
+        }
     }
 
+    public function verifyOtp(Request $request){
+
+        $enteredOtp = $request->input('otp');
+        $OTP = $request->session()->get('OTP');
+        if($OTP === $enteredOtp){
+
+            //Removing Session variable
+            Session::forget('OTP');
+
+           return response()->json(['responseCode'=>0,"responseVerified"=>1,"responseLoggedIn"=>1,"responseMessage"=>"Votre numéro viens d'etre verifier"]);
+        }else{
+            return response()->json(['responseCode'=>1,"responseVerified"=>0,"responseLoggedIn"=>0,"responseMessage"=>"Votre code est incorrecte"]);
+        }
+    }
 
 }
