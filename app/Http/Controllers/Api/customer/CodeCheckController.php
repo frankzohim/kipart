@@ -16,16 +16,16 @@ class CodeCheckController extends Controller
         $passwordReset = ResetCodePassword::firstWhere('code', $request->code);
 
         if ($passwordReset==null) {
-            return response(['responseCode'=>2,'message' => "Le Code de reinitialisation de votre mot de passe est invalide"],404);
+            return response(['message' => "Le Code de reinitialisation de votre mot de passe est invalide"],400);
         }
         // check if it does not expired: the time is one hour
         if ($passwordReset->created_at > now()->addHour()) {
             $passwordReset->delete();
-            return response(['responseCode'=>0,'message' => 'Le code de reinitialisation de votre mot de passe à expiré'], 422);
+            return response(['message' => 'Le code de reinitialisation de votre mot de passe à expiré'], 422);
         }
 
         if($request->code==$passwordReset->code){
-            return response(['responseCode'=>1,'message' => "Le Code est Valide Vous serez rediriger vers un formulaire de reinitialisation de mot de passe"],200);
+            return response(['responseCode'=>1,'message' => "Le Code est Valide Vous serez rediriger vers un formulaire de reinitialisation de mot de passe"],202);
         }
 
 
