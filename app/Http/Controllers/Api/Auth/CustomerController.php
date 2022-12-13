@@ -143,11 +143,18 @@ class CustomerController extends Controller
 
     public function verifyOtp(Request $request){
 
+        $rules = Validator::make($request->all(), [
+            'otp' => 'required|exists:verification_codes,otp',
+        ]);
+
+        if ($rules->fails()) {
+            return response()->json(['responseCode'=>1,"responseVerified"=>0,"responseLoggedIn"=>0,"responseMessage"=>"Votre code est incorrecte"]);
+        }
         $enteredOtp = $request->input('otp');
         $verificationCode   = VerificationCode::where('otp', $request->otp)->first();
 
         try{
-            if($verificationCode->otp === $enteredOtp){
+            if($enteredOtp==$verificationCode->otp){
 
                 //Removing Session variable
                 // Expire The OTP
@@ -158,7 +165,7 @@ class CustomerController extends Controller
 
                return response()->json(['responseCode'=>0,"responseVerified"=>1,"responseLoggedIn"=>1,"responseMessage"=>"Votre numéro viens d'etre verifier"]);
             }else if($verificationCode !== $enteredOtp){
-                return response()->json(['responseCode'=>1,"responseVerified"=>0,"responseLoggedIn"=>0,"responseMessage"=>"Votre code est incorrecte"]);
+
             }
         }catch(ErrorException $e){
             return response()->json(['errorCode'=>0,"messageError"=>$e->getMessage()]);
