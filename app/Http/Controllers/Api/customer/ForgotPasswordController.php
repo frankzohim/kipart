@@ -6,11 +6,12 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\ResetCodePassword;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Otp\ForgotPasswordRequest;
 use App\Http\Controllers\Api\services\sms\SendSmsService;
 
 class ForgotPasswordController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(ForgotPasswordRequest $request)
     {
         $data = $request->validate([
             'phone_number' => 'required|exists:users',

@@ -6,15 +6,14 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\ResetCodePassword;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Otp\ResetPasswordRequest;
+use Illuminate\Support\Facades\Hash;
 
 class ResetPasswordController extends Controller
 {
-    public function reset(Request $request,$id)
+    public function reset(ResetPasswordRequest $request,$id)
     {
-        $request->validate([
-            'code' => 'required|string|exists:reset_code_passwords',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+
 
         // find the code
         $passwordReset = ResetCodePassword::firstWhere('code', $request->code);
@@ -30,12 +29,14 @@ class ResetPasswordController extends Controller
 
         if($request->code==$passwordReset->code){
            // update user password
-            $user->update($request->only('password'));
+            $password=bcrypt($request->password);
+            $user->password=$password;
+            $user->save();
 
             // delete current code
             $passwordReset->delete();
 
-            return response(['message' =>'mot de passe reinitialisé avec success'], 200);
+            return response(['responseCode'=>1,'message' =>'mot de passe reinitialisé avec success'], 200);
         }
 
         if($request->code!=$passwordReset->code){
