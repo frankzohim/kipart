@@ -37,10 +37,9 @@ class AgencyRequest extends FormRequest
     }
 
     public function failedValidation(Validator $validator)
-{
-   throw new HttpResponseException(response()->json([
-
-     'messages'      => $validator->errors()
-   ]));
-}
+    {
+       throw new HttpResponseException(response()->json([
+         'data'      => $validator->errors()
+       ],400));
+    }
 }

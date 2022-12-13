@@ -37,6 +37,6 @@ class BusRequest extends FormRequest
     {
        throw new HttpResponseException(response()->json([
          'data'      => $validator->errors()
-       ]));
+       ],400));
     }
 }
