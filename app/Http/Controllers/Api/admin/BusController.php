@@ -36,7 +36,8 @@ class BusController extends Controller
             'agency_id'=>$request->agency_id,
             'number_of_places'=>$request->number_of_places,
             'plan'=>$request->plan,
-            'class'=>$request->class
+            'classe'=>$request->classe,
+            'travel_id'=>$request->travel_id,
             ]);
 
             return new BusResource($bus);
