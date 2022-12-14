@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\customer;
 use App\Models\Passenger;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PassengerRequest;
 use App\Http\Resources\Passenger\PassengerResource;
 
 class PassengerController extends Controller
@@ -15,7 +16,7 @@ class PassengerController extends Controller
         return PassengerResource::collection(Passenger::where('travel_id', $travel)->get());
     }
 
-    public function addPassenger(Request $request,$travel){
+    public function addPassenger(PassengerRequest $request,$travel){
 
         if($travel){
 
@@ -41,9 +42,9 @@ class PassengerController extends Controller
 
              };
 
-            return response()->json(['message'=>"Passager ajouté avec success"]);
+            return response()->json(['message'=>"Passager ajouté avec success"],201);
         }else{
-            return response()->json(['message'=>"voyage non trouvé"]);
+            return response()->json(['message'=>"voyage non trouvé"],404);
         }
     }
 

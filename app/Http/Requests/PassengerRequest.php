@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
 
-class AgencyRequest extends FormRequest
+class PassengerRequest extends FormRequest
 {
     protected $stopOnFirstFailure = true;
     /**
@@ -28,12 +28,9 @@ class AgencyRequest extends FormRequest
     public function rules()
     {
         return [
-            "name"=>"required|min:3|max:15|string",
-            "headquarters"=>"required|min:5|max:12",
-            'logo'=>"required|mimes:png,jpg,jpeg",
-            'phone_number'=>"required|max:20",
-            'email'=>"required|email|unique:agencies,email",
-            'password'=>"required|min:8"
+            'name'=>'required',
+            'type'=>'required',
+            'seatNumber'=>'required',
         ];
     }
 
@@ -44,16 +41,15 @@ class AgencyRequest extends FormRequest
        ],400));
     }
 
-
     public function messages()
     {
         return [
             'name.required' => 'le champs nom est requis',
-            'headquarters.required' => 'le champs Localisation est requis',
-            'logo.required' => 'le champs logo est requis',
-            'phone_number' => 'le champs numero de telephone est requis',
-            'email.required' => 'le champs email est requis',
-            'password.required' => 'le champs mot de passe est requis'
+            'type.required' => 'le champs type est requis',
+            'seatNumber.required' => 'le champs numero de place est requis',
+            'cni.numeric' => 'Votre numero de cni doit contenir que des chiffres',
+            'cni.min' => 'votre cni doit contenir 9 chiffres',
+            'cni.max' => 'votre cni doit contenir 9 chiffres'
         ];
     }
 }
