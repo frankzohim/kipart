@@ -105,9 +105,9 @@ class AgencyController extends Controller
         if($agency){
             $agency->delete();
         return response()->json(["message"=>"Agency deleted"],204);
-        }else{
-            return response()->json(["message"=>"Agency not found"],404);
         }
+            return response()->json(["message"=>"Agence non trouvé"],404);
+
 
 
 

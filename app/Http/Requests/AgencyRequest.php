@@ -52,7 +52,7 @@ class AgencyRequest extends FormRequest
             'logo.required' => 'le champs logo est requis',
             'phone_number' => 'le champs numero de telephone est requis',
             'email.required' => 'le champs email est requis',
-            'password.required' => 'le champs heure de depart est requis'
+            'password.required' => 'le champs mot de passe est requis'
         ];
     }
 }
