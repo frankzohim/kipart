@@ -34,9 +34,10 @@ class TravelController extends Controller
         'agency_id'=>$request->agency_id,
         'path_id'=>$request->path_id,
         'price'=>$request->price,
-        'class'=>$request->class,
+        'classe'=>$request->classe,
         'state'=>$request->state,
         'type'=>$request->type,
+        'departure_time'=>$request->departure_time,
         ]);
 
 
@@ -72,7 +73,7 @@ class TravelController extends Controller
     public function update(Request $request, $id)
     {
         $travel=Travel::find($id);
-        $travel->date=$request->departure;
+        $travel->date=$request->date;
             $travel->path_id=$request->path_id;
             $travel->agency_id=$request->agency_id;
             $travel->state=$request->state;
