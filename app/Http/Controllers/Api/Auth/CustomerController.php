@@ -122,7 +122,7 @@ class CustomerController extends Controller
     public function sendOtp($mobile){
 
         $otp = rand(100000, 999999);
-        $message="Votre code de connexion est ".$otp;
+        $message=$otp." est votre code de connexion kipart";
         $user = User::where('phone_number', $mobile)->first();
         $sms=(new SendSmsService())->sendSms("delanofofe@gmail.com","test1234",$mobile,$message,"Kipart","2022-12-09 17:20:02");
 
@@ -133,7 +133,7 @@ class CustomerController extends Controller
             VerificationCode::create([
                 'user_id' => $user->id,
                 'otp'=>$otp,
-                'expire_at' => Carbon::now()->addMinutes(10)
+                'expire_at' => Carbon::now()->addMinutes(15)
             ]);
             return response()->json(["status"=>"success","message"=>"message envoyé avec success au $mobile"],200);
         }else{
@@ -141,20 +141,21 @@ class CustomerController extends Controller
         }
     }
 
-    public function verifyOtp(Request $request){
+    public function verifyOtp(Request $request,$id){
 
         $rules = Validator::make($request->all(), [
             'otp' => 'required|exists:verification_codes,otp',
+            'phone_number' =>'required|exists:users,phone_number',
         ]);
 
         if ($rules->fails()) {
-            return response()->json(['responseCode'=>1,"responseVerified"=>0,"responseLoggedIn"=>0,"responseMessage"=>"Votre code est incorrecte"]);
+            return response()->json(["message"=>"Code Invalide ou informations incorrecte"],400);
         }
         $enteredOtp = $request->input('otp');
         $verificationCode   = VerificationCode::where('otp', $request->otp)->first();
-
+        $user = User::find($id);
         try{
-            if($enteredOtp==$verificationCode->otp){
+            if($enteredOtp==$verificationCode->otp && $request->phone_number==$user->phone_number){
 
                 //Removing Session variable
                 // Expire The OTP
@@ -163,12 +164,12 @@ class CustomerController extends Controller
                 ]);
                 $verificationCode->delete();
 
-               return response()->json(['responseCode'=>0,"responseVerified"=>1,"responseLoggedIn"=>1,"responseMessage"=>"Votre numéro viens d'etre verifier"]);
+               return response()->json(["message"=>"Votre numéro viens d'etre verifier"],200);
             }else if($verificationCode !== $enteredOtp){
 
             }
         }catch(ErrorException $e){
-            return response()->json(['errorCode'=>0,"messageError"=>$e->getMessage()]);
+            return response()->json(["message"=>$e->getMessage()],404);
         }
 
     }
