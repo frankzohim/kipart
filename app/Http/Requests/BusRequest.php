@@ -36,7 +36,18 @@ class BusRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
        throw new HttpResponseException(response()->json([
-         'errors'      => $validator->errors()
+         $validator->errors()
        ],400));
+    }
+
+
+    public function messages()
+    {
+        return [
+            'registration.required' => 'le champs immatriculation est requis',
+            'number_of_places.required' => 'le champs nombre de places est requis',
+            'classe.required' => 'le champs classe est requis',
+            'plan.required' => 'le champs plan est requis',
+        ];
     }
 }

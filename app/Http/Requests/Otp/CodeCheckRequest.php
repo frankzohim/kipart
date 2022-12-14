@@ -26,14 +26,24 @@ class CodeCheckRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|exists:reset_code_passwords'
+            'code' => 'required|exists:reset_code_passwords',
+            'phone_number' => 'required|exists:users',
         ];
     }
 
     public function failedValidation(Validator $validator)
     {
        throw new HttpResponseException(response()->json([
-         'errors'      => $validator->errors()
+         $validator->errors()
        ],400));
+    }
+
+
+    public function messages()
+    {
+        return [
+            'code.required' => 'le champs code est requis',
+            'phone_number.required' => 'le champs numero de telephone est requis',
+        ];
     }
 }

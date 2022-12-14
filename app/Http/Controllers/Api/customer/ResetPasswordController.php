@@ -21,13 +21,13 @@ class ResetPasswordController extends Controller
         // check if it does not expired: the time is one hour
         if ($passwordReset->created_at > now()->addHour()) {
             $passwordReset->delete();
-            return response(['responseCode'=>0,'message' => 'Le code de reinitialisation de votre mot de passe à expiré'], 422);
+            return response(['message' => 'Le code de reinitialisation de votre mot de passe à expiré'], 422);
         }
 
         // find user's email
-        $user = User::firstWhere('id', $id);
+        $user = User::find($id);
 
-        if($request->code==$passwordReset->code){
+        if($request->code==$passwordReset->code && $user->phone_number==$request->phone_number){
            // update user password
             $password=bcrypt($request->password);
             $user->password=$password;
@@ -36,12 +36,12 @@ class ResetPasswordController extends Controller
             // delete current code
             $passwordReset->delete();
 
-            return response(['responseCode'=>1,'message' =>'mot de passe reinitialisé avec success'], 200);
+            return response(['message' =>'mot de passe reinitialisé avec success'], 200);
         }
 
-        if($request->code!=$passwordReset->code){
+        if($request->code!=$passwordReset->code ){
 
-            return response(['responseCode'=>2,'message' => "le Code de reinitialisation de votre mot de passe est invalide"],404);
+            return response(['message' => "le Code de reinitialisation de votre mot de passe est invalide"],404);
         }
 
 

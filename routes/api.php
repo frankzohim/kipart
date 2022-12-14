@@ -29,7 +29,6 @@ use App\Http\Controllers\Api\agent\PathController as AgentPathController;
 use App\Http\Controllers\Api\agent\AgencyController as AgentAgencyController;
 use App\Http\Controllers\Api\agent\TravelController as AgentTravelController;
 use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
-use App\Http\Controllers\Api\test\payment\stripe\StripeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,9 +48,8 @@ use App\Http\Controllers\Api\test\payment\stripe\StripeController;
     Route::post('testOtp',[TestOtpController::class,'testOtp']);
     Route::post('verify/Otp',[CustomerController::class,'verifyOtp']);
     Route::post('sendCode',ForgotPasswordController::class);
-    Route::post('password/code/check', [CodeCheckController::class,'check']);
+    Route::post('password/code/check/{id}', [CodeCheckController::class,'check']);
     Route::post('password/reset/{id}', [ResetPasswordController::class,'reset']);
-    Route::post('stripe/test/payment',[StripeController::class,'stripeTestPayment']);
 
     Route::get('show/agency/{id}',[ShowController::class,'detailAgency']);
     Route::get('show/bus/{id}',[ShowController::class,'detailBus']);

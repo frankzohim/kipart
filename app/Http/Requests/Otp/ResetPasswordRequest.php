@@ -28,13 +28,24 @@ class ResetPasswordRequest extends FormRequest
         return [
             'code' => 'required|string|exists:reset_code_passwords',
             'password' => 'required|string|min:6|confirmed',
+            'phone_number'=>'required|string|exists:users'
         ];
     }
 
     public function failedValidation(Validator $validator)
     {
        throw new HttpResponseException(response()->json([
-         'errors'      => $validator->errors()
+         $validator->errors()
        ],400));
+    }
+
+
+    public function messages()
+    {
+        return [
+            'code.required' => 'le champs code est requis',
+            'phone_number.required' => 'le champs numero de telephone est requis',
+            'password.required' => 'le champs mot de passe est requis',
+        ];
     }
 }

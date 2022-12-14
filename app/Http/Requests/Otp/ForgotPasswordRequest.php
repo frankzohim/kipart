@@ -33,7 +33,15 @@ class ForgotPasswordRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
        throw new HttpResponseException(response()->json([
-         'errors'      => $validator->errors()
+         $validator->errors()
        ],400));
+    }
+
+
+    public function messages()
+    {
+        return [
+            'phone_number.required' => 'le champs numero de telephone est requis',
+        ];
     }
 }

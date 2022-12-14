@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
@@ -35,7 +36,17 @@ class PathRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
        throw new HttpResponseException(response()->json([
-         'errors'      => $validator->errors()
+         $validator->errors()
        ],400));
+    }
+
+
+    public function messages()
+    {
+        return [
+            'departure' => 'le champs depart est requis',
+            'arrival.required' => 'le champs arrivé est requis',
+            'state.required' => 'le champs Etat est requis',
+        ];
     }
 }

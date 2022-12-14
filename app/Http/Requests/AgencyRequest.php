@@ -39,7 +39,20 @@ class AgencyRequest extends FormRequest
     public function failedValidation(Validator $validator)
     {
        throw new HttpResponseException(response()->json([
-         'errors'      => $validator->errors()
+         $validator->errors()
        ],400));
+    }
+
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'le champs nom est requis',
+            'headquarters.required' => 'le champs Localisation est requis',
+            'logo.required' => 'le champs logo est requis',
+            'phone_number' => 'le champs numero de telephone est requis',
+            'email.required' => 'le champs email est requis',
+            'password.required' => 'le champs heure de depart est requis'
+        ];
     }
 }
