@@ -25,7 +25,7 @@ class CustomerController extends Controller
 {
     public function login(Request $request){
         $valid = validator($request->only('phone_number','password'), [
-            'phone_number' => 'required|string',
+            'phone_number' => 'required|string|exists:users',
             'password' => 'required|string',
         ]);
         $data = request()->only('phone_number','password');

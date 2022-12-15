@@ -55,10 +55,7 @@ class Handler extends ExceptionHandler
 {
 
 
-        if(Auth::guard('admin')){
 
-            return redirect()->route('admin.login');
-        }else{
             return response()->json(
                 [
                     'errors'=>[
@@ -73,4 +70,4 @@ class Handler extends ExceptionHandler
 
 
 }
-}
+

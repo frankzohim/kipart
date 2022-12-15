@@ -29,6 +29,7 @@ use App\Http\Controllers\Api\agent\PathController as AgentPathController;
 use App\Http\Controllers\Api\agent\AgencyController as AgentAgencyController;
 use App\Http\Controllers\Api\agent\TravelController as AgentTravelController;
 use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
+use App\Http\Controllers\Api\customer\DetailUserLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,7 @@ use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController
     Route::post('sendCode',ForgotPasswordController::class);
     Route::post('password/code/check', [CodeCheckController::class,'check']);
     Route::post('password/reset', [ResetPasswordController::class,'reset']);
+    Route::post('resend/otp/{mobile}',[CustomerController::class,'sendOtp']);
 
     Route::get('show/agency/{id}',[ShowController::class,'detailAgency']);
     Route::get('show/bus/{id}',[ShowController::class,'detailBus']);
@@ -128,6 +130,7 @@ use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController
     Route::middleware('auth:api')->prefix('v1')->group(function(){
 
         Route::post('logout',[CustomerController::class,'logout']);
+        Route::get('details/user',[DetailUserLoginController::class,'infosUser']);
     });
 
 
