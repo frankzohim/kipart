@@ -2,7 +2,7 @@
 <aside id="leftsidebar" class="sidebar">
     <div class="navbar-brand">
         <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
-        <a href="index.html"><img src="admin/assets/images/kipart.png" width="25" alt="Aero"><span class="m-l-10" style="color: #fff">KiPART</span></a>
+        <a href="index.html"><img src="{{ asset('admin/assets/images/kipart.png') }}" width="25" alt="Aero"><span class="m-l-10" style="color: #fff">KiPART</span></a>
     </div>
     <div class="menu">
         <ul class="list">
