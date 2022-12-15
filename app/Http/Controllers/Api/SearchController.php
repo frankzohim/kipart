@@ -24,11 +24,22 @@ class SearchController extends Controller
                 ->get();
 
 
-            return response()->json(['status'=>1,'data'=> $travel],200);
+            return response()->json(['data'=> $travel],200);
 
     }
 
-    public function searchFull(){
+    public function searchFull($type,$departure,$arrival,$datedeparture,$datearrival,$number_of_places,$classe){
 
+        $travel=\Illuminate\Support\Facades\DB::table('travel')
+                ->join('paths','paths.id','=','travel.path_id')
+                ->join('agencies','agencies.id','=','travel.agency_id')
+                ->join('buses','buses.id','=','travel.bus_id')
+                ->select('travel.date','travel.price','travel.type','travel.classe','paths.departure','paths.arrival','agencies.name','buses.number_of_places')
+                ->where('travel.type','like',"%$type%")
+                ->where('paths.departure','like',"%$departure%")
+                ->where('path.arrival','like',"%$arrival%")
+                ->where('travel.date','like',"%$datedeparture%")
+                ->where('buses.number_of_places','like',"%$number_of_places%")
+                ->get();
     }
 }

@@ -48,8 +48,8 @@ use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController
     Route::post('testOtp',[TestOtpController::class,'testOtp']);
     Route::post('verify/Otp/{id}',[CustomerController::class,'verifyOtp']);
     Route::post('sendCode',ForgotPasswordController::class);
-    Route::post('password/code/check/{id}', [CodeCheckController::class,'check']);
-    Route::post('password/reset/{id}', [ResetPasswordController::class,'reset']);
+    Route::post('password/code/check', [CodeCheckController::class,'check']);
+    Route::post('password/reset', [ResetPasswordController::class,'reset']);
 
     Route::get('show/agency/{id}',[ShowController::class,'detailAgency']);
     Route::get('show/bus/{id}',[ShowController::class,'detailBus']);
@@ -63,7 +63,7 @@ use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController
     Route::get('list/paths/{paginate}',[ListController::class,'listPath']);
     Route::get('list/schedules/{paginate}',[ListController::class,'listSchedule']);
     Route::get('list/travels/{paginate}',[ListController::class,'listTravel']);
-    Route::get('image/{path}', [ImageController::class, 'getImage'])->where('path', '.*');
+    Route::get('image/{path}', [ImageController::class, 'getImage']);
 
     Route::get("search/{term}",[SearchController::class,'search']);
 

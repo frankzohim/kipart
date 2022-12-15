@@ -22,7 +22,7 @@ class AgencyController extends Controller
      */
     public function index()
     {
-        return AgencyResource::collection(Agency::where('state',1));
+        return AgencyResource::collection(Agency::where('state',1)->get());
     }
 
     /**

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ResetPasswordController extends Controller
 {
-    public function reset(ResetPasswordRequest $request,$id)
+    public function reset(ResetPasswordRequest $request)
     {
 
 
@@ -25,7 +25,7 @@ class ResetPasswordController extends Controller
         }
 
         // find user's email
-        $user = User::find($id);
+        $user = User::where('phone_number','=',$request->phone_number)->first();
 
         if($request->code==$passwordReset->code && $user->phone_number==$request->phone_number){
            // update user password

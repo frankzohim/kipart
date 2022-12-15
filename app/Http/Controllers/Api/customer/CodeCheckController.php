@@ -10,7 +10,7 @@ use App\Http\Requests\Otp\CodeCheckRequest;
 
 class CodeCheckController extends Controller
 {
-    public function check(CodeCheckRequest $request,$id)
+    public function check(CodeCheckRequest $request)
     {
 
         // find the code
@@ -25,7 +25,7 @@ class CodeCheckController extends Controller
             return response(['message' => 'Le code de reinitialisation de votre mot de passe à expiré'], 422);
         }
 
-        $user = User::find($id);
+        $user = User::where('phone_number','=',$request->phone_number)->first();
         if($request->code==$passwordReset->code && $request->phone_number==$user->phone_number){
             return response(['message' => "Le Code est Valide Vous serez rediriger vers un formulaire de reinitialisation de mot de passe"],202);
         }
