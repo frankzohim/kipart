@@ -8,51 +8,51 @@
         <ul class="list">
             <li>
                 <div class="user-info">
-                    <a class="image" href="profile.html"><img src="{{ asset('admin/assets/images/profile_av.jpg') }}" alt="User"></a>
+                    <a class="image" href="#"><img src="{{ asset('admin/assets/images/buca.jpg') }}" alt="User"></a>
                     <div class="detail">
                         <h4>{{ Auth::guard('agent')->user()->name }}</h4>
 
                     </div>
                 </div>
             </li>
-            <li class="active open"><a href="index.html"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
-            <li><a href="my-profile.html"><i class="zmdi zmdi-account"></i><span>Mon Profil</span></a></li>
+            <li class="active open"><a href="#"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+            <li><a href="#"><i class="zmdi zmdi-account"></i><span>Mon Profil</span></a></li>
             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-apps"></i><span>App</span></a>
                 <ul class="ml-menu">
-                    <li><a href="mail-inbox.html">Email</a></li>
-                    <li><a href="chat.html">kiPART Apps</a></li>
-                    <li><a href="events.html">Calendar</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Email</a></li>
+                    <li><a href="#">kiPART Apps</a></li>
+                    <li><a href="#">Calendar</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
             </li>
-            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-traffic"></i><span>Agences</span></a>
+            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-traffic"></i><span>Trajet</span></a>
                 <ul class="ml-menu">
-                    <li><a href="project-list.html">Lister</a></li>
-                    <li><a href="taskboard.html">Ajouter</a></li>
+                    <li><a href="#">Lister</a></li>
+                    <li><a href="#">Ajouter</a></li>
 
                 </ul>
             </li>
             <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-bus"></i><span>Voyage</span></a>
                 <ul class="ml-menu">
-                    <li><a href="file-dashboard.html">Lister</a></li>
-                    <li><a href="file-documents.html">Ajouter</a></li>
-                    <li><a href="file-documents.html">Categorie</a></li>
+                    <li><a href="#">Lister</a></li>
+                    <li><a href="#">Ajouter</a></li>
+                    <li><a href="#">Categorie</a></li>
                 </ul>
             </li>
 
             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-ticket-star"></i><span>Tickets</span></a>
                 <ul class="ml-menu">
-                    <li><a href="ec-dashboard.html">Historique</a></li>
-                    <li><a href="ec-dashboard.html">Lister</a></li>
+                    <li><a href="#">Historique</a></li>
+                    <li><a href="#">Lister</a></li>
                 </ul>
             </li>
-            <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-box-o"></i><span>Utilisateurs</span></a>
+            {{-- <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-box-o"></i><span>Utilisateurs</span></a>
                 <ul class="ml-menu">
                     <li><a href="sign-in.html">Lister</a></li>
                     <li><a href="sign-up.html">Creer un compte Admin</a></li>
 
                 </ul>
-            </li>
+            </li> --}}
             {{-- <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-swap-alt"></i><span>Components</span></a>
                 <ul class="ml-menu">
                     <li><a href="ui_kit.html">Aero UI KIT</a></li>
@@ -101,7 +101,7 @@
             </li>--}}
             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-group"></i><span>Chats</span></a>
             </li>
-            <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-blogger"></i><span>Blog</span></a>
+            {{-- <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-blogger"></i><span>Blog</span></a>
                 <ul class="ml-menu">
                     <li><a href="blog-dashboard.html">Creer</a></li>
                     <li><a href="blog-post.html">Blog Post</a></li>
@@ -130,7 +130,7 @@
                     <li><a href="yandex.html">YandexMap</a></li>
                     <li><a href="jvectormap.html">jVectorMap</a></li>
                 </ul>
-            </li>
+            </li> --}}
             <li>
                 <div class="progress-container progress-primary m-t-10">
                     <span class="progress-badge">Traffic this Month</span>
