@@ -121,7 +121,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                {{-- <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="card state_w1">
                         <div class="body d-flex justify-content-between">
                             <div>
@@ -131,7 +131,7 @@
                             <div class="sparkline" data-type="bar" data-width="97%" data-height="55px" data-bar-Width="3" data-bar-Spacing="5" data-bar-Color="#04BE5B">7,5,3,8,4,6,2,9</div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="row clearfix">
                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -232,7 +232,7 @@
 
 
         <div class="row clearfix">
-           
+
 
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="card">
@@ -242,46 +242,40 @@
                                 <li class="left">
                                     <img src="admin/assets/images/xs/avatar3.jpg" class="rounded-circle" alt="">
                                     <ul class="list-unstyled chat_info">
-                                        <li><small>Frank 11:00AM</small></li>
-                                        <li><span class="message bg-blue">Hello, Michael</span></li>
-                                        <li><span class="message bg-blue">How are you!</span></li>
+                                        <li><small>Buca 11:00AM</small></li>
+                                        <li><span class="message bg-blue">Hello, Kipart</span></li>
+                                        <li><span class="message bg-blue">Bonjour</span></li>
                                     </ul>
                                 </li>
                                 <li class="right">
                                     <ul class="list-unstyled chat_info">
                                         <li><small>11:10AM</small></li>
-                                        <li><span class="message">Hello, Frank</span></li>
+                                        <li><span class="message">Hello, Buca</span></li>
                                     </ul>
                                 </li>
                                 <li class="right">
                                     <ul class="list-unstyled chat_info">
                                         <li><small>11:11AM</small></li>
-                                        <li><span class="message">I'm fine what about you?</span></li>
+                                        <li><span class="message">Bonjour a vous</span></li>
                                     </ul>
                                 </li>
                                 <li class="left">
                                     <img src="admin/assets/images/xs/avatar2.jpg" class="rounded-circle" alt="">
                                     <ul class="list-unstyled chat_info">
-                                        <li><small>Gary 11:13AM</small></li>
-                                        <li><span class="message bg-indigo">Hello, Michael and Frank</span></li>
+                                        <li><small>Buca 11:13AM</small></li>
+                                        <li><span class="message bg-blue">Besoin d'aide pour ajouter un trajet</span></li>
                                     </ul>
                                 </li>
                                 <li class="left">
-                                    <img src="admin/assets/images/xs/avatar5.jpg" class="rounded-circle" alt="">
-                                    <ul class="list-unstyled chat_info">
-                                        <li><small>Hossein 11:14AM</small></li>
-                                        <li><span class="message bg-amber">Hello, team</span></li>
-                                        <li><span class="message bg-amber">Please let me know your requirements.</span></li>
-                                        <li><span class="message bg-amber">How would like to connect with us?</span></li>
+                                    <li class="right">
+                                        <ul class="list-unstyled chat_info">
+                                        <li><small>KiPART 11:14AM</small></li>
+                                        <li><span class="message">D'accord</span></li>
+                                        <li><span class="message ">Nous vous ecoutons.</span></li>
+                                        <li><span class="message ">quel est le soucis?</span></li>
                                     </ul>
                                 </li>
-                                <li class="right">
-                                    <ul class="list-unstyled chat_info">
-                                        <li><small>11:15AM</small></li>
-                                        <li><span class="message">Hello, Hossein</span></li>
-                                        <li><span class="message">Meeting on conference room at 12:00PM</span></li>
-                                    </ul>
-                                </li>
+
                             </ul>
                         </div>
                         <div class="input-group mt-3">

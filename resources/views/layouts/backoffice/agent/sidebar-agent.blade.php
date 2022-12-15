@@ -42,8 +42,8 @@
 
             <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-ticket-star"></i><span>Tickets</span></a>
                 <ul class="ml-menu">
-                    <li><a href="ec-dashboard.html">Historique</a></li>
-                    <li><a href="ec-dashboard.html">Lister</a></li>
+                    <li><a href="#">Historique</a></li>
+                    <li><a href="#">Lister</a></li>
                 </ul>
             </li>
             {{-- <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-account-box-o"></i><span>Utilisateurs</span></a>

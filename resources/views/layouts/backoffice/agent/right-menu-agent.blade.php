@@ -11,7 +11,7 @@
 <div class="navbar-right">
     <ul class="navbar-nav">
         <li><a href="#search" class="main_search" title="Search..."><i class="zmdi zmdi-search"></i></a></li>
-        <li class="dropdown">
+        {{-- <li class="dropdown">
             <a href="javascript:void(0);" class="dropdown-toggle" title="App" data-toggle="dropdown" role="button"><i class="zmdi zmdi-apps"></i></a>
             <ul class="dropdown-menu slideUp2">
                 <li class="header">App Sortcute</li>
@@ -56,7 +56,7 @@
                     </ul>
                 </li>
             </ul>
-        </li>
+        </li> --}}
         <li class="dropdown">
             <a href="javascript:void(0);" class="dropdown-toggle" title="Notifications" data-toggle="dropdown" role="button"><i class="zmdi zmdi-notifications"></i>
                 <div class="notify"><span class="heartbit"></span><span class="point"></span></div>
@@ -65,7 +65,7 @@
                 <li class="header">Notifications</li>
                 <li class="body">
                     <ul class="menu list-unstyled">
-                        <li>
+                        {{-- <li>
                             <a href="javascript:void(0);">
                                 <div class="icon-circle bg-blue"><i class="zmdi zmdi-account"></i></div>
                                 <div class="menu-info">
@@ -73,7 +73,7 @@
                                     <p><i class="zmdi zmdi-time"></i> 14 mins ago </p>
                                 </div>
                             </a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="javascript:void(0);">
                                 <div class="icon-circle bg-amber"><i class="zmdi zmdi-shopping-cart"></i></div>
@@ -96,25 +96,17 @@
                             <a href="javascript:void(0);">
                                 <div class="icon-circle bg-red"><i class="zmdi zmdi-delete"></i></div>
                                 <div class="menu-info">
-                                    <h4><b>Nancy Doe</b> Compte suprimmer</h4>
+                                    <h4><b>10</b> ticket valides en agence</h4>
                                     <p><i class="zmdi zmdi-time"></i> 3 hours ago </p>
                                 </div>
                             </a>
                         </li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <div class="icon-circle bg-green"><i class="zmdi zmdi-edit"></i></div>
-                                <div class="menu-info">
-                                    <h4><b>Nancy</b> Changer de nom</h4>
-                                    <p><i class="zmdi zmdi-time"></i> 2 hours ago </p>
-                                </div>
-                            </a>
-                        </li>
+
                         <li>
                             <a href="javascript:void(0);">
                                 <div class="icon-circle bg-grey"><i class="zmdi zmdi-comment-text"></i></div>
                                 <div class="menu-info">
-                                    <h4><b>Touristique</b> A ajouter un nouveau bus</h4>
+                                    <h4><b>Buca</b> A ajouter un nouveau bus</h4>
                                     <p><i class="zmdi zmdi-time"></i> 4 hours ago </p>
                                 </div>
                             </a>
@@ -123,7 +115,7 @@
                             <a href="javascript:void(0);">
                                 <div class="icon-circle bg-purple"><i class="zmdi zmdi-refresh"></i></div>
                                 <div class="menu-info">
-                                    <h4><b>Finex</b> A ajouter un nouveau trajet</h4>
+                                    <h4><b>Vous Avez</b> ajouter un nouveau trajet</h4>
                                     <p><i class="zmdi zmdi-time"></i> 3 hours ago </p>
                                 </div>
                             </a>
@@ -142,7 +134,7 @@
                 <li class="footer"> <a href="javascript:void(0);">View All Notifications</a> </li>
             </ul>
         </li>
-        <li class="dropdown">
+        {{-- <li class="dropdown">
             <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="zmdi zmdi-flag"></i>
             <div class="notify"><span class="heartbit"></span><span class="point"></span></div>
             </a>
@@ -228,7 +220,7 @@
         </li>
         <li><a href="javascript:void(0);" class="app_calendar" title="Calendar"><i class="zmdi zmdi-calendar"></i></a></li>
         <li><a href="javascript:void(0);" class="app_google_drive" title="Google Drive"><i class="zmdi zmdi-google-drive"></i></a></li>
-        <li><a href="javascript:void(0);" class="app_group_work" title="Group Work"><i class="zmdi zmdi-group-work"></i></a></li>
+        <li><a href="javascript:void(0);" class="app_group_work" title="Group Work"><i class="zmdi zmdi-group-work"></i></a></li>--}}
         <li><a href="javascript:void(0);" class="js-right-sidebar" title="Setting"><i class="zmdi zmdi-settings zmdi-hc-spin"></i></a></li>
 
 
