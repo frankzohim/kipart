@@ -150,7 +150,7 @@ class CustomerController extends Controller
         }
     }
 
-    public function verifyOtp(Request $request,$id){
+    public function verifyOtp(Request $request){
 
         $rules = Validator::make($request->all(), [
             'otp' => 'required|exists:verification_codes,otp',
@@ -162,7 +162,7 @@ class CustomerController extends Controller
         }
         $enteredOtp = $request->input('otp');
         $verificationCode   = VerificationCode::where('otp', $request->otp)->first();
-        $user = User::find($id);
+        $user = User::where('phone_number','=',$request->phone_number)->first();
         try{
             if($enteredOtp==$verificationCode->otp && $request->phone_number==$user->phone_number){
 
