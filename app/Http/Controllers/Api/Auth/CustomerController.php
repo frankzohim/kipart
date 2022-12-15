@@ -24,12 +24,12 @@ use ErrorException;
 class CustomerController extends Controller
 {
     public function login(Request $request){
-        $valid = validator($request->only('email','password'), [
-            'email' => 'required|string|email',
-            'password' => 'required|string|min:6',
+        $valid = validator($request->only('phone_number','password'), [
+            'phone_number' => 'required|string',
+            'password' => 'required|string',
         ]);
-        $data = request()->only('email','password');
-        $customer=User::where("email",$data["email"])->first();
+        $data = request()->only('phone_number','password');
+        $customer=User::where("phone_number",$data["phone_number"])->first();
         $client = Client::where('id', 2)->first();
         if ($valid->fails()) {
             return response()->json(['error'=>$valid->errors()], 422);
@@ -50,7 +50,7 @@ class CustomerController extends Controller
         'grant_type'    => 'password',
         'client_id'     => $client->id,
         'client_secret' => $client->secret,
-        'username'      => $data['email'],
+        'username'      => $customer->email,
         'password'      => $data['password'],
         'scope'         => null,
     ]);

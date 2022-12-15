@@ -11,6 +11,6 @@ use Illuminate\Support\Facades\Response;
 class ImageController extends Controller
 {
     public function getImage($path){
-        echo Storage::url($path);
+        return "<img src=".Storage::get($path)."/>";
     }
 }
