@@ -240,7 +240,7 @@
                         <div class="chat-widget">
                             <ul class="list-unstyled">
                                 <li class="left">
-                                    <img src="admin/assets/images/xs/avatar3.jpg" class="rounded-circle" alt="">
+                                    <img src="{{ asset('admin/assets/images/buca.jpg') }}" class="rounded-circle" alt="">
                                     <ul class="list-unstyled chat_info">
                                         <li><small>Buca 11:00AM</small></li>
                                         <li><span class="message bg-blue">Hello, Kipart</span></li>
@@ -248,10 +248,12 @@
                                     </ul>
                                 </li>
                                 <li class="right">
+
                                     <ul class="list-unstyled chat_info">
                                         <li><small>11:10AM</small></li>
                                         <li><span class="message">Hello, Buca</span></li>
                                     </ul>
+                                    <img src="{{ asset('admin/assets/images/kipart.png') }}" class="rounded-circle" alt="">
                                 </li>
                                 <li class="right">
                                     <ul class="list-unstyled chat_info">
@@ -260,19 +262,21 @@
                                     </ul>
                                 </li>
                                 <li class="left">
-                                    <img src="admin/assets/images/xs/avatar2.jpg" class="rounded-circle" alt="">
+                                    <img src="{{ asset('admin/assets/images/buca.jpg') }}" class="rounded-circle" alt="">
                                     <ul class="list-unstyled chat_info">
                                         <li><small>Buca 11:13AM</small></li>
-                                        <li><span class="message bg-blue">Besoin d'aide pour ajouter un trajet</span></li>
+                                        <li><span class="message bg-blue">Merci de nous faire parvenir votre liste de passagers pour le voyage VIP de 17h45</span></li>
                                     </ul>
                                 </li>
                                 <li class="left">
                                     <li class="right">
+
                                         <ul class="list-unstyled chat_info">
                                         <li><small>KiPART 11:14AM</small></li>
                                         <li><span class="message">D'accord</span></li>
-                                        <li><span class="message ">Nous vous ecoutons.</span></li>
-                                        <li><span class="message ">quel est le soucis?</span></li>
+                                        <li><span class="message ">Nous vous envoyons toute de suite</span></li>
+                                        <li><span class="message ">Merci!</span></li>
+                                        <img src="{{ asset('admin/assets/images/kipart.png') }}" class="rounded-circle" alt="">
                                     </ul>
                                 </li>
 

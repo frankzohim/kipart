@@ -2,7 +2,7 @@
 <aside id="leftsidebar" class="sidebar">
     <div class="navbar-brand">
         <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
-        <a href="index.html"><img src="admin/assets/images/kipart.png" width="25" alt="Aero"><span class="m-l-10" style="color: #fff">KiPART</span></a>
+        <a href="index.html"><img src="{{ asset('admin/assets/images/kipart.png') }}" width="25" alt="Aero"><span class="m-l-10" style="color: #fff">KiPART</span></a>
     </div>
     <div class="menu">
         <ul class="list">
@@ -131,24 +131,7 @@
                     <li><a href="jvectormap.html">jVectorMap</a></li>
                 </ul>
             </li> --}}
-            <li>
-                <div class="progress-container progress-primary m-t-10">
-                    <span class="progress-badge">Traffic this Month</span>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="width: 67%;">
-                            <span class="progress-value">67%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="progress-container progress-info">
-                    <span class="progress-badge">Server Load</span>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" style="width: 86%;">
-                            <span class="progress-value">86%</span>
-                        </div>
-                    </div>
-                </div>
-            </li>
+           
         </ul>
     </div>
 </aside>

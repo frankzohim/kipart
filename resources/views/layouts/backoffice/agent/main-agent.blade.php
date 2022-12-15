@@ -30,7 +30,6 @@
 <script src="{{ asset('admin/assets/bundles/sparkline.bundle.js') }}"></script> <!-- Sparkline Plugin Js -->
 
 <script src="{{ asset('admin/assets/bundles/c3.bundle.js') }}"></script>
-admin/assets/bundles/mainscripts.bundle.js
 <script src="{{ asset('admin/assets/bundles/mainscripts.bundle.js') }}"></script>
 <script src="{{ asset('admin/assets/js/pages/index.js') }}"></script>
 </body>
