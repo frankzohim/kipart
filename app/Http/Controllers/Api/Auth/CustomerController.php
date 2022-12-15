@@ -23,20 +23,26 @@ use ErrorException;
 
 class CustomerController extends Controller
 {
-    public function login(LoginRequest $request){
-        $customerRequest=$request->validate([
-            'email'=>["email","required"],
-            'password'=>["required","string",]
+    public function login(Request $request){
+        $valid = validator($request->only('email','password'), [
+            'email' => 'required|string|email',
+            'password' => 'required|string|min:6',
         ]);
-        $customer=User::where("email",$customerRequest["email"])->first();
+        $data = request()->only('email','password');
+        $customer=User::where("email",$data["email"])->first();
+        $client = Client::where('id', 2)->first();
+        if ($valid->fails()) {
+            return response()->json(['error'=>$valid->errors()], 422);
 
-        if(!$customer) return response(["message"=>"Aucun client trouvé"],401);
-        if(!Hash::check($request["password"],$customer->password)){
-            return response(['aucun utilisateur trouver avec ce mot de passe'],401);
         }
-          // And created user until here.
+        if($customer->isVerifiedOtp==0){
+            return response()->json(['message'=>"vous n'aviez pas encore verifié votre compte"],401);
+        }
 
-    $client = Client::where('id', 2)->first();
+        if($customer->isVerifiedOtp==1){
+                  // And created user until here.
+
+
 
     // Is this $request the same request? I mean Request $request? Then wouldn't it mess the other $request stuff? Also how did you pass it on the $request in $proxy? Wouldn't Request::create() just create a new thing?
 
@@ -44,8 +50,8 @@ class CustomerController extends Controller
         'grant_type'    => 'password',
         'client_id'     => $client->id,
         'client_secret' => $client->secret,
-        'username'      => $customer->email,
-        'password'      => $customer->password,
+        'username'      => $data['email'],
+        'password'      => $data['password'],
         'scope'         => null,
     ]);
 
@@ -55,6 +61,8 @@ class CustomerController extends Controller
         'POST'
     );
     return Route::dispatch($token);
+        }
+
     }
 
     // User Register
@@ -83,6 +91,7 @@ class CustomerController extends Controller
     $user = User::create([
         'name' => $data['name'],
         'email' => $data['email'],
+        'isVerifiedOtp'=>0,
         'password' => bcrypt($data['password']),
         'phone_number' => $data['phone_number']
     ]);
@@ -162,6 +171,8 @@ class CustomerController extends Controller
                 $verificationCode->update([
                     'expire_at' => Carbon::now()
                 ]);
+                $user->isVerifiedOtp=1;
+                $user->save();
                 $verificationCode->delete();
 
                return response()->json(["message"=>"Votre numéro viens d'etre verifier"],200);

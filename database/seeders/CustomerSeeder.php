@@ -19,6 +19,7 @@ class CustomerSeeder extends Seeder
         DB::table('users')->insert([
             'name'=>'Bob',
             'email'=>'Bob237@gmail.com',
+            'isVerifiedOtp'=>1,
             'password'=>bcrypt("password"),
             'phone_number'=>'+237694297339',
         ]);
