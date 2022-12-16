@@ -69,6 +69,8 @@ use App\Http\Controllers\Api\customer\DetailUserLoginController;
     Route::get('image/{path}', [ImageController::class, 'getImage']);
 
     Route::get("search/{term}",[SearchController::class,'search']);
+    Route::post('searchFull/travel',[SearchController::class,'searchFull']);
+
 
    Route::get('list/passengers/{travel}',[PassengerController::class,'listPassenger']);
    Route::post('add/passengers/{travel}',[PassengerController::class,'addPassenger']);
