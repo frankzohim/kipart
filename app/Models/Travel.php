@@ -21,7 +21,6 @@ class Travel extends Model
         'agency_id',
         'price',
         'state',
-        'type',
         'classe',
         'departure_time'
     ];
