@@ -22,6 +22,7 @@ class TravelResource extends JsonResource
             'agence'=>$this->agency->name,
             'agency_id'=>$this->agency->id,
             'path_id'=>$this->path_id,
+            'heure'=>$this->departure_time,
             'state'=>$this->state,
             'classe'=>$this->classe,
             'prix'=>$this->price,

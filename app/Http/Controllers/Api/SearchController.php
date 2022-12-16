@@ -43,7 +43,7 @@ class SearchController extends Controller
                 ->where('buses.number_of_places','>',$request->number_of_places)
                 ->get();
 
-                return response()->json(['data'=> $travel,'type'=>$request->type,'DateArrival'=>$request->dateArrival,'heure Arrivéé'=>$request->hourArrival],200);
+                return response()->json(['type'=>$request->type,'DateArrival'=>$request->dateArrival,'heure Arrivéé'=>$request->hourArrival,'data'=> $travel],200);
 
     }
 }

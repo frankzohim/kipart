@@ -16,6 +16,7 @@ use App\Http\Resources\Path\ListArrivalResource;
 use App\Http\Resources\Travel\TravelResource;
 use App\Http\Resources\schedule\ScheduleResource;
 use App\Http\Resources\Path\ListDepartureResource;
+use App\Http\Resources\Travel\TimeResource;
 
 class ListController extends Controller
 {
@@ -51,5 +52,10 @@ class ListController extends Controller
     public function listArrival(){
 
         return ListArrivalResource::collection(Path::all());
+    }
+
+    public function listTime(){
+
+        return TimeResource::collection(Travel::all());
     }
 }
