@@ -41,9 +41,6 @@ class CustomerController extends Controller
 
         if($customer->isVerifiedOtp==1){
                   // And created user until here.
-
-
-
     // Is this $request the same request? I mean Request $request? Then wouldn't it mess the other $request stuff? Also how did you pass it on the $request in $proxy? Wouldn't Request::create() just create a new thing?
 
     $request->request->add([
