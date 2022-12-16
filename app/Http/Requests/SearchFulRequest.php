@@ -38,7 +38,7 @@ class SearchFulRequest extends FormRequest
             'type'=>'required',
             'departure'=>'required',
             'arrival'=>'required',
-            'hourDeparture'=>'required',
+            'departure_time'=>'required',
             'dateDeparture'=>'required',
             'number_of_places' =>'required',
             'classe'=>'required',
