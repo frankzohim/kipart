@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\Path;
+
 use App\Models\User;
 
 
+use App\Models\Travel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,8 +27,8 @@ class Paiement extends Model
         return $this->belongsTo(User::class);;
     }
 
-    public function path():BelongsTo
+    public function travel():BelongsTo
     {
-        return $this->belongsTo(Path::class);
+        return $this->belongsTo(Travel::class);
     }
 }

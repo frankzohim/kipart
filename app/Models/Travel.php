@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Bus;
 use App\Models\Path;
 use App\Models\Codeqr;
+use App\Models\Payment;
 use App\Models\Passenger;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -39,7 +40,7 @@ class Travel extends Model
     public function paiements():HasMany
 
     {
-        return $this->hasMany(Paiement::class);
+        return $this->hasMany(Payment::class);
     }
 
     public function path():BelongsTo
