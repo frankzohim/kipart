@@ -47,4 +47,20 @@ class SearchController extends Controller
                 return response()->json(['type'=>$request->type,'DataArrival'=>$request->DataArrival,'hourArrival'=>$request->hourArrival,'data'=> $travel],200);
 
     }
+
+    public function searchByAgency(SearchFulRequest $request,$id){
+
+        $travel=\Illuminate\Support\Facades\DB::table('agencies')
+                ->join('buses','buses.agency_id','=','agencies.id')
+                ->join('travel','travel.agency_id','=','agencies.id')
+                ->join('paths','paths.id','=','travel.path_id')
+                ->select('travel.id','travel.date','travel.price','travel.classe','travel.departure_time','agencies.name','travel.agency_id','buses.number_of_places','buses.agency_id','travel.path_id','paths.arrival')
+                ->where('travel.agency_id','=',$id)
+                ->where('buses.number_of_places','>',$request->number_of_places)
+
+                ->where('travel.date','>',$request->dateDeparture)
+                ->get();
+
+                return response()->json(['type'=>$request->type,'DataArrival'=>$request->DataArrival,'hourArrival'=>$request->hourArrival,'data'=> $travel],200);
+    }
 }

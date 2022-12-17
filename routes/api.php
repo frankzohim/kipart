@@ -70,6 +70,7 @@ use App\Http\Controllers\Api\customer\DetailUserLoginController;
 
     Route::get("search/{term}",[SearchController::class,'search']);
     Route::post('searchFull/travel',[SearchController::class,'searchFull']);
+    Route::post('search/byAgency/{id}',[SearchController::class,'searchByAgency']);
 
 
    Route::get('list/passengers/{travel}',[PassengerController::class,'listPassenger']);
