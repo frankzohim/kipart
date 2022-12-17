@@ -35,7 +35,7 @@ class SearchController extends Controller
                 ->join('paths','paths.id','=','travel.path_id')
                 ->join('agencies','agencies.id','=','travel.agency_id')
                 ->join('buses','travel.id','=','buses.travel_id')
-                ->select('travel.date','travel.price','travel.type','travel.classe','travel.departure_time','paths.departure','paths.arrival','agencies.name','buses.number_of_places')
+                ->select('travel.date','travel.price','travel.classe','travel.departure_time','paths.departure','paths.arrival','agencies.name','buses.number_of_places')
                 ->where('paths.departure','=',$request->departure)
                 ->where('paths.arrival','=',$request->arrival)
                 ->where('travel.departure_time','=',$request->departure_time)
@@ -44,7 +44,7 @@ class SearchController extends Controller
                 ->where('buses.number_of_places','>',$request->number_of_places)
                 ->get();
 
-                return response()->json(['type'=>$request->type,'DateArrival'=>$request->dateArrival,'heure Arrivéé'=>$request->hourArrival,'data'=> $travel],200);
+                return response()->json(['type'=>$request->type,'DataArrival'=>$request->DataArrival,'hourArrival'=>$request->hourArrival,'data'=> $travel],200);
 
     }
 }

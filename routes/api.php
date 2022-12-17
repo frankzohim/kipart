@@ -73,7 +73,7 @@ use App\Http\Controllers\Api\customer\DetailUserLoginController;
 
 
    Route::get('list/passengers/{travel}',[PassengerController::class,'listPassenger']);
-   Route::post('add/passengers/{travel}',[PassengerController::class,'addPassenger']);
+   Route::post('add/passengers/{number_passenger}/{travel_id}',[PassengerController::class,'addPassenger']);
 
    // All endpoints for admin
     Route::middleware('auth:api-admin')->prefix('v1')->group(function(){
