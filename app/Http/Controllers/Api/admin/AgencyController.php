@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\Agency\AgencyResource;
 use App\Services\agencies\UpdateAgencyService;
 use App\Http\Resources\Agency\AgencyDetailResource;
+use Symfony\Component\HttpFoundation\Response;
 
 class AgencyController extends Controller
 {
@@ -49,7 +50,7 @@ class AgencyController extends Controller
             'password'=>bcrypt($request->password),
         ]);
 
-        return new AgencyResource($agency);
+        return response($agency,Response::HTTP_CREATED);
     }
 
     /**

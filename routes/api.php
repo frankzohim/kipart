@@ -58,8 +58,7 @@ use App\Http\Controllers\Api\customer\DetailUserLoginController;
     Route::get('show/path/{id}',[ShowController::class,'detailPath']);
     Route::get('show/schedules/{id}',[ShowController::class,'detailSchedule']);
     Route::get('show/travel/{id}',[ShowController::class,'detailTravel']);
-    Route::get('list/departure',[ListController::class,'listDeparture']);
-    Route::get('list/arrival',[ListController::class,'listArrival']);
+    Route::get('list/town',[ListController::class,'listTown']);
     Route::get('list/travel/schedules',[ListController::class,'listTime']);
 
     Route::get('list/agencies/{paginate}',[ListController::class,'listAgency']);

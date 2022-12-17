@@ -8,15 +8,17 @@ use App\Models\Agency;
 use App\Models\Travel;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Bus\BusResource;
 use App\Http\Resources\Path\PathResource;
+use App\Http\Resources\Travel\TimeResource;
 use App\Http\Resources\Agency\AgencyResource;
-use App\Http\Resources\Path\ListArrivalResource;
+use App\Http\Resources\Path\ListTownResource;
 use App\Http\Resources\Travel\TravelResource;
+use App\Http\Resources\Path\ListArrivalResource;
 use App\Http\Resources\schedule\ScheduleResource;
 use App\Http\Resources\Path\ListDepartureResource;
-use App\Http\Resources\Travel\TimeResource;
 
 class ListController extends Controller
 {
@@ -44,18 +46,17 @@ class ListController extends Controller
         return TravelResource::collection(Travel::paginate($paginate));
     }
 
-    public function listDeparture(){
+    public function listTown(){
 
-        return ListDepartureResource::collection(Path::all());
+
+        return ListTownResource::collection(Path::Select("departure")
+        ->groupBy('departure')
+        ->get());
     }
 
-    public function listArrival(){
-
-        return ListArrivalResource::collection(Path::all());
-    }
 
     public function listTime(){
 
-        return TimeResource::collection(Travel::all());
+        return TimeResource::collection(Travel::all())->unique();
     }
 }
