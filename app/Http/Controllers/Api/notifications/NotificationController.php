@@ -12,11 +12,11 @@ class NotificationController extends Controller
 {
     public function sendNotification($message){
 
-        $fields['include_player_ids'] =Auth::guard('api')->user()->id;
+        $fields['include_player_ids'] =["1fee3f5a-1c5d-40a9-8c80-aa22cd91b59d"];
         $message = 'Hello!! A tiny web push notification.!';
-        OneSignal::sendPush($fields, $message);
+        $send=OneSignal::sendPush($fields, $message);
 
-        return response()->json(['message' =>'message has been send'],200);
+        return response()->json(['message' =>$send],200);
     }
 
     public function getNotifications(){
