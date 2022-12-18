@@ -30,6 +30,7 @@ use App\Http\Controllers\Api\agent\PathController as AgentPathController;
 use App\Http\Controllers\Api\agent\AgencyController as AgentAgencyController;
 use App\Http\Controllers\Api\agent\TravelController as AgentTravelController;
 use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
+use App\Http\Controllers\Api\test\payment\stripe\StripeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,14 +54,16 @@ use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController
     Route::post('password/reset', [ResetPasswordController::class,'reset']);
     Route::post('resend/otp/{mobile}',[CustomerController::class,'sendOtp']);
     Route::post('send/notifications/{message}',[NotificationController::class,'sendNotification']);
-    Route::get('list/notifications',[NotificationController::class,'getNotifications']);
 
+
+    Route::get('list/notifications',[NotificationController::class,'getNotifications']);
     Route::get('show/agency/{id}',[ShowController::class,'detailAgency']);
     Route::get('show/bus/{id}',[ShowController::class,'detailBus']);
     Route::get('show/path/{id}',[ShowController::class,'detailPath']);
     Route::get('show/schedules/{id}',[ShowController::class,'detailSchedule']);
     Route::get('show/travel/{id}',[ShowController::class,'detailTravel']);
     Route::get('list/town',[ListController::class,'listTown']);
+
     Route::get('list/travel/schedules',[ListController::class,'listTime']);
 
     Route::get('list/agencies/{paginate}',[ListController::class,'listAgency']);
@@ -88,7 +91,6 @@ use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController
         Route::apiResource('paths',PathController::class);
         Route::apiResource('users',UsersController::class);
         Route::post('logout/adm/private',[AdminController::class,'logout']);
-
 
         Route::get('routes',[CustomerController::class,'routeList']);
         Route::get('agencyCount',[AgencyController::class,'countAllAgency']);
@@ -137,6 +139,8 @@ use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController
 
         Route::post('logout',[CustomerController::class,'logout']);
         Route::get('details/user',[DetailUserLoginController::class,'infosUser']);
+        Route::post('stripe/test/payment/{id}',[StripeController::class,'stripeTestPayment']);
+
     });
 
 

@@ -13,14 +13,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Paiement extends Model
+class Payment extends Model
 {
     use HasFactory;
 
     protected $fillable=[
         'user_id',
         'travel_id',
-        'means_of_payment'
+        'means_of_payment',
     ];
 
     public function user():BelongsTo

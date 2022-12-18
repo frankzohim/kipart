@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Api\test\payment\stripe;
 
-use App\Http\Controllers\Controller;
-use Exception;
-use Illuminate\Http\Request;
 use Stripe;
+use Exception;
+use App\Models\Payment;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class StripeController extends Controller
 {
-    public function stripeTestPayment(Request $request){
+    public function stripeTestPayment(Request $request, $id){
 
         try{
 
@@ -32,6 +34,17 @@ class StripeController extends Controller
                 'source' => $res->id,
                 'description' => $request->description
               ]);
+
+              if($response->status=='succeeded'){
+
+                Payment::create([
+                    'user_id' =>Auth::guard('api')->user()->id,
+                    'travel_id' =>$id,
+                    'means_of_payment'=>'visa card'
+
+                ]);
+
+              }
 
               return response()->json([$response->status],201);
 
