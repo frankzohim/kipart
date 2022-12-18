@@ -43,10 +43,14 @@ class StripeController extends Controller
                     'means_of_payment'=>'visa card'
 
                 ]);
-
+                return response()->json([$response->status],201);
+              }else{
+                return response()->json([
+                                    'message'=>'failed'
+                                ],422);
               }
 
-              return response()->json([$response->status],201);
+
 
         }catch(Exception $e){
             return response()->json(['response'=>'error'],500);
