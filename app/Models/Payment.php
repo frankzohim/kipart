@@ -7,6 +7,7 @@ use App\Models\User;
 
 
 use App\Models\Travel;
+use App\Models\Passenger;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -30,5 +31,10 @@ class Paiement extends Model
     public function travel():BelongsTo
     {
         return $this->belongsTo(Travel::class);
+    }
+
+    public function passengers():HasMany
+    {
+        return $this->hasMany(Passenger::class);
     }
 }

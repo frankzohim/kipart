@@ -1,4 +1,15 @@
 <?php return array (
+  'ladumor/one-signal' => 
+  array (
+    'providers' => 
+    array (
+      0 => '\\Ladumor\\OneSignal\\OneSignalServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'OneSignal' => 'Ladumor\\OneSignal\\OneSignal',
+    ),
+  ),
   'laravel/breeze' => 
   array (
     'providers' => 
