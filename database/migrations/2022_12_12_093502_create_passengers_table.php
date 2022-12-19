@@ -19,6 +19,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
+            $table->bigInteger('payment_id');
             $table->string('seatNumber')->unique();
 
             $table->foreignIdFor(Travel::class)
