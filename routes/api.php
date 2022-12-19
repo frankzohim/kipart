@@ -30,6 +30,7 @@ use App\Http\Controllers\Api\agent\PathController as AgentPathController;
 use App\Http\Controllers\Api\agent\AgencyController as AgentAgencyController;
 use App\Http\Controllers\Api\agent\TravelController as AgentTravelController;
 use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
+use App\Http\Controllers\Api\GenerateTravelController;
 use App\Http\Controllers\Api\test\payment\stripe\StripeController;
 
 /*
@@ -55,7 +56,7 @@ use App\Http\Controllers\Api\test\payment\stripe\StripeController;
     Route::post('resend/otp/{mobile}',[CustomerController::class,'sendOtp']);
     Route::post('send/notifications/{message}',[NotificationController::class,'sendNotification']);
 
-
+    Route::get('generate',[GenerateTravelController::class,'generateTravelToThreeMonth']);
     Route::get('list/notifications',[NotificationController::class,'getNotifications']);
     Route::get('show/agency/{id}',[ShowController::class,'detailAgency']);
     Route::get('show/bus/{id}',[ShowController::class,'detailBus']);
@@ -79,7 +80,7 @@ use App\Http\Controllers\Api\test\payment\stripe\StripeController;
 
 
    Route::get('list/passengers/{travel}',[PassengerController::class,'listPassenger']);
-   Route::post('add/passengers/{number_passenger}/{travel_id}',[PassengerController::class,'addPassenger']);
+   Route::post('add/passengers/{travel_id}',[PassengerController::class,'addPassenger']);
 
    // All endpoints for admin
     Route::middleware('auth:api-admin')->prefix('v1')->group(function(){

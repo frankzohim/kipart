@@ -19,21 +19,22 @@ class PassengerController extends Controller
         return PassengerResource::collection(Passenger::where('travel_id', $travel)->get());
     }
 
-    public function addPassenger(PassengerRequest $request,$number_passenger,$travel_id){
+    public function addPassenger(Request $request,$travel_id){
 
 
         $travel_found=Travel::find($travel_id);
+        $PassengerData = $request->all();
 
         if($travel_found){
-            for($i=0;$i<$number_passenger;$i++){
+            foreach($PassengerData['passengers'] as $key => $value){
 
-                    $passenger=new Passenger;
-                    $passenger['cni']=$request->cni[$i];
-                    $passenger['name']=$request->name[$i];
-                    $passenger['type']=$request->type[$i];
-                    $passenger['seatNumber']=$request->seatNumber[$i];
-                    $passenger['travel_id']=$travel_id;
-                    $passenger->save();
+                    $passengerModel=new Passenger;
+                    $passengerModel->cni=$value['cni'];
+                    $passengerModel->name=$value['name'];
+                    $passengerModel->type=$value['type'];
+                    $passengerModel->seatNumber=$value['seatNumber'];
+                    $passengerModel->travel_id=$travel_id;
+                    $passengerModel->save();
 
             }
 

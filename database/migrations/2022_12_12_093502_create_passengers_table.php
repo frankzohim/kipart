@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('type');
             $table->bigInteger('payment_id');
             $table->string('seatNumber')->unique();
-
+            $table->boolean('isCheckPayment')->default(0);
             $table->foreignIdFor(Travel::class)
             ->constrained()
             ->restrictOnUpdate()
