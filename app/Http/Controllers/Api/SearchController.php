@@ -54,7 +54,7 @@ class SearchController extends Controller
                 ->join('buses','buses.agency_id','=','agencies.id')
                 ->join('travel','travel.agency_id','=','agencies.id')
                 ->join('paths','paths.id','=','travel.path_id')
-                ->select('travel.id','travel.date','travel.price','travel.classe','travel.departure_time','agencies.name','travel.agency_id','buses.number_of_places','buses.agency_id','travel.path_id','paths.arrival')
+                ->select('travel.id','travel.date','travel.price','travel.classe','travel.departure_time','agencies.name','travel.agency_id','buses.number_of_places','buses.agency_id','travel.path_id','paths.arrival','paths.departure')
                 ->where('travel.agency_id','=',$id)
                 ->where('buses.number_of_places','>',$request->number_of_places)
 
