@@ -17,6 +17,8 @@ class Passenger extends Model
         'travel_id',
         'type',
         'seatNumber',
+        'payment_id',
+        'isCheckPayment',
         'cni',
     ];
 

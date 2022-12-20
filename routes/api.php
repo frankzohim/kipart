@@ -79,8 +79,7 @@ use App\Http\Controllers\Api\test\payment\stripe\StripeController;
     Route::post('search/byAgency/{id}',[SearchController::class,'searchByAgency']);
 
 
-   Route::get('list/passengers/{travel}',[PassengerController::class,'listPassenger']);
-   Route::post('add/passengers/{travel_id}',[PassengerController::class,'addPassenger']);
+
 
    // All endpoints for admin
     Route::middleware('auth:api-admin')->prefix('v1')->group(function(){
@@ -141,6 +140,8 @@ use App\Http\Controllers\Api\test\payment\stripe\StripeController;
         Route::post('logout',[CustomerController::class,'logout']);
         Route::get('details/user',[DetailUserLoginController::class,'infosUser']);
         Route::post('stripe/test/payment/{id}',[StripeController::class,'stripeTestPayment']);
+        Route::get('list/passengers/{travel}',[PassengerController::class,'listPassenger']);
+        Route::post('add/passengers/{travel_id}',[PassengerController::class,'addPassenger']);
 
     });
 
