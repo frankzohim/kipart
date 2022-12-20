@@ -8,6 +8,7 @@ use App\Models\Payment;
 use App\Models\Passenger;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\PromoCode;
 use App\Models\Travel;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +16,14 @@ class StripeController extends Controller
 {
     public function stripeTestPayment(Request $request, $id,$price,$codePromo){
 
+        $code=PromoCode::where('code',$codePromo)->first();
+        if($code){
+            $code->update([
+                'isUse'=>1
+            ]);
+        }else{
+
+        }
         try{
 
             $stripe = new \Stripe\StripeClient(env("STRIPE_SECRET"));
