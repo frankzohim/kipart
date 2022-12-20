@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\PassengerRequest;
+use App\Http\Resources\Passenger\DetailTravelResource;
+
 use function PHPUnit\Framework\isEmpty;
 use App\Http\Resources\Passenger\PassengerResource;
 
@@ -18,7 +20,9 @@ class PassengerController extends Controller
 
     public function listPassenger($travel){
 
-        return PassengerResource::collection(Passenger::where('travel_id', $travel)->get());
+
+            return DetailTravelResource::collection(Payment::where('travel_id', $travel)->where('user_id',Auth::guard('api')->user()->id)->get());
+
     }
 
     public function addPassenger(Request $request,$travel_id){

@@ -140,7 +140,7 @@ use App\Http\Controllers\Api\test\payment\stripe\StripeController;
         Route::post('logout',[CustomerController::class,'logout']);
         Route::get('details/user',[DetailUserLoginController::class,'infosUser']);
         Route::post('stripe/test/payment/{id}',[StripeController::class,'stripeTestPayment']);
-        Route::get('list/passengers/{travel}',[PassengerController::class,'listPassenger']);
+        Route::get('list/passengers/{id}',[PassengerController::class,'listPassenger']);
         Route::post('add/passengers/{travel_id}',[PassengerController::class,'addPassenger']);
 
     });
