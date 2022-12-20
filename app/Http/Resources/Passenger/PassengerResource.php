@@ -2,6 +2,10 @@
 
 namespace App\Http\Resources\Passenger;
 
+use App\Http\Resources\Agency\AgencyResource;
+use App\Http\Resources\Travel\TravelResource;
+use App\Models\Agency;
+use App\Models\Travel;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PassengerResource extends JsonResource
@@ -18,7 +22,8 @@ class PassengerResource extends JsonResource
             'nom'=>$this->name,
             'type'=>$this->type,
             'seatNumber'=>$this->seatNumber,
-            'cniNumber'=>$this->cniNumber,
+            'cniNumber'=>$this->cni,
+            'InfosVoyages'=>TravelResource::collection(Travel::where('id',$this->travel_id)->get())
         ];
     }
 }
