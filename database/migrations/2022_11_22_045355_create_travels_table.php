@@ -2,6 +2,7 @@
 
 use App\Models\Agency;
 use App\Models\Path;
+use App\Models\Schedule;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -30,9 +31,13 @@ return new class extends Migration
                 ->restrictOnUpdate()
                 ->restrictOnDelete();
 
+            $table->foreignIdFor(Schedule::class)
+                ->constrained()
+                ->restrictOnUpdate()
+                ->restrictOnDelete();
+
             $table->double('price');
             $table->string('classe');
-            $table->string('departure_time');
             $table->string('type');
             $table->boolean('state');
             $table->timestamps();
