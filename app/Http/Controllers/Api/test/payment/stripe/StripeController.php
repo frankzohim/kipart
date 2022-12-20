@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Api\test\payment\stripe;
 use Stripe;
 use Exception;
 use App\Models\Payment;
+use App\Models\Passenger;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Travel;
 use Illuminate\Support\Facades\Auth;
 
 class StripeController extends Controller
 {
-    public function stripeTestPayment(Request $request, $id){
+    public function stripeTestPayment(Request $request, $id,$price,$codePromo){
 
         try{
 
@@ -25,7 +27,8 @@ class StripeController extends Controller
                     'cvc' => $request->cvc,
                 ]
             ]);
-
+            $payment=Passenger::where('payment_id',$id);
+            $travel=Travel::find($payment->travel_id);
             Stripe\Stripe::setApiKey(env("STRIPE_SECRET"));
 
             $response=$stripe->charges->create([
@@ -37,10 +40,9 @@ class StripeController extends Controller
 
               if($response->status=='succeeded'){
 
-                Payment::create([
-                    'user_id' =>Auth::guard('api')->user()->id,
-                    'travel_id' =>$id,
-                    'means_of_payment'=>'visa card'
+
+                $payment->update([
+                    'isCheckPayment' =>1
 
                 ]);
                 return response()->json([$response->status],201);
@@ -53,7 +55,7 @@ class StripeController extends Controller
 
 
         }catch(Exception $e){
-            return response()->json(['response'=>'error'],500);
+            return response()->json(['response'=>$e->getMessage()],500);
         }
     }
 }
