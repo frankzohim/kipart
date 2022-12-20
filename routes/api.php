@@ -32,6 +32,7 @@ use App\Http\Controllers\Api\agent\TravelController as AgentTravelController;
 use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
 use App\Http\Controllers\Api\GenerateTravelController;
 use App\Http\Controllers\Api\test\payment\stripe\StripeController;
+use App\Http\Controllers\Api\test\TestCodePromoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -142,7 +143,7 @@ use App\Http\Controllers\Api\test\payment\stripe\StripeController;
         Route::post('stripe/test/payment/{id}',[StripeController::class,'stripeTestPayment']);
         Route::get('list/passengers/{id}',[PassengerController::class,'listPassenger']);
         Route::post('add/passengers/{travel_id}',[PassengerController::class,'addPassenger']);
-
+        Route::get('ToApply/promoCode/{code}/{price}',[TestCodePromoController::class,'testCodePost']);
     });
 
 
