@@ -16,10 +16,10 @@ class TestCodePromoController extends Controller
             $percent=$promoCode->percent;
             $code=$promoCode->code;
             $reducedPrice=$price*$percent/100;
-            return response()->json(['message'=>'success','reduced_price'=>$reducedPrice,'promo_code'=>$code]);
+            return response()->json(['message'=>'success','reduced_price'=>$reducedPrice,'promo_code'=>$code],200);
 
         }else{
-            return "false";
+            return response()->json(['message'=>'mauvais code'],404);
         }
 
 
