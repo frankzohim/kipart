@@ -10,7 +10,7 @@ class TestCodePromoController extends Controller
 {
     public function testCodePost($code,$price){
 
-        $promoCode=PromoCode::where('code',$code)->first();
+        $promoCode=PromoCode::where('code',$code)->where('isUse',0)->first();
 
         if($promoCode){
             $percent=$promoCode->percent;

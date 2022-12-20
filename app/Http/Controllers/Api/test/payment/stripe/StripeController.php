@@ -28,11 +28,11 @@ class StripeController extends Controller
                 ]
             ]);
             $payment=Passenger::where('payment_id',$id);
-            $travel=Travel::find($payment->travel_id);
+
             Stripe\Stripe::setApiKey(env("STRIPE_SECRET"));
 
             $response=$stripe->charges->create([
-                'amount' =>$request->amount,
+                'amount' =>$price,
                 'currency' => 'usd',
                 'source' => $res->id,
                 'description' => $request->description
@@ -45,7 +45,7 @@ class StripeController extends Controller
                     'isCheckPayment' =>1
 
                 ]);
-                return response()->json([$response->status],201);
+                return response()->json(["message"=>$response->status],201);
               }else{
                 return response()->json([
                                     'message'=>'failed'
