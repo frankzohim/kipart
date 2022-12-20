@@ -57,6 +57,8 @@ class ListController extends Controller
 
     public function listTime(){
 
-        return TimeResource::collection(Travel::all())->unique();
+        return TimeResource::collection(Travel::Select('id','departure_time')
+        ->groupBy('id','departure_time')
+        ->get());
     }
 }
