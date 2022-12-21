@@ -65,14 +65,14 @@ use App\Http\Controllers\Api\test\TestCodePromoController;
     Route::get('show/schedules/{id}',[ShowController::class,'detailSchedule']);
     Route::get('show/travel/{id}',[ShowController::class,'detailTravel']);
     Route::get('list/town',[ListController::class,'listTown']);
-    Route::get('list/places/{travel_id}',[ListController::class,'listPlaces']);
+    Route::get('placesOfTravel/{travel_id}',[ListController::class,'listPlaces']);
     Route::get('list/travel/schedules',[ListController::class,'listTime']);
-
     Route::get('list/agencies/{paginate}',[ListController::class,'listAgency']);
     Route::get('list/buses/{paginate}',[ListController::class,'listBus']);
     Route::get('list/paths/{paginate}',[ListController::class,'listPath']);
     Route::get('list/schedules/{paginate}',[ListController::class,'listSchedule']);
     Route::get('list/travels/{paginate}',[ListController::class,'listTravel']);
+    Route::get('placeIsBusy/{travel_id}',[PassengerController::class,'listPlace']);
     Route::get('image/{path}', [ImageController::class, 'getImage']);
 
     Route::get("search/{term}",[SearchController::class,'search']);

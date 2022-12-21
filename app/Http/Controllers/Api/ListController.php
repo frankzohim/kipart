@@ -60,11 +60,9 @@ class ListController extends Controller
         return TimeResource::collection(Schedule::all());
     }
 
-    public function listPlaces($immatriculation){
-        $bus=Bus::where('travel_id',$travel_id);
-        $travel
+    public function listPlaces($travel_id){
+        $bus=Bus::where('travel_id',$travel_id)->first();
         $numberOfPlace=$bus->number_of_places;
-
         return response()->json(['number_of_place'=>$numberOfPlace]);
     }
 }

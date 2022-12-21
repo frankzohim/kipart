@@ -62,6 +62,30 @@ class PassengerController extends Controller
     }
 
 
+    public function listPlace($travel_id){
+        $placeBusy=[];
+        $listPlace=[];
+        $travels=Passenger::where('travel_id',$travel_id)
+        ->where('isCheckPayment',1)
+        ->get();
+        $bus=Bus::where('travel_id',$travel_id)->first();
+
+        // for($i=1;$i<=$bus->number_of_places;$i++){
+        //     array_push($listPlace,$i);
+        // }
+
+            foreach($travels as $travel){
+                array_push($placeBusy,$travel->seatNumber);
+            }
+            if(count($placeBusy)>0){
+                 //return count($travelArray);
+            $placeAvailable=$bus->number_of_places - count($placeBusy);
+            return response()->json(['number_of_places'=>$bus->number_of_places,'PlacePrise'=>$placeBusy,'placeAvailable'=>$placeAvailable],200);
+            }else{
+            return response()->json(['message'=>"Aucune Place n'a ete prise pour ce voyage"]);
+        }
+
+    }
 
 
 }
