@@ -22,8 +22,8 @@ return new class extends Migration
 
             $table->foreignIdFor(Travel::class)
                     ->constrained()
-                    ->restrictOnUpdate()
-                    ->restrictOnDelete();
+                    ->CascadeOnUpdate()
+                    ->CascadeOnDelete();
 
             $table->integer('number_of_places');
             //$table->string('type');

@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Travel extends Model
 {
@@ -54,9 +55,9 @@ class Travel extends Model
         return $this->hasMany(Passenger::class);
     }
 
-    public function buses():HasMany
+    public function bus():HasOne
     {
-        return $this->hasMany(Bus::class);
+        return $this->hasOne(Bus::class);
     }
     public function schedule():BelongsTo
     {
