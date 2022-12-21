@@ -16,7 +16,7 @@ class TimeResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'heure'=>$this->departure_time
+            'heure'=>$this->hours
         ];
     }
 }

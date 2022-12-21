@@ -10,6 +10,7 @@ use Database\Seeders\AdminSeeder;
 use Database\Seeders\AgencySeeder;
 use Database\Seeders\TravelSeeder;
 use Database\Seeders\CustomerSeeder;
+use Database\Seeders\ScheduleSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
         $this->call(CustomerSeeder::class);
         $this->call(AgencySeeder::class);
+        $this->call(ScheduleSeeder::class);
         $this->call(TravelSeeder::class);
         $this->call(BusSeeder::class);
 

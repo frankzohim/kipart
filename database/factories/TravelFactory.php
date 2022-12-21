@@ -23,7 +23,7 @@ class TravelFactory extends Factory
         'price'=>$this->faker->randomElement($array=[2000,4000,2500,5000,3500]),
         'state'=>1,
         'type'=>$this->faker->randomElement($array=['Aller Simple','Aller Retour']),
-       'departure_time'=>$this->faker->time(),
+       'schedule_id'=>rand(1,15),
         'classe'=>$this->faker->randomElement($array=['vip','classique']),
         ];
     }
