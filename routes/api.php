@@ -65,9 +65,8 @@ use App\Http\Controllers\Api\test\TestCodePromoController;
     Route::get('show/schedules/{id}',[ShowController::class,'detailSchedule']);
     Route::get('show/travel/{id}',[ShowController::class,'detailTravel']);
     Route::get('list/town',[ListController::class,'listTown']);
-
-    Route::get('list/travel/
-    s',[ListController::class,'listTime']);
+    Route::get('list/places/{travel_id}',[ListController::class,'listPlaces']);
+    Route::get('list/travel/schedules',[ListController::class,'listTime']);
 
     Route::get('list/agencies/{paginate}',[ListController::class,'listAgency']);
     Route::get('list/buses/{paginate}',[ListController::class,'listBus']);

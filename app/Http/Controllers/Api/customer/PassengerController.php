@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Api\customer;
 
+use App\Models\Bus;
 use App\Models\Travel;
 use App\Models\Payment;
 use App\Models\Passenger;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PassengerRequest;
-use App\Http\Resources\Passenger\DetailTravelResource;
 
 use function PHPUnit\Framework\isEmpty;
 use App\Http\Resources\Passenger\PassengerResource;
+use App\Http\Resources\Passenger\DetailTravelResource;
 
 class PassengerController extends Controller
 {
@@ -59,6 +60,7 @@ class PassengerController extends Controller
             return response()->json(['message'=>"voyage non trouvé"],404);
         }
     }
+
 
 
 
