@@ -20,11 +20,6 @@ return new class extends Migration
             $table->id();
             $table->string('registration')->unique();
 
-            $table->foreignIdFor(Agency::class)
-                ->constrained()
-                ->restrictOnUpdate()
-                ->restrictOnDelete();
-
             $table->foreignIdFor(Travel::class)
                     ->constrained()
                     ->restrictOnUpdate()
@@ -33,7 +28,7 @@ return new class extends Migration
             $table->integer('number_of_places');
             //$table->string('type');
             $table->string("plan");
-            $table->string('class');
+            $table->string('classe');
             $table->timestamps();
         });
     }

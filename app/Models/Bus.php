@@ -14,17 +14,12 @@ class Bus extends Model
 
     protected $fillable=[
         'registration',
-        'agency_id',
         'number_of_places',
         'classe',
         'travel_id',
         'plan'
     ];
 
-    public function agency():BelongsTo
-    {
-        return $this->belongsTo(Agency::class);
-    }
 
     public function travel():BelongsTo
     {

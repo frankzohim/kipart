@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources\Bus;
 
+use App\Http\Resources\Travel\TravelResource;
+use App\Models\Travel;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class BusDetailResource extends JsonResource
@@ -17,7 +19,7 @@ class BusDetailResource extends JsonResource
         return [
             'id'=>$this->id,
             'registration'=>$this->registration,
-            'agencyName'=>$this->agency->name,
+            'Voyage'=>TravelResource::collection(Travel::where('id',$this->travel_id)->get()),
             'numberOfPlaces'=>$this->number_of_places,
             'classe'=>$this->classe,
             'plan'=>$this->plan

@@ -33,7 +33,6 @@ class BusController extends Controller
 
         $bus=Bus::create([
             'registration'=>$request->registration,
-            'agency_id'=>$request->agency_id,
             'number_of_places'=>$request->number_of_places,
             'plan'=>$request->plan,
             'classe'=>$request->classe,

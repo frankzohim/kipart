@@ -18,10 +18,9 @@ class BusFactory extends Factory
     {
         return [
             'registration'=>$this->faker->ean13(),
-            'agency_id'=>rand(1,8),
             'travel_id'=>rand(1,25),
             'number_of_places'=>rand(30,100),
-            'class'=>$this->faker->randomElement($array=['vip','premium','moyenne','normal']),
+            'classe'=>$this->faker->randomElement($array=['vip','premium','moyenne','normal']),
             'plan'=>$this->faker->uuid()
 
         ];
