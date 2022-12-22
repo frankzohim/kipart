@@ -20,6 +20,7 @@ class Passenger extends Model
         'payment_id',
         'isCheckPayment',
         'cni',
+        'telephone'
     ];
 
     public function travel():BelongsTo

@@ -28,10 +28,45 @@ class PassengerController extends Controller
 
     public function addPassenger(Request $request,$travel_id){
 
+        $placeBusy=[];
+        $listPlace=[];
+        $listPlaceAvailable=[];
+        $listPlacePassengers=[];
+        $bus=Bus::where('travel_id',$travel_id)->first();
+        $travels=Passenger::where('travel_id',$travel_id)
+        ->where('isCheckPayment',1)
+        ->get();
+
+        foreach($travels as $travel){
+            array_push($placeBusy,intval($travel->seatNumber));
+        }
+
+
+
+        for($i=1;$i<=$bus->number_of_places;$i++){
+            array_push($listPlace,$i);
+            }
+
+        for($y=0;$y<count($placeBusy);$y++){
+            $pos = array_search($placeBusy[$y], $listPlace);
+            if ($pos !== false) {
+
+                // Remove from array
+                unset($listPlace[$pos]);
+
+            }
+        }
+
+
 
         $travel_found=Travel::find($travel_id);
         $PassengerData = $request->all();
+        $listPlaceAvailable=array_values($listPlace);
 
+
+        for($i=0;$i<count($PassengerData['passengers']);$i++){
+            array_push($listPlacePassengers,$listPlaceAvailable[$i]);
+        }
         if($travel_found){
 
             $payment=Payment::create([
@@ -40,25 +75,31 @@ class PassengerController extends Controller
                 'means_of_payment'=>'visa card'
 
             ]);
+
             foreach($PassengerData['passengers'] as $key => $value){
+
 
                     $passengerModel=new Passenger;
                     $passengerModel->cni=$value['cni'];
                     $passengerModel->name=$value['name'];
                     $passengerModel->type=$value['type'];
-                    $passengerModel->seatNumber=$value['seatNumber'];
+                    $passengerModel->telephone=$value['telephone'];
+                    $passengerModel->seatNumber=$listPlacePassengers[$key];
                     $passengerModel->isCheckPayment=0;
                     $passengerModel->payment_id=$payment->id;
                     $passengerModel->travel_id=$travel_id;
                     $passengerModel->save();
+                }
 
-            }
+
 
 
             return response()->json(['message'=>"Passager(s) ajouté avec success",'payment_id'=>$payment->id],201);
         }else{
             return response()->json(['message'=>"voyage non trouvé"],404);
         }
+
+        return response()->json([$listPlaceAvailable,$placeBusy]);
     }
 
 

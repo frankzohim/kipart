@@ -30,7 +30,6 @@ class PassengerRequest extends FormRequest
         return [
             'name'=>'required',
             'type'=>'required',
-            'seatNumber'=>'required',
         ];
     }
 
