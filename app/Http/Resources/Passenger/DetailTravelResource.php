@@ -19,7 +19,6 @@ class DetailTravelResource extends JsonResource
     {
         return [
             'Voyageurs'=>PassengerResource::collection(Passenger::where('payment_id',$this->id)->get()),
-            'InfosVoyages'=>TravelResource::collection(Travel::where('id',$this->travel_id)->get()),
         ];
     }
 }

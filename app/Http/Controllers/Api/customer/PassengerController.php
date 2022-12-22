@@ -133,5 +133,20 @@ class PassengerController extends Controller
 
     }
 
+    public function updatePlace(Request $request,$payment_id){
+
+        $PassengerData = $request->all();
+        $travels=Passenger::where('payment_id',$payment_id)->get();
+
+            foreach($PassengerData['places'] as $key => $value){
+
+                    $travels[$key]->seatNumber=$value['seatNumber'];
+                    $travels[$key]->save();
+                }
+
+
+            return response()->json(['message'=>"place(s) mis a jour avec success"]);
+    }
+
 
 }
