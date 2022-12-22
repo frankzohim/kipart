@@ -34,7 +34,6 @@ class PassengerController extends Controller
         $listPlacePassengers=[];
         $bus=Bus::where('travel_id',$travel_id)->first();
         $travels=Passenger::where('travel_id',$travel_id)
-        ->where('isCheckPayment',1)
         ->get();
 
         foreach($travels as $travel){
@@ -76,7 +75,11 @@ class PassengerController extends Controller
 
             ]);
 
-            foreach($PassengerData['passengers'] as $key => $value){
+            if(count($listPlaceAvailable)==0){
+                return response()->json(['message'=>"Toutes les places de ce bus ont deja été reservé"],200);
+            }
+            else{
+                foreach($PassengerData['passengers'] as $key => $value){
 
 
                     $passengerModel=new Passenger;
@@ -93,8 +96,10 @@ class PassengerController extends Controller
 
 
 
-
             return response()->json(['message'=>"Passager(s) ajouté avec success",'payment_id'=>$payment->id],201);
+            }
+
+
         }else{
             return response()->json(['message'=>"voyage non trouvé"],404);
         }
