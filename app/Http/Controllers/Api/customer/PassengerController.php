@@ -148,5 +148,34 @@ class PassengerController extends Controller
             return response()->json(['message'=>"place(s) mis a jour avec success"]);
     }
 
+    public function listTravelsOfUser(){
+        $travel_id=Payment::where('user_id',Auth::guard('api')->user()->id)->select('travel_id')->groupBy('travel_id')->get();
+        $dataTravelId=[];
+        $dataTravel=[];
+        foreach($travel_id as $travel){
+            array_push($dataTravelId,$travel->travel_id);
+        }
+
+
+
+        for($i=0;$i<count($dataTravelId);$i++){
+            $travel=\Illuminate\Support\Facades\DB::table('travel')
+            ->join('paths','paths.id','=','travel.path_id')
+            ->join('agencies','agencies.id','=','travel.agency_id')
+            ->join('buses','travel.id','=','buses.travel_id')
+            ->join('schedules','schedules.id','travel.schedule_id')
+            ->select('travel.id','travel.date','paths.departure','paths.arrival','agencies.name','schedules.hours')
+            ->where('travel.id',$dataTravelId[$i])->first();
+             array_push($dataTravel,$travel);
+        }
+        if(count($dataTravel)>0){
+            return response()->json(["data"=>$dataTravel],200);
+        }
+        else{
+            return response()->json(['message'=>"Vous n'aviez encore effectuez aucun paiement"],404);
+        }
+
+
+    }
 
 }

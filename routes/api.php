@@ -144,6 +144,7 @@ use App\Http\Controllers\Api\test\TestCodePromoController;
         Route::get('list/passengers/{id}',[PassengerController::class,'listPassenger']);
         Route::post('add/passengers/{travel_id}',[PassengerController::class,'addPassenger']);
         Route::post('updatePlace/{payment_id}',[PassengerController::class,'updatePlace']);
+        Route::get('list/travels/buy',[PassengerController::class,'listTravelsOfUser']);
         Route::get('ToApply/promoCode/{code}/{price}',[TestCodePromoController::class,'testCodePost']);
     });
 
