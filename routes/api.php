@@ -56,7 +56,7 @@ use App\Http\Controllers\Api\test\TestCodePromoController;
     Route::post('password/reset', [ResetPasswordController::class,'reset']);
     Route::post('resend/otp/{mobile}',[CustomerController::class,'sendOtp']);
     Route::post('send/notifications/{message}',[NotificationController::class,'sendNotification']);
-    Route::get('generate/travels/{agency_id}/{hour}',[GenerateTravelController::class,'generateTravelToThwoMonth']);
+    Route::post('generate/travels',[GenerateTravelController::class,'generateTravelToThwoMonth']);
 
     Route::get('generate',[GenerateTravelController::class,'generateTravelToThreeMonth']);
     Route::get('list/notifications',[NotificationController::class,'getNotifications']);

@@ -28,6 +28,10 @@ class Travel extends Model
         'schedule_id'
     ];
 
+    protected $casts = [
+        'date' => 'date:Y-m-d'
+     ];
+
 
     public function codeqr():BelongsTo
     {
