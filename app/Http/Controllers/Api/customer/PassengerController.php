@@ -149,31 +149,52 @@ class PassengerController extends Controller
     }
 
     public function listTravelsOfUser(){
-        $travel_id=Payment::where('user_id',Auth::guard('api')->user()->id)->select('travel_id')->groupBy('travel_id')->get();
+
+        $travel_id=Payment::where('user_id',Auth::guard('api')->user()->id)->get();
         $dataTravelId=[];
         $dataTravel=[];
+        $dataPassenger=[];
+
+        foreach($travel_id as $value){
+            $passenger=\Illuminate\Support\Facades\DB::table('passengers')
+            ->join('travel','travel.id','=','passengers.travel_id')
+            ->join('payments','payments.id','=','passengers.payment_id')
+            ->select('travel.path_id')
+            ->join('paths','paths.id','=','travel.path_id')
+            ->select('travel.agency_id')
+            ->join('agencies','agencies.id','=','travel.agency_id')
+            ->select('travel.schedule_id')
+            ->join('schedules','schedules.id','=','travel.schedule_id')
+            ->select('passengers.id','passengers.name','passengers.cni','passengers.telephone','travel.price','paths.departure','paths.arrival','agencies.name','travel.date','passengers.seatNumber','schedules.hours')
+            ->where('payments.id',$value->id)
+            ->where('passengers.isCheckPayment',1)
+
+            ->get();
+            array_push($dataPassenger,$passenger);
+        }
+
         foreach($travel_id as $travel){
             array_push($dataTravelId,$travel->travel_id);
         }
 
 
 
-        for($i=0;$i<count($dataTravelId);$i++){
-            $travel=\Illuminate\Support\Facades\DB::table('travel')
-            ->join('paths','paths.id','=','travel.path_id')
-            ->join('agencies','agencies.id','=','travel.agency_id')
-            ->join('buses','travel.id','=','buses.travel_id')
-            ->join('schedules','schedules.id','travel.schedule_id')
-            ->select('travel.id','travel.date','paths.departure','paths.arrival','agencies.name','schedules.hours')
-            ->where('travel.id',$dataTravelId[$i])->first();
-             array_push($dataTravel,$travel);
-        }
-        if(count($dataTravel)>0){
-            return response()->json(["data"=>$dataTravel],200);
-        }
-        else{
-            return response()->json(['message'=>"Vous n'aviez encore effectuez aucun paiement"],404);
-        }
+        // for($i=0;$i<count($dataTravelId);$i++){
+        //     $travel=\Illuminate\Support\Facades\DB::table('travel')
+        //     ->join('paths','paths.id','=','travel.path_id')
+        //     ->join('agencies','agencies.id','=','travel.agency_id')
+        //     ->join('buses','travel.id','=','buses.travel_id')
+        //     ->join('schedules','schedules.id','travel.schedule_id')
+        //     ->select('travel.id','travel.date','paths.departure','paths.arrival','agencies.name','schedules.hours','agencies.logo')
+        //     ->where('travel.id',$dataTravelId[$i])->first();
+        //      array_push($dataTravel,$travel);
+        // }
+
+
+
+            return $dataPassenger;
+
+
 
 
     }

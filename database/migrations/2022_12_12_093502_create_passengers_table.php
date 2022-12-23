@@ -24,7 +24,7 @@ return new class extends Migration
                 ->constrained()
                 ->restrictOnUpdate()
                 ->restrictOnDelete();
-            $table->string('seatNumber')->unique();
+            $table->string('seatNumber');
             $table->boolean('isCheckPayment')->default(0);
             $table->foreignIdFor(Travel::class)
             ->constrained()
@@ -32,6 +32,7 @@ return new class extends Migration
             ->restrictOnDelete();
 
             $table->string('cni')->nullable();
+            $table->string('telephone')->nullable();
             $table->timestamps();
         });
     }
