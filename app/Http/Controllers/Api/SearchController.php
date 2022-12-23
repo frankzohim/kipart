@@ -45,12 +45,11 @@ class SearchController extends Controller
                 ->where('buses.number_of_places','>',$request->number_of_places)
                 ->get();
 
-                if(count($travel)>0){
+
                     return response()->json(['type'=>$request->type,'DataArrival'=>$request->DataArrival,'hourArrival'=>$request->hourArrival,'data'=> $travel],200);
-                }
-                else{
+
+
                     return response()->json(['message'=>'aucun voyage trouvé']);
-                }
 
 
 
@@ -62,20 +61,22 @@ class SearchController extends Controller
 
                 ->join('travel','travel.agency_id','=','agencies.id')
                 ->join('paths','paths.id','=','travel.path_id')
+                ->join('buses','buses.travel_id','=','travel.id')
                 ->join('schedules','schedules.id','travel.schedule_id')
-                ->select('travel.id','travel.date','travel.price','travel.classe','agencies.name','travel.agency_id','travel.path_id','paths.arrival','paths.departure')
+                ->select('travel.id','travel.date','travel.price','travel.classe','agencies.name','travel.agency_id','travel.path_id','paths.arrival','paths.departure','schedules.hours','buses.number_of_places')
+
                 ->where('travel.agency_id','=',$id)
                 ->where('paths.departure','=',$request->departure)
                 ->where('paths.arrival','=',$request->arrival)
                 ->where('travel.date','>',$request->dateDeparture)
                 ->get();
 
-                if(count($travel)>0){
+
+
                     return response()->json(['type'=>$request->type,'DataArrival'=>$request->DataArrival,'hourArrival'=>$request->hourArrival,'data'=> $travel],200);
-                }
-                else{
-                    return response()->json(['message'=>'aucun voyage trouvé dans cette agence']);
-                }
+
+
+
 
 
     }

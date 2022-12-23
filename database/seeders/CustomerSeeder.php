@@ -21,7 +21,15 @@ class CustomerSeeder extends Seeder
             'email'=>'Bob237@gmail.com',
             'isVerifiedOtp'=>1,
             'password'=>bcrypt("password"),
-            'phone_number'=>'+237694297339',
+            'phone_number'=>'690394365',
+        ]);
+
+        DB::table('users')->insert([
+            'name'=>'Constantin',
+            'email'=>'test@email.com',
+            'isVerifiedOtp'=>1,
+            'password'=>bcrypt("12345678"),
+            'phone_number'=>'697864000',
         ]);
     }
 }

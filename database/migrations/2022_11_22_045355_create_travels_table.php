@@ -38,7 +38,6 @@ return new class extends Migration
 
             $table->double('price');
             $table->string('classe');
-            $table->string('type');
             $table->boolean('state');
             $table->timestamps();
         });

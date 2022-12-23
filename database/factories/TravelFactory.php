@@ -18,7 +18,7 @@ class TravelFactory extends Factory
     {
         return [
         'date'=>$this->faker->dateTimeThisYear('+10 months'),
-        'path_id'=>rand(1,19),
+        'path_id'=>rand(1,26),
         'agency_id'=>rand(1,8),
         'price'=>$this->faker->randomElement($array=[2000,4000,2500,5000,3500]),
         'state'=>1,

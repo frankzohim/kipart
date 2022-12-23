@@ -17,32 +17,32 @@ class PathSeeder extends Seeder
     {
 
         DB::table('paths')->insert([
-            'departure'=>"douala",
-            'arrival'=>"yaoundé",
+            'departure'=>"Douala",
+            'arrival'=>"Yaoundé",
             'state'=>1,
          ]);
 
          DB::table('paths')->insert([
-            'departure'=>"yaoundé",
-            'arrival'=>"douala",
+            'departure'=>"Yaoundé",
+            'arrival'=>"Douala",
             'state'=>1,
          ]);
 
          DB::table('paths')->insert([
-            'departure'=>"douala",
+            'departure'=>"Douala",
             'arrival'=>"Bafoussam",
             'state'=>1,
          ]);
 
          DB::table('paths')->insert([
             'departure'=>"Bafoussam",
-            'arrival'=>"yaoundé",
+            'arrival'=>"Yaoundé",
             'state'=>1,
          ]);
 
          DB::table('paths')->insert([
             'departure'=>"Bafoussam",
-            'arrival'=>"douala",
+            'arrival'=>"Douala",
             'state'=>1,
          ]);
 
@@ -53,20 +53,20 @@ class PathSeeder extends Seeder
          ]);
 
          DB::table('paths')->insert([
-            'departure'=>"douala",
+            'departure'=>"Douala",
             'arrival'=>"Dshang",
             'state'=>1,
          ]);
 
          DB::table('paths')->insert([
             'departure'=>"Dshang",
-            'arrival'=>"yaoundé",
+            'arrival'=>"Yaoundé",
             'state'=>1,
          ]);
 
          DB::table('paths')->insert([
             'departure'=>"Dshang",
-            'arrival'=>"douala",
+            'arrival'=>"Douala",
             'state'=>1,
          ]);
 
@@ -86,19 +86,19 @@ class PathSeeder extends Seeder
 
          DB::table('paths')->insert([
             'departure'=>"Foumban",
-            'arrival'=>"douala",
+            'arrival'=>"Douala",
             'state'=>1,
          ]);
 
          DB::table('paths')->insert([
-            'departure'=>"douala",
+            'departure'=>"Douala",
             'arrival'=>"Foumban",
             'state'=>1,
          ]);
 
          DB::table('paths')->insert([
             'departure'=>"Foumban",
-            'arrival'=>"yaoundé",
+            'arrival'=>"Yaoundé",
             'state'=>1,
          ]);
 
@@ -109,7 +109,7 @@ class PathSeeder extends Seeder
          ]);
 
          DB::table('paths')->insert([
-            'departure'=>"yaoundé",
+            'departure'=>"Yaoundé",
             'arrival'=>"Foumban",
             'state'=>1,
          ]);
@@ -129,6 +129,46 @@ class PathSeeder extends Seeder
          DB::table('paths')->insert([
             'departure'=>"Bafoussam",
             'arrival'=>"Foumban",
+            'state'=>1,
+         ]);
+
+         DB::table('paths')->insert([
+            'departure'=>"Douala",
+            'arrival'=>"Kribi",
+            'state'=>1,
+         ]);
+
+         DB::table('paths')->insert([
+            'departure'=>"Kribi",
+            'arrival'=>"Douala",
+            'state'=>1,
+         ]);
+
+         DB::table('paths')->insert([
+            'departure'=>"Foumbot",
+            'arrival'=>"Douala",
+            'state'=>1,
+         ]);
+
+         DB::table('paths')->insert([
+            'departure'=>"Foumbot",
+            'arrival'=>"Yaoundé",
+            'state'=>1,
+         ]);
+         DB::table('paths')->insert([
+            'departure'=>"Koutaba",
+            'arrival'=>"Douala",
+            'state'=>1,
+         ]);
+
+         DB::table('paths')->insert([
+            'departure'=>"Mbouda",
+            'arrival'=>"Douala",
+            'state'=>1,
+         ]);
+         DB::table('paths')->insert([
+            'departure'=>"Douala",
+            'arrival'=>"Mbouda",
             'state'=>1,
          ]);
     }
