@@ -79,7 +79,7 @@ use App\Http\Controllers\Api\test\TestCodePromoController;
     Route::get("search/{term}",[SearchController::class,'search']);
     Route::post('searchFull/travel',[SearchController::class,'searchFull']);
     Route::post('search/byAgency/{id}',[SearchController::class,'searchByAgency']);
-
+    Route::apiResource('agencies',AgencyController::class);
 
 
 
@@ -87,7 +87,7 @@ use App\Http\Controllers\Api\test\TestCodePromoController;
     Route::middleware('auth:api-admin')->prefix('v1')->group(function(){
 
         Route::apiResource('travels',TravelController::class);
-        Route::apiResource('agencies',AgencyController::class);
+
         Route::apiResource('buses',BusController::class);
         Route::apiResource('Schedules',ScheduleController::class);
         Route::apiResource('paths',PathController::class);

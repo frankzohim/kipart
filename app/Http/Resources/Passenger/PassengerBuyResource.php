@@ -2,14 +2,11 @@
 
 namespace App\Http\Resources\Passenger;
 
-use App\Http\Resources\Agency\AgencyResource;
-use App\Http\Resources\Travel\TravelDetailResource;
-use App\Http\Resources\Travel\TravelResource;
-use App\Models\Agency;
 use App\Models\Travel;
+use App\Http\Resources\Travel\TravelResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PassengerResource extends JsonResource
+class PassengerBuyResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -21,9 +18,8 @@ class PassengerResource extends JsonResource
     {
         return [
             'nom'=>$this->name,
-            'seatNumber'=>$this->seatNumber,
+            'Place'=>$this->seatNumber,
             'cniNumber'=>$this->cni,
-            'etat_de_paiement'=>$this->isCheckPayment,
             'infosVoyage'=>TravelResource::collection(Travel::where('id',$this->travel_id)->get())
         ];
     }

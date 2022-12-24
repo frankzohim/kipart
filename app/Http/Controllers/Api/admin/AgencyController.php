@@ -39,16 +39,17 @@ class AgencyController extends Controller
         if ($request->hasFile('logo')) {
 
             $path = $request->file('logo')->store('logo','public');
+
            }
-        $agency=Agency::create([
-            'name'=>$request->name,
-            'headquarters'=>$request->headquarters,
-            'email'=>$request->email,
-            'logo'=>$path,
-            'phone_number'=>$request->phone_number,
-            'state'=>$request->state,
-            'password'=>bcrypt($request->password),
-        ]);
+           $agency=new Agency();
+           $agency->name = $request->name;
+           $agency->headquarters=$request->headquarter;
+           $agency->email=$request->email;
+           $agency->phone_number=$request->phone_number;
+           $agency->state=$request->state;
+           $agency->password=$request->password;
+           $agency->logo=$path;
+           $agency->save();
 
         return response($agency,Response::HTTP_CREATED);
     }

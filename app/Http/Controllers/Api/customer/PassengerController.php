@@ -15,6 +15,7 @@ use App\Http\Requests\PassengerRequest;
 use function PHPUnit\Framework\isEmpty;
 use App\Http\Resources\Passenger\PassengerResource;
 use App\Http\Resources\Passenger\DetailTravelResource;
+use App\Http\Resources\Passenger\PassengerBuyResource;
 
 class PassengerController extends Controller
 {
@@ -150,32 +151,33 @@ class PassengerController extends Controller
 
     public function listTravelsOfUser(){
 
-        $travel_id=Payment::where('user_id',Auth::guard('api')->user()->id)->get();
+        $travel_id=\Illuminate\Support\Facades\DB::table('payments')
+        ->join('passengers','passengers.payment_id','=','payments.id')
+        ->select('passengers.isCheckPayment','payments.user_id','payments.id')
+        ->where('passengers.isCheckPayment',1)
+        ->where('user_id',Auth::guard('api')->user()->id)
+        ->get();
         $dataTravelId=[];
         $dataTravel=[];
+
         $dataPassenger=[];
 
         foreach($travel_id as $value){
-            $passenger=\Illuminate\Support\Facades\DB::table('passengers')
-            ->join('travel','travel.id','=','passengers.travel_id')
+
+            $passenger=PassengerBuyResource::collection(Passenger::join('travel','travel.id','=','passengers.travel_id')
             ->join('payments','payments.id','=','passengers.payment_id')
-            ->select('travel.path_id')
-            ->join('paths','paths.id','=','travel.path_id')
-            ->select('travel.agency_id')
-            ->join('agencies','agencies.id','=','travel.agency_id')
-            ->select('travel.schedule_id')
-            ->join('schedules','schedules.id','=','travel.schedule_id')
-            ->select('passengers.id','passengers.name','passengers.cni','passengers.telephone','travel.price','paths.departure','paths.arrival','agencies.name','travel.date','passengers.seatNumber','schedules.hours')
+            ->select('passengers.id','passengers.name','passengers.cni','passengers.seatNumber','passengers.travel_id','passengers.isCheckPayment')
             ->where('payments.id',$value->id)
             ->where('passengers.isCheckPayment',1)
+            ->get());
 
-            ->get();
             array_push($dataPassenger,$passenger);
+            $collect=collect($dataPassenger);
         }
 
-        foreach($travel_id as $travel){
-            array_push($dataTravelId,$travel->travel_id);
-        }
+        // foreach($travel_id as $travel){
+        //     array_push($dataTravelId,$travel->travel_id);
+        // }
 
 
 
@@ -192,7 +194,7 @@ class PassengerController extends Controller
 
 
 
-            return $dataPassenger;
+            return $collect;
 
 
 
