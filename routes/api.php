@@ -57,6 +57,8 @@ use App\Http\Controllers\Api\test\TestCodePromoController;
     Route::post('resend/otp/{mobile}',[CustomerController::class,'sendOtp']);
     Route::post('send/notifications/{message}',[NotificationController::class,'sendNotification']);
     Route::post('generate/travels',[GenerateTravelController::class,'generateTravelToThwoMonth']);
+    Route::post('searchFull/travel',[SearchController::class,'searchFull']);
+    Route::post('search/byAgency/{id}',[SearchController::class,'searchByAgency']);
 
     Route::get('generate',[GenerateTravelController::class,'generateTravelToThreeMonth']);
     Route::get('list/notifications',[NotificationController::class,'getNotifications']);
@@ -75,23 +77,20 @@ use App\Http\Controllers\Api\test\TestCodePromoController;
     Route::get('list/travels/{paginate}',[ListController::class,'listTravel']);
     Route::get('placeIsBusy/{travel_id}',[PassengerController::class,'listPlace']);
     Route::get('image/{path}', [ImageController::class, 'getImage']);
-
     Route::get("search/{term}",[SearchController::class,'search']);
-    Route::post('searchFull/travel',[SearchController::class,'searchFull']);
-    Route::post('search/byAgency/{id}',[SearchController::class,'searchByAgency']);
-    Route::apiResource('agencies',AgencyController::class);
-
+    Route::get('listAgencyByPath/{departure}/{arrival}',[ListController::class,'listAgencyWithPath']);
 
 
    // All endpoints for admin
     Route::middleware('auth:api-admin')->prefix('v1')->group(function(){
 
         Route::apiResource('travels',TravelController::class);
-
         Route::apiResource('buses',BusController::class);
         Route::apiResource('Schedules',ScheduleController::class);
         Route::apiResource('paths',PathController::class);
         Route::apiResource('users',UsersController::class);
+        Route::apiResource('agencies',AgencyController::class);
+
         Route::post('logout/adm/private',[AdminController::class,'logout']);
 
         Route::get('routes',[CustomerController::class,'routeList']);

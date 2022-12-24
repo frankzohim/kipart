@@ -65,4 +65,19 @@ class ListController extends Controller
         $numberOfPlace=$bus->number_of_places;
         return response()->json(['number_of_place'=>$numberOfPlace]);
     }
+
+    public function listAgencyWithPath($departure,$arrival){
+
+        $agency=\Illuminate\Support\Facades\DB::table('agencies')
+
+            ->join('travel','travel.agency_id','agencies.id')
+            ->select('travel.id')
+            ->join('paths','paths.id','travel.path_id')
+            ->select('agencies.name','agencies.logo','agencies.headquarters','paths.departure','paths.arrival')
+            ->where('paths.departure','=',$departure)
+            ->where('paths.arrival','=',$arrival)
+            ->get();
+
+            return $agency;
+    }
 }
