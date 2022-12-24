@@ -5,6 +5,7 @@ namespace App\Http\Resources\Travel;
 use App\Models\Bus;
 use App\Http\Resources\Bus\BusResource;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\URL;
 
 class TravelResource extends JsonResource
 {
@@ -22,6 +23,7 @@ class TravelResource extends JsonResource
             'departure'=>$this->path->departure,
             'arrival'=>$this->path->arrival,
             'agence'=>$this->agency->name,
+            'logo'=>URL($this->agency->logo),
             'heure'=>$this->schedule->hours,
             'classe'=>$this->classe,
             'prix'=>$this->price,

@@ -16,10 +16,12 @@ class AgencySeeder extends Seeder
      */
     public function run()
     {
+
+
         DB::table('agencies')->insert([
             'name'=>'General Voyages',
             'headquarters'=>'douala',
-            'logo'=>"public/logo/logo_general_voyages.b1d0c0f.png",
+            'logo'=>"logo/generalVoyages.jpeg",
             'email'=>'GeneralVoyages@gmail.com',
             'password'=>bcrypt('General@147voyages'),
             'phone_number'=>"+237 653453458",
@@ -29,7 +31,7 @@ class AgencySeeder extends Seeder
          DB::table('agencies')->insert([
             'name'=>'Buca voyages',
             'headquarters'=>'douala',
-            'logo'=>"public/logo/buca.jpeg",
+            'logo'=>"logo/buca.jpg",
             'email'=>'BucaVoyage45@gmail.com',
             'password'=>bcrypt('Buca34voyages'),
             'phone_number'=>"+237 689476334",
@@ -39,7 +41,7 @@ class AgencySeeder extends Seeder
          DB::table('agencies')->insert([
             'name'=>'Touristique Express',
             'headquarters'=>'douala',
-            'logo'=>"public/logo/touristiques.jpeg",
+            'logo'=>"logo/touristiques.jpeg",
             'email'=>'TourExpress@gmail.com',
             'password'=>bcrypt('AdminTour1233ZO'),
             'phone_number'=>"+237 674542333",
@@ -49,7 +51,7 @@ class AgencySeeder extends Seeder
          DB::table('agencies')->insert([
             'name'=>'United Express',
             'headquarters'=>'yaounde',
-            'logo'=>"public/logo/united.png",
+            'logo'=>"logo/united.jpg",
             'email'=>'UnitedExpress@gmail.com',
             'password'=>bcrypt('ExpressUnit34ZETY'),
             'phone_number'=>"+237 663449924",
@@ -59,7 +61,7 @@ class AgencySeeder extends Seeder
          DB::table('agencies')->insert([
             'name'=>'Global voyages',
             'headquarters'=>'yaounde',
-            'logo'=>"public/logo/global.jpeg",
+            'logo'=>"logo/global.jpeg",
             'email'=>'GlobalVoyages@gmail.com',
             'password'=>bcrypt('GlobalDomainVoyages@147'),
             'phone_number'=>"+237 635424752",
@@ -69,7 +71,7 @@ class AgencySeeder extends Seeder
          DB::table('agencies')->insert([
             'name'=>'Fitness voyages',
             'headquarters'=>'douala',
-            'logo'=>"public/logo/fitness.jpeg",
+            'logo'=>"logo/fitness.png",
             'email'=>'FitnessVOyage86@gmail.com',
             'password'=>bcrypt('FitVoyage466DGG'),
             'phone_number'=>"+237 693263552",
@@ -79,7 +81,7 @@ class AgencySeeder extends Seeder
          DB::table('agencies')->insert([
             'name'=>'BUTSIS',
             'headquarters'=>'douala',
-            'logo'=>"public/logo/fitness.jpeg",
+            'logo'=>"logo/butsis.jpeg",
             'email'=>'ButsisVoyage456@gmail.com',
             'password'=>bcrypt('BUTSIS4635'),
             'phone_number'=>"+237 65264552",
@@ -89,7 +91,7 @@ class AgencySeeder extends Seeder
          DB::table('agencies')->insert([
             'name'=>'MENTRAVEL',
             'headquarters'=>'douala',
-            'logo'=>"public/logo/fitness.jpeg",
+            'logo'=>"logo/mentravel.jpeg",
             'email'=>'MENTRAVEL647@gmail.com',
             'password'=>bcrypt('MENTRAVEL74654'),
             'phone_number'=>"+237 69475434",

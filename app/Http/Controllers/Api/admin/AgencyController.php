@@ -38,12 +38,14 @@ class AgencyController extends Controller
 
         if ($request->hasFile('logo')) {
 
-            $path = $request->file('logo')->store('logo','public');
-
+            // $path = $request->file('logo')->store('logo','public');
+            $filename=time().'.'.$request->logo->extension();
+            $request->logo->move(public_path('logo'),$filename);
+            $path="logo/$filename";
            }
            $agency=new Agency();
            $agency->name = $request->name;
-           $agency->headquarters=$request->headquarter;
+           $agency->headquarters=$request->headquarters;
            $agency->email=$request->email;
            $agency->phone_number=$request->phone_number;
            $agency->state=$request->state;

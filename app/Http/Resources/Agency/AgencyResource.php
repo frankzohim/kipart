@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Agency;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\URL;
 
 class AgencyResource extends JsonResource
 {
@@ -17,7 +18,7 @@ class AgencyResource extends JsonResource
         return [
             'id'=> $this->id,
             'name'=>$this->name,
-            'logo'=> asset('storage/' . $this->logo),
+            'logo'=> URL($this->logo),
             'headquarters'=>$this->headquarters,
             'email'=>$this->email,
             'phone_number' =>$this->phone_number,
