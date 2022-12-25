@@ -19,6 +19,7 @@ use App\Http\Resources\Travel\TravelResource;
 use App\Http\Resources\Path\ListArrivalResource;
 use App\Http\Resources\schedule\ScheduleResource;
 use App\Http\Resources\Path\ListDepartureResource;
+use Illuminate\Support\Facades\URL;
 
 class ListController extends Controller
 {
@@ -68,7 +69,7 @@ class ListController extends Controller
 
     public function listAgencyWithPath($departure,$arrival){
 
-        $agency=\Illuminate\Support\Facades\DB::table('agencies')
+        $agencies=\Illuminate\Support\Facades\DB::table('agencies')
 
             ->join('travel','travel.agency_id','agencies.id')
             ->select('travel.id')
@@ -78,6 +79,12 @@ class ListController extends Controller
             ->where('paths.arrival','=',$arrival)
             ->get();
 
-            return response()->json(["data"=>$agency]);
+            foreach($agencies as $agency){
+                if($agency->logo){
+                    $agency->logo = URL($agency->logo);
+                }
+            }
+
+            return response()->json(['data'=>$agencies]);
     }
 }
