@@ -152,28 +152,26 @@ class PassengerController extends Controller
 
     public function listTravelsOfUser(){
 
-        $travel_id=\Illuminate\Support\Facades\DB::table('payments')
-        ->join('passengers','passengers.payment_id','=','payments.id')
-        ->select('passengers.isCheckPayment','payments.user_id','payments.id')
-        ->groupBy('passengers.isCheckPayment','payments.user_id','payments.id')
+        $travel_id= PassengerBuyResource::collection( Passenger::join('payments','payments.id','passengers.payment_id')->join('travel','travel.id','passengers.travel_id')->select('passengers.isCheckPayment','payments.user_id','payments.id','passengers.name','passengers.telephone','passengers.travel_id','passengers.seatNumber','passengers.cni')
+
         ->where('passengers.isCheckPayment',1)
         ->where('user_id',Auth::guard('api')->user()->id)
-        ->get();
+        ->get());
         $dataTravelId=[];
         $dataTravel=[];
 
         $dataPassenger=[];
         $collect=new Collection();
-        foreach($travel_id as $value){
+        $passenger=new Collection();
+        // foreach($travel_id as $value){
 
-            $passenger=PassengerBuyResource::collection(Passenger::where('passengers.payment_id',$value->id)
-            ->where('passengers.isCheckPayment',1)
-            ->get());
+        //     $passenger=PassengerBuyResource::collection(Passenger::where('passengers.payment_id',$value->id)
+        //     ->get());
 
-            $collect->push($passenger);
-            array_push($dataPassenger,$passenger);
+        //     $collect->push($passenger);
+        //     array_push($dataPassenger,$passenger);
 
-        }
+        // }
 
         // foreach($travel_id as $travel){
         //     array_push($dataTravelId,$travel->travel_id);
@@ -194,10 +192,7 @@ class PassengerController extends Controller
 
 
 
-            return response()->json(["data"=>$collect],200);
-
-
-
+            return response()->json(["data"=>$travel_id],200);
 
     }
 

@@ -2,11 +2,9 @@
 
 namespace App\Http\Resources\Passenger;
 
-use App\Models\Travel;
-use App\Http\Resources\Travel\TravelResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PassengerBuyResource extends JsonResource
+class PaymentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,12 +15,10 @@ class PassengerBuyResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id'=>$this->id,
             'name'=>$this->name,
             'seatNumber'=>$this->seatNumber,
             'cni'=>$this->cni,
             'telephone'=>$this->telephone,
-            'Voyage'=>TravelResource::collection(Travel::where('id',$this->travel_id)->get())
+            'isCheckPayment'=>$this->isCheckPayment,
         ];
-    }
-}
+}}

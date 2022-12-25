@@ -74,7 +74,7 @@ class ListController extends Controller
             ->join('travel','travel.agency_id','agencies.id')
             ->select('travel.id')
             ->join('paths','paths.id','travel.path_id')
-            ->select('agencies.name','agencies.logo','agencies.headquarters','paths.departure','paths.arrival')
+            ->select('agencies.id','agencies.state','agencies.name','agencies.logo','agencies.headquarters','paths.departure','paths.arrival')
             ->where('paths.departure','=',$departure)
             ->where('paths.arrival','=',$arrival)
             ->get();
@@ -82,6 +82,9 @@ class ListController extends Controller
             foreach($agencies as $agency){
                 if($agency->logo){
                     $agency->logo = URL($agency->logo);
+                }
+                if($agency->id){
+                    $agency->id=intval($agency->id);
                 }
             }
 
