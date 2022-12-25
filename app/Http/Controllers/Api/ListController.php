@@ -78,6 +78,6 @@ class ListController extends Controller
             ->where('paths.arrival','=',$arrival)
             ->get();
 
-            return $agency;
+            return response()->json(["data"=>$agency]);
     }
 }

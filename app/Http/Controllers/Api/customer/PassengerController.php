@@ -16,6 +16,7 @@ use function PHPUnit\Framework\isEmpty;
 use App\Http\Resources\Passenger\PassengerResource;
 use App\Http\Resources\Passenger\DetailTravelResource;
 use App\Http\Resources\Passenger\PassengerBuyResource;
+use Illuminate\Database\Eloquent\Collection;
 
 class PassengerController extends Controller
 {
@@ -124,13 +125,13 @@ class PassengerController extends Controller
             foreach($travels as $travel){
                 array_push($placeBusy,$travel->seatNumber);
             }
-            if(count($placeBusy)>0){
+
                  //return count($travelArray);
             $placeAvailable=$bus->number_of_places - count($placeBusy);
             return response()->json(['number_of_places'=>$bus->number_of_places,'PlacePrise'=>$placeBusy,'placeAvailable'=>$placeAvailable],200);
-            }else{
-            return response()->json(['message'=>"Aucune Place n'a ete prise pour ce voyage"]);
-        }
+
+
+
 
     }
 
@@ -154,6 +155,7 @@ class PassengerController extends Controller
         $travel_id=\Illuminate\Support\Facades\DB::table('payments')
         ->join('passengers','passengers.payment_id','=','payments.id')
         ->select('passengers.isCheckPayment','payments.user_id','payments.id')
+        ->groupBy('passengers.isCheckPayment','payments.user_id','payments.id')
         ->where('passengers.isCheckPayment',1)
         ->where('user_id',Auth::guard('api')->user()->id)
         ->get();
@@ -161,18 +163,16 @@ class PassengerController extends Controller
         $dataTravel=[];
 
         $dataPassenger=[];
-
+        $collect=new Collection();
         foreach($travel_id as $value){
 
-            $passenger=PassengerBuyResource::collection(Passenger::join('travel','travel.id','=','passengers.travel_id')
-            ->join('payments','payments.id','=','passengers.payment_id')
-            ->select('passengers.id','passengers.name','passengers.cni','passengers.seatNumber','passengers.travel_id','passengers.isCheckPayment')
-            ->where('payments.id',$value->id)
+            $passenger=PassengerBuyResource::collection(Passenger::where('passengers.payment_id',$value->id)
             ->where('passengers.isCheckPayment',1)
             ->get());
 
+            $collect->push($passenger);
             array_push($dataPassenger,$passenger);
-            $collect=collect($dataPassenger);
+
         }
 
         // foreach($travel_id as $travel){
@@ -194,7 +194,7 @@ class PassengerController extends Controller
 
 
 
-            return $collect;
+            return response()->json(["data"=>$collect],200);
 
 
 
