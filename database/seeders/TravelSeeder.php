@@ -16,7 +16,7 @@ class TravelSeeder extends Seeder
      */
     public function run()
     {
-        $travels=Travel::factory(25)->create();
+        $travels=Travel::all();
         $travels->each(function ($u) {
             $u->bus()->save(Bus::factory()->make());
         });
