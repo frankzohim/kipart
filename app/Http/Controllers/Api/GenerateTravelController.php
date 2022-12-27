@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use DateTime;
 use Carbon\Carbon;
+use App\Models\Path;
 use App\Models\Agency;
 use App\Models\Travel;
 use App\Models\Schedule;
@@ -13,7 +14,7 @@ use App\Http\Controllers\Controller;
 class GenerateTravelController extends Controller
 {
 
-    public function generateTravelToThwoMonth(Request $request){
+    public function generateTravelToThwoMonth(Request $request,$schedule_id,$path_id){
 
         $agency=Agency::find($request->agency_id);
         $now = Carbon::now();
@@ -24,18 +25,17 @@ class GenerateTravelController extends Controller
 // 31-5-2022
         //$endMonth = $day->addDays(32)->format('d-m-Y');
 
-        $schedule=Schedule::create([
-            'hours'=>$request->hour
-        ]);
+        $schedule=Schedule::find($schedule_id);
+        $path=Path::find($path_id);
         for($i=0;$i<63;$i++){
 
             $data=[
                 'date'=>$now,
                 'agency_id'=>$request->agency_id,
-                'path_id' =>1,
+                'path_id' =>$path->id,
                 'schedule_id' =>$schedule->id,
                 'price'=>2500,
-                'classe'=>"Standart",
+                'classe'=>$request->classe,
                 'state'=>1
             ];
 
@@ -44,7 +44,7 @@ class GenerateTravelController extends Controller
             $now=Carbon::parse($now)->addDays(1)->format('Y-m-d');
         }
 
-        return response()->json(["message"=>"les Voyages de $request->hour de l'agence $agency->name generé avec success"]);
+        return response()->json(["message"=>"les Voyages de $schedule->hours de l'agence $agency->name generé avec success"]);
 
     }
 }
