@@ -67,7 +67,6 @@ class SearchController extends Controller
 
                 ->where('travel.agency_id','=',$id)
                 ->where('paths.departure','=',$request->departure)
-                ->where('schedules.hours','>',$request->hours)
                 ->where('paths.arrival','=',$request->arrival)
                 ->where('travel.date','=',$request->dateDeparture)
                 ->get();
