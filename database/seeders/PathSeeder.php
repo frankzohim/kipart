@@ -171,5 +171,16 @@ class PathSeeder extends Seeder
             'arrival'=>"Mbouda",
             'state'=>1,
          ]);
+
+         DB::table('paths')->insert([
+            'departure'=>"Yaoundé",
+            'arrival'=>"Dshang",
+            'state'=>1,
+         ]);
+         DB::table('paths')->insert([
+            'departure'=>"Douala",
+            'arrival'=>"Foumbot",
+            'state'=>1,
+         ]);
     }
 }
