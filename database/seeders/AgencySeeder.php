@@ -98,6 +98,26 @@ class AgencySeeder extends Seeder
             'state'=>1
          ]);
 
+         DB::table('agencies')->insert([
+            'name'=>'Intercity',
+            'headquarters'=>'douala',
+            'logo'=>"logo/intercity.jpeg",
+            'email'=>'Intercity673@gmail.com',
+            'password'=>bcrypt('Intercity74654'),
+            'phone_number'=>"69485434",
+            'state'=>1
+         ]);
+
+         DB::table('agencies')->insert([
+            'name'=>'Train express',
+            'headquarters'=>'douala',
+            'logo'=>"logo/train.jpeg",
+            'email'=>'XpressTrain@gmail.com',
+            'password'=>bcrypt('trainExpress34'),
+            'phone_number'=>"69485420",
+            'state'=>1
+         ]);
+
 
     }
 }
