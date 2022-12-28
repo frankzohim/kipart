@@ -75,6 +75,7 @@ class ListController extends Controller
             ->select('travel.id')
             ->join('paths','paths.id','travel.path_id')
             ->select('agencies.id','agencies.state','agencies.name','agencies.logo','agencies.headquarters','paths.departure','paths.arrival')
+            ->groupBy('agencies.id','agencies.state','agencies.name','agencies.logo','agencies.headquarters','paths.departure','paths.arrival')
             ->where('paths.departure','=',$departure)
             ->where('paths.arrival','=',$arrival)
             ->get();
