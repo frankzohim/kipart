@@ -21,12 +21,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(PathSeeder::class);
-        //  $this->call(AdminSeeder::class);
-        //  $this->call(CustomerSeeder::class);
-        // $this->call(AgencySeeder::class);
-        //  $this->call(ScheduleSeeder::class);
-        $this->call(TravelSeeder::class);
+        $this->call(PathSeeder::class);
+         $this->call(AdminSeeder::class);
+         $this->call(CustomerSeeder::class);
+        $this->call(AgencySeeder::class);
+         $this->call(ScheduleSeeder::class);
+        //$this->call(TravelSeeder::class);
 
 
     }
