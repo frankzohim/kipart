@@ -30,6 +30,7 @@ use App\Http\Controllers\Api\agent\PathController as AgentPathController;
 use App\Http\Controllers\Api\agent\AgencyController as AgentAgencyController;
 use App\Http\Controllers\Api\agent\TravelController as AgentTravelController;
 use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
+use App\Http\Controllers\Api\GenerateTicket;
 use App\Http\Controllers\Api\GenerateTravelController;
 use App\Http\Controllers\Api\test\payment\stripe\StripeController;
 use App\Http\Controllers\Api\test\TestCodePromoController;
@@ -79,7 +80,7 @@ use App\Http\Controllers\Api\test\TestCodePromoController;
     Route::get('image/{path}', [ImageController::class, 'getImage']);
     Route::get("search/{term}",[SearchController::class,'search']);
     Route::get('listAgencyByPath/{departure}/{arrival}',[ListController::class,'listAgencyWithPath']);
-
+    Route::post('generate',[GenerateTicket::class,'generateTicket']);
 
    // All endpoints for admin
     Route::middleware('auth:api-admin')->prefix('v1')->group(function(){
