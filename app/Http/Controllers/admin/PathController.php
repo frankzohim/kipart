@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Agency;
@@ -25,7 +26,7 @@ class PathController extends Controller
 
         $datas=json_decode($paths->getBody());
 
-        return view('admin.path.index',compact('datas'));
+        return view('admin.path.index',compact('datas','paths'));
     }
 
     /**
@@ -149,6 +150,10 @@ class PathController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $accessToken=Session::get('token');
+                Http::withToken($accessToken)
+                        ->delete('http://kipart.stillforce.tech/api/admin/v1/paths/'. $id);
+
+                return to_route('admin.paths.index')->with('fail','Trajet suprimé avec success');
     }
 }

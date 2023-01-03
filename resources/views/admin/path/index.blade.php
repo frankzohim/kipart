@@ -39,7 +39,7 @@
                             <table class="table table-hover product_item_list c_table theme-color mb-0">
                                 <thead>
                                     <tr>
-                                        <th>Agence</th>
+                                        
                                         <th>Depart</th>
                                         <th>Arrivée</th>
                                         <th>Etat</th>
@@ -49,21 +49,21 @@
                                 <tbody>
 
                                     @foreach ($datas as $Paths)
-                                        @forelse ($Paths as $Path)
+                                        @forelse ($Paths as $Paths)
                                             <tr>
-                                                <td>{{ $path->agence }} </td>
-                                                <td>{{ $Path->departure }}</td>
-                                                <td><h5>{{ $Path->arrival }}</h5></td>
+
+                                                <td>{{ $Paths->departure }}</td>
+                                                <td><h5>{{ $Paths->arrival }}</h5></td>
 
                                                 <td>
 
-                                                        @if($Path->state==1)
+                                                        @if($Paths->state==1)
                                                             <h5 class="alert alert-primary">
                                                                 Publié
                                                             </h5>
                                                         @endif
 
-                                                        @if($Path->state==0)
+                                                        @if($Paths->state==0)
                                                         <h5 class="alert alert-danger">
                                                             Non Publié
                                                         </h5>
@@ -71,9 +71,9 @@
 
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('admin.paths.edit',$Path->id) }}" class="btn btn-default waves-effect waves-float btn-sm waves-green"><i class="zmdi zmdi-edit"></i></a>
+                                                    <a href="{{ route('admin.paths.edit',$Paths->id) }}" class="btn btn-default waves-effect waves-float btn-sm waves-green"><i class="zmdi zmdi-edit"></i></a>
 
-                                                    <form method="POST" action="{{ route('admin.paths.destroy', $Path->id) }}" onsubmit="return confirm('Are you sure?')">
+                                                    <form method="POST" action="{{ route('admin.paths.destroy', $Paths->id) }}" onsubmit="return confirm('Are you sure?')">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit" class="btn btn-default waves-effect waves-float btn-sm waves-red"  ><i class="zmdi zmdi-delete" aria-hidden="true" title="Suprimer"></i></button>
