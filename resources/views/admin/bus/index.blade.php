@@ -50,7 +50,7 @@
                                 </thead>
                                 <tbody>
 
-                                    {{-- @foreach ($datas as $bus)
+                                    @foreach ($datas as $bus)
                                         @forelse ($bus as $bus)
                                             <tr>
                                                 <td>{{ $bus->agence }} </td>
@@ -87,8 +87,7 @@
                                         @empty
 
                                         @endforelse
-                                    @endforeach --}}
-                                    {{$datas}}
+                                    @endforeach
 
                                 </tbody>
                             </table>

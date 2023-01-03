@@ -35,7 +35,7 @@
             <li> <a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-bus"></i><span>Voyages</span></a>
                 <ul class="ml-menu">
                     <li><a href="{{ route('admin.travels.index') }}">Tout les voyages</a></li>
-                    <li><a href="{{ route('admin.travels.create') }}">Ajouter une voyage</a></li>
+                    {{-- <li><a href="{{ route('admin.travels.create') }}">Generer</a></li> --}}
 
                 </ul>
             </li>

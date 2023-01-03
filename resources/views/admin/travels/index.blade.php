@@ -16,7 +16,7 @@
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                 </div>
                 <div class="col-lg-2 col-md-6 col-sm-12">
-                        <a href="{{ route('admin.travels.create') }}"><button class="btn btn-primary" type="button">Ajouter un voyage</button></a>
+                        <a href="{{ route('admin.travels.create') }}"><button class="btn btn-primary" type="button">Generer les voyages</button></a>
                 </div>
 
             </div>
@@ -49,8 +49,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {{$datas}}
 
-                                    @foreach ($datas as $travels)
+                                     @foreach ($datas as $travels)
                                         @forelse ($travels as $travel)
                                             <tr>
                                                 <td>{{ $travel->agence }}</td>
