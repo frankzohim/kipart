@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Api\test;
 
-use App\Controller\Api\services\sms\SendSmsService;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\OTPRequest;
 use Illuminate\Http\Request;
+use App\Http\Requests\OTPRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\services\sms\SendSmsService;
 
 class TestOtpController extends Controller
 {
