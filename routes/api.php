@@ -81,6 +81,7 @@ use App\Http\Controllers\Api\test\TestCodePromoController;
     Route::get("search/{term}",[SearchController::class,'search']);
     Route::get('listAgencyByPath/{departure}/{arrival}',[ListController::class,'listAgencyWithPath']);
     Route::post('generate',[GenerateTicket::class,'generateTicket']);
+    Route::post('generate/token',[GenerateTicket::class,'generateToken']);
 
    // All endpoints for admin
     Route::middleware('auth:api-admin')->prefix('v1')->group(function(){
