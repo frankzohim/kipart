@@ -20,7 +20,7 @@ class TravelController extends Controller
         $accessToken=Session::get('token');
 
         $travels=Http::withToken($accessToken)
-            ->get('http://kipart.stillforce.tech/api/admin/v1/travels');
+            ->get('http://kipart.stillforce.tech/apilist/travels/{10}');
 
         $datas=json_decode($travels->getBody());
 
@@ -38,7 +38,7 @@ class TravelController extends Controller
 
         $accessToken=Session::get('token');
                 $responseAgency= Http::withToken($accessToken)
-                        ->get('http://kipart.stillforce.tech/api/admin/v1/agencies');
+                        ->get('http://kipart.stillforce.tech/api/generate/travels/{path_id}');
 
                 $responsePath=Http::withToken($accessToken)
                 ->get('http://kipart.stillforce.tech/api/admin/v1/paths');

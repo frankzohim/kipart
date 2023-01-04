@@ -45,8 +45,8 @@
                             </ul>
                         </div>
                         <div class="body">
-                            @foreach ($datas as $path)
-                            <form method="POST" action="{{ route('admin.paths.update',$path->id) }}">
+                            @foreach ($datas as $paths)
+                            <form method="POST" action="{{ route('admin.paths.update',$paths->id) }}">
                                 @csrf
                                 @method('PUT')
 
@@ -56,7 +56,7 @@
                                         @foreach ($dataAgency as $data)
 
                                             @foreach ($data as $agency)
-                                            <option value="{{ $agency->id }}" @selected($path->agency_id==$agency->id)>{{ $agency->name }}</option>
+                                            <option value="{{ $agency->id }}" @selected($paths->agency_id==$agency->id)>{{ $agency->name }}</option>
                                             @endforeach
                                         @endforeach
 
@@ -69,7 +69,7 @@
 
                             <label for="departure">Depart</label>
                             <div class="form-group">
-                                <input type="text" id="email_address" class="form-control" name="departure" placeholder="Entrez le lieu de depart"  value="{{ $path->departure }}">
+                                <input type="text" id="email_address" class="form-control" name="departure" placeholder="Entrez le lieu de depart"  value="{{ $paths->departure }}">
                             </div>
                             @error('departure')
                             <div class="text-danger">{{ $message }}</div>
@@ -77,7 +77,7 @@
 
                         <label for="arrival">Arrivé</label>
                         <div class="form-group">
-                            <input type="text" id="email_address" class="form-control" name="arrival" placeholder="Entrez le lieu de depart" value="{{ $path->arrival }}">
+                            <input type="text" id="email_address" class="form-control" name="arrival" placeholder="Entrez le lieu de depart" value="{{ $paths->arrival }}">
                         </div>
                         @error('arrival')
                         <div class="text-danger">{{ $message }}</div>
@@ -86,8 +86,8 @@
 
                     <label for="state">Etat</label>
                     <select class="form-control show-tick ms select2" data-placeholder="Select" name="state">
-                        <option value="1"   @selected($path->state==1)>Publié</option>
-                        <option value="0"   @selected($path->state==0)>Non publié</option>
+                        <option value="1"   @selected($paths->state==1)>Publié</option>
+                        <option value="0"   @selected($paths->state==0)>Non publié</option>
                     </select>
                         @error('state')
                         <div class="text-danger">{{ $message }}</div>

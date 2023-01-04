@@ -195,14 +195,7 @@ class AgencyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $accessToken=Session::get('token');
-                Http::withToken($accessToken)
-                        ->delete('http://kipart.stillforce.tech/api/admin/v1/agencies/'. $id);
-
-                return to_route('admin.agencies.index')->with('fail','Agence suprimé avec success');
-    }
+    
 
 
 }
