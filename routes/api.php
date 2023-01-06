@@ -4,13 +4,13 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\ListController;
+use App\Http\Controllers\Api\GenerateTicket;
 
+use App\Http\Controllers\Api\ListController;
 use App\Http\Controllers\Api\ShowController;
 use App\Http\Controllers\Api\SearchController;
 use App\Http\Controllers\Api\admin\BusController;
 use App\Http\Controllers\Api\admin\PathController;
-use App\Http\Controllers\Api\Auth\AdminController;
 use App\Http\Controllers\Api\Auth\AgentController;
 use App\Http\Controllers\Api\admin\ImageController;
 use App\Http\Controllers\Api\admin\UsersController;
@@ -19,21 +19,21 @@ use App\Http\Controllers\Api\admin\TravelController;
 use App\Http\Controllers\Api\test\TestOtpController;
 use App\Http\Controllers\Api\Auth\CustomerController;
 use App\Http\Controllers\Api\admin\ScheduleController;
+use App\Http\Controllers\Api\GenerateTravelController;
+use App\Http\Controllers\Api\admin\DetailAdminController;
 use App\Http\Controllers\Api\customer\CodeCheckController;
 use App\Http\Controllers\Api\customer\PassengerController;
+use App\Http\Controllers\Api\test\TestCodePromoController;
 use App\Http\Controllers\Api\customer\ResetPasswordController;
 use App\Http\Controllers\Api\customer\ForgotPasswordController;
 use App\Http\Controllers\Api\customer\DetailUserLoginController;
 use App\Http\Controllers\Api\notifications\NotificationController;
+use App\Http\Controllers\Api\test\payment\stripe\StripeController;
 use App\Http\Controllers\Api\agent\BusController as AgentBusController;
 use App\Http\Controllers\Api\agent\PathController as AgentPathController;
 use App\Http\Controllers\Api\agent\AgencyController as AgentAgencyController;
 use App\Http\Controllers\Api\agent\TravelController as AgentTravelController;
 use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
-use App\Http\Controllers\Api\GenerateTicket;
-use App\Http\Controllers\Api\GenerateTravelController;
-use App\Http\Controllers\Api\test\payment\stripe\StripeController;
-use App\Http\Controllers\Api\test\TestCodePromoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +97,7 @@ use App\Http\Controllers\Api\test\TestCodePromoController;
 
         Route::get('routes',[CustomerController::class,'routeList']);
         Route::get('agencyCount',[AgencyController::class,'countAllAgency']);
+        Route::get('details/admin',[DetailAdminController::class,'infosAdmin']);
     });
 
 
