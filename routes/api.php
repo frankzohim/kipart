@@ -50,7 +50,7 @@ use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController
     //All endpoints for unauth user
     Route::post('login',[CustomerController::class,'login']);
     Route::post('login/admin',[AdminController::class,'login']);
-    Route::post('agent/login',[AgentController::class,'login']);
+    Route::post('login/agent',[AgentController::class,'login']);
     Route::post('register',[CustomerController::class,'register']);
     Route::post('testOtp',[TestOtpController::class,'testOtp']);
     Route::post('verify/Otp',[CustomerController::class,'verifyOtp']);
