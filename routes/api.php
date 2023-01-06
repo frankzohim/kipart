@@ -21,6 +21,7 @@ use App\Http\Controllers\Api\Auth\CustomerController;
 use App\Http\Controllers\Api\admin\ScheduleController;
 use App\Http\Controllers\Api\GenerateTravelController;
 use App\Http\Controllers\Api\admin\DetailAdminController;
+use App\Http\Controllers\Api\admin\DetailsAppsResource;
 use App\Http\Controllers\Api\customer\CodeCheckController;
 use App\Http\Controllers\Api\customer\PassengerController;
 use App\Http\Controllers\Api\test\TestCodePromoController;
@@ -98,6 +99,7 @@ use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController
         Route::get('routes',[CustomerController::class,'routeList']);
         Route::get('agencyCount',[AgencyController::class,'countAllAgency']);
         Route::get('details/admin',[DetailAdminController::class,'infosAdmin']);
+        Route::get('count/resources',[DetailsAppsResource::class,'CountResource']);
     });
 
 
