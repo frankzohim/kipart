@@ -4,22 +4,51 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Models\Agency;
 use Illuminate\Http\Request;
+use Laravel\Passport\Client;
+
 use App\Services\Auth\LoginService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Requests\Auth\LoginRequest;
+
 
 class AgentController extends Controller
 {
     public function login(LoginRequest $request ){
 
-        $AgentRequest=$request->validate([
-            'email'=>["email","required"],
-            'password'=>["required","string",]
+        $valid = validator($request->only('email','password'), [
+            'email' => 'required|string|exists:admins',
+            'password' => 'required|string',
         ]);
-        $Agent=Agency::where("email",$AgentRequest["email"])->first();
+        $data = request()->only('email','password');
+        $admin=Agency::where("email",$data["email"])->first();
+        $client = Client::where('id', 5)->first();
+        if ($valid->fails()) {
+            return response()->json(['error'=>$valid->errors()], 422);
 
-        return (new LoginService())->login($Agent,$AgentRequest,'AGENCE_KEY_PATH','Agent');
+        }
+
+
+
+                  // And created user until here.
+    // Is this $request the same request? I mean Request $request? Then wouldn't it mess the other $request stuff? Also how did you pass it on the $request in $proxy? Wouldn't Request::create() just create a new thing?
+
+    $request->request->add([
+        'grant_type'    => 'password',
+        'client_id'     => $client->id,
+        'client_secret' => $client->secret,
+        'username'      => $admin->email,
+        'password'      => $data['password'],
+        'scope'         => null,
+    ]);
+
+    // Fire off the internal request.
+    $token = Request::create(
+        'oauth/token',
+        'POST'
+    );
+    return Route::dispatch($token);
     }
 
     public function register(){
