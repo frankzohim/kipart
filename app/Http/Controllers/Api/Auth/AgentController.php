@@ -15,10 +15,10 @@ use App\Http\Requests\Auth\LoginRequest;
 
 class AgentController extends Controller
 {
-    public function login(LoginRequest $request ){
+    public function login(Request $request ){
 
         $valid = validator($request->only('email','password'), [
-            'email' => 'required|string|exists:admins',
+            'email' => 'required|string|exists:agencies',
             'password' => 'required|string',
         ]);
         $data = request()->only('email','password');
