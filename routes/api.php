@@ -34,6 +34,7 @@ use App\Http\Controllers\Api\test\payment\stripe\StripeController;
 use App\Http\Controllers\Api\agent\BusController as AgentBusController;
 use App\Http\Controllers\Api\agent\PathController as AgentPathController;
 use App\Http\Controllers\Api\agent\AgencyController as AgentAgencyController;
+use App\Http\Controllers\Api\agent\DetailAgentController;
 use App\Http\Controllers\Api\agent\TravelController as AgentTravelController;
 use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
 
@@ -137,6 +138,8 @@ use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController
         Route::delete('destroy/MyOwnTravel/{id}',[AgentTravelController::class,'destroy']);
 
         Route::post('logout/agt/private',[AgentController::class,'logout']);
+
+        Route::get('details/agent',[DetailAgentController::class,'infosAgent']);
 
     });
 
