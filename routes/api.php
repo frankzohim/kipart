@@ -38,6 +38,7 @@ use App\Http\Controllers\Api\agent\DetailAgentController;
 use App\Http\Controllers\Api\agent\DetailsAppsResourceController;
 use App\Http\Controllers\Api\agent\TravelController as AgentTravelController;
 use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
+use App\Http\Controllers\Api\agent\TicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -141,6 +142,8 @@ use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController
         Route::post('logout/agt/private',[AgentController::class,'logout']);
 
         Route::get('details/agent',[DetailAgentController::class,'infosAgent']);
+
+        Route::get('list/ticket',[TicketController::class,'listTickets']);
 
         Route::get('count/resources',[DetailsAppsResourceController::class,'CountResource']);
 

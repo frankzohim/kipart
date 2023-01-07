@@ -155,7 +155,7 @@ class PassengerController extends Controller
         $travel_id= PassengerBuyResource::collection( Passenger::join('payments','payments.id','passengers.payment_id')->join('travel','travel.id','passengers.travel_id')->select('passengers.isCheckPayment','payments.user_id','payments.id','passengers.name','passengers.telephone','passengers.travel_id','passengers.seatNumber','passengers.cni')
 
         ->where('passengers.isCheckPayment',1)
-        ->where('user_id',Auth::guard('api')->user()->id)
+        ->where('payments.user_id',Auth::guard('api')->user()->id)
         ->get());
         $dataTravelId=[];
         $dataTravel=[];
