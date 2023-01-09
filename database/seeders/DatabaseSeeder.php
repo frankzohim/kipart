@@ -11,6 +11,7 @@ use Database\Seeders\AgencySeeder;
 use Database\Seeders\TravelSeeder;
 use Database\Seeders\CustomerSeeder;
 use Database\Seeders\ScheduleSeeder;
+use Database\Seeders\SubAgencySeeder;
 
 class DatabaseSeeder extends Seeder
 {
