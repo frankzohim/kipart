@@ -14,11 +14,13 @@ use App\Http\Resources\Bus\BusResource;
 use App\Http\Resources\Path\PathResource;
 use App\Http\Resources\Travel\TimeResource;
 use App\Http\Resources\Agency\AgencyResource;
+use App\Http\Resources\Agency\SubAgency\SubAgencyResource;
 use App\Http\Resources\Path\ListTownResource;
 use App\Http\Resources\Travel\TravelResource;
 use App\Http\Resources\Path\ListArrivalResource;
 use App\Http\Resources\schedule\ScheduleResource;
 use App\Http\Resources\Path\ListDepartureResource;
+use App\Models\SubAgency;
 use Illuminate\Support\Facades\URL;
 
 class ListController extends Controller
@@ -90,5 +92,12 @@ class ListController extends Controller
             }
 
             return response()->json(['data'=>$agencies]);
+    }
+
+    public function listSubagencies($id){
+
+        $subAgencies=SubAgencyResource::collection(SubAgency::where('agency_id',$id)->get());
+
+        return response()->json(['subAgencies'=>$subAgencies],200);
     }
 }

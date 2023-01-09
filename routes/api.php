@@ -81,6 +81,7 @@ use App\Http\Controllers\Api\agent\TicketController;
     Route::get('list/paths/{paginate}',[ListController::class,'listPath']);
     Route::get('list/schedules/{paginate}',[ListController::class,'listSchedule']);
     Route::get('list/travels/{paginate}',[ListController::class,'listTravel']);
+    Route::get('list/subAgencies/{id}',[ListController::class,'listSubagencies']);
     Route::get('placeIsBusy/{travel_id}',[PassengerController::class,'listPlace']);
     Route::get('image/{path}', [ImageController::class, 'getImage']);
     Route::get("search/{term}",[SearchController::class,'search']);
