@@ -18,6 +18,10 @@ return new class extends Migration
         Schema::create('sub_agencies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('localisation');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('phone');
             $table->foreignIdFor(Agency::class)
                     ->constrained()
                     ->restrictOnUpdate()

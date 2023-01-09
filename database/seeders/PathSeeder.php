@@ -54,18 +54,18 @@ class PathSeeder extends Seeder
 
          DB::table('paths')->insert([
             'departure'=>"Douala",
-            'arrival'=>"Dshang",
+            'arrival'=>"Dschang",
             'state'=>1,
          ]);
 
          DB::table('paths')->insert([
-            'departure'=>"Dshang",
+            'departure'=>"Dschang",
             'arrival'=>"Yaoundé",
             'state'=>1,
          ]);
 
          DB::table('paths')->insert([
-            'departure'=>"Dshang",
+            'departure'=>"Dschang",
             'arrival'=>"Douala",
             'state'=>1,
          ]);
@@ -73,13 +73,13 @@ class PathSeeder extends Seeder
 
          DB::table('paths')->insert([
             'departure'=>"Bafoussam",
-            'arrival'=>"Dshang",
+            'arrival'=>"Dschang",
             'state'=>1,
          ]);
 
 
          DB::table('paths')->insert([
-            'departure'=>"Dshang",
+            'departure'=>"Dschang",
             'arrival'=>"Bafoussam",
             'state'=>1,
          ]);
@@ -104,7 +104,7 @@ class PathSeeder extends Seeder
 
          DB::table('paths')->insert([
             'departure'=>"Foumban",
-            'arrival'=>"Dshang",
+            'arrival'=>"Dschang",
             'state'=>1,
          ]);
 
@@ -115,7 +115,7 @@ class PathSeeder extends Seeder
          ]);
 
          DB::table('paths')->insert([
-            'departure'=>"Dshang",
+            'departure'=>"Dschang",
             'arrival'=>"Foumban",
             'state'=>1,
          ]);
@@ -174,7 +174,7 @@ class PathSeeder extends Seeder
 
          DB::table('paths')->insert([
             'departure'=>"Yaoundé",
-            'arrival'=>"Dshang",
+            'arrival'=>"Dschang",
             'state'=>1,
          ]);
          DB::table('paths')->insert([

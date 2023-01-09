@@ -8,14 +8,15 @@ use App\Models\Travel;
 use App\Models\Horaire;
 use App\Models\Schedule;
 use App\Models\Itinerary;
+use App\Models\SubAgency;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Agency extends Authenticatable
 {
@@ -56,5 +57,10 @@ class Agency extends Authenticatable
     public function user():BelongsTo
     {
         return $this->belongsTo(Agency::class);
+    }
+
+    public function subagencies():HasMany
+    {
+        return  $this->hasMany(SubAgency::class);
     }
 }
