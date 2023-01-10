@@ -149,6 +149,7 @@ use App\Http\Controllers\Api\agent\TicketController;
 
         Route::get('count/resources',[DetailsAppsResourceController::class,'CountResource']);
         Route::get('details/subAgent',[DetailSubAgencyController::class,'detailSubAgency']);
+        Route::get('details/AgencyBySubAgent',[DetailSubAgencyController::class,'detailAgencyBySubAgency']);
 
     });
 
