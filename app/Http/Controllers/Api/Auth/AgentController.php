@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Models\Agency;
+
 use Illuminate\Http\Request;
 use Laravel\Passport\Client;
 
@@ -11,27 +11,25 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Requests\Auth\LoginRequest;
-
+use App\Models\SubAgency;
 
 class AgentController extends Controller
 {
     public function login(Request $request ){
 
         $valid = validator($request->only('email','password'), [
-            'email' => 'required|string|exists:agencies',
+            'email' => 'required|string|exists:sub_agencies',
             'password' => 'required|string',
         ]);
         $data = request()->only('email','password');
-        $admin=Agency::where("email",$data["email"])->first();
+        $admin=SubAgency::where("email",$data["email"])->first();
         $client = Client::where('id', 5)->first();
         if ($valid->fails()) {
             return response()->json(['error'=>$valid->errors()], 422);
 
         }
-
-
-
-                  // And created user until here.
+        if($admin){
+                         // And created user until here.
     // Is this $request the same request? I mean Request $request? Then wouldn't it mess the other $request stuff? Also how did you pass it on the $request in $proxy? Wouldn't Request::create() just create a new thing?
 
     $request->request->add([
@@ -49,6 +47,15 @@ class AgentController extends Controller
         'POST'
     );
     return Route::dispatch($token);
+        }
+
+        else{
+            return response()->json(['error'=>"Incorrect email"]);
+        }
+
+
+
+
     }
 
     public function register(){

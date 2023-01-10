@@ -38,6 +38,7 @@ use App\Http\Controllers\Api\agent\DetailAgentController;
 use App\Http\Controllers\Api\agent\DetailsAppsResourceController;
 use App\Http\Controllers\Api\agent\TravelController as AgentTravelController;
 use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
+use App\Http\Controllers\Api\agent\subagency\DetailSubAgencyController;
 use App\Http\Controllers\Api\agent\TicketController;
 
 /*
@@ -147,6 +148,7 @@ use App\Http\Controllers\Api\agent\TicketController;
         Route::get('list/ticket',[TicketController::class,'listTickets']);
 
         Route::get('count/resources',[DetailsAppsResourceController::class,'CountResource']);
+        Route::get('details/subAgent',[DetailSubAgencyController::class,'detailSubAgency']);
 
     });
 

@@ -5,9 +5,8 @@ namespace App\Models;
 use App\Models\Bus;
 use App\Models\Path;
 use App\Models\Travel;
-use App\Models\Horaire;
+
 use App\Models\Schedule;
-use App\Models\Itinerary;
 use App\Models\SubAgency;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
@@ -32,7 +31,7 @@ class Agency extends Authenticatable
         'email'
     ];
 
-    protected $guard='agency';
+
 
     public function buses():HasMany
     {

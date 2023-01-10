@@ -114,7 +114,7 @@ return [
         ],
         'agencies' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Agency::class,
+            'model' => App\Models\SubAgency::class,
         ],
         // 'customers' => [
         //     'driver' => 'eloquent',
