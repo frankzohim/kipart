@@ -23,7 +23,7 @@ class TicketResource extends JsonResource
             'seatNumber'=>$this->seatNumber,
             'cni'=>$this->cni,
             'telephone'=>$this->telephone,
-            'Voyage'=>TravelResource::collection(Travel::where('id',$this->travel_id)->where('agency_id',Auth::guard('api-agent')->user()->id)->get()),
+            'Voyage'=>TravelResource::collection(Travel::where('id',$this->travel_id)->where('agency_id',Auth::guard('api-agent')->user()->agency_id)->get()),
         ];
     }
 }
