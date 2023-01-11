@@ -159,7 +159,7 @@ use App\Http\Controllers\Api\agent\TicketController;
 
         Route::post('logout',[CustomerController::class,'logout']);
         Route::get('details/user',[DetailUserLoginController::class,'infosUser']);
-        Route::post('stripe/test/payment/{id}/{price}/{codePromo}',[StripeController::class,'stripeTestPayment']);
+        Route::post('stripe/test/payment/{id}/{price}/{codePromo}/{subId}',[StripeController::class,'stripeTestPayment']);
         Route::get('list/passengers/{id}',[PassengerController::class,'listPassenger']);
         Route::post('add/passengers/{travel_id}',[PassengerController::class,'addPassenger']);
         Route::post('updatePlace/{payment_id}',[PassengerController::class,'updatePlace']);

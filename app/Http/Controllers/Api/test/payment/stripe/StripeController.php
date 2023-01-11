@@ -9,12 +9,14 @@ use App\Models\Passenger;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\PromoCode;
+use App\Models\Ticket;
 use App\Models\Travel;
+use Faker\Calculator\TCNo;
 use Illuminate\Support\Facades\Auth;
 
 class StripeController extends Controller
 {
-    public function stripeTestPayment(Request $request, $id,$price,$codePromo){
+    public function stripeTestPayment(Request $request, $id,$price,$codePromo,$subId){
 
         $code=PromoCode::where('code',$codePromo)->first();
         if($code){
@@ -36,7 +38,8 @@ class StripeController extends Controller
                     'cvc' => $request->cvc,
                 ]
             ]);
-            $payment=Passenger::where('payment_id',$id);
+            $payments=Passenger::where('payment_id',$id)->get();
+
 
             Stripe\Stripe::setApiKey(env("STRIPE_SECRET"));
 
@@ -48,11 +51,19 @@ class StripeController extends Controller
               ]);
 
               if($response->status=='succeeded'){
+                foreach($payments as $payment){
 
+                    Ticket::create([
+                        'user_id'=>Auth::guard('api')->user()->id,
+                        'sub_agency_id'=>$subId,
+                        'travel_id'=>$payment->travel_id,
+                        'passenger_id'=>$payment->id
+                    ]);
+
+                }
 
                 $payment->update([
                     'isCheckPayment' =>1
-
                 ]);
                 return response()->json(["message"=>$response->status],201);
               }else{
