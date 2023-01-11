@@ -59,12 +59,13 @@ class StripeController extends Controller
                         'travel_id'=>$payment->travel_id,
                         'passenger_id'=>$payment->id
                     ]);
+                    $payment->update([
+                        'isCheckPayment' =>1
+                    ]);
 
                 }
 
-                $payment->update([
-                    'isCheckPayment' =>1
-                ]);
+
                 return response()->json(["message"=>$response->status],201);
               }else{
                 return response()->json([
