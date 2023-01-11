@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Agency;
 use App\Models\Codeqr;
+use App\Models\Ticket;
 use App\Models\Notification;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -72,5 +73,10 @@ class User extends Authenticatable
     public function agencies():HasMany
     {
         return $this->hasMany(Agency::class);
+    }
+
+    public function tickets():HasMany
+    {
+        return $this->hasMany(Ticket::class);
     }
 }

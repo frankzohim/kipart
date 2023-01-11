@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Ticket;
 use App\Models\Travel;
 use App\Models\Payment;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -31,5 +33,10 @@ class Passenger extends Model
     public function payment():BelongsTo
     {
         return $this->belongsTo(Payment::class);
+    }
+
+    public function tickets():HasMany
+    {
+        return $this->hasMany(Ticket::class);
     }
 }

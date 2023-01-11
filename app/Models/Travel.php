@@ -5,14 +5,15 @@ namespace App\Models;
 use App\Models\Bus;
 use App\Models\Path;
 use App\Models\Codeqr;
+use App\Models\Ticket;
 use App\Models\Payment;
 use App\Models\Schedule;
 use App\Models\Passenger;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Travel extends Model
 {
@@ -66,5 +67,10 @@ class Travel extends Model
     public function schedule():BelongsTo
     {
         return $this->belongsTo(Schedule::class);
+    }
+
+    public function tickets():HasMany
+    {
+        return $this->hasMany(Ticket::class);
     }
 }
