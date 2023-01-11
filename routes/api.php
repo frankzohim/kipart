@@ -40,6 +40,7 @@ use App\Http\Controllers\Api\agent\TravelController as AgentTravelController;
 use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
 use App\Http\Controllers\Api\agent\subagency\DetailSubAgencyController;
 use App\Http\Controllers\Api\agent\TicketController;
+use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -164,6 +165,8 @@ use App\Http\Controllers\Api\agent\TicketController;
         Route::post('add/passengers/{travel_id}',[PassengerController::class,'addPassenger']);
         Route::post('updatePlace/{payment_id}',[PassengerController::class,'updatePlace']);
         Route::get('list/travels/buy',[PassengerController::class,'listTravelsOfUser']);
+        Route::get('list/tickets',[TicketTicketController::class,'listTicket']);
+        Route::get('get/qrCode/{id}',[TicketTicketController::class,'getQrCode']);
         Route::get('ToApply/promoCode/{code}/{price}',[TestCodePromoController::class,'testCodePost']);
     });
 
