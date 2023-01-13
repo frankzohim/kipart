@@ -15,10 +15,12 @@ class PassengersDetailResource extends JsonResource
     public function toArray($request)
     {
         return [
+            "id"=>$this->id,
             'nom'=>$this->name,
             'type'=>$this->type,
             'seatNumber'=>$this->seatNumber,
             'cniNumber'=>$this->cniNumber,
+            'telephone'=>$this->telephone
         ];
     }
 }

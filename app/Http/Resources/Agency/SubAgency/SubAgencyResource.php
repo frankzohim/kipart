@@ -15,6 +15,7 @@ class SubAgencyResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id'=>$this->id,
             'nom'=>$this->name,
             'localisation'=>$this->localisation,
             'email'=>$this->email,
