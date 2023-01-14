@@ -19,6 +19,7 @@ class StripeController extends Controller
     public function stripeTestPayment(Request $request, $id,$price,$codePromo,$subId){
 
         $code=PromoCode::where('code',$codePromo)->first();
+        $arrayTicket=[];
         if($code){
             $code->update([
                 'isUse'=>1
@@ -53,7 +54,7 @@ class StripeController extends Controller
               if($response->status=='succeeded'){
                 foreach($payments as $payment){
 
-                    Ticket::create([
+                    $ticket=Ticket::create([
                         'user_id'=>Auth::guard('api')->user()->id,
                         'sub_agency_id'=>$subId,
                         'travel_id'=>$payment->travel_id,
@@ -63,10 +64,12 @@ class StripeController extends Controller
                         'isCheckPayment' =>1
                     ]);
 
+                    array_push($arrayTicket,$ticket->id);
+
                 }
 
 
-                return response()->json(["message"=>$response->status],201);
+                return response()->json(["message"=>$response->status,"ticketId"=>$arrayTicket],201);
               }else{
                 return response()->json([
                                     'message'=>'failed'
