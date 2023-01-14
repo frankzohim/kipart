@@ -15,17 +15,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::disableForeignKeyConstraints();
+
         Schema::create('buses', function (Blueprint $table) {
             $table->id();
             $table->string('registration')->unique();
-
-            $table->foreignIdFor(Travel::class)
-                    ->constrained()
-                    ->CascadeOnUpdate()
-                    ->CascadeOnDelete();
-
             $table->integer('number_of_places');
+            $table->integer('agency_id')->nullable();
             //$table->string('type');
             $table->string("plan");
             $table->string('classe');

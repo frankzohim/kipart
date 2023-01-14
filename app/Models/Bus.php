@@ -7,6 +7,7 @@ use App\Models\Travel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Bus extends Model
 {
@@ -21,8 +22,8 @@ class Bus extends Model
     ];
 
 
-    public function travel():BelongsTo
+    public function travel():HasMany
     {
-        return $this->belongsTo(Travel::class);
+        return $this->hasMany(Travel::class);
     }
 }

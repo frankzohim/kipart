@@ -47,7 +47,7 @@ class CustomerController extends Controller
         'grant_type'    => 'password',
         'client_id'     => $client->id,
         'client_secret' => $client->secret,
-        'username'      => $customer->email,
+        'username'      => $customer->phone_number,
         'password'      => $data['password'],
         'scope'         => null,
     ]);

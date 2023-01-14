@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Agency;
+use App\Models\Bus;
 use App\Models\Path;
 use App\Models\Schedule;
 use Illuminate\Database\Migrations\Migration;
@@ -22,6 +23,11 @@ return new class extends Migration
             $table->string('date');
 
             $table->foreignIdFor(Agency::class)
+            ->constrained()
+            ->restrictOnUpdate()
+            ->restrictOnDelete();
+
+            $table->foreignIdFor(Bus::class)
             ->constrained()
             ->restrictOnUpdate()
             ->restrictOnDelete();

@@ -23,6 +23,7 @@ class Travel extends Model
         'date',
         'path_id',
         'agency_id',
+        'bus_id',
         'price',
         'state',
         'classe',
@@ -60,9 +61,9 @@ class Travel extends Model
         return $this->hasMany(Passenger::class);
     }
 
-    public function bus():HasOne
+    public function bus():BelongsTo
     {
-        return $this->hasOne(Bus::class);
+        return $this->belongsTo(Bus::class);
     }
     public function schedule():BelongsTo
     {
