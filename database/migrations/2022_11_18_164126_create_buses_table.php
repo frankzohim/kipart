@@ -23,7 +23,6 @@ return new class extends Migration
             $table->integer('agency_id')->nullable();
             //$table->string('type');
             $table->string("plan");
-            $table->string('classe');
             $table->timestamps();
         });
     }

@@ -21,7 +21,6 @@ class BusFactory extends Factory
             'number_of_places'=>rand(30,100),
             'classe'=>$this->faker->randomElement($array=['vip','premium','moyenne','normal']),
             'plan'=>$this->faker->uuid()
-
         ];
     }
 }
