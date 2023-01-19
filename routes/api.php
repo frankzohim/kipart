@@ -65,6 +65,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
     Route::post('resend/otp/{mobile}',[CustomerController::class,'sendOtp']);
     Route::post('send/notifications/{message}',[NotificationController::class,'sendNotification']);
     Route::post('generate/travels/{path_id}',[GenerateTravelController::class,'generateTravelToThwoMonth']);
+    Route::get('updatePrice/{classe}/{price}/{agency_id}',[GenerateTravelController::class,'updatePrice']);
     Route::post('searchFull/travel',[SearchController::class,'searchFull']);
     Route::post('search/byAgency/{id}',[SearchController::class,'searchByAgency']);
 

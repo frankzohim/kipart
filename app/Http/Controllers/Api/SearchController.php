@@ -69,6 +69,7 @@ class SearchController extends Controller
                 ->where('paths.departure','=',$request->departure)
                 ->where('paths.arrival','=',$request->arrival)
                 ->where('travel.date','=',$request->dateDeparture)
+                ->where('travel.classe',$request->classe)
                 ->get();
 
 

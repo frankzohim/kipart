@@ -79,4 +79,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Ticket::class);
     }
+
+    public function findForPassport($username) {
+        return $this->where('phone_number','=', $username)->first();
+    }
 }

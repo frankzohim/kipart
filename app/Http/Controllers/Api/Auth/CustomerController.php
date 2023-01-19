@@ -73,7 +73,6 @@ class CustomerController extends Controller
      */
     $valid = validator($request->only('email', 'name', 'password','phone_number'), [
         'name' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string|min:6',
         'phone_number' => 'required|max:9|unique:users',
     ]);
@@ -103,7 +102,7 @@ class CustomerController extends Controller
         'grant_type'    => 'password',
         'client_id'     => $client->id,
         'client_secret' => $client->secret,
-        'username'      => $data['email'],
+        'username'      => $data['phone_number'],
         'password'      => $data['password'],
         'scope'         => null,
     ]);

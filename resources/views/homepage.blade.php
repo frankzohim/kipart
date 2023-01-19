@@ -20,7 +20,7 @@
     <!-- Responsive css -->
     <link rel="stylesheet" href="./assets/css/responsive.css" />
 
-
+    <script src="https://widget.northeurope.cloudapp.azure.com:9443/v0.1.0/mobile-money-widget-mtn.js"></script>
 </head>
 
 <body>

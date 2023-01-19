@@ -51,4 +51,22 @@ class GenerateTravelController extends Controller
         return response()->json(["message"=>"les Voyages de l'agence $agency->name generé avec success"]);
 
     }
+
+    public function updatePrice($classe,$price,$agency_id){
+
+        $data=[
+            'agency_id'=>$agency_id,
+            'price'=>$price,
+            'classe'=>$classe,
+        ];
+
+        $travels=Travel::where('agency_id',$agency_id)->get();
+
+        foreach($travels as $travel){
+            $travel->update($data);
+        }
+
+
+        return "mise a jour avec sucees";
+    }
 }
