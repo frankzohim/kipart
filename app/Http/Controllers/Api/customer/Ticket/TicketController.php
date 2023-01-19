@@ -17,7 +17,7 @@ class TicketController extends Controller
 {
     public function listTicket(){
 
-        $myTickets=ListTicketResource::collection(Ticket::all());
+        $myTickets=ListTicketResource::collection(Ticket::where('user_id', Auth::guard('api')->user()->id)->get());
 
         return $myTickets;
     }
