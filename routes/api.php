@@ -109,7 +109,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
         Route::get('agencyCount',[AgencyController::class,'countAllAgency']);
         Route::get('details/admin',[DetailAdminController::class,'infosAdmin']);
         Route::get('count/resources',[DetailsAppsResource::class,'CountResource']);
-        Route::get('list/users/byAmbassadors/{AmbassadorId}',[ListController::class,'ambassadorsWithUser'])->get();
+        Route::get('list/users/byAmbassadors/{AmbassadorId}',[ListController::class,'ambassadorsWithUser']);
     });
 
 
