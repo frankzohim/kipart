@@ -88,6 +88,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
     Route::get('placeIsBusy/{travel_id}',[PassengerController::class,'listPlace']);
     Route::get('image/{path}', [ImageController::class, 'getImage']);
     Route::get("search/{term}",[SearchController::class,'search']);
+    Route::get('list/brandAmbassadors',[ListController::class,'listAmbassadors']);
     Route::get('listAgencyByPath/{departure}/{arrival}',[ListController::class,'listAgencyWithPath']);
     Route::post('generate',[GenerateTicket::class,'generateTicket']);
     Route::post('generate/token',[GenerateTicket::class,'generateToken']);
@@ -108,6 +109,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
         Route::get('agencyCount',[AgencyController::class,'countAllAgency']);
         Route::get('details/admin',[DetailAdminController::class,'infosAdmin']);
         Route::get('count/resources',[DetailsAppsResource::class,'CountResource']);
+        Route::get('list/users/byAmbassadors/{AmbassadorId}',[ListController::class,'ambassadorsWithUser'])->get();
     });
 
 

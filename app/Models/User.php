@@ -29,6 +29,7 @@ class User extends Authenticatable
         'isVerifiedOtp',
         'password',
         'phone_number',
+        'brand_ambassadors_id'
     ];
 
     /**

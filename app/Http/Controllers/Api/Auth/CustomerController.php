@@ -71,7 +71,7 @@ class CustomerController extends Controller
      * @param  array  $request
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    $valid = validator($request->only('email', 'name', 'password','phone_number'), [
+    $valid = validator($request->only('email', 'name', 'password','phone_number','brand_ambassadors_id'), [
         'name' => 'required|string|max:255',
         'password' => 'required|string|min:6',
         'phone_number' => 'required|max:9|unique:users',
@@ -82,14 +82,15 @@ class CustomerController extends Controller
 
     }
 
-    $data = request()->only('email','name','password','phone_number');
+    $data = request()->only('email','name','password','phone_number','brand_ambassadors_id');
 
     $user = User::create([
         'name' => $data['name'],
         'email' => $data['email'],
         'isVerifiedOtp'=>0,
         'password' => bcrypt($data['password']),
-        'phone_number' => $data['phone_number']
+        'phone_number' => $data['phone_number'],
+        'brand_ambassadors_id'=>$data['brand_ambassadors_id']
     ]);
 
     // And created user until here.

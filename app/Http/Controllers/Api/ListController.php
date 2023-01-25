@@ -4,24 +4,26 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Bus;
 use App\Models\Path;
+use App\Models\User;
 use App\Models\Agency;
 use App\Models\Travel;
 use App\Models\Schedule;
+use App\Models\SubAgency;
 use Illuminate\Http\Request;
+use App\Models\brandAmbassador;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Bus\BusResource;
 use App\Http\Resources\Path\PathResource;
 use App\Http\Resources\Travel\TimeResource;
 use App\Http\Resources\Agency\AgencyResource;
-use App\Http\Resources\Agency\SubAgency\SubAgencyResource;
 use App\Http\Resources\Path\ListTownResource;
 use App\Http\Resources\Travel\TravelResource;
 use App\Http\Resources\Path\ListArrivalResource;
 use App\Http\Resources\schedule\ScheduleResource;
 use App\Http\Resources\Path\ListDepartureResource;
-use App\Models\SubAgency;
-use Illuminate\Support\Facades\URL;
+use App\Http\Resources\Agency\SubAgency\SubAgencyResource;
 
 class ListController extends Controller
 {
@@ -99,5 +101,18 @@ class ListController extends Controller
         $subAgencies=SubAgencyResource::collection(SubAgency::where('agency_id',$id)->get());
 
         return response()->json(['subAgencies'=>$subAgencies],200);
+    }
+
+    public function listAmbassadors(){
+
+        $ambassadors=brandAmbassador::all();
+
+        return response()->json(["brand_ambassadors"=>$ambassadors],200);
+    }
+
+    public function ambassadorsWithUser($AmbassadorId){
+        $users=User::where('brand_ambassadors_id',$AmbassadorId)->get();
+
+        return response()->json(['usersWithAmbassador'=>$users],200);
     }
 }
