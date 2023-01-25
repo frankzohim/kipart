@@ -6,7 +6,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
-        "bmatovu/laravel-mtn-momo": "^4.2",
         "guzzlehttp/guzzle": "^7.2",
         "ladumor/one-signal": "^0.4.3",
         "laravel/framework": "^9.19",

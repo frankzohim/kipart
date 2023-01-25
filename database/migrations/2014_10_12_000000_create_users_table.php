@@ -22,6 +22,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('isVerifiedOtp');
+            $table->bigInteger('brand_ambassadors_id')->nullable();
             $table->string('phone_number');
             $table->rememberToken();
             $table->timestamps();

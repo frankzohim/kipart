@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AgencySeeder::class);
         $this->call(BusSeeder::class);
         //  $this->call(ScheduleSeeder::class);
-        //$this->call(TravelSeeder::class);
+        $this->call(TravelSeeder::class);
         $this->call(SubAgencySeeder::class);
 
 
