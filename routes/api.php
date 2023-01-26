@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\Auth\AgentController;
 use App\Http\Controllers\Api\admin\ImageController;
 use App\Http\Controllers\Api\admin\UsersController;
 use App\Http\Controllers\Api\admin\AgencyController;
+use App\Http\Controllers\Api\admin\BrandAmbassadorController;
 use App\Http\Controllers\Api\admin\TravelController;
 use App\Http\Controllers\Api\test\TestOtpController;
 use App\Http\Controllers\Api\Auth\CustomerController;
@@ -97,6 +98,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
     Route::middleware('auth:api-admin')->prefix('v1')->group(function(){
 
         Route::apiResource('travels',TravelController::class);
+        Route::apiResource('brands',BrandAmbassadorController::class);
         Route::apiResource('buses',BusController::class);
         Route::apiResource('Schedules',ScheduleController::class);
         Route::apiResource('paths',PathController::class);
