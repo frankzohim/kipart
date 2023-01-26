@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\SearchFulRequest;
+use Carbon\Carbon;
 use App\Models\Travel;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
+use App\Http\Requests\SearchFulRequest;
 use function PHPUnit\Framework\isEmpty;
 
 class SearchController extends Controller
@@ -56,7 +57,9 @@ class SearchController extends Controller
     }
 
     public function searchByAgency(SearchFulRequest $request,$id){
-
+        $now = Carbon::now();
+        $now->setTimezone('Africa/Douala');
+        $now=Carbon::parse($now)->format('H:i');
         $travel=\Illuminate\Support\Facades\DB::table('agencies')
 
                 ->join('travel','travel.agency_id','=','agencies.id')
@@ -70,13 +73,14 @@ class SearchController extends Controller
                 ->where('paths.arrival','=',$request->arrival)
                 ->where('travel.date','=',$request->dateDeparture)
                 ->where('travel.classe',$request->classe)
+                ->where('schedules.hours','>=',$now)
                 ->get();
 
 
 
                     return response()->json(['type'=>$request->type,'DataArrival'=>$request->DataArrival,'hourArrival'=>$request->hourArrival,'data'=> $travel],200);
 
-
+                    //return $now;
 
 
 
