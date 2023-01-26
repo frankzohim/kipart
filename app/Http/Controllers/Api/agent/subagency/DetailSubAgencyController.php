@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\Agency\SubAgency\DetailSubAgencyResource;
+use App\Http\Resources\Agency\SubAgency\SubAgencyByAgencyResource;
 
 class DetailSubAgencyController extends Controller
 {
@@ -25,7 +26,7 @@ class DetailSubAgencyController extends Controller
 
     public function detailAgencyBySubAgency(){
 
-        $agency=Agency::where('id',Auth::guard('api-agent')->user()->agency_id)->first();
+        $agency=SubAgencyByAgencyResource::collection(SubAgency::where('id',Auth::guard('api-agent')->user()->id)->get());
 
         return $agency;
     }
