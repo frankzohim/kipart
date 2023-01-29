@@ -58,9 +58,14 @@ class SearchController extends Controller
 
     public function searchByAgency(SearchFulRequest $request,$id){
         $now = Carbon::now();
+        $date=$request->dateDeparture;
         $now->setTimezone('Africa/Douala');
         $now=Carbon::parse($now)->format('H:i');
-        $travel=\Illuminate\Support\Facades\DB::table('agencies')
+        $dayNow=Carbon::parse($now)->format('d');
+        $date=Carbon::parse($date)->format('d');
+
+        if($date===$dayNow){
+            $travel=\Illuminate\Support\Facades\DB::table('agencies')
 
                 ->join('travel','travel.agency_id','=','agencies.id')
                 ->join('paths','paths.id','=','travel.path_id')
@@ -75,12 +80,33 @@ class SearchController extends Controller
                 ->where('travel.classe',$request->classe)
                 ->where('schedules.hours','>=',$now)
                 ->get();
+                return response()->json(['type'=>$request->type,'DataArrival'=>$request->DataArrival,'hourArrival'=>$request->hourArrival,'data'=> $travel],200);
+        }else if($date>$dayNow){
+            $travel=\Illuminate\Support\Facades\DB::table('agencies')
+
+                ->join('travel','travel.agency_id','=','agencies.id')
+                ->join('paths','paths.id','=','travel.path_id')
+                ->join('buses','buses.travel_id','=','travel.id')
+                ->join('schedules','schedules.id','travel.schedule_id')
+                ->select('travel.id','travel.date','travel.price','travel.classe','agencies.name','travel.agency_id','travel.path_id','paths.arrival','paths.departure','schedules.hours','buses.number_of_places')
+
+                ->where('travel.agency_id','=',$id)
+                ->where('paths.departure','=',$request->departure)
+                ->where('paths.arrival','=',$request->arrival)
+                ->where('travel.date','=',$request->dateDeparture)
+                ->where('travel.classe',$request->classe)
+                ->where('schedules.hours','>=',$request->departure_time)
+                ->get();
+                return response()->json(['type'=>$request->type,'DataArrival'=>$request->DataArrival,'hourArrival'=>$request->hourArrival,'data'=> $travel],200);
+
+        }
 
 
 
-                    return response()->json(['type'=>$request->type,'DataArrival'=>$request->DataArrival,'hourArrival'=>$request->hourArrival,'data'=> $travel],200);
 
-                    //return $now;
+
+
+
 
 
 

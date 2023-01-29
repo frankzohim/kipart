@@ -113,6 +113,7 @@ class ListController extends Controller
     public function ambassadorsWithUser($AmbassadorId){
         $users=User::where('brand_ambassadors_id',$AmbassadorId)->get();
 
+
         return response()->json(['usersWithAmbassador'=>$users],200);
     }
 }
