@@ -128,9 +128,9 @@ class CustomerController extends Controller
     public function sendOtp($mobile){
 
         $otp = rand(100000, 999999);
-        $message=$otp." est votre code de connexion kipart";
+        $message=$otp." est est votre numéro de validation KiPART";
         $user = User::where('phone_number', $mobile)->first();
-        $sms=(new SendSmsService())->sendSms("delanofofe@gmail.com","test1234",$mobile,$message,"Kipart","2022-12-09 17:20:02");
+        $sms=(new SendSmsService())->sendSms("delanofofe@gmail.com","test1234",$mobile,$message,"KiPART","2022-12-09 17:20:02");
 
         $smsResponse=json_decode($sms->getBody(),true);
 
@@ -155,7 +155,7 @@ class CustomerController extends Controller
         ]);
 
         if ($rules->fails()) {
-            return response()->json(["message"=>"Code Invalide ou informations incorrecte"],400);
+            return response()->json(["message"=>"PING Invalide ou informations incorrecte"],400);
         }
         $enteredOtp = $request->input('otp');
         $verificationCode   = VerificationCode::where('otp', $request->otp)->first();
