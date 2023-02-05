@@ -37,8 +37,8 @@ class SubAgency extends Authenticatable
     {
         return $this->hasMany(Ticket::class);
     }
-    public function Agent():BelongsTo
+    public function Agents():HasMany
     {
-        return $this->belongsTo(Agent::class);
+        return $this->hasMany(Agent::class);
     }
 }
