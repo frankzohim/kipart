@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Agent;
 use App\Models\Agency;
 use App\Models\Ticket;
 use Laravel\Passport\HasApiTokens;
@@ -35,5 +36,9 @@ class SubAgency extends Authenticatable
     public function tickets():HasMany
     {
         return $this->hasMany(Ticket::class);
+    }
+    public function Agent():BelongsTo
+    {
+        return $this->belongsTo(Agent::class);
     }
 }
