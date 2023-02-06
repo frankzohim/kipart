@@ -62,6 +62,13 @@ class AgentController extends Controller
 
     }
 
+    public function loginAgent(Request $request){
+        $valid = validator($request->only('email','password'), [
+            'email' => 'required|string|exists:Agents',
+            'password' => 'required|string',
+        ]);
+    }
+
     public function logout(){
         $user = Auth::guard('api-agent')->user();
         $user->token()->revoke();
