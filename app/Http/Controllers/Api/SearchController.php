@@ -81,7 +81,7 @@ class SearchController extends Controller
                 ->where('schedules.hours','>=',$now)
                 ->get();
                 return response()->json(['type'=>$request->type,'DataArrival'=>$request->DataArrival,'hourArrival'=>$request->hourArrival,'data'=> $travel],200);
-        }else if($date>$dayNow){
+        }
             $travel=\Illuminate\Support\Facades\DB::table('agencies')
 
                 ->join('travel','travel.agency_id','=','agencies.id')
@@ -99,7 +99,7 @@ class SearchController extends Controller
                 ->get();
                 return response()->json(['type'=>$request->type,'DataArrival'=>$request->DataArrival,'hourArrival'=>$request->hourArrival,'data'=> $travel],200);
 
-        }
+
 
 
 
