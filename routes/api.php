@@ -56,6 +56,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
     //All endpoints for unauth user
     Route::post('login',[CustomerController::class,'login']);
     Route::post('login/admin',[AdminController::class,'login']);
+    Route::post('login/personnal/agent',[AgentController::class,'loginAgent']);
     Route::post('login/agent',[AgentController::class,'login']);
     Route::post('register',[CustomerController::class,'register']);
     Route::post('testOtp',[TestOtpController::class,'testOtp']);
