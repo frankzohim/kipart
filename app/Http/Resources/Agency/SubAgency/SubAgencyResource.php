@@ -17,6 +17,8 @@ class SubAgencyResource extends JsonResource
         return [
             'id'=>$this->id,
             'nom'=>$this->name,
+            'agency_id'=>$this->agency->id,
+            'logo'=> URL($this->agency->logo),
             'localisation'=>$this->localisation,
             'email'=>$this->email,
             'phone'=>$this->phone,
