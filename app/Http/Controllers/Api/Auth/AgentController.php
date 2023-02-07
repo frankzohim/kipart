@@ -65,7 +65,7 @@ class AgentController extends Controller
 
     public function loginAgent(Request $request){
         $valid = validator($request->only('email','password'), [
-            'email' => 'required|string|exists:Agents',
+            'email' => 'required|string|exists:agents',
             'password' => 'required|string',
         ]);
 
