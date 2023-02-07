@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Role;
 use App\Models\SubAgency;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,5 +22,10 @@ class Agent extends Model
     public function subAgency():BelongsTo
     {
         return $this->belongsTo(SubAgency::class);
+    }
+
+    public function role():BelongsTo
+    {
+        return $this->belongsTo(Role::class);
     }
 }

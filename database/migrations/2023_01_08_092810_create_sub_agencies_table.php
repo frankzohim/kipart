@@ -1,10 +1,9 @@
 <?php
 
-use App\Models\Role;
-use App\Models\SubAgency;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\Agency;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -16,16 +15,14 @@ return new class extends Migration
     public function up()
     {
         Schema::disableForeignKeyConstraints();
-        Schema::create('agents', function (Blueprint $table) {
+        Schema::create('sub_agencies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('localisation');
             $table->string('email')->unique();
             $table->string('password');
-            $table->foreignIdFor(SubAgency::class)
-                    ->constrained()
-                    ->restrictOnUpdate()
-                    ->restrictOnDelete();
-            $table->foreignIdFor(Role::class)
+            $table->string('phone');
+            $table->foreignIdFor(Agency::class)
                     ->constrained()
                     ->restrictOnUpdate()
                     ->restrictOnDelete();
@@ -40,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('agents');
+        Schema::dropIfExists('sub_agencies');
     }
 };
