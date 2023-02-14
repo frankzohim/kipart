@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\passengers\AddPassengerServices;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -94,6 +95,11 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
     Route::get('listAgencyByPath/{departure}/{arrival}',[ListController::class,'listAgencyWithPath']);
     Route::post('generate',[GenerateTicket::class,'generateTicket']);
     Route::post('generate/token',[GenerateTicket::class,'generateToken']);
+
+
+    //Services
+
+    Route::post('add/passengers/{id}',[AddPassengerServices::class,'add']);
 
    // All endpoints for admin
     Route::middleware('auth:api-admin')->prefix('v1')->group(function(){
