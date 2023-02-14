@@ -58,7 +58,8 @@ class StripeController extends Controller
                         'user_id'=>Auth::guard('api')->user()->id,
                         'sub_agency_id'=>$subId,
                         'travel_id'=>$payment->travel_id,
-                        'passenger_id'=>$payment->id
+                        'passenger_id'=>$payment->id,
+                        'type'=>1
                     ]);
                     $payment->update([
                         'isCheckPayment' =>1

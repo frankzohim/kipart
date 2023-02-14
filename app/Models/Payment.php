@@ -18,6 +18,7 @@ class Payment extends Model
     use HasFactory;
 
     protected $fillable=[
+        'id',
         'user_id',
         'travel_id',
         'means_of_payment',
