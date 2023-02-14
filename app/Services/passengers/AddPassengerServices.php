@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\Auth;
 class AddPassengerServices{
 
 
-    public function add(Request $request,$travel_id){
+    public function add(Request $request,$travel_id,$isCheckPayment){
 
         $placeBusy=[];
+        $ArrayPlace=[];
         $listPlace=[];
         $listPlaceAvailable=[];
         $listPlacePassengers=[];
@@ -74,15 +75,16 @@ class AddPassengerServices{
                     $passengerModel->type=$value['type'];
                     $passengerModel->telephone=$value['telephone'];
                     $passengerModel->seatNumber=$listPlacePassengers[$key];
-                    $passengerModel->isCheckPayment=0;
+                    $passengerModel->isCheckPayment=$isCheckPayment;
                     $passengerModel->payment_id=$payment->id;
                     $passengerModel->travel_id=$travel_id;
+                    array_push($ArrayPlace,$listPlaceAvailable[$key]);
                     $passengerModel->save();
                 }
 
 
 
-            return response()->json(['message'=>"Passager(s) ajouté avec success",'payment_id'=>$payment->id],201);
+            return response()->json(['message'=>"Passager(s) ajouté avec success",'places'=>$ArrayPlace,'payment_id'=>$payment->id],201);
             }
 
 

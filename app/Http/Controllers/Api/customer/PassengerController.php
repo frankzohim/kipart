@@ -32,7 +32,7 @@ class PassengerController extends Controller
     public function addPassenger(Request $request,$travel_id){
 
 
-        $response=(new AddPassengerServices())->add($request,$travel_id);
+        $response=(new AddPassengerServices())->add($request,$travel_id,0);
 
         return $response;
 
