@@ -39,6 +39,7 @@ use App\Http\Controllers\Api\agent\PathController as AgentPathController;
 use App\Http\Controllers\Api\agent\AgencyController as AgentAgencyController;
 use App\Http\Controllers\Api\agent\DetailAgentController;
 use App\Http\Controllers\Api\agent\DetailsAppsResourceController;
+use App\Http\Controllers\Api\agent\ListTravelController;
 use App\Http\Controllers\Api\agent\TravelController as AgentTravelController;
 use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
 use App\Http\Controllers\Api\agent\subagency\DetailSubAgencyController;
@@ -94,6 +95,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
     Route::get("search/{term}",[SearchController::class,'search']);
     Route::get('list/brandAmbassadors',[ListController::class,'listAmbassadors']);
     Route::get('listAgencyByPath/{departure}/{arrival}',[ListController::class,'listAgencyWithPath']);
+    Route::get('listTravelByAgency/{agency_id}',[ListTravelController::class,'list']);
     Route::post('generate',[GenerateTicket::class,'generateTicket']);
     Route::post('generate/token',[GenerateTicket::class,'generateToken']);
 

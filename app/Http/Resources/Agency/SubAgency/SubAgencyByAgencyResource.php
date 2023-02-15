@@ -21,6 +21,7 @@ class SubAgencyByAgencyResource extends JsonResource
             'email'=>$this->email,
             'phone'=>$this->phone,
             'logo'=>$this->agency->logo,
+            'agency_id'=>$this->agency->id,
             'agence'=>$this->agency->name,
         ];
     }
