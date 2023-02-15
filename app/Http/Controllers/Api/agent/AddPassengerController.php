@@ -11,7 +11,7 @@ use App\Services\passengers\AddPassengerServices;
 
 class AddPassengerController extends Controller
 {
-    public function add(PassengerRequest $request,$travel_id){
+    public function add(PassengerRequest $request,$travel_id,$sub_agency_id){
 
         $listPlace=[];
         $placeBusy=[];
@@ -28,10 +28,10 @@ class AddPassengerController extends Controller
             for($y=0;$y<count($placeBusy);$y++){
                 $pos = array_search($placeBusy[$y], $listPlace);
                 if ($pos !== false) {
-    
+
                     // Remove from array
                     unset($listPlace[$pos]);
-    
+
                 }
             }
 

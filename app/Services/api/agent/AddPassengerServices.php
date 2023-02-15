@@ -12,7 +12,12 @@ class AddPassengerServices{
         $url=(new UrlServices())->getUrl();
 
         $response=Http::post($url.'/api/add/passenger/'.$id.'/'.$sub_agency_id,[
-            ''
+            'name'=>$request->name,
+            'type'=>$request->type,
+            'cni'=>$request->cni,
+            'telephone'=>$request->telephone,
         ]);
+
+        return $response;
     }
 }
