@@ -8,6 +8,7 @@ use App\Models\Payment;
 use App\Models\Passenger;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\api\user\PassengerServices;
 
 class AddPassengerServices{
 
@@ -80,11 +81,13 @@ class AddPassengerServices{
                     $passengerModel->travel_id=$travel_id;
                     array_push($ArrayPlace,$listPlaceAvailable[$key]);
                     $passengerModel->save();
+                    $response=(new PassengerServices())->add($value['cni'],$value['name'],$value['type'],$value['telephone'],$listPlacePassengers[$key],1,$travel_id,count($PassengerData['passengers']));
+
                 }
 
 
-
-            return response()->json(['message'=>"Passager(s) ajouté avec success",'places'=>$ArrayPlace,'payment_id'=>$payment->id],201);
+                return $response;
+            //return response()->json(['message'=>"Passager(s) ajouté avec success",'places'=>$ArrayPlace,'payment_id'=>$payment->id],201);
             }
 
 
