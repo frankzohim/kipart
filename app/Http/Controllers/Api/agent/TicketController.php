@@ -14,13 +14,13 @@ use App\Http\Resources\Ticket\Agent\ListTicketResource;
 class TicketController extends Controller
 {
     public function listTickets(){
-        $myTickets=ListTicketResource::collection(Ticket::where('sub_agency_id',Auth::guard('api-agent')->user()->id)->get());
+        $myTickets=ListTicketResource::collection(Ticket::where('sub_agency_id',Auth::guard('api-agent')->user()->id)->orderBy("id", "asc")->get());
 
         return response()->json(["data"=>$myTickets],200);
     }
 
     public function listTicketsOfTravel($id){
-        $myTickets=ListTicketResource::collection(Ticket::where('sub_agency_id',Auth::guard('api-agent')->user()->id)->where('travel_id',$id)->get());
+        $myTickets=ListTicketResource::collection(Ticket::where('sub_agency_id',Auth::guard('api-agent')->user()->id)->where('travel_id',$id)->orderBy("id", "asc")->get());
 
         return response()->json(["data"=>$myTickets],200);
     }

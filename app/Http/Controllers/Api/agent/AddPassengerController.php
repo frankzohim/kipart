@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\agent;
 
 use App\Models\Bus;
+use App\Models\Ticket;
 use App\Models\Passenger;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -46,6 +47,12 @@ class AddPassengerController extends Controller
         $passengerModel->isCheckPayment=1;
         $passengerModel->travel_id=$travel_id;
         $passengerModel->save();
+
+        $ticket=new Ticket;
+        $ticket->sub_agency_id=$sub_agency_id;
+        $ticket->travel_id=$travel_id;
+        $ticket->passenger_id= $passengerModel->id;
+        $ticket->type= 0;
 
         return response()->json(['message'=>"Passager creer avec success","place"=>$listPlaceAvailable[0]],201);
     }

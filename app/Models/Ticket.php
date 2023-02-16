@@ -15,10 +15,10 @@ class Ticket extends Model
     use HasFactory;
 
     protected $fillable=[
-        'user_id',
         'sub_agency_id',
         'travel_id',
-        'passenger_id'
+        'passenger_id',
+        'type'
     ];
 
     public function user():BelongsTo
