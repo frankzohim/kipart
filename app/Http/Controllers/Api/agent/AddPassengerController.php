@@ -52,8 +52,8 @@ class AddPassengerController extends Controller
         $ticket->sub_agency_id=$sub_agency_id;
         $ticket->travel_id=$travel_id;
         $ticket->passenger_id= $passengerModel->id;
-        $ticket->type= 0;
-
+        $ticket->type=0;
+        $ticket->save();
         return response()->json(['message'=>"Passager creer avec success","place"=>$listPlaceAvailable[0]],201);
     }
 }
