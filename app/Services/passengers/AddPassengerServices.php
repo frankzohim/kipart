@@ -65,7 +65,7 @@ class AddPassengerServices{
 
             ]);
 
-            if(count($listPlaceAvailable)==0){
+            if(count($listPlaceAvailable)==0 || count($listPlaceAvailable)< count($PassengerData['passengers'])){
                 return response()->json(['message'=>"Toutes les places de ce bus ont deja été reservé"],200);
             }
             else{
@@ -86,13 +86,12 @@ class AddPassengerServices{
                     $passengerModel->travel_id=$travel_id;
                     array_push($ArrayPlace,$listPlaceAvailable[$key]);
                     $passengerModel->save();
-                    //array_push($passengerPlace,$listPlacePassengers[$key]);
                     array_push($arrayPassengers,$passengerModel);
-                    $collect->push($passengerModel);
 
                 }
-                $col=json_decode($collect);
-                 $response=(new PassengerServices())->add($travel_id,$col,$passengerPlace);
+                $passengers=response()->json(['Passagers'=>$arrayPassengers]);
+                $json=json_encode($passengers->getData());
+                 $response=(new PassengerServices())->add($travel_id,$json);
                  return $response;
                 //return $arr;
                 //return $passengerPlace;

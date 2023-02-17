@@ -7,12 +7,16 @@ use Illuminate\Support\Facades\Http;
 
 class PassengerServices{
 
-    public function add($travel_id, $arrayPassengers,$passengerPlace){
+    public function add($travel_id, $arrayPassengers){
 
         $url=(new UrlServices())->getUrl();
 
-        $response=Http::post($url.'/api/passengers/'.$travel_id.'/'.$arrayPassengers.'/'.$passengerPlace);
+        $client = new \GuzzleHttp\Client();
+        $response = $client->post($url.'/api/passengers/'.$travel_id, [
+            'headers' => ['Content-Type'=>'application/json'],
+            'body'    => $arrayPassengers
+        ]);
 
-        return $response;
+        return json_decode($response->getBody());
     }
 }
