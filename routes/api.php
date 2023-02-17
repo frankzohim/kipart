@@ -163,6 +163,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
 
         Route::get('list/ticket',[TicketController::class,'listTickets']);
         Route::get('list/ticketsOfTravel/{id}',[TicketController::class,'listTicketsOfTravel']);
+        Route::get('list/tickets/recents',[TicketController::class,'listTicketsPaginate']);
 
         Route::get('count/resources',[DetailsAppsResourceController::class,'CountResource']);
         Route::get('details/subAgent',[DetailSubAgencyController::class,'detailSubAgency']);
