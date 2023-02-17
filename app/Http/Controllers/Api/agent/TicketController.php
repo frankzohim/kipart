@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\Agency\ticket\TicketResource;
 use App\Http\Resources\Ticket\Agent\ListTicketResource;
+use App\Http\Resources\Ticket\Agent\TicketByAgencyResource;
 
 class TicketController extends Controller
 {
@@ -20,7 +21,7 @@ class TicketController extends Controller
     }
 
     public function listTicketsOfTravel($id){
-        $myTickets=ListTicketResource::collection(Ticket::where('sub_agency_id',Auth::guard('api-agent')->user()->id)->where('travel_id',$id)->orderBy("id", "asc")->get());
+        $myTickets=TicketByAgencyResource::collection(Ticket::where('travel_id',$id)->orderBy("id", "desc")->get());
 
         return response()->json(["data"=>$myTickets],200);
     }

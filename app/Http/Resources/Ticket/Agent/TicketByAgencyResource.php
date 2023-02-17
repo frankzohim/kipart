@@ -2,14 +2,12 @@
 
 namespace App\Http\Resources\Ticket\Agent;
 
-use App\Models\Travel;
 use App\Models\Passenger;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\Travel\TravelResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\Passenger\PassengersDetailResource;
 
-class ListTicketResource extends JsonResource
+class TicketByAgencyResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -21,11 +19,9 @@ class ListTicketResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'type'=>$this->type,
-            'idSubAgency'=>$this->sub_agency_id,
-            'Sous-agence'=>Auth::guard('api-agent')->user()->name,
+            'sub_agency'=>Auth::guard('api-agent')->user()->id,
             'Passager'=>PassengersDetailResource::collection(Passenger::where('id',$this->passenger_id)->get()),
-            'Voyage'=>TravelResource::collection(Travel::where('id',$this->travel_id)->get()),
+            'type'=>$this->type,
 
         ];
     }

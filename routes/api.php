@@ -162,7 +162,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
         Route::get('details/agent',[DetailAgentController::class,'infosAgent']);
 
         Route::get('list/ticket',[TicketController::class,'listTickets']);
-        Route::post('lis/ticketsOfTravel/{id}',[TicketController::class,'listTicketsOfTravel']);
+        Route::get('list/ticketsOfTravel/{id}',[TicketController::class,'listTicketsOfTravel']);
 
         Route::get('count/resources',[DetailsAppsResourceController::class,'CountResource']);
         Route::get('details/subAgent',[DetailSubAgencyController::class,'detailSubAgency']);
