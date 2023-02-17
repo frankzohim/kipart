@@ -23,8 +23,8 @@ class ListTravelController extends Controller
                 ->select('travel.id','travel.date','travel.price','travel.classe','agencies.name','travel.agency_id','travel.path_id','paths.arrival','paths.departure','schedules.hours','buses.number_of_places')
 
                 ->where('travel.agency_id','=',$id)
-                ->where('travel.date','=',$dayNow)
-                ->where('schedules.hours','>=',$nowHours)
+                ->where('travel.date','>=',$dayNow)
+                // ->where('schedules.hours','>=',$nowHours)
                 ->get();
 
                 return $travel;
