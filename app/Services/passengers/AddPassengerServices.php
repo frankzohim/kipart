@@ -7,6 +7,7 @@ use App\Models\Travel;
 use App\Models\Payment;
 use App\Models\Passenger;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use App\Services\api\user\PassengerServices;
 
@@ -18,6 +19,9 @@ class AddPassengerServices{
         $placeBusy=[];
         $ArrayPlace=[];
         $listPlace=[];
+        $arrayPassengers=array();
+        $collect=new Collection();
+        $passengerPlace=[];
         $listPlaceAvailable=[];
         $listPlacePassengers=[];
         $bus=Bus::where('travel_id',$travel_id)->first();
@@ -51,9 +55,7 @@ class AddPassengerServices{
         $listPlaceAvailable=array_values($listPlace);
 
 
-        for($i=0;$i<count($PassengerData['passengers']);$i++){
-            array_push($listPlacePassengers,$listPlaceAvailable[$i]);
-        }
+
         if($travel_found){
 
             $payment=Payment::create([
@@ -67,6 +69,9 @@ class AddPassengerServices{
                 return response()->json(['message'=>"Toutes les places de ce bus ont deja été reservé"],200);
             }
             else{
+                for($i=0;$i<count($PassengerData['passengers']);$i++){
+                    array_push($listPlacePassengers,$listPlaceAvailable[$i]);
+                }
                 foreach($PassengerData['passengers'] as $key => $value){
 
 
@@ -81,12 +86,16 @@ class AddPassengerServices{
                     $passengerModel->travel_id=$travel_id;
                     array_push($ArrayPlace,$listPlaceAvailable[$key]);
                     $passengerModel->save();
-                    $response=(new PassengerServices())->add($value['cni'],$value['name'],$value['type'],$value['telephone'],$listPlacePassengers[$key],1,$travel_id,count($PassengerData['passengers']));
+                    //array_push($passengerPlace,$listPlacePassengers[$key]);
+                    array_push($arrayPassengers,$passengerModel);
+                    $collect->push($passengerModel);
 
                 }
-
-
-                return $response;
+                $col=json_decode($collect);
+                 $response=(new PassengerServices())->add($travel_id,$col,$passengerPlace);
+                 return $response;
+                //return $arr;
+                //return $passengerPlace;
             //return response()->json(['message'=>"Passager(s) ajouté avec success",'places'=>$ArrayPlace,'payment_id'=>$payment->id],201);
             }
 
