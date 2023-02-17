@@ -14,7 +14,7 @@ use App\Services\api\user\PassengerServices;
 class AddPassengerServices{
 
 
-    public function add(Request $request,$travel_id,$isCheckPayment){
+    public function add(Request $request,$travel_id,$isCheckPayment,$sub_agency_id){
 
         $placeBusy=[];
         $ArrayPlace=[];
@@ -91,7 +91,7 @@ class AddPassengerServices{
                 }
                 $passengers=response()->json(['Passagers'=>$arrayPassengers]);
                 $json=json_encode($passengers->getData());
-                 $response=(new PassengerServices())->add($travel_id,$json);
+                 $response=(new PassengerServices())->add($travel_id,$json,$sub_agency_id);
                  return $response;
                 //return $arr;
                 //return $passengerPlace;
