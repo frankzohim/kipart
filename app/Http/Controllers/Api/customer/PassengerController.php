@@ -6,6 +6,7 @@ use App\Models\Bus;
 use App\Models\Travel;
 use App\Models\Payment;
 use App\Models\Passenger;
+use App\Services\passengers\AddPassengerServices;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -28,46 +29,13 @@ class PassengerController extends Controller
 
     }
 
-    public function addPassenger(Request $request,$travel_id){
-
-        $placeBusy=[];
-        $listPlace=[];
-        $listPlaceAvailable=[];
-        $listPlacePassengers=[];
-        $bus=Bus::where('travel_id',$travel_id)->first();
-        $travels=Passenger::where('travel_id',$travel_id)
-        ->get();
-
-        foreach($travels as $travel){
-            array_push($placeBusy,intval($travel->seatNumber));
-        }
+    public function addPassenger(Request $request,$travel_id,$sub_agency_id){
 
 
+        $response=(new AddPassengerServices())->add($request,$travel_id,0,$sub_agency_id);
 
-        for($i=1;$i<=$bus->number_of_places;$i++){
-            array_push($listPlace,$i);
-            }
+        return $response;
 
-        for($y=0;$y<count($placeBusy);$y++){
-            $pos = array_search($placeBusy[$y], $listPlace);
-            if ($pos !== false) {
-
-                // Remove from array
-                unset($listPlace[$pos]);
-
-            }
-        }
-
-
-
-        $travel_found=Travel::find($travel_id);
-        $PassengerData = $request->all();
-        $listPlaceAvailable=array_values($listPlace);
-
-
-
-
-        return $PassengerData;
     }
 
 

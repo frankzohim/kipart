@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\passengers\AddPassengerServices;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -24,6 +25,7 @@ use App\Http\Controllers\Api\admin\ScheduleController;
 use App\Http\Controllers\Api\GenerateTravelController;
 use App\Http\Controllers\Api\admin\DetailsAppsResource;
 use App\Http\Controllers\Api\admin\DetailAdminController;
+use App\Http\Controllers\Api\agent\AddPassengerController;
 use App\Http\Controllers\Api\customer\CodeCheckController;
 use App\Http\Controllers\Api\customer\PassengerController;
 use App\Http\Controllers\Api\test\TestCodePromoController;
@@ -37,6 +39,7 @@ use App\Http\Controllers\Api\agent\PathController as AgentPathController;
 use App\Http\Controllers\Api\agent\AgencyController as AgentAgencyController;
 use App\Http\Controllers\Api\agent\DetailAgentController;
 use App\Http\Controllers\Api\agent\DetailsAppsResourceController;
+use App\Http\Controllers\Api\agent\ListTravelController;
 use App\Http\Controllers\Api\agent\TravelController as AgentTravelController;
 use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController;
 use App\Http\Controllers\Api\agent\subagency\DetailSubAgencyController;
@@ -92,8 +95,14 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
     Route::get("search/{term}",[SearchController::class,'search']);
     Route::get('list/brandAmbassadors',[ListController::class,'listAmbassadors']);
     Route::get('listAgencyByPath/{departure}/{arrival}',[ListController::class,'listAgencyWithPath']);
+    Route::get('listTravelByAgency/{agency_id}',[ListTravelController::class,'list']);
     Route::post('generate',[GenerateTicket::class,'generateTicket']);
     Route::post('generate/token',[GenerateTicket::class,'generateToken']);
+
+
+    //Services
+
+    Route::post('add/passengers/{id}/{sub_agency_id}',[AddPassengerController::class,'add']);
 
    // All endpoints for admin
     Route::middleware('auth:api-admin')->prefix('v1')->group(function(){
@@ -153,6 +162,8 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
         Route::get('details/agent',[DetailAgentController::class,'infosAgent']);
 
         Route::get('list/ticket',[TicketController::class,'listTickets']);
+        Route::get('list/ticketsOfTravel/{id}',[TicketController::class,'listTicketsOfTravel']);
+        Route::get('list/tickets/recents',[TicketController::class,'listTicketsPaginate']);
 
         Route::get('count/resources',[DetailsAppsResourceController::class,'CountResource']);
         Route::get('details/subAgent',[DetailSubAgencyController::class,'detailSubAgency']);

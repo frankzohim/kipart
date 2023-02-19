@@ -20,10 +20,7 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)
-                    ->constrained()
-                    ->restrictOnUpdate()
-                    ->restrictOnDelete();
+            $table->bigInteger('user_id')->nullable();
 
             $table->foreignIdFor(SubAgency::class)
                     ->constrained()
@@ -41,6 +38,10 @@ return new class extends Migration
                 ->restrictOnDelete();
             $table->boolean('type');
 
+<<<<<<< HEAD
+=======
+            $table->boolean('type')->default(0);
+>>>>>>> refs/remotes/origin/dev
             $table->timestamps();
         });
     }

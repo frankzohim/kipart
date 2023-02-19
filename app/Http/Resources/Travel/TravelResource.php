@@ -19,7 +19,7 @@ class TravelResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'date'=>$this->date,
+            'date'=>$this->date->format('Y-m-d'),
             'departure'=>$this->path->departure,
             'arrival'=>$this->path->arrival,
             'agence'=>$this->agency->name,
