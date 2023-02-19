@@ -39,8 +39,8 @@ return new class extends Migration
                 ->constrained()
                 ->restrictOnUpdate()
                 ->restrictOnDelete();
+            $table->boolean('type');
 
-            $table->boolean('type')->nullable();
             $table->timestamps();
         });
     }
