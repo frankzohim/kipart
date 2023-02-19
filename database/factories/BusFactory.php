@@ -19,6 +19,7 @@ class BusFactory extends Factory
         return [
             'registration'=>$this->faker->ean13(),
             'number_of_places'=>rand(30,100),
+            "level"=>$this->faker->time($format = 'H:i:s', $max = 'now'),
             'plan'=>$this->faker->uuid()
         ];
     }

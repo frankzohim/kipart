@@ -36,8 +36,12 @@ return new class extends Migration
                 ->constrained()
                 ->restrictOnUpdate()
                 ->restrictOnDelete();
+            $table->boolean('type');
 
+<<<<<<< HEAD
+=======
             $table->boolean('type')->default(0);
+>>>>>>> refs/remotes/origin/dev
             $table->timestamps();
         });
     }
