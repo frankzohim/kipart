@@ -96,7 +96,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
     Route::get('list/brandAmbassadors',[ListController::class,'listAmbassadors']);
     Route::get('listAgencyByPath/{departure}/{arrival}',[ListController::class,'listAgencyWithPath']);
     Route::get('listTravelByAgency/{agency_id}',[ListTravelController::class,'list']);
-    Route::post('listTravelWithDateAndClass/{id}',[ListTravelController::class,'listTravelWithDateAndClass']);
+    Route::post('listTravelWithDateAndClass/{id}/{localisation}',[ListTravelController::class,'listTravelWithDateAndClass']);
     Route::post('generate',[GenerateTicket::class,'generateTicket']);
     Route::post('generate/token',[GenerateTicket::class,'generateToken']);
 
