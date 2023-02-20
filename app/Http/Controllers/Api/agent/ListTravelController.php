@@ -31,7 +31,7 @@ class ListTravelController extends Controller
 
     }
 
-    public function listTravelWithDateAndClass(Request $request,$id){
+    public function listTravelWithDateAndClass(Request $request,$id,$localisation){
 
         $travel=\Illuminate\Support\Facades\DB::table('agencies')
 
@@ -44,8 +44,9 @@ class ListTravelController extends Controller
         ->where('travel.agency_id','=',$id)
         ->where('travel.date','=',$request->date)
         ->where('travel.classe','=',$request->classe)
-        // ->where('schedules.hours','>=',$nowHours)
-        ->get();
+        ->where('paths.departure','=',$localisation)
+        ->where('schedules.hours','>=',$request->hours)
+        ->first();
 
         return $travel;
 
