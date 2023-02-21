@@ -180,7 +180,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
         Route::get('details/user',[DetailUserLoginController::class,'infosUser']);
         Route::post('stripe/test/payment/{id}/{price}/{codePromo}/{subId}',[StripeController::class,'stripeTestPayment']);
         Route::get('list/passengers/{id}',[PassengerController::class,'listPassenger']);
-        Route::post('add/passengers/{travel_id}',[PassengerController::class,'addPassenger']);
+        Route::post('add/passengers/{travel_id}/{subAgencyId}',[PassengerController::class,'addPassenger']);
         Route::post('updatePlace/{payment_id}',[PassengerController::class,'updatePlace']);
         Route::get('list/travels/buy',[PassengerController::class,'listTravelsOfUser']);
         Route::get('list/tickets',[TicketTicketController::class,'listTicket']);
