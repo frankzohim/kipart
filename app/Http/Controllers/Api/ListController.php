@@ -36,9 +36,9 @@ class ListController extends Controller
         return PathResource::collection(Path::paginate($paginate));
     }
 
-    public function listBus($paginate){
+    public function listBus(){
 
-        return BusResource::collection(Bus::paginate($paginate));
+        return BusResource::collection(Bus::all());
     }
 
     public function listSchedule($paginate){

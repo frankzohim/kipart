@@ -85,7 +85,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
     Route::get('placesOfTravel/{travel_id}',[ListController::class,'listPlaces']);
     Route::get('list/travel/schedules',[ListController::class,'listTime']);
     Route::get('list/agencies/{paginate}',[ListController::class,'listAgency']);
-    Route::get('list/buses/{paginate}',[ListController::class,'listBus']);
+    Route::get('list/buses',[ListController::class,'listBus']);
     Route::get('list/paths/{paginate}',[ListController::class,'listPath']);
     Route::get('list/schedules/{paginate}',[ListController::class,'listSchedule']);
     Route::get('list/travels/{paginate}',[ListController::class,'listTravel']);
@@ -97,6 +97,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
     Route::get('listAgencyByPath/{departure}/{arrival}',[ListController::class,'listAgencyWithPath']);
     Route::get('listTravelByAgency/{agency_id}',[ListTravelController::class,'list']);
     Route::post('listTravelWithDateAndClass/{id}/{localisation}',[ListTravelController::class,'listTravelWithDateAndClass']);
+    Route::get('listTravelWithLocalisation/{id}/{localisation}',[ListTravelController::class,'listTravelWithLocalisation']);
     Route::post('generate',[GenerateTicket::class,'generateTicket']);
     Route::post('generate/token',[GenerateTicket::class,'generateToken']);
 

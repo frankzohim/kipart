@@ -51,5 +51,22 @@ class ListTravelController extends Controller
         return $travel;
 
 }
+
+public function listTravelWithLocalisation($id,$localisation){
+
+    $travel=\Illuminate\Support\Facades\DB::table('agencies')
+
+    ->join('travel','travel.agency_id','=','agencies.id')
+    ->join('paths','paths.id','=','travel.path_id')
+    ->join('buses','buses.travel_id','=','travel.id')
+    ->join('schedules','schedules.id','travel.schedule_id')
+    ->select('travel.id','travel.date','travel.price','travel.classe','agencies.name','travel.agency_id','travel.path_id','paths.arrival','paths.departure','schedules.hours','buses.number_of_places')
+
+    ->where('travel.agency_id','=',$id)
+    ->where('paths.departure','=',$localisation)
+    ->get();
+
+    return $travel;
+}
     }
 
