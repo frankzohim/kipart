@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\customer\ReviewController;
 use App\Services\passengers\AddPassengerServices;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -68,7 +69,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
     Route::post('password/code/check', [CodeCheckController::class,'check']);
     Route::post('password/reset', [ResetPasswordController::class,'reset']);
     Route::post('resend/otp/{mobile}',[CustomerController::class,'sendOtp']);
-    Route::post('send/notifications/{message}',[NotificationController::class,'sendNotification']);
+    Route::post('send/notifications',[NotificationController::class,'sendNotification']);
     Route::post('generate/travels/{path_id}',[GenerateTravelController::class,'generateTravelToThwoMonth']);
     Route::get('updatePrice/{classe}/{price}/{agency_id}',[GenerateTravelController::class,'updatePrice']);
     Route::post('searchFull/travel',[SearchController::class,'searchFull']);
@@ -187,6 +188,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
         Route::get('list/tickets',[TicketTicketController::class,'listTicket']);
         Route::get('get/qrCode/{id}',[TicketTicketController::class,'getQrCode']);
         Route::get('ToApply/promoCode/{code}/{price}',[TestCodePromoController::class,'testCodePost']);
+        Route::post('sendReview/{agency_id}',[ReviewController::class,'SendReview']);
     });
 
 

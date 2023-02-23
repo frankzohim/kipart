@@ -4,8 +4,9 @@ namespace App\Models;
 
 use App\Models\Bus;
 use App\Models\Path;
-use App\Models\Travel;
+use App\Models\Review;
 
+use App\Models\Travel;
 use App\Models\Schedule;
 use App\Models\SubAgency;
 use Laravel\Passport\HasApiTokens;
@@ -61,5 +62,10 @@ class Agency extends Authenticatable
     public function subagencies():HasMany
     {
         return  $this->hasMany(SubAgency::class);
+    }
+
+    public function reviews():HasMany{
+
+        return $this->hasMany(Review::class);
     }
 }
