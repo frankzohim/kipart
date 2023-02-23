@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\customer\ReviewController;
 use App\Services\passengers\AddPassengerServices;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -187,6 +188,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
         Route::get('list/tickets',[TicketTicketController::class,'listTicket']);
         Route::get('get/qrCode/{id}',[TicketTicketController::class,'getQrCode']);
         Route::get('ToApply/promoCode/{code}/{price}',[TestCodePromoController::class,'testCodePost']);
+        Route::post('sendReview/{agency_id}',[ReviewController::class,'SendReview']);
     });
 
 
