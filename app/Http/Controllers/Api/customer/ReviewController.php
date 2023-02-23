@@ -12,14 +12,15 @@ class ReviewController extends Controller
     public function SendReview(Request $request,$agency_id){
 
         $review=new Review;
-        if(isset($review->user_id)){
+
             $review->user_id=Auth::guard('api')->user()->id;
-        }else{
             $review->review=$request->review;
             $review->rating=$request->rating;
             $review->agency_id=$agency_id;
             $review->save();
+
+            return response()->json(['message'=>"commentaire ajoutée"]);
         }
 
-    }
+
 }

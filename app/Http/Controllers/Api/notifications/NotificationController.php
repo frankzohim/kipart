@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
-    public function sendNotification($message){
+    public function sendNotification(){
 
-        $fields['include_player_ids'] =["1fee3f5a-1c5d-40a9-8c80-aa22cd91b59d"];
+        $fields['include_player_ids'] =['1c0d80af-bcc5-4b26-8c51-2f329491676d'];
         $message = 'Hello!! A tiny web push notification.!';
         $send=OneSignal::sendPush($fields, $message);
 
