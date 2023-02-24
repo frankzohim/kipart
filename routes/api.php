@@ -46,6 +46,7 @@ use App\Http\Controllers\Api\agent\ScheduleController as AgentScheduleController
 use App\Http\Controllers\Api\agent\subagency\DetailSubAgencyController;
 use App\Http\Controllers\Api\agent\TicketController;
 use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketController;
+use App\Http\Controllers\Api\Payment\OrangeMoneyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,6 +103,7 @@ use App\Http\Controllers\Api\customer\Ticket\TicketController as TicketTicketCon
     Route::post('generate',[GenerateTicket::class,'generateTicket']);
     Route::post('generate/token',[GenerateTicket::class,'generateToken']);
 
+    Route::post('pay/withOrangeMoney',[OrangeMoneyController::class,'pay']);
 
     //Services
 
