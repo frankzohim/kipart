@@ -103,7 +103,7 @@ use App\Http\Controllers\Api\Payment\OrangeMoneyController;
     Route::post('generate',[GenerateTicket::class,'generateTicket']);
     Route::post('generate/token',[GenerateTicket::class,'generateToken']);
 
-    Route::post('pay/withOrangeMoney',[OrangeMoneyController::class,'pay']);
+    Route::post('pay/withOrangeMoney/{number}/{amount}',[OrangeMoneyController::class,'pay']);
 
     //Services
 
