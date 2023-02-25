@@ -26,4 +26,9 @@ class Bus extends Model
     {
         return $this->hasMany(Travel::class);
     }
+
+    public function agency():BelongsTo{
+
+        return $this->belongsTo(Agency::class);
+    }
 }
