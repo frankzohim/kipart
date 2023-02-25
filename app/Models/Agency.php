@@ -44,11 +44,6 @@ class Agency extends Authenticatable
         return $this->belongsToMany(Schedule::class);
     }
 
-    public function travels():HasMany
-    {
-        return $this->hasMany(Travel::class);
-    }
-
     public function paths():BelongsToMany
     {
         return $this->belongsToMany(Path::class);

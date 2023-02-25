@@ -22,11 +22,6 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('date');
 
-            $table->foreignIdFor(Agency::class)
-            ->constrained()
-            ->restrictOnUpdate()
-            ->restrictOnDelete();
-
             $table->foreignIdFor(Bus::class)
             ->constrained()
             ->restrictOnUpdate()

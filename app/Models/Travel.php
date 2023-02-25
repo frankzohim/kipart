@@ -22,7 +22,6 @@ class Travel extends Model
     protected $fillable=[
         'date',
         'path_id',
-        'agency_id',
         'bus_id',
         'price',
         'state',
@@ -38,11 +37,6 @@ class Travel extends Model
     public function codeqr():BelongsTo
     {
         return $this->belongsTo(Codeqr::class);
-    }
-
-    public function agency():BelongsTo
-    {
-        return $this->belongsTo(Agency::class);
     }
 
     public function paiements():HasMany

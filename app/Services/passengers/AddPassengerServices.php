@@ -24,7 +24,8 @@ class AddPassengerServices{
         $passengerPlace=[];
         $listPlaceAvailable=[];
         $listPlacePassengers=[];
-        $bus=Bus::where('travel_id',$travel_id)->first();
+        $travel_search=Travel::find($travel_id);
+        $bus=Bus::find($travel_search->bus_id);
         $travels=Passenger::where('travel_id',$travel_id)
         ->get();
 

@@ -18,13 +18,17 @@ class Bus extends Model
         'number_of_places',
         'classe',
         'agency_id',
-        'travel_id',
         'plan'
     ];
 
 
-    public function travel():HasMany
+    public function travels():HasMany
     {
         return $this->hasMany(Travel::class);
+    }
+
+    public function agency():BelongsTo{
+
+        return $this->belongsTo(Agency::class);
     }
 }
