@@ -23,7 +23,7 @@ class Bus extends Model
     ];
 
 
-    public function travel():HasMany
+    public function travels():HasMany
     {
         return $this->hasMany(Travel::class);
     }

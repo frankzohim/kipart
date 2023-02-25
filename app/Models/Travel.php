@@ -40,11 +40,6 @@ class Travel extends Model
         return $this->belongsTo(Codeqr::class);
     }
 
-    public function agency():BelongsTo
-    {
-        return $this->belongsTo(Agency::class);
-    }
-
     public function paiements():HasMany
 
     {
