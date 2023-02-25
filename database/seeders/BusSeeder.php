@@ -15,6 +15,6 @@ class BusSeeder extends Seeder
      */
     public function run()
     {
-        Bus::factory(20)->create();
+        Bus::factory(150)->create();
     }
 }

@@ -67,13 +67,14 @@ class SearchController extends Controller
         if($date===$dayNow){
             $travel=\Illuminate\Support\Facades\DB::table('agencies')
 
-                ->join('travel','travel.agency_id','=','agencies.id')
+                ->join('buses','buses.agency_id','=','agencies.id')
+                ->join('travel','travel.bus_id','=','buses.id')
                 ->join('paths','paths.id','=','travel.path_id')
-                ->join('buses','buses.travel_id','=','travel.id')
-                ->join('schedules','schedules.id','travel.schedule_id')
-                ->select('travel.id','travel.date','travel.price','travel.classe','agencies.name','travel.agency_id','travel.path_id','paths.arrival','paths.departure','schedules.hours','buses.number_of_places')
 
-                ->where('travel.agency_id','=',$id)
+                ->join('schedules','schedules.id','travel.schedule_id')
+                ->select('travel.id','travel.date','travel.price','travel.classe','agencies.name','buses.agency_id','travel.path_id','paths.arrival','paths.departure','schedules.hours','buses.number_of_places')
+
+                ->where('buses.agency_id','=',$id)
                 ->where('paths.departure','=',$request->departure)
                 ->where('paths.arrival','=',$request->arrival)
                 ->where('travel.date','=',$request->dateDeparture)
@@ -84,13 +85,14 @@ class SearchController extends Controller
         }
             $travel=\Illuminate\Support\Facades\DB::table('agencies')
 
-                ->join('travel','travel.agency_id','=','agencies.id')
-                ->join('paths','paths.id','=','travel.path_id')
-                ->join('buses','buses.travel_id','=','travel.id')
-                ->join('schedules','schedules.id','travel.schedule_id')
-                ->select('travel.id','travel.date','travel.price','travel.classe','agencies.name','travel.agency_id','travel.path_id','paths.arrival','paths.departure','schedules.hours','buses.number_of_places')
+            ->join('buses','buses.agency_id','=','agencies.id')
+            ->join('travel','travel.bus_id','=','buses.id')
+            ->join('paths','paths.id','=','travel.path_id')
 
-                ->where('travel.agency_id','=',$id)
+            ->join('schedules','schedules.id','travel.schedule_id')
+                ->select('travel.id','travel.date','travel.price','travel.classe','agencies.name','buses.agency_id','travel.path_id','paths.arrival','paths.departure','schedules.hours','buses.number_of_places')
+
+                ->where('buses.agency_id','=',$id)
                 ->where('paths.departure','=',$request->departure)
                 ->where('paths.arrival','=',$request->arrival)
                 ->where('travel.date','=',$request->dateDeparture)

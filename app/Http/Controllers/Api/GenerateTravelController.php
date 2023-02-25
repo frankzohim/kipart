@@ -10,6 +10,7 @@ use App\Models\Travel;
 use App\Models\Schedule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Bus;
 
 class GenerateTravelController extends Controller
 {
@@ -17,7 +18,7 @@ class GenerateTravelController extends Controller
     public function generateTravelToThwoMonth(Request $request,$path_id){
 
         $agency=Agency::find($request->agency_id);
-
+        $bus=Bus::where('agency_id',$request->agency_id)->get();
         // $day=new DateTime($now);
         // $strip=$day->format('Y-m-d');
         // $c=Carbon::parse($strip)->format('Y-m-d');
@@ -29,11 +30,11 @@ class GenerateTravelController extends Controller
         for($y=1;$y<=13;$y++){
             $now = Carbon::now();
             $now=Carbon::parse($now)->format('Y-m-d');
-        for($i=0;$i<63;$i++){
-
+        for($i=0;$i<31;$i++){
+            $randomBus=$bus->random();
                 $data=[
                     'date'=>$now,
-                    'agency_id'=>$request->agency_id,
+                    'bus_id'=>$randomBus->id,
                     'path_id' =>$path->id,
                     'schedule_id' =>$y,
                     'price'=>2500,

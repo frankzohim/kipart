@@ -22,7 +22,6 @@ class Travel extends Model
     protected $fillable=[
         'date',
         'path_id',
-        'agency_id',
         'bus_id',
         'price',
         'state',
