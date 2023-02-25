@@ -45,7 +45,8 @@ class PassengerController extends Controller
         $travels=Passenger::where('travel_id',$travel_id)
         ->where('isCheckPayment',1)
         ->get();
-        $bus=Bus::where('travel_id',$travel_id)->first();
+        $travel_search=Travel::find($travel_id);
+        $bus=Bus::find($travel_search->bus_id);
 
         // for($i=1;$i<=$bus->number_of_places;$i++){
         //     array_push($listPlace,$i);
@@ -59,7 +60,7 @@ class PassengerController extends Controller
             $placeAvailable=$bus->number_of_places - count($placeBusy);
             return response()->json(['number_of_places'=>$bus->number_of_places,'PlacePrise'=>$placeBusy,'placeAvailable'=>$placeAvailable],200);
 
-
+            //return $bus;
 
 
     }
