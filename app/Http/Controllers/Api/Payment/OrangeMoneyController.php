@@ -46,37 +46,44 @@ class OrangeMoneyController extends Controller
     public static function paymentValidation($token,$payToken,$number,$amount){
 
 
-        $params=response()->json([
-            "notifUrl"=>"http://127.0.0.1:8000/api/pay/withOrangeMoney",
+        // $params=response()->json([
+        //     "notifUrl"=>"http://127.0.0.1:8000/api/pay/withOrangeMoney",
+        //     "channelUserMsisdn"=>"693781611",
+        //     "amount"=>"20",
+        //     "subscriberMsisdn"=>"690394365",
+        //     "pin"=>"4080",
+        //     "orderId"=>"order1234",
+        //     "description"=>"Payment d'un voyage",
+        //     "payToken"=>$payToken]);
+        //     $json=json_encode($params->getData());
+        // try{
+
+
+        //     $client = new \GuzzleHttp\Client();
+        //     $response = $client->post('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/pay', [
+        //         'verify' => false,
+        //         'headers' => [
+        //         'Authorization' => 'Bearer '.$token,
+        //         'X-AUTH-TOKEN' => 'WU5PVEVIRUFEOllOT1RFSEVBRDIwMjA=',],
+        //         'body'    => $params
+        //     ]);
+
+        // }catch (GuzzleException $e) {
+        //     return "Exception!: " . $e->getMessage();
+        // }
+
+        $response=Http::asJson()->withToken($token)->withoutVerifying()->withHeaders([
+            'X-AUTH-TOKEN' => 'WU5PVEVIRUFEOllOT1RFSEVBRDIwMjA=',
+        ])->withBody(json_encode(["notifUrl"=>"https://mykipart.com/",
             "channelUserMsisdn"=>"693781611",
-            "amount"=>"20",
-            "subscriberMsisdn"=>"690394365",
+            "amount"=>$amount,
+            "subscriberMsisdn"=>$number,
             "pin"=>"4080",
             "orderId"=>"order1234",
             "description"=>"Payment d'un voyage",
-            "payToken"=>$payToken]);
-            $json=json_encode($params->getData());
-        try{
+            "payToken"=>$payToken]),'application/json')->post('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/pay',[
 
-
-            $client = new \GuzzleHttp\Client();
-            $response = $client->post('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/pay', [
-                'verify' => false,
-                'headers' => [
-                'Authorization' => 'Bearer '.$token,
-                'X-AUTH-TOKEN' => 'WU5PVEVIRUFEOllOT1RFSEVBRDIwMjA=',],
-                'body'    => $params
-            ]);
-
-        }catch (GuzzleException $e) {
-            return "Exception!: " . $e->getMessage();
-        }
-
-        // $response=Http::withToken($token)->withoutVerifying()->withHeaders([
-        //     'X-AUTH-TOKEN' => 'WU5PVEVIRUFEOllOT1RFSEVBRDIwMjA=',
-        // ])->post('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/pay',[
-        //     "body" => $json,
-        // ])->json();
+        ]);
 
         return $response;
     }
