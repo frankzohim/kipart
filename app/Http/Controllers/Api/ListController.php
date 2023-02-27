@@ -75,9 +75,9 @@ class ListController extends Controller
 
         $agencies=\Illuminate\Support\Facades\DB::table('agencies')
 
-            ->join('travel','travel.agency_id','agencies.id')
-            ->select('travel.id')
-            ->join('paths','paths.id','travel.path_id')
+        ->join('buses','buses.agency_id','=','agencies.id')
+        ->join('travel','travel.bus_id','=','buses.id')
+        ->join('paths','paths.id','=','travel.path_id')
             ->select('agencies.id','agencies.state','agencies.name','agencies.logo','agencies.headquarters','paths.departure','paths.arrival')
             ->groupBy('agencies.id','agencies.state','agencies.name','agencies.logo','agencies.headquarters','paths.departure','paths.arrival')
             ->where('paths.departure','=',$departure)
