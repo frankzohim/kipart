@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\agent;
 
 use App\Models\Bus;
 use App\Models\Ticket;
+use App\Models\Travel;
 use App\Models\Passenger;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -21,8 +22,8 @@ class AddPassengerController extends Controller
         foreach($travels as $travel){
             array_push($placeBusy,intval($travel->seatNumber));
         }
-        $bus=Bus::where('travel_id',$travel_id)->first();
-
+        $travel_search=Travel::find($travel_id);
+        $bus=Bus::find($travel_search->bus_id);
         for($i=1;$i<=$bus->number_of_places;$i++){
             array_push($listPlace,$i);
             }
@@ -54,6 +55,6 @@ class AddPassengerController extends Controller
         $ticket->passenger_id= $passengerModel->id;
         $ticket->type=0;
         $ticket->save();
-        return response()->json(['message'=>"Passager creer avec success","place"=>$listPlaceAvailable[0]],201);
+        return response()->json(['message'=>"Passager creer avec success","place"=>$listPlaceAvailable],201);
     }
 }

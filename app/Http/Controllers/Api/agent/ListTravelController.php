@@ -16,13 +16,13 @@ class ListTravelController extends Controller
         $dayNow=Carbon::parse($now)->format("Y-m-d");
         $travel=\Illuminate\Support\Facades\DB::table('agencies')
 
-                ->join('travel','travel.agency_id','=','agencies.id')
-                ->join('paths','paths.id','=','travel.path_id')
-                ->join('buses','buses.travel_id','=','travel.id')
+        ->join('buses','buses.agency_id','=','agencies.id')
+        ->join('travel','travel.bus_id','=','buses.id')
+        ->join('paths','paths.id','=','travel.path_id')
                 ->join('schedules','schedules.id','travel.schedule_id')
-                ->select('travel.id','travel.date','travel.price','travel.classe','agencies.name','travel.agency_id','travel.path_id','paths.arrival','paths.departure','schedules.hours','buses.number_of_places')
+                ->select('travel.id','travel.date','travel.price','travel.classe','agencies.name','buses.agency_id','travel.path_id','paths.arrival','paths.departure','schedules.hours','buses.number_of_places')
 
-                ->where('travel.agency_id','=',$id)
+                ->where('buses.agency_id','=',$id)
                 ->where('travel.date','>=',$dayNow)
                 // ->where('schedules.hours','>=',$nowHours)
                 ->get();
@@ -35,13 +35,13 @@ class ListTravelController extends Controller
 
         $travel=\Illuminate\Support\Facades\DB::table('agencies')
 
-        ->join('travel','travel.agency_id','=','agencies.id')
+        ->join('buses','buses.agency_id','=','agencies.id')
+        ->join('travel','travel.bus_id','=','buses.id')
         ->join('paths','paths.id','=','travel.path_id')
-        ->join('buses','buses.travel_id','=','travel.id')
         ->join('schedules','schedules.id','travel.schedule_id')
-        ->select('travel.id','travel.date','travel.price','travel.classe','agencies.name','travel.agency_id','travel.path_id','paths.arrival','paths.departure','schedules.hours','buses.number_of_places')
+        ->select('travel.id','travel.date','travel.price','travel.classe','agencies.name','buses.agency_id','travel.path_id','paths.arrival','paths.departure','schedules.hours','buses.number_of_places')
 
-        ->where('travel.agency_id','=',$id)
+        ->where('buses.agency_id','=',$id)
         ->where('travel.date','=',$request->date)
         ->where('travel.classe','=',$request->classe)
         ->where('paths.departure','=',$localisation)
@@ -56,13 +56,13 @@ public function listTravelWithLocalisation($id,$localisation){
 
     $travel=\Illuminate\Support\Facades\DB::table('agencies')
 
-    ->join('travel','travel.agency_id','=','agencies.id')
-    ->join('paths','paths.id','=','travel.path_id')
-    ->join('buses','buses.travel_id','=','travel.id')
+    ->join('buses','buses.agency_id','=','agencies.id')
+        ->join('travel','travel.bus_id','=','buses.id')
+        ->join('paths','paths.id','=','travel.path_id')
     ->join('schedules','schedules.id','travel.schedule_id')
-    ->select('travel.id','travel.date','travel.price','travel.classe','agencies.name','travel.agency_id','travel.path_id','paths.arrival','paths.departure','schedules.hours','buses.number_of_places')
+    ->select('travel.id','travel.date','travel.price','travel.classe','agencies.name','buses.agency_id','travel.path_id','paths.arrival','paths.departure','schedules.hours','buses.number_of_places')
 
-    ->where('travel.agency_id','=',$id)
+    ->where('buses.agency_id','=',$id)
     ->where('paths.departure','=',$localisation)
     ->get();
 
