@@ -3,19 +3,55 @@
 namespace App\Http\Controllers\Api\Payment;
 
 
+use App\Models\Ticket;
+use App\Models\Passenger;
+use App\Models\PromoCode;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Exception\GuzzleException;
 
 class OrangeMoneyController extends Controller
 {
-    public function pay($number,$amount){
+    public function pay($number,$amount,$id,$codePromo,$subId){
+
+        $code=PromoCode::where('code',$codePromo)->first();
+        $arrayTicket=[];
+        if($code){
+            $code->update([
+                'isUse'=>1
+            ]);
+        }else{
+
+        }
+
+        $payments=Passenger::where('payment_id',$id)->get();
         $token=Self::getAccessToken(); // 1-step one: init payment with getAcessToken
         $payToken=Self::initPayment($token); // 2-Step Two:get Payment Token
         $paymentResponse=Self::paymentValidation($token,$payToken,$number,$amount); // 3-Step Final:Payment
+        $response=json_decode($paymentResponse);
+        if($response->message="Merchant payment successfully initiated"){
+            foreach($payments as $payment){
 
-        return $paymentResponse;
+                $ticket=Ticket::create([
+                    'user_id'=>Auth::guard('api')->user()->id,
+                    'sub_agency_id'=>$subId,
+                    'travel_id'=>$payment->travel_id,
+                    'passenger_id'=>$payment->id,
+                    'type'=>1
+                ]);
+                $payment->update([
+                    'isCheckPayment' =>1,
+                    'means_of_payment'=>"Orange Money"
+                ]);
+
+                array_push($arrayTicket,$ticket->id);
+
+            }
+            return response()->json(["message"=>$response->message,"ticketId"=>$arrayTicket],200);
+        }
+
     }
 
     public static function getAccessToken(){
