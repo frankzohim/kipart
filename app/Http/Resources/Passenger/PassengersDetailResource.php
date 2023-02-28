@@ -19,7 +19,7 @@ class PassengersDetailResource extends JsonResource
             'nom'=>$this->name,
             'type'=>$this->type,
             'seatNumber'=>$this->seatNumber,
-            'cniNumber'=>$this->cniNumber,
+            'cniNumber'=>$this->cni,
             'telephone'=>$this->telephone
         ];
     }
