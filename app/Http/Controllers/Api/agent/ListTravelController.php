@@ -45,7 +45,7 @@ class ListTravelController extends Controller
         ->where('travel.date','=',$request->date)
         ->where('travel.classe','=',$request->classe)
         ->where('paths.departure','=',$localisation)
-        ->where('schedules.hours','>=',$request->hours)
+        ->where('schedules.hours','=',$request->hours)
         ->first();
 
         return $travel;

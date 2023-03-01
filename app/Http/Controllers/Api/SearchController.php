@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use Carbon\Carbon;
+use App\Models\Bus;
 use App\Models\Travel;
+use App\Models\Passenger;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\SearchFulRequest;
 use function PHPUnit\Framework\isEmpty;
+use App\Http\Resources\Travel\SearchResource;
 
 class SearchController extends Controller
 {
@@ -57,6 +60,8 @@ class SearchController extends Controller
     }
 
     public function searchByAgency(SearchFulRequest $request,$id){
+        $jsonTravel=[];
+        $arrayTravel=[];
         $now = Carbon::now();
         $date=$request->dateDeparture;
         $now->setTimezone('Africa/Douala');
@@ -65,7 +70,7 @@ class SearchController extends Controller
         $date=Carbon::parse($date)->format('d');
 
         if($date===$dayNow){
-            $travel=\Illuminate\Support\Facades\DB::table('agencies')
+            $travels=\Illuminate\Support\Facades\DB::table('agencies')
 
                 ->join('buses','buses.agency_id','=','agencies.id')
                 ->join('travel','travel.bus_id','=','buses.id')
@@ -81,9 +86,59 @@ class SearchController extends Controller
                 ->where('travel.classe',$request->classe)
                 ->where('schedules.hours','>=',$now)
                 ->get();
-                return response()->json(['type'=>$request->type,'DataArrival'=>$request->DataArrival,'hourArrival'=>$request->hourArrival,'data'=> $travel],200);
+
+                foreach($travels as $travel){
+
+                    $placeBusy=[];
+                    $listPlace=[];
+                    $t=Passenger::where('travel_id',$travel->id)
+                    ->where('isCheckPayment',1)
+                    ->get();
+                    $travel_search=Travel::find($travel->id);
+                    $bus=Bus::find($travel_search->bus_id);
+
+                    // for($i=1;$i<=$bus->number_of_places;$i++){
+                    //     array_push($listPlace,$i);
+                    // }
+
+                        foreach($t as $tr){
+                            array_push($placeBusy,$tr->seatNumber);
+                        }
+
+                             //return count($travelArray);
+                        $placeAvailable=$bus->number_of_places - count($placeBusy);
+                                $jsonTravel=[
+                                    'id'=>$travel->id,
+                                    'date'=>$travel->date,
+                                    'price'=>$travel->price,
+                                    'classe'=>$travel->classe,
+                                    'name'=>$travel->name,
+                                    'agency_id'=>$travel->agency_id,
+                                    'path_id'=>$travel->path_id,
+                                    'arrival'=>$travel->arrival,
+                                    'departure'=>$travel->departure,
+                                    'hours'=>$travel->hours,
+                                    'number_of_places'=>$travel->number_of_places,
+                                    'placeAvailable'=>$placeAvailable
+                                ];
+
+                                array_push($arrayTravel,$jsonTravel);
+
+                            }
+                // $travel=SearchResource::collection(Travel::join('buses','buses.id','travel.bus_id')
+                // ->join('agencies','agencies.id','buses.agency_id')
+                // ->join('paths','paths.id','=','travel.path_id')->join('schedules','schedules.id','travel.schedule_id')->select('travel.id','agencies.name','travel.price','buses.agency_id','buses.number_of_places','paths.departure','paths.id','paths.arrival','travel.date','travel.classe','schedules.hours')
+
+                // ->where('buses.agency_id','=',$id)
+                // ->where('paths.departure','=',$request->departure)
+                // ->where('paths.arrival','=',$request->arrival)
+                // ->where('travel.date','=',$request->dateDeparture)
+                // ->where('travel.classe',$request->classe)
+                // ->where('schedules.hours','>=',$now)
+                // ->get());
+                return response()->json(['type'=>$request->type,'DataArrival'=>$request->DataArrival,'hourArrival'=>$request->hourArrival,'data'=> $arrayTravel],200);
         }
-            $travel=\Illuminate\Support\Facades\DB::table('agencies')
+            $travels=\Illuminate\Support\Facades\DB::table('agencies')
 
             ->join('buses','buses.agency_id','=','agencies.id')
             ->join('travel','travel.bus_id','=','buses.id')
@@ -99,7 +154,58 @@ class SearchController extends Controller
                 ->where('travel.classe',$request->classe)
                 ->where('schedules.hours','>=',$request->departure_time)
                 ->get();
-                return response()->json(['type'=>$request->type,'DataArrival'=>$request->DataArrival,'hourArrival'=>$request->hourArrival,'data'=> $travel],200);
+
+                foreach($travels as $travel){
+
+        $placeBusy=[];
+        $listPlace=[];
+        $t=Passenger::where('travel_id',$travel->id)
+        ->where('isCheckPayment',1)
+        ->get();
+        $travel_search=Travel::find($travel->id);
+        $bus=Bus::find($travel_search->bus_id);
+
+        // for($i=1;$i<=$bus->number_of_places;$i++){
+        //     array_push($listPlace,$i);
+        // }
+
+            foreach($t as $tr){
+                array_push($placeBusy,$tr->seatNumber);
+            }
+
+                 //return count($travelArray);
+            $placeAvailable=$bus->number_of_places - count($placeBusy);
+                    $jsonTravel=[
+                        'id'=>$travel->id,
+                        'date'=>$travel->date,
+                        'price'=>$travel->price,
+                        'classe'=>$travel->classe,
+                        'name'=>$travel->name,
+                        'agency_id'=>$travel->agency_id,
+                        'path_id'=>$travel->path_id,
+                        'arrival'=>$travel->arrival,
+                        'departure'=>$travel->departure,
+                        'hours'=>$travel->hours,
+                        'number_of_places'=>$travel->number_of_places,
+                        'placeAvailable'=>$placeAvailable
+                    ];
+
+                    array_push($arrayTravel,$jsonTravel);
+
+                }
+                // $travel=SearchResource::collection(Travel::join('buses','buses.id','travel.bus_id')
+                // ->join('agencies','agencies.id','buses.agency_id')
+                // ->join('paths','paths.id','=','travel.path_id')->join('schedules','schedules.id','travel.schedule_id')->select('travel.id','agencies.name','buses.number_of_places','buses.agency_id','paths.departure','paths.arrival','paths.id','travel.date','travel.classe','schedules.hours')
+                // ->where('buses.agency_id','=',$id)
+                // ->where('paths.departure','=',$request->departure)
+                // ->where('paths.arrival','=',$request->arrival)
+                // ->where('travel.date','=',$request->dateDeparture)
+                // ->where('travel.classe',$request->classe)
+                // ->where('schedules.hours','>=',$request->departure_time)
+                // ->get());
+
+
+                return response()->json(['type'=>$request->type,'DataArrival'=>$request->DataArrival,'hourArrival'=>$request->hourArrival,'data'=> $arrayTravel],200);
 
 
 

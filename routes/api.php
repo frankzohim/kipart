@@ -103,7 +103,7 @@ use App\Http\Controllers\Api\Payment\OrangeMoneyController;
     Route::post('generate',[GenerateTicket::class,'generateTicket']);
     Route::post('generate/token',[GenerateTicket::class,'generateToken']);
 
-    Route::post('pay/withOrangeMoney/{number}/{amount}/{id}/{codePromo}/{subId}',[OrangeMoneyController::class,'pay']);
+
 
     //Services
 
@@ -191,6 +191,7 @@ use App\Http\Controllers\Api\Payment\OrangeMoneyController;
         Route::get('get/qrCode/{id}',[TicketTicketController::class,'getQrCode']);
         Route::get('ToApply/promoCode/{code}/{price}',[TestCodePromoController::class,'testCodePost']);
         Route::post('sendReview/{agency_id}',[ReviewController::class,'SendReview']);
+        Route::post('pay/withOrangeMoney/{number}/{amount}/{id}/{codePromo}/{subId}',[OrangeMoneyController::class,'pay']);
     });
 
 

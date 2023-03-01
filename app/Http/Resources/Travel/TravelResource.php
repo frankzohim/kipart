@@ -3,9 +3,11 @@
 namespace App\Http\Resources\Travel;
 
 use App\Models\Bus;
+use App\Models\Travel;
+use App\Models\Passenger;
+use Illuminate\Support\Facades\URL;
 use App\Http\Resources\Bus\BusResource;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\URL;
 
 class TravelResource extends JsonResource
 {
@@ -17,6 +19,7 @@ class TravelResource extends JsonResource
      */
     public function toArray($request)
     {
+
         return [
             'id'=>$this->id,
             'date'=>$this->date->format('Y-m-d'),
