@@ -32,23 +32,23 @@ class OrangeMoneyController extends Controller
         $paymentResponse=Self::paymentValidation($token,$payToken,$number,$amount); // 3-Step Final:Payment
         $response=json_decode($paymentResponse);
         if($response->message="Merchant payment successfully initiated"){
-            foreach($payments as $payment){
+            // foreach($payments as $payment){
 
-                $ticket=Ticket::create([
-                    'user_id'=>Auth::guard('api')->user()->id,
-                    'sub_agency_id'=>$subId,
-                    'travel_id'=>$payment->travel_id,
-                    'passenger_id'=>$payment->id,
-                    'type'=>1
-                ]);
-                $payment->update([
-                    'isCheckPayment' =>1,
-                    'means_of_payment'=>"Orange Money"
-                ]);
+            //     $ticket=Ticket::create([
+            //         'user_id'=>Auth::guard('api')->user()->id,
+            //         'sub_agency_id'=>$subId,
+            //         'travel_id'=>$payment->travel_id,
+            //         'passenger_id'=>$payment->id,
+            //         'type'=>1
+            //     ]);
+            //     $payment->update([
+            //         'isCheckPayment' =>1,
+            //         'means_of_payment'=>"Orange Money"
+            //     ]);
 
-                array_push($arrayTicket,$ticket->id);
+            //     array_push($arrayTicket,$ticket->id);
 
-            }
+            // }
             return response()->json(["message"=>$response->message,"ticketId"=>$arrayTicket],200);
         }
 

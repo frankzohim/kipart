@@ -92,11 +92,11 @@ class AddPassengerServices{
                 }
                 $passengers=response()->json(['Passagers'=>$arrayPassengers]);
                 $json=json_encode($passengers->getData());
-                 $response=(new PassengerServices())->add($travel_id,$json,$sub_agency_id);
+                 $response=(new PassengerServices())->add($travel_id,$json);
                  //return $response;
                 //return $arr;
                 //return $passengerPlace;
-            return response()->json(['message'=>"Passager(s) ajouté avec success",'places'=>$ArrayPlace,'payment_id'=>$payment->id],201);
+        return response()->json(['message'=>"Passager(s) ajouté avec success",'places'=>$ArrayPlace,'payment_id'=>$payment->id],201);
             }
 
 
