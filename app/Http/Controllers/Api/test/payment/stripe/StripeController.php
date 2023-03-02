@@ -4,21 +4,24 @@ namespace App\Http\Controllers\Api\test\payment\stripe;
 
 use Stripe;
 use Exception;
-use App\Models\Payment;
-use App\Models\Passenger;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\PromoCode;
 use App\Models\Ticket;
 use App\Models\Travel;
+use App\Models\Payment;
+use App\Models\Passenger;
+use App\Models\PromoCode;
 use Faker\Calculator\TCNo;
+use Illuminate\Http\Request;
+use App\Services\api\UrlServices;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class StripeController extends Controller
 {
     public function stripeTestPayment(Request $request, $id,$price,$codePromo,$subId){
 
         $code=PromoCode::where('code',$codePromo)->first();
+        $url=(new UrlServices())->getUrl();
         $arrayTicket=[];
         if($code){
             $code->update([
@@ -52,6 +55,9 @@ class StripeController extends Controller
               ]);
 
               if($response->status=='succeeded'){
+
+
+
                 foreach($payments as $payment){
 
                     $ticket=Ticket::create([
@@ -61,6 +67,8 @@ class StripeController extends Controller
                         'passenger_id'=>$payment->id,
                         'type'=>1
                     ]);
+
+                    $r=Http::post($url.'/api/add/bordereau/'.$price.'/0/'.$subId.'/'.$payment->travel_id.'/'.$ticket->passenger_id);
                     $payment->update([
                         'isCheckPayment' =>1
                     ]);
