@@ -31,26 +31,32 @@ class OrangeMoneyController extends Controller
         $payToken=Self::initPayment($token); // 2-Step Two:get Payment Token
         $paymentResponse=Self::paymentValidation($token,$payToken,$number,$amount); // 3-Step Final:Payment
         $response=json_decode($paymentResponse);
-        if($response->message="Merchant payment successfully initiated"){
-            // foreach($payments as $payment){
+        $statusPay=Self::getPaymentStatus($token,$payToken);
+        $status=json_decode($statusPay);
 
-            //     $ticket=Ticket::create([
-            //         'user_id'=>Auth::guard('api')->user()->id,
-            //         'sub_agency_id'=>$subId,
-            //         'travel_id'=>$payment->travel_id,
-            //         'passenger_id'=>$payment->id,
-            //         'type'=>1
-            //     ]);
-            //     $payment->update([
-            //         'isCheckPayment' =>1,
-            //         'means_of_payment'=>"Orange Money"
-            //     ]);
+        if($status->data->status=='SUCCESS'){
+            foreach($payments as $payment){
 
-            //     array_push($arrayTicket,$ticket->id);
+                $ticket=Ticket::create([
+                    'user_id'=>Auth::guard('api')->user()->id,
+                    'sub_agency_id'=>$subId,
+                    'travel_id'=>$payment->travel_id,
+                    'passenger_id'=>$payment->id,
+                    'type'=>1
+                ]);
+                $payment->update([
+                    'isCheckPayment' =>1,
+                    'means_of_payment'=>"Orange Money"
+                ]);
 
-            // }
-            return response()->json(["message"=>$response->message,"ticketId"=>$arrayTicket],200);
+                array_push($arrayTicket,$ticket->id);
         }
+
+        return response()->json(["message"=>'payment effectué',"ticketId"=>$arrayTicket],200);
+    }else{
+
+        return response()->json(["message"=>$status->message,"status"=>$status->data->status],200);
+    }
 
     }
 
@@ -120,6 +126,15 @@ class OrangeMoneyController extends Controller
             "payToken"=>$payToken]),'application/json')->post('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/pay',[
 
         ]);
+
+        return $response;
+    }
+
+    public static function getPaymentStatus($token,$payToken){
+
+        $response=Http::withToken($token)->withoutVerifying()->withHeaders([
+            'X-AUTH-TOKEN' => 'WU5PVEVIRUFEOllOT1RFSEVBRDIwMjA='
+        ])->get('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/paymentstatus/'.$payToken);
 
         return $response;
     }
