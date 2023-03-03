@@ -123,7 +123,7 @@ class OrangeMoneyController extends Controller
         ])->get('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/paymentstatus/'.$payToken);
 
         $status=json_decode($response);
-        if($status->data->status=='SUCCESS'){
+        if($status->data->status=='SUCCESSFULL'){
             foreach($payments as $payment){
 
                 $ticket=Ticket::create([
@@ -143,7 +143,7 @@ class OrangeMoneyController extends Controller
 
         return response()->json(["message"=>'payment effectué',"ticketId"=>$arrayTicket],200);
     }else{
-            return response()->json(["message"=>$status->message,"status"=>$status->status]);
+            return response()->json(["message"=>"votre paiement a echoué"]);
         }
 
     }
