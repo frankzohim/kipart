@@ -8,6 +8,7 @@ use App\Models\Passenger;
 use App\Models\PromoCode;
 use App\Models\SubAgency;
 use Illuminate\Http\Request;
+use App\Services\api\UrlServices;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
@@ -103,9 +104,10 @@ class OrangeMoneyController extends Controller
         return $response;
     }
 
-    public  function getPaymentStatus($token,$payToken,$id,$codePromo,$subId){
+    public  function getPaymentStatus($token,$payToken,$id,$codePromo,$subId,$price){
 
         $code=PromoCode::where('code',$codePromo)->first();
+        $url=(new UrlServices())->getUrl();
         $arrayTicket=[];
         if($code){
             $code->update([
@@ -123,6 +125,14 @@ class OrangeMoneyController extends Controller
         ])->get('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/paymentstatus/'.$payToken);
 
         $status=json_decode($response);
+
+        while($status->data->status=='PENDING'){
+            $response=Http::withToken($token)->withoutVerifying()->withHeaders([
+                'X-AUTH-TOKEN' => 'WU5PVEVIRUFEOllOT1RFSEVBRDIwMjA='
+            ])->get('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/paymentstatus/'.$payToken);
+
+            $status=json_decode($response);
+        }
         if($status->data->status=='SUCCESSFULL'){
             foreach($payments as $payment){
 
@@ -133,6 +143,7 @@ class OrangeMoneyController extends Controller
                     'passenger_id'=>$payment->id,
                     'type'=>1
                 ]);
+                $r=Http::post($url.'/api/add/bordereau/'.$price.'/0/'.$subId.'/'.$payment->travel_id.'/'.$ticket->passenger_id);
                 $payment->update([
                     'isCheckPayment' =>1,
                     'means_of_payment'=>"Orange Money"
@@ -143,7 +154,7 @@ class OrangeMoneyController extends Controller
 
         return response()->json(["message"=>'payment effectué',"ticketId"=>$arrayTicket],200);
     }else{
-            return response()->json(["message"=>"votre paiement a echoué"]);
+            return response()->json(["message"=>$status->message]);
         }
 
     }

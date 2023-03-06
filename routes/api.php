@@ -192,7 +192,7 @@ use App\Http\Controllers\Api\Payment\OrangeMoneyController;
         Route::get('ToApply/promoCode/{code}/{price}',[TestCodePromoController::class,'testCodePost']);
         Route::post('sendReview/{agency_id}',[ReviewController::class,'SendReview']);
         Route::post('pay/withOrangeMoney/{number}/{amount}/{subId}',[OrangeMoneyController::class,'pay']);
-        Route::get('getPayment/status/{token}/{payToken}/{id}/{codePromo}/{subId}',[OrangeMoneyController::class,'getPaymentStatus']);
+        Route::get('getPayment/status/{token}/{payToken}/{id}/{codePromo}/{subId}/{price}',[OrangeMoneyController::class,'getPaymentStatus']);
     });
 
 
