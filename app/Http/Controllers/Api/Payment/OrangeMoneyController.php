@@ -120,42 +120,57 @@ class OrangeMoneyController extends Controller
 
         $payments=Passenger::where('payment_id',$id)->get();
 
-         $response=Http::withToken($token)->withoutVerifying()->withHeaders([
+         
+            $status=Self::status($token,$payToken);
+        if(isset($status)){
+
+            while($status=='PENDING'){
+                
+            $status=Self::status($token,$payToken);
+                
+            }
+
+            if($status=='SUCCESSFULL'){
+                foreach($payments as $payment){
+
+                    $ticket=Ticket::create([
+                        'user_id'=>Auth::guard('api')->user()->id,
+                        'sub_agency_id'=>$subId,
+                        'travel_id'=>$payment->travel_id,
+                        'passenger_id'=>$payment->id,
+                        'type'=>1
+                    ]);
+                    $r=Http::post($url.'/api/add/bordereau/'.$price.'/0/'.$subId.'/'.$payment->travel_id.'/'.$ticket->passenger_id);
+                    $payment->update([
+                        'isCheckPayment' =>1,
+                        'means_of_payment'=>"Orange Money"
+                    ]);
+
+                    array_push($arrayTicket,$ticket->id);
+            }
+
+            return response()->json(["message"=>'payment effectué',"ticketId"=>$arrayTicket],200);
+        }if($status=='CANCELLED'){
+
+            return response()->json(["message"=>"votre transaction a ete annulé"],200);
+        }if($status=='EXPIRED'){
+            return response()->json(["message"=>"votre transaction a expiré veuillez reassayez"],200);
+        }
+
+
+            
+
+    }
+    }
+
+    public static function status($token,$payToken){
+
+        $response=Http::withToken($token)->withoutVerifying()->withHeaders([
             'X-AUTH-TOKEN' => 'WU5PVEVIRUFEOllOT1RFSEVBRDIwMjA='
         ])->get('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/paymentstatus/'.$payToken);
 
-        $status=json_decode($response);
-
-        while($status->data->status=='PENDING'){
-            $response=Http::withToken($token)->withoutVerifying()->withHeaders([
-                'X-AUTH-TOKEN' => 'WU5PVEVIRUFEOllOT1RFSEVBRDIwMjA='
-            ])->get('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/paymentstatus/'.$payToken);
-
-            $status=json_decode($response);
-        }
-        if($status->data->status=='SUCCESSFULL'){
-            foreach($payments as $payment){
-
-                $ticket=Ticket::create([
-                    'user_id'=>Auth::guard('api')->user()->id,
-                    'sub_agency_id'=>$subId,
-                    'travel_id'=>$payment->travel_id,
-                    'passenger_id'=>$payment->id,
-                    'type'=>1
-                ]);
-                $r=Http::post($url.'/api/add/bordereau/'.$price.'/0/'.$subId.'/'.$payment->travel_id.'/'.$ticket->passenger_id);
-                $payment->update([
-                    'isCheckPayment' =>1,
-                    'means_of_payment'=>"Orange Money"
-                ]);
-
-                array_push($arrayTicket,$ticket->id);
-        }
-
-        return response()->json(["message"=>'payment effectué',"ticketId"=>$arrayTicket],200);
-    }else{
-            return response()->json(["message"=>$status->message]);
-        }
-
+        $status=json_decode($response->getBody());
+        
+        return $status->data->status;
     }
 }

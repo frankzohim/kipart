@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api\admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\brandAmbassador;
 use Illuminate\Http\Request;
+use App\Models\brandAmbassador;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class BrandAmbassadorController extends Controller
 {
@@ -77,5 +78,18 @@ class BrandAmbassadorController extends Controller
         $brand->delete();
 
         return response()->json(['statut'=>'deleted successfuly'],204);
+    }
+
+    public function details(){
+        $brands=DB::table('users')
+        ->join('brand_ambassadors','users.brand_ambassadors_id','brand_ambassadors.id')->select(
+
+
+            DB::raw('COUNT(users.id) as count'),
+            DB::raw('brand_ambassadors.name as nameB'),
+            )->groupBy('nameB')
+            ->get();
+
+            return response()->json(['brandGirls'=>$brands],200);
     }
 }

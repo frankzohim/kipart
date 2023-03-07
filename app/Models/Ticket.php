@@ -18,7 +18,8 @@ class Ticket extends Model
         'sub_agency_id',
         'travel_id',
         'passenger_id',
-        'type'
+        'type',
+        'user_id',
     ];
 
     public function user():BelongsTo
