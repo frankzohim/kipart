@@ -59,6 +59,7 @@ use App\Http\Controllers\Api\Payment\OrangeMoneyController;
 |
 */
     //All endpoints for unauth user
+    
     Route::post('login',[CustomerController::class,'login']);
     Route::post('login/admin',[AdminController::class,'login']);
     Route::post('login/personnal/agent',[AgentController::class,'loginAgent']);
@@ -119,7 +120,7 @@ use App\Http\Controllers\Api\Payment\OrangeMoneyController;
         Route::apiResource('paths',PathController::class);
         Route::apiResource('users',UsersController::class);
         Route::apiResource('agencies',AgencyController::class);
-
+        Route::get('brandGirls/details',[BrandAmbassadorController::class,'details']);
         Route::post('logout/adm/private',[AdminController::class,'logout']);
 
         Route::get('routes',[CustomerController::class,'routeList']);
