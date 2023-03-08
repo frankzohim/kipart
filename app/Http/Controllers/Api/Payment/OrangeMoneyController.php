@@ -120,14 +120,14 @@ class OrangeMoneyController extends Controller
 
         $payments=Passenger::where('payment_id',$id)->get();
 
-         
+
             $status=Self::status($token,$payToken);
         if(isset($status)){
 
             while($status=='PENDING'){
-                
+
             $status=Self::status($token,$payToken);
-                
+
             }
 
             if($status=='SUCCESSFULL'){
@@ -158,7 +158,7 @@ class OrangeMoneyController extends Controller
         }
 
 
-            
+
 
     }
     }
@@ -170,7 +170,11 @@ class OrangeMoneyController extends Controller
         ])->get('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/paymentstatus/'.$payToken);
 
         $status=json_decode($response->getBody());
-        
-        return $status->data->status;
+         if(isset($status->data->status)){
+            return $status->data->status;
+         }else{
+            return response()->json(["message"=>$status]);
+         }
+
     }
 }

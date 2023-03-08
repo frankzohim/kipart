@@ -19,6 +19,7 @@ use Laravel\Passport\Client as OClient;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Api\services\sms\SendSmsService;
+use App\Models\Ticket;
 use ErrorException;
 
 class CustomerController extends Controller
@@ -180,6 +181,19 @@ class CustomerController extends Controller
             return response()->json(["message"=>$e->getMessage()],404);
         }
 
+    }
+
+    public function deleteAccount(){
+
+        $user=User::find(Auth::guard('api')->user()->id);
+        $tickets=Ticket::where('user_id',Auth::guard('api')->user()->id)->get();
+
+        $tickets->update([
+            'user_id' =>NULL
+        ]);
+        $user->delete();
+
+        return response()->json(["message"=>"votre compte à bien ete suprimé"]);
     }
 
 }
