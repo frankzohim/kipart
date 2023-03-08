@@ -59,7 +59,7 @@ use App\Http\Controllers\Api\Payment\OrangeMoneyController;
 |
 */
     //All endpoints for unauth user
-    
+
     Route::post('login',[CustomerController::class,'login']);
     Route::post('login/admin',[AdminController::class,'login']);
     Route::post('login/personnal/agent',[AgentController::class,'loginAgent']);
@@ -194,6 +194,7 @@ use App\Http\Controllers\Api\Payment\OrangeMoneyController;
         Route::post('sendReview/{agency_id}',[ReviewController::class,'SendReview']);
         Route::post('pay/withOrangeMoney/{number}/{amount}/{subId}',[OrangeMoneyController::class,'pay']);
         Route::get('getPayment/status/{token}/{payToken}/{id}/{codePromo}/{subId}/{price}',[OrangeMoneyController::class,'getPaymentStatus']);
+        Route::post('delete/Account',[CustomerController::class,'deleteAccount']);
     });
 
 

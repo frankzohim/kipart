@@ -68,8 +68,17 @@ class SearchController extends Controller
         $now=Carbon::parse($now)->format('H:i');
         $dayNow=Carbon::parse($now)->format('d');
         $date=Carbon::parse($date)->format('d');
+        $classe="";
 
+        if($request->classe=="Classic"){
+            $classe="Classique";
+        }else{
+            $classe="Classique";
+        }
         if($date===$dayNow){
+
+
+
             $travels=\Illuminate\Support\Facades\DB::table('agencies')
 
                 ->join('buses','buses.agency_id','=','agencies.id')
@@ -83,7 +92,7 @@ class SearchController extends Controller
                 ->where('paths.departure','=',$request->departure)
                 ->where('paths.arrival','=',$request->arrival)
                 ->where('travel.date','=',$request->dateDeparture)
-                ->where('travel.classe',$request->classe)
+                ->where('travel.classe',$classe)
                 ->where('schedules.hours','>=',$now)
                 ->get();
 
@@ -107,6 +116,7 @@ class SearchController extends Controller
 
                              //return count($travelArray);
                         $placeAvailable=$bus->number_of_places - count($placeBusy);
+
                                 $jsonTravel=[
                                     'id'=>$travel->id,
                                     'date'=>$travel->date,
@@ -138,6 +148,7 @@ class SearchController extends Controller
                 // ->get());
                 return response()->json(['type'=>$request->type,'DataArrival'=>$request->DataArrival,'hourArrival'=>$request->hourArrival,'data'=> $arrayTravel],200);
         }
+
             $travels=\Illuminate\Support\Facades\DB::table('agencies')
 
             ->join('buses','buses.agency_id','=','agencies.id')
@@ -151,7 +162,7 @@ class SearchController extends Controller
                 ->where('paths.departure','=',$request->departure)
                 ->where('paths.arrival','=',$request->arrival)
                 ->where('travel.date','=',$request->dateDeparture)
-                ->where('travel.classe',$request->classe)
+                ->where('travel.classe',$classe)
                 ->where('schedules.hours','>=',$request->departure_time)
                 ->get();
 
@@ -175,6 +186,13 @@ class SearchController extends Controller
 
                  //return count($travelArray);
             $placeAvailable=$bus->number_of_places - count($placeBusy);
+            $classe="";
+
+            if($request->classe=="Classic"){
+                $classe="Classique";
+            }else{
+
+            }
                     $jsonTravel=[
                         'id'=>$travel->id,
                         'date'=>$travel->date,
