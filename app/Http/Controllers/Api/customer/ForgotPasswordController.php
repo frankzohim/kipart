@@ -25,10 +25,10 @@ class ForgotPasswordController extends Controller
 
         // Create a new code
         $codeData = ResetCodePassword::create($data);
-        $message="Votre code de reinitialisation de mot de passe est ".$data['code'];
+        $message="Votre numéro de reinitialisation de mot de passe est ".$data['code'];
         // Send sms to user
         $sms=(new SendSmsService())->sendSms("delanofofe@gmail.com","test1234",$request->phone_number,$message,"Kipart","2022-12-09 17:20:02");
 
-        return response(['message' => "Un code de reinitialisation vous a été envoyé à votre numéro de telephone"], 200);
+        return response(['message' => "Un numéro de reinitialisation vous a été envoyé à votre numéro de telephone"], 200);
     }
 }

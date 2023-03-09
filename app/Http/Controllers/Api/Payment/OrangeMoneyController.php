@@ -96,7 +96,7 @@ class OrangeMoneyController extends Controller
             "subscriberMsisdn"=>$number,
             "pin"=>"4080",
             "orderId"=>"order123",
-            "description"=>"payment d'un ticket à $agencyName",
+            "description"=>"Ticket de Voyage",
             "payToken"=>$payToken]),'application/json')->post('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/pay',[
 
         ]);
@@ -149,7 +149,7 @@ class OrangeMoneyController extends Controller
                     array_push($arrayTicket,$ticket->id);
             }
 
-            return response()->json(["message"=>'payment effectué',"ticketId"=>$arrayTicket],200);
+            return response()->json(["message"=>'successful',"ticketId"=>$arrayTicket],200);
         }if($status=='CANCELLED'){
 
             return response()->json(["message"=>"votre transaction a ete annulé"],200);

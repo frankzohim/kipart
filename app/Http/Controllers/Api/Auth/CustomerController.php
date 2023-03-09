@@ -129,7 +129,7 @@ class CustomerController extends Controller
     public function sendOtp($mobile){
 
         $otp = rand(100000, 999999);
-        $message=$otp." est est votre numéro de validation KiPART";
+        $message=$otp." est votre numéro de validation KiPART";
         $user = User::where('phone_number', $mobile)->first();
         $sms=(new SendSmsService())->sendSms("delanofofe@gmail.com","test1234",$mobile,$message,"KiPART","2022-12-09 17:20:02");
 
@@ -186,14 +186,23 @@ class CustomerController extends Controller
     public function deleteAccount(){
 
         $user=User::find(Auth::guard('api')->user()->id);
-        $tickets=Ticket::where('user_id',Auth::guard('api')->user()->id)->get();
+        if(isset($user)){
+            $tickets=Ticket::where('user_id',Auth::guard('api')->user()->id)->get();
 
-        $tickets->update([
-            'user_id' =>NULL
-        ]);
-        $user->delete();
+            foreach($tickets as $ticket){
+                $ticket->update([
+                    'user_id' =>NULL
+                ]);
+            }
 
-        return response()->json(["message"=>"votre compte à bien ete suprimé"]);
+            $user->delete();
+
+            return response()->json(["message"=>"votre compte à bien ete suprimé"],200);
+        }else{
+
+            return response()->json(["message"=>"Une Erreur viens de se produire"],404);
+        }
+
     }
 
 }
