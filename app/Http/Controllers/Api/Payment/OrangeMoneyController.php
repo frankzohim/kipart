@@ -122,14 +122,13 @@ class OrangeMoneyController extends Controller
 
 
             $status=Self::status($token,$payToken);
-        if(isset($status)){
+
 
             while($status=='PENDING'){
 
             $status=Self::status($token,$payToken);
 
             }
-
             if($status=='SUCCESSFULL'){
                 foreach($payments as $payment){
 
@@ -159,13 +158,15 @@ class OrangeMoneyController extends Controller
 
 
 
+        return response()->json(['message'=>"Une erreur s'est produit"],403);
 
-    }
+
+
     }
 
     public static function status($token,$payToken){
 
-        $response=Http::withToken($token)->withoutVerifying()->withHeaders([
+        $response=Http::retry(3,400,throw: false)->withToken($token)->withoutVerifying()->withHeaders([
             'X-AUTH-TOKEN' => 'WU5PVEVIRUFEOllOT1RFSEVBRDIwMjA='
         ])->get('https://api-s1.orange.cm/omcoreapis/1.0.2/mp/paymentstatus/'.$payToken);
 
@@ -175,6 +176,7 @@ class OrangeMoneyController extends Controller
          }else{
             return response()->json(["message"=>$status]);
          }
+
 
     }
 }
