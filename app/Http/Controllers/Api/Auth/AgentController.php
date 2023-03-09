@@ -71,6 +71,7 @@ class AgentController extends Controller
 
         $data = request()->only('email','password');
         $agent=Agent::where("email",$data["email"])->first();
+        $roleAgent=$agent->role_id;
         $subAgency=SubAgency::where('id',$agent->sub_agency_id)->first();
 
         $client = Client::where('id', 5)->first();
@@ -96,7 +97,9 @@ class AgentController extends Controller
         'oauth/token',
         'POST'
         );
-        return Route::dispatch($token);
+        $response=Route::dispatch($token);
+
+        return $response;
         }
 
         else{
