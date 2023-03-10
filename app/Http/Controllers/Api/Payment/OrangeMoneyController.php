@@ -148,12 +148,12 @@ class OrangeMoneyController extends Controller
                     array_push($arrayTicket,$ticket->id);
             }
 
-            return response()->json(["message"=>'successful',"ticketId"=>$arrayTicket],200);
+            return response()->json(["message"=>'successful',"ticketId"=>$arrayTicket],201);
         }if($status=='CANCELLED'){
 
-            return response()->json(["message"=>"votre transaction a ete annulé"],200);
+            return response()->json(["status"=>$status,"message"=>"votre transaction a ete annulé"],200);
         }if($status=='EXPIRED'){
-            return response()->json(["message"=>"votre transaction a expiré veuillez reassayez"],200);
+            return response()->json(["status"=>$status,"message"=>"votre transaction a expiré veuillez reassayez"],200);
         }
 
 
