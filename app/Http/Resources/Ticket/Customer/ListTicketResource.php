@@ -24,7 +24,7 @@ class ListTicketResource extends JsonResource
             'user_id'=>$this->user_id,
             'nameUser'=>Auth::guard('api')->user()->name,
             'type'=>$this->type,
-            'Sous-agence'=>$this->subAgency->name,
+            'SousAgence'=>$this->subAgency->name,
             'Voyage'=>TravelResource::collection(Travel::where('id',$this->travel_id)->get()),
             'Passager'=>PassengersDetailResource::collection(Passenger::where('id',$this->passenger_id)->get()),
 

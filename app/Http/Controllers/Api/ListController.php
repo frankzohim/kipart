@@ -116,4 +116,22 @@ class ListController extends Controller
 
         return response()->json(['usersWithAmbassador'=>$users],200);
     }
+
+    public function listDeparture(Request $request){
+
+        $list=Path::select('departure')
+        ->where("departure","LIKE","%{$request->departure}%")
+        ->get();
+
+        return response()->json($list);
+    }
+
+    public function listArrival(Request $request){
+
+        $list=Path::select('arrival')
+        ->where("arrival","LIKE","%{$request->arrival}%")
+        ->get();
+
+        return response()->json($list);
+    }
 }
