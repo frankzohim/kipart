@@ -27,16 +27,16 @@ class ResetPasswordRequest extends FormRequest
     {
         return [
             'code' => 'required|string|exists:reset_code_passwords',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'required|string|min:6',
             'phone_number'=>'required|string|exists:users'
         ];
     }
 
     public function failedValidation(Validator $validator)
     {
-       throw new HttpResponseException(response()->json([
+       throw new HttpResponseException(response()->json(
          $validator->errors()
-       ],400));
+       ,400));
     }
 
 
