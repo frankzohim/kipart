@@ -134,4 +134,11 @@ class ListController extends Controller
 
         return response()->json($list);
     }
+
+    public function listHours(){
+
+        $hours=Schedule::all();
+
+        return response()->json($hours);
+    }
 }

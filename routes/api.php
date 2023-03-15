@@ -76,7 +76,7 @@ use App\Http\Controllers\Api\Payment\OrangeMoneyController;
     Route::get('updatePrice/{classe}/{price}/{agency_id}',[GenerateTravelController::class,'updatePrice']);
     Route::post('searchFull/travel',[SearchController::class,'searchFull']);
     Route::post('search/byAgency/{id}',[SearchController::class,'searchByAgency']);
-
+    Route::get('list/hours',[ListController::class,'listHours']);
     Route::get('list/departures',[ListController::class,'listDeparture']);
     Route::get('list/arrival',[ListController::class,'listArrival']);
     Route::get('generate',[GenerateTravelController::class,'generateTravelToThreeMonth']);
