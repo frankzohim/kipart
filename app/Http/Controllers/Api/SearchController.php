@@ -72,8 +72,10 @@ class SearchController extends Controller
 
         if($request->classe=="Classic"){
             $classe="Classique";
-        }else{
+        }else if($request->classe=="Classique"){
             $classe="Classique";
+        }else if($request->classe=="Vip"){
+            $classe="Vip";
         }
         if($date===$dayNow){
 
@@ -93,7 +95,8 @@ class SearchController extends Controller
                 ->where('paths.arrival','=',$request->arrival)
                 ->where('travel.date','=',$request->dateDeparture)
                 ->where('travel.classe',$classe)
-                ->where('schedules.hours','>=',$now)
+                ->where('schedules.hours','>',$now)
+                ->orderBy('travel.id','asc')
                 ->get();
 
                 foreach($travels as $travel){
@@ -163,7 +166,8 @@ class SearchController extends Controller
                 ->where('paths.arrival','=',$request->arrival)
                 ->where('travel.date','=',$request->dateDeparture)
                 ->where('travel.classe',$classe)
-                ->where('schedules.hours','>=',$request->departure_time)
+                ->where('schedules.hours','>',$request->departure_time)
+                ->orderBy('travel.id','asc')
                 ->get();
 
                 foreach($travels as $travel){
