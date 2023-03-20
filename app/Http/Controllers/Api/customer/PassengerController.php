@@ -126,4 +126,17 @@ class PassengerController extends Controller
 
     }
 
+    public function update($id,PassengerRequest $request){
+
+        $passenger=Passenger::find($id);
+        $input=$request->all();
+        $update=$passenger->update($input);
+        if($update){
+            return response()->json(['status'=>'success','message'=>'Passager mis à Jour']);
+            }
+            else{
+                return response()->json(['status'=>'fail!','message'=>'Passager non Trouvé']);
+            }
+    }
+
 }

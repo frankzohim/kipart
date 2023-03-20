@@ -20,9 +20,11 @@ class PassengerResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id'=>$this->id,
             'nom'=>$this->name,
             'seatNumber'=>$this->seatNumber,
             'cniNumber'=>$this->cni,
+            'telephone'=>$this->telephone,
             'etat_de_paiement'=>$this->isCheckPayment,
             'infosVoyage'=>TravelResource::collection(Travel::where('id',$this->travel_id)->get())
         ];
