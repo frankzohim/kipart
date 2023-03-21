@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Payment;
 
 
 use App\Models\Ticket;
+use App\Models\Travel;
 use App\Models\Passenger;
 use App\Models\PromoCode;
 use App\Models\SubAgency;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Exception\GuzzleException;
+use App\Http\Controllers\Api\services\sms\SendSmsService;
 
 class OrangeMoneyController extends Controller
 {
@@ -144,10 +146,12 @@ class OrangeMoneyController extends Controller
                         'isCheckPayment' =>1,
                         'means_of_payment'=>"Orange Money"
                     ]);
-
+                    $travel_id=$payment->travel_id;
                     array_push($arrayTicket,$ticket->id);
             }
-
+            $travel=Travel::where('id',$travel_id)->first();
+            $message="Vous venez de payer un ticket par Orange Money chez Kipart pour le voyage du $travel->date";
+            $sms=(new SendSmsService())->sendSms("delanofofe@gmail.com","test1234",$user->phone_number,$message,"KiPART","2022-12-09 17:20:02");
             return response()->json(["message"=>'successful',"ticketId"=>$arrayTicket],201);
         }if($status=='CANCELLED'){
 
