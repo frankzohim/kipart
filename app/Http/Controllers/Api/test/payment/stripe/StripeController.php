@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\test\payment\stripe;
 
 use Stripe;
 use Exception;
+use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Travel;
 use App\Models\Payment;
@@ -15,6 +16,7 @@ use App\Services\api\UrlServices;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use App\Http\Controllers\Api\services\sms\SendSmsService;
 
 class StripeController extends Controller
 {
@@ -22,6 +24,7 @@ class StripeController extends Controller
 
         $code=PromoCode::where('code',$codePromo)->first();
         $url=(new UrlServices())->getUrl();
+        $user=User::where('id',Auth::guard('api')->user()->id)->first();
         $arrayTicket=[];
         if($code){
             $code->update([
@@ -72,12 +75,13 @@ class StripeController extends Controller
                     $payment->update([
                         'isCheckPayment' =>1
                     ]);
-
+                    $travel_id=$payment->travel_id;
                     array_push($arrayTicket,$ticket->id);
 
                 }
-
-
+                $travel=Travel::where('id',$travel_id)->first();
+                $message="Vous venez de payer un ticket par carte bancaire chez Kipart pour le voyage du $travel->date";
+                $sms=(new SendSmsService())->sendSms("delanofofe@gmail.com","test1234",$user->phone_number,$message,"KiPART","2022-12-09 17:20:02");
                 return response()->json(["message"=>$response->status,"ticketId"=>$arrayTicket],201);
               }else{
                 return response()->json([
