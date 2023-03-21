@@ -21,7 +21,12 @@ class TicketController extends Controller
 
         return $myTickets;
     }
+    public function getTicket($id){
 
+        $Ticket=ListTicketResource::collection(Ticket::where('id',$id)->where('user_id', Auth::guard('api')->user()->id)->get());
+
+        return $Ticket;
+    }
     public function getQrCode($id){
 
         $subAgency=DB::table('tickets')

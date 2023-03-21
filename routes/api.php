@@ -198,6 +198,7 @@ use App\Http\Controllers\Api\Payment\OrangeMoneyController;
         Route::get('getPayment/status/{token}/{payToken}/{id}/{codePromo}/{subId}/{price}',[OrangeMoneyController::class,'getPaymentStatus']);
         Route::post('delete/Account',[CustomerController::class,'deleteAccount']);
         Route::put('update/passengers/{id}',[PassengerController::class,'update']);
+        Route::get('getTicket/{id}',[TicketTicketController::class,'getTicket']);
     });
 
 
