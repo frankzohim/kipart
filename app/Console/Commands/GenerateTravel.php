@@ -11,7 +11,7 @@ class GenerateTravel extends Command
      *
      * @var string
      */
-    protected $signature = 'generate:travel';
+    protected $signature = 'generate:travels';
 
     /**
      * The console command description.
